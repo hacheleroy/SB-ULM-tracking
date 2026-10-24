@@ -45,6 +45,7 @@ sbulm-smc-calibration = "sbulm.smc_calibration:main"
 sbulm-wp3-null-calibration = "sbulm.wp3_null_calibration:main"
 sbulm-wp4-existence-calibration = "sbulm.wp4_existence_calibration:main"
 sbulm-wp5-scaling-calibration = "sbulm.wp5_scaling_calibration:main"
+sbulm-wp6-paired-scaling = "sbulm.wp6_paired_scaling:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/sbulm"]

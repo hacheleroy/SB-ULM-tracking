@@ -18,7 +18,9 @@ latent bubbles. WP4 adds births and deaths through explicit exchangeable slots
 with a contiguous existence mask while preserving an exact small-case oracle.
 WP5 replaces interval-product initialization by an exact sequential HMM base
 sampler and calibrates a blocked slot proposal through three slots and six
-frames; a four-slot/eight-frame stress test remains unstable across runs.
+frames. A new likelihood-informed paired-slot move improves four-slot
+cross-run agreement, but narrowly misses the frozen stability gate; it is not
+yet a four-slot calibration claim.
 
 ## Current contents
 
@@ -48,6 +50,9 @@ frames; a four-slot/eight-frame stress test remains unstable across runs.
 - An exact forward-filtering/backward-sampling base initializer and a
   conditional-base blocked slot move, with a WP5 exact gate beyond two slots
   and a documented four-slot stability boundary
+- A joint two-slot, one-/two-frame multiple-try proposal that scores candidate
+  births, misses, clutter, and associations with the exact tempered posterior,
+  with a separate exact-oracle and four-slot stability comparison
 - Metrics for identity accuracy, identity switches, posterior mass, entropy,
   and credible-set coverage
 - A tested exporter to the public Smooth-SB notebook format and distributional
@@ -80,6 +85,7 @@ python -m sbulm.smc_calibration --output-dir results --workers 6
 python -m sbulm.wp3_null_calibration --output-dir results --workers 6
 python -m sbulm.wp4_existence_calibration --output-dir results --workers 6
 python -m sbulm.wp5_scaling_calibration --output-dir results
+python -m sbulm.wp6_paired_scaling --output-dir results
 ```
 
 Public-TSBM experiments use `experiments/run_tsbm_wp2.py` with an external
@@ -120,6 +126,10 @@ The experiment writes:
   for the single-run evidence failure
 - `results/wp5_scaling_calibration.json/.png`: exact three-slot/five- and
   six-frame calibration plus the four-slot/eight-frame stability stress test
+- `results/wp6_paired_scaling.json/.png`: frozen paired-versus-blocked
+  exact-oracle and four-slot stability comparison
+- `results/wp6_paired_heldout.json`: an untuned second triplet of four-slot
+  independent runs
 
 The NPZ stores hidden identities and latent trajectories under separate keys
 for auditing, but the upstream method receives only the unordered observations
@@ -184,6 +194,15 @@ much as 0.2495 on expected clutter. The calibrated ceiling is therefore three
 slots/six frames; four-slot mode weights are not yet validated. See
 `docs/wp5_scalable_slots.md`.
 
+The likelihood-informed paired-slot move passes all six of its three-slot
+exact-target runs and reduces four-slot expected-clutter disagreement from
+0.2495 to 0.0645. It nevertheless misses the frozen cross-run gate by a
+small margin (alive-count TV 0.10010 versus 0.10), while costing about 1.9
+times as much per four-slot run. Three untouched new seeds pass within their
+triplet, so the result is promising but not a robust four-slot calibration.
+The exact-oracle ceiling remains three slots/six frames. See
+`docs/wp6_paired_moves.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.
@@ -212,8 +231,9 @@ See `docs/resources.md` for the audited resources and licensing constraints.
 8. Scale the discrete representation beyond two slots and four frames
    — exact three-slot/six-frame gate passed; four-slot/eight-frame stability
    remains a no-go
-9. Choose collective multi-slot moves versus a relaxed/variable-mass
-   representation
+9. Test likelihood-informed collective multi-slot moves — exact three-slot
+   gate passed and four-slot disagreement improved, but strict stability
+   still narrowly fails
 10. Selected in-vivo ULMShare trajectories
 11. Only then: IQ/RF likelihoods and acquisition-level inference
 

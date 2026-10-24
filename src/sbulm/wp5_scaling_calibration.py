@@ -286,6 +286,16 @@ def _controls(
             slot_swap_probability=0.10,
             blocked_slot_move_probability=0.15,
         )
+    if method == "paired":
+        return BirthDeathSMCConfig(
+            **common,
+            association_move_probability=0.20,
+            interval_move_probability=0.35,
+            slot_swap_probability=0.05,
+            blocked_slot_move_probability=0.15,
+            paired_slot_move_probability=0.25,
+            paired_slot_candidates=2,
+        )
     raise ValueError(f"unknown method: {method}")
 
 
@@ -328,6 +338,7 @@ def _run_exact_regime(
     n_particles: int,
     n_repeats: int,
     baseline_replicates: int,
+    methods: tuple[str, ...] = ("local", "blocked"),
 ) -> dict[str, Any]:
     case = _make_case(regime)
     exact, exact_log_evidence = _exact_posterior(case.model)
@@ -359,7 +370,7 @@ def _run_exact_regime(
         "maximum_event_error": 0.06,
     }
     runs: list[dict[str, Any]] = []
-    for method in ("local", "blocked"):
+    for method in methods:
         for seed in range(n_repeats):
             sampled, runtime = _sample_case(
                 case,
@@ -415,12 +426,21 @@ def _run_exact_regime(
                     "mean_blocked_slot_acceptance_rate": mean(
                         stage.blocked_slot_acceptance_rate for stage in stages
                     ),
+                    "mean_paired_slot_acceptance_rate": mean(
+                        stage.paired_slot_acceptance_rate for stage in stages
+                    ),
+                    "mean_paired_slot_state_change_rate": mean(
+                        stage.paired_slot_state_change_rate for stage in stages
+                    ),
                     "final_unique_state_count": stages[-1].unique_state_count,
                     "checks": checks,
                     "passed": all(checks.values()),
                 }
             )
-    blocked_runs = [run for run in runs if run["method"] == "blocked"]
+    method_gates = {
+        method: all(run["passed"] for run in runs if run["method"] == method)
+        for method in methods
+    }
     return {
         "regime": asdict(regime),
         "n_slots": case.model.n_slots,
@@ -431,7 +451,8 @@ def _run_exact_regime(
         "finite_sample_baseline": baseline,
         "thresholds": thresholds,
         "runs": runs,
-        "blocked_gate_passed": all(run["passed"] for run in blocked_runs),
+        "blocked_gate_passed": method_gates.get("blocked", False),
+        "method_gates": method_gates,
     }
 
 
@@ -459,6 +480,8 @@ def _run_large_stability_case(
     *,
     n_particles: int,
     n_repeats: int,
+    method: str = "blocked",
+    sampling_seed_start: int = 100,
     name: str = "ambiguous_four_slots_eight_frames",
     central_separation: float = 0.0,
     detection_probability: float = 0.70,
@@ -536,9 +559,9 @@ def _run_large_stability_case(
                 coordinate_std=calibration.coordinate_std,
                 length_scale=calibration.length_scale,
             ),
-            method="blocked",
+            method=method,
             n_particles=n_particles,
-            seed=100 + seed,
+            seed=sampling_seed_start + seed,
             final_mh_sweeps=final_mh_sweeps,
             target_ess_fraction=target_ess_fraction,
         )
@@ -550,7 +573,7 @@ def _run_large_stability_case(
         assigned_histograms.append(_histogram(assigned_counts, n_slots * n_frames))
         runs.append(
             {
-                "seed": 100 + seed,
+                "seed": sampling_seed_start + seed,
                 "runtime_seconds": runtime,
                 "n_tempering_steps": sampled.n_tempering_steps,
                 "mean_acceptance_rate": mean(
@@ -558,6 +581,12 @@ def _run_large_stability_case(
                 ),
                 "mean_blocked_slot_acceptance_rate": mean(
                     stage.blocked_slot_acceptance_rate for stage in sampled.stages
+                ),
+                "mean_paired_slot_acceptance_rate": mean(
+                    stage.paired_slot_acceptance_rate for stage in sampled.stages
+                ),
+                "mean_paired_slot_state_change_rate": mean(
+                    stage.paired_slot_state_change_rate for stage in sampled.stages
                 ),
                 "final_unique_state_count": sampled.stages[-1].unique_state_count,
                 "mean_alive_slot_frames": float(np.mean(alive_counts)),
@@ -593,12 +622,14 @@ def _run_large_stability_case(
             "independent-run stability only; no exact calibration claim"
         ),
         "name": name,
+        "method": method,
         "n_slots": n_slots,
         "n_frames": n_frames,
         "central_separation_mm": central_separation,
         "detection_probability": detection_probability,
         "expected_clutter_per_frame": clutter_rate,
         "corruption_seed": corruption_seed,
+        "sampling_seed_start": sampling_seed_start,
         "detection_cardinalities": list(detections.cardinalities),
         "interval_mask_combinations_not_enumerated": interval_combinations,
         "joint_hmm_state_count": 3**n_slots,

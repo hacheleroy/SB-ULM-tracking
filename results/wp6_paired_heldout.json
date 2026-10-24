@@ -1,0 +1,87 @@
+{
+  "validation_level": "independent-run stability only; no exact calibration claim",
+  "name": "ambiguous_four_slots_eight_frames",
+  "method": "paired",
+  "n_slots": 4,
+  "n_frames": 8,
+  "central_separation_mm": 0.0,
+  "detection_probability": 0.7,
+  "expected_clutter_per_frame": 0.15,
+  "corruption_seed": 5,
+  "sampling_seed_start": 200,
+  "detection_cardinalities": [
+    0,
+    2,
+    4,
+    3,
+    4,
+    2,
+    1,
+    1
+  ],
+  "interval_mask_combinations_not_enumerated": 1874161,
+  "joint_hmm_state_count": 81,
+  "final_mh_sweeps": 8,
+  "target_ess_fraction": 0.8,
+  "runs": [
+    {
+      "seed": 200,
+      "runtime_seconds": 131.54893408499993,
+      "n_tempering_steps": 20,
+      "mean_acceptance_rate": 0.45865936279296876,
+      "mean_blocked_slot_acceptance_rate": 0.3215454539452942,
+      "mean_paired_slot_acceptance_rate": 0.6154358149551589,
+      "mean_paired_slot_state_change_rate": 0.31549397710289806,
+      "final_unique_state_count": 2040,
+      "mean_alive_slot_frames": 19.43505859375,
+      "mean_assigned_detections": 14.7998046875,
+      "log_evidence_estimate": 96.91825557180587
+    },
+    {
+      "seed": 201,
+      "runtime_seconds": 132.18586383500042,
+      "n_tempering_steps": 19,
+      "mean_acceptance_rate": 0.4645851536800987,
+      "mean_blocked_slot_acceptance_rate": 0.3307514565785336,
+      "mean_paired_slot_acceptance_rate": 0.621253272188196,
+      "mean_paired_slot_state_change_rate": 0.32143782351079825,
+      "final_unique_state_count": 2040,
+      "mean_alive_slot_frames": 19.8564453125,
+      "mean_assigned_detections": 14.82421875,
+      "log_evidence_estimate": 96.79078188065928
+    },
+    {
+      "seed": 202,
+      "runtime_seconds": 129.57692237600077,
+      "n_tempering_steps": 20,
+      "mean_acceptance_rate": 0.4590179443359375,
+      "mean_blocked_slot_acceptance_rate": 0.3243645284988945,
+      "mean_paired_slot_acceptance_rate": 0.617229307946503,
+      "mean_paired_slot_state_change_rate": 0.3197561788251826,
+      "final_unique_state_count": 2045,
+      "mean_alive_slot_frames": 19.51416015625,
+      "mean_assigned_detections": 14.7802734375,
+      "log_evidence_estimate": 97.57459972815154
+    }
+  ],
+  "cross_run_metrics": {
+    "maximum_existence_marginal_difference": 0.0634765625,
+    "maximum_missed_marginal_difference": 0.0576171875,
+    "maximum_clutter_marginal_difference": 0.0537109375,
+    "maximum_birth_marginal_difference": 0.05908203125,
+    "maximum_death_marginal_difference": 0.0498046875,
+    "maximum_alive_count_tv": 0.0771484375,
+    "maximum_assigned_count_tv": 0.03515625
+  },
+  "stability_threshold": 0.1,
+  "checks": {
+    "maximum_existence_marginal_difference": true,
+    "maximum_missed_marginal_difference": true,
+    "maximum_clutter_marginal_difference": true,
+    "maximum_birth_marginal_difference": true,
+    "maximum_death_marginal_difference": true,
+    "maximum_alive_count_tv": true,
+    "maximum_assigned_count_tv": true
+  },
+  "stability_passed": true
+}

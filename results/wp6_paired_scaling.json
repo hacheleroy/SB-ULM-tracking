@@ -1,0 +1,842 @@
+{
+  "experiment": "wp6_local_likelihood_informed_pair_moves",
+  "method": {
+    "proposal": "uniform local conditional support for a pair of slots in one or two frames; finite candidate sets are symmetric on reversal",
+    "selection": "multiple-try weighting by the exact existence/count base and tempered collapsed Matern localization likelihood",
+    "correction": "independent multiple-try Metropolis ratio of forward and reverse weight sums; reverse set includes the current state",
+    "mixture": {
+      "whole_frame_association": 0.2,
+      "interval_replacement": 0.35,
+      "global_slot_swap": 0.05,
+      "conditional_base_blocked_slot": 0.15,
+      "local_paired_multiple_try": 0.25,
+      "paired_candidates": 2
+    },
+    "oracle_used_during_inference": false
+  },
+  "configuration": {
+    "n_particles": 2048,
+    "n_repeats": 3,
+    "baseline_replicates": 100,
+    "stability_threshold": 0.1,
+    "seeds": [
+      100,
+      101,
+      102
+    ]
+  },
+  "exact_cases": [
+    {
+      "regime": {
+        "name": "three_slots_five_frames",
+        "truth_mask": [
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            false,
+            true,
+            true
+          ]
+        ],
+        "detection_probability": 0.35,
+        "expected_clutter_per_frame": 0.08,
+        "corruption_seed": 3
+      },
+      "n_slots": 3,
+      "n_frames": 5,
+      "detection_cardinalities": [
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "exact_support_size": 111742,
+      "exact_log_evidence": 19.332432655299744,
+      "finite_sample_baseline": {
+        "n_samples": 2048,
+        "n_replicates": 100,
+        "total_variation_q05": 0.7392516373341727,
+        "total_variation_median": 0.7459370011915682,
+        "total_variation_q95": 0.7524272977481051,
+        "jensen_shannon_q05": 0.41548364947224237,
+        "jensen_shannon_median": 0.42002331222816264,
+        "jensen_shannon_q95": 0.42582135276201427,
+        "exact_mass_covered_q05": 0.26070872420976726,
+        "exact_mass_covered_median": 0.26803239092445896,
+        "exact_mass_covered_q95": 0.27412876687289267,
+        "credible_set_recall_95_q05": 0.06970362000782235,
+        "credible_set_recall_95_median": 0.07087914475685542,
+        "credible_set_recall_95_q95": 0.07213941158576333
+      },
+      "thresholds": {
+        "total_variation": 0.7824272977481052,
+        "jensen_shannon": 0.4458213527620143,
+        "exact_mass_covered": 0.23070872420976726,
+        "credible_set_recall_95": 0.03970362000782235,
+        "maximum_event_error": 0.06
+      },
+      "runs": [
+        {
+          "method": "blocked",
+          "seed": 0,
+          "runtime_seconds": 32.163543390000086,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.7437206201299039,
+            "jensen_shannon_divergence": 0.41618975728392527,
+            "exact_map_sample_frequency": 0.001953125,
+            "empirical_support_size": 1736,
+            "exact_mass_covered_by_empirical_support": 0.2736183855533625,
+            "credible_set_recall_95": 0.07113988961800878
+          },
+          "event_errors": {
+            "existence": 0.01263457393500833,
+            "missed": 0.015549705567524275,
+            "clutter": 0.005672307183190783,
+            "birth_time": 0.014640995428188114,
+            "death_time": 0.009978443311615112
+          },
+          "maximum_event_error": 0.015549705567524275,
+          "log_evidence_error": 0.185604552104067,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.5630859375,
+          "mean_blocked_slot_acceptance_rate": 0.5728676642548809,
+          "mean_paired_slot_acceptance_rate": 0.0,
+          "mean_paired_slot_state_change_rate": 0.0,
+          "final_unique_state_count": 1736,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "blocked",
+          "seed": 1,
+          "runtime_seconds": 29.184067786000014,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.746106249809358,
+            "jensen_shannon_divergence": 0.4221037975352132,
+            "exact_map_sample_frequency": 0.001953125,
+            "empirical_support_size": 1733,
+            "exact_mass_covered_by_empirical_support": 0.26492313570755216,
+            "credible_set_recall_95": 0.07100951718743209
+          },
+          "event_errors": {
+            "existence": 0.016502543132828618,
+            "missed": 0.010505611412386595,
+            "clutter": 0.009952692816809217,
+            "birth_time": 0.008575892858591568,
+            "death_time": 0.012436926751467348
+          },
+          "maximum_event_error": 0.016502543132828618,
+          "log_evidence_error": -0.04514160875367779,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.56595458984375,
+          "mean_blocked_slot_acceptance_rate": 0.5682548468175344,
+          "mean_paired_slot_acceptance_rate": 0.0,
+          "mean_paired_slot_state_change_rate": 0.0,
+          "final_unique_state_count": 1733,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "blocked",
+          "seed": 2,
+          "runtime_seconds": 24.61532911299946,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.7477334835511695,
+            "jensen_shannon_divergence": 0.4190496034629477,
+            "exact_map_sample_frequency": 0.00048828125,
+            "empirical_support_size": 1700,
+            "exact_mass_covered_by_empirical_support": 0.26788888440035774,
+            "credible_set_recall_95": 0.06974925035852418
+          },
+          "event_errors": {
+            "existence": 0.02368391697863581,
+            "missed": 0.01761089138495517,
+            "clutter": 0.012394099066809217,
+            "birth_time": 0.023683916978636477,
+            "death_time": 0.014418541998532652
+          },
+          "maximum_event_error": 0.023683916978636477,
+          "log_evidence_error": 0.010091808348153819,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.56456298828125,
+          "mean_blocked_slot_acceptance_rate": 0.561791450182133,
+          "mean_paired_slot_acceptance_rate": 0.0,
+          "mean_paired_slot_state_change_rate": 0.0,
+          "final_unique_state_count": 1700,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "paired",
+          "seed": 0,
+          "runtime_seconds": 45.25052750299983,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.7424364601103932,
+            "jensen_shannon_divergence": 0.41575765776784446,
+            "exact_map_sample_frequency": 0.0009765625,
+            "empirical_support_size": 1694,
+            "exact_mass_covered_by_empirical_support": 0.27178271153792344,
+            "credible_set_recall_95": 0.06931467558993525
+          },
+          "event_errors": {
+            "existence": 0.031528344872678526,
+            "missed": 0.031528344872678526,
+            "clutter": 0.010440974066809217,
+            "birth_time": 0.017302662061615112,
+            "death_time": 0.017302662061615112
+          },
+          "maximum_event_error": 0.031528344872678526,
+          "log_evidence_error": 0.08122699901253227,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.5726806640625,
+          "mean_blocked_slot_acceptance_rate": 0.5669284749709513,
+          "mean_paired_slot_acceptance_rate": 0.6652487289941379,
+          "mean_paired_slot_state_change_rate": 0.40064010093351343,
+          "final_unique_state_count": 1694,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "paired",
+          "seed": 1,
+          "runtime_seconds": 46.41748608299986,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.7491900123581775,
+            "jensen_shannon_divergence": 0.4219281001093135,
+            "exact_map_sample_frequency": 0.00146484375,
+            "empirical_support_size": 1732,
+            "exact_mass_covered_by_empirical_support": 0.26555814593928534,
+            "credible_set_recall_95": 0.07135717700230325
+          },
+          "event_errors": {
+            "existence": 0.03408066813282884,
+            "missed": 0.025112280127321807,
+            "clutter": 0.0032652982189566027,
+            "birth_time": 0.01665433906855858,
+            "death_time": 0.015997536022768877
+          },
+          "maximum_event_error": 0.03408066813282884,
+          "log_evidence_error": 0.050113053472461644,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.57427978515625,
+          "mean_blocked_slot_acceptance_rate": 0.5738321133033752,
+          "mean_paired_slot_acceptance_rate": 0.6633167022178851,
+          "mean_paired_slot_state_change_rate": 0.3989664947545864,
+          "final_unique_state_count": 1732,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "paired",
+          "seed": 2,
+          "runtime_seconds": 54.43677935300002,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.7456039003062284,
+            "jensen_shannon_divergence": 0.41960470517354576,
+            "exact_map_sample_frequency": 0.0029296875,
+            "empirical_support_size": 1728,
+            "exact_mass_covered_by_empirical_support": 0.270528689427149,
+            "credible_set_recall_95": 0.07109643214114988
+          },
+          "event_errors": {
+            "existence": 0.01681149887732125,
+            "missed": 0.025049763417166027,
+            "clutter": 0.015437932183190783,
+            "birth_time": 0.015866864271360193,
+            "death_time": 0.012091286022780312
+          },
+          "maximum_event_error": 0.025049763417166027,
+          "log_evidence_error": -0.026855816376574637,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.5669189453125,
+          "mean_blocked_slot_acceptance_rate": 0.5529145667965404,
+          "mean_paired_slot_acceptance_rate": 0.6647860001713832,
+          "mean_paired_slot_state_change_rate": 0.3997957162506649,
+          "final_unique_state_count": 1728,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        }
+      ],
+      "blocked_gate_passed": true,
+      "method_gates": {
+        "blocked": true,
+        "paired": true
+      }
+    },
+    {
+      "regime": {
+        "name": "three_slots_six_frames",
+        "truth_mask": [
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            true,
+            true,
+            false
+          ],
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            false,
+            true,
+            true
+          ],
+          [
+            false,
+            false,
+            true
+          ]
+        ],
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.08,
+        "corruption_seed": 0
+      },
+      "n_slots": 3,
+      "n_frames": 6,
+      "detection_cardinalities": [
+        0,
+        2,
+        0,
+        1,
+        1,
+        0
+      ],
+      "exact_support_size": 349312,
+      "exact_log_evidence": 20.889009722479024,
+      "finite_sample_baseline": {
+        "n_samples": 2048,
+        "n_replicates": 100,
+        "total_variation_q05": 0.650029834917199,
+        "total_variation_median": 0.6573001425288097,
+        "total_variation_q95": 0.6649510338985634,
+        "jensen_shannon_q05": 0.35727906679964566,
+        "jensen_shannon_median": 0.3618092928386988,
+        "jensen_shannon_q95": 0.36822472671097634,
+        "exact_mass_covered_q05": 0.37245279585698604,
+        "exact_mass_covered_median": 0.3815586613001671,
+        "exact_mass_covered_q95": 0.38859982823795924,
+        "credible_set_recall_95_q05": 0.05480802894153343,
+        "credible_set_recall_95_median": 0.05603532111876143,
+        "credible_set_recall_95_q95": 0.05714396856887229
+      },
+      "thresholds": {
+        "total_variation": 0.6949510338985634,
+        "jensen_shannon": 0.38822472671097635,
+        "exact_mass_covered": 0.34245279585698607,
+        "credible_set_recall_95": 0.02480802894153343,
+        "maximum_event_error": 0.06
+      },
+      "runs": [
+        {
+          "method": "blocked",
+          "seed": 0,
+          "runtime_seconds": 26.20053643400024,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.6622189726114883,
+            "jensen_shannon_divergence": 0.3612949999607792,
+            "exact_map_sample_frequency": 0.0029296875,
+            "empirical_support_size": 1524,
+            "exact_mass_covered_by_empirical_support": 0.3812869336297169,
+            "credible_set_recall_95": 0.05551017232660365
+          },
+          "event_errors": {
+            "existence": 0.01557127042580414,
+            "missed": 0.01753149625429458,
+            "clutter": 0.003987622930833767,
+            "birth_time": 0.012673261965236604,
+            "death_time": 0.010452483600777218
+          },
+          "maximum_event_error": 0.01753149625429458,
+          "log_evidence_error": 0.016982420385517116,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.5816864013671875,
+          "mean_blocked_slot_acceptance_rate": 0.5581167342342024,
+          "mean_paired_slot_acceptance_rate": 0.0,
+          "mean_paired_slot_state_change_rate": 0.0,
+          "final_unique_state_count": 1524,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "blocked",
+          "seed": 1,
+          "runtime_seconds": 26.61894938000023,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.6665074625345736,
+            "jensen_shannon_divergence": 0.3692290672047033,
+            "exact_map_sample_frequency": 0.0029296875,
+            "empirical_support_size": 1562,
+            "exact_mass_covered_by_empirical_support": 0.3750800205768032,
+            "credible_set_recall_95": 0.0558602715213755
+          },
+          "event_errors": {
+            "existence": 0.03325685457419586,
+            "missed": 0.024948972495705726,
+            "clutter": 0.009846997930833767,
+            "birth_time": 0.01808845678476012,
+            "death_time": 0.01908474389024878
+          },
+          "maximum_event_error": 0.03325685457419586,
+          "log_evidence_error": -0.13439349324082173,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.5812530517578125,
+          "mean_blocked_slot_acceptance_rate": 0.5569547223076606,
+          "mean_paired_slot_acceptance_rate": 0.0,
+          "mean_paired_slot_state_change_rate": 0.0,
+          "final_unique_state_count": 1562,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "blocked",
+          "seed": 2,
+          "runtime_seconds": 29.381145531000584,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.6575242115711267,
+            "jensen_shannon_divergence": 0.35983690154733117,
+            "exact_map_sample_frequency": 0.0009765625,
+            "empirical_support_size": 1486,
+            "exact_mass_covered_by_empirical_support": 0.37563363368758396,
+            "credible_set_recall_95": 0.05422647527910686
+          },
+          "event_errors": {
+            "existence": 0.017822927913617725,
+            "missed": 0.017822927913617725,
+            "clutter": 0.005778002069166233,
+            "birth_time": 0.015065157807173823,
+            "death_time": 0.012163739120943443
+          },
+          "maximum_event_error": 0.017822927913617725,
+          "log_evidence_error": 0.05958282986644292,
+          "n_tempering_steps": 11,
+          "mean_acceptance_rate": 0.5692221901633523,
+          "mean_blocked_slot_acceptance_rate": 0.5491603289305156,
+          "mean_paired_slot_acceptance_rate": 0.0,
+          "mean_paired_slot_state_change_rate": 0.0,
+          "final_unique_state_count": 1486,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "paired",
+          "seed": 0,
+          "runtime_seconds": 55.366209350000645,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.6676879214841158,
+            "jensen_shannon_divergence": 0.3677465471184528,
+            "exact_map_sample_frequency": 0.00048828125,
+            "empirical_support_size": 1569,
+            "exact_mass_covered_by_empirical_support": 0.38213005057399163,
+            "credible_set_recall_95": 0.057105068658342084
+          },
+          "event_errors": {
+            "existence": 0.023981905927874914,
+            "missed": 0.017776702350782325,
+            "clutter": 0.0030110604308337674,
+            "birth_time": 0.01911452969282612,
+            "death_time": 0.017776702350784157
+          },
+          "maximum_event_error": 0.023981905927874914,
+          "log_evidence_error": -0.16791798255061607,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.5737884521484375,
+          "mean_blocked_slot_acceptance_rate": 0.5555165399074585,
+          "mean_paired_slot_acceptance_rate": 0.636234242853907,
+          "mean_paired_slot_state_change_rate": 0.3202489530749626,
+          "final_unique_state_count": 1569,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "paired",
+          "seed": 1,
+          "runtime_seconds": 51.22077530800016,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.6460381439501433,
+            "jensen_shannon_divergence": 0.3533561851625052,
+            "exact_map_sample_frequency": 0.00439453125,
+            "empirical_support_size": 1549,
+            "exact_mass_covered_by_empirical_support": 0.3920337119212807,
+            "credible_set_recall_95": 0.05624927062667756
+          },
+          "event_errors": {
+            "existence": 0.013127469072125086,
+            "missed": 0.012940115413617725,
+            "clutter": 0.007405591680833767,
+            "birth_time": 0.014034393540518539,
+            "death_time": 0.014034393540518539
+          },
+          "maximum_event_error": 0.014034393540518539,
+          "log_evidence_error": -0.02039466973333859,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.5752471923828125,
+          "mean_blocked_slot_acceptance_rate": 0.5532569714159106,
+          "mean_paired_slot_acceptance_rate": 0.6398965193157381,
+          "mean_paired_slot_state_change_rate": 0.3234464281367337,
+          "final_unique_state_count": 1549,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        },
+        {
+          "method": "paired",
+          "seed": 2,
+          "runtime_seconds": 53.0300941430005,
+          "comparison": {
+            "n_samples": 2048,
+            "invalid_sample_fraction": 0.0,
+            "total_variation_distance": 0.659957431295529,
+            "jensen_shannon_divergence": 0.3623101342252115,
+            "exact_map_sample_frequency": 0.001953125,
+            "empirical_support_size": 1535,
+            "exact_mass_covered_by_empirical_support": 0.3789596456442724,
+            "credible_set_recall_95": 0.05554907223713385
+          },
+          "event_errors": {
+            "existence": 0.019509199465251426,
+            "missed": 0.019509199465251426,
+            "clutter": 0.0038849475145281698,
+            "birth_time": 0.022389376557173823,
+            "death_time": 0.01268047979566539
+          },
+          "maximum_event_error": 0.022389376557173823,
+          "log_evidence_error": 0.00011855112697389814,
+          "n_tempering_steps": 10,
+          "mean_acceptance_rate": 0.5719818115234375,
+          "mean_blocked_slot_acceptance_rate": 0.5579155398090374,
+          "mean_paired_slot_acceptance_rate": 0.63300089889472,
+          "mean_paired_slot_state_change_rate": 0.31943780206319494,
+          "final_unique_state_count": 1535,
+          "checks": {
+            "valid_support": true,
+            "total_variation": true,
+            "jensen_shannon": true,
+            "exact_mass_covered": true,
+            "credible_set_recall_95": true,
+            "event_marginals": true
+          },
+          "passed": true
+        }
+      ],
+      "blocked_gate_passed": true,
+      "method_gates": {
+        "blocked": true,
+        "paired": true
+      }
+    }
+  ],
+  "exact_gates": {
+    "blocked": true,
+    "paired": true
+  },
+  "large_cases": {
+    "blocked": {
+      "validation_level": "independent-run stability only; no exact calibration claim",
+      "name": "ambiguous_four_slots_eight_frames",
+      "method": "blocked",
+      "n_slots": 4,
+      "n_frames": 8,
+      "central_separation_mm": 0.0,
+      "detection_probability": 0.7,
+      "expected_clutter_per_frame": 0.15,
+      "corruption_seed": 5,
+      "sampling_seed_start": 100,
+      "detection_cardinalities": [
+        0,
+        2,
+        4,
+        3,
+        4,
+        2,
+        1,
+        1
+      ],
+      "interval_mask_combinations_not_enumerated": 1874161,
+      "joint_hmm_state_count": 81,
+      "final_mh_sweeps": 8,
+      "target_ess_fraction": 0.8,
+      "runs": [
+        {
+          "seed": 100,
+          "runtime_seconds": 68.96862390499973,
+          "n_tempering_steps": 19,
+          "mean_acceptance_rate": 0.44605455900493424,
+          "mean_blocked_slot_acceptance_rate": 0.328206016426621,
+          "mean_paired_slot_acceptance_rate": 0.0,
+          "mean_paired_slot_state_change_rate": 0.0,
+          "final_unique_state_count": 2016,
+          "mean_alive_slot_frames": 19.5751953125,
+          "mean_assigned_detections": 14.71533203125,
+          "log_evidence_estimate": 96.32060759254628
+        },
+        {
+          "seed": 101,
+          "runtime_seconds": 67.17303487000027,
+          "n_tempering_steps": 19,
+          "mean_acceptance_rate": 0.4499399285567434,
+          "mean_blocked_slot_acceptance_rate": 0.3402918373208884,
+          "mean_paired_slot_acceptance_rate": 0.0,
+          "mean_paired_slot_state_change_rate": 0.0,
+          "final_unique_state_count": 2034,
+          "mean_alive_slot_frames": 19.61669921875,
+          "mean_assigned_detections": 14.75048828125,
+          "log_evidence_estimate": 96.55669781236345
+        },
+        {
+          "seed": 102,
+          "runtime_seconds": 66.67329921300006,
+          "n_tempering_steps": 19,
+          "mean_acceptance_rate": 0.4423956620065789,
+          "mean_blocked_slot_acceptance_rate": 0.32073495158751264,
+          "mean_paired_slot_acceptance_rate": 0.0,
+          "mean_paired_slot_state_change_rate": 0.0,
+          "final_unique_state_count": 2017,
+          "mean_alive_slot_frames": 19.07470703125,
+          "mean_assigned_detections": 14.5927734375,
+          "log_evidence_estimate": 96.97198114608354
+        }
+      ],
+      "cross_run_metrics": {
+        "maximum_existence_marginal_difference": 0.10693359375,
+        "maximum_missed_marginal_difference": 0.10693359375,
+        "maximum_clutter_marginal_difference": 0.24951171875,
+        "maximum_birth_marginal_difference": 0.10693359375,
+        "maximum_death_marginal_difference": 0.0947265625,
+        "maximum_alive_count_tv": 0.154296875,
+        "maximum_assigned_count_tv": 0.12060546875
+      },
+      "stability_threshold": 0.1,
+      "checks": {
+        "maximum_existence_marginal_difference": false,
+        "maximum_missed_marginal_difference": false,
+        "maximum_clutter_marginal_difference": false,
+        "maximum_birth_marginal_difference": false,
+        "maximum_death_marginal_difference": true,
+        "maximum_alive_count_tv": false,
+        "maximum_assigned_count_tv": false
+      },
+      "stability_passed": false
+    },
+    "paired": {
+      "validation_level": "independent-run stability only; no exact calibration claim",
+      "name": "ambiguous_four_slots_eight_frames",
+      "method": "paired",
+      "n_slots": 4,
+      "n_frames": 8,
+      "central_separation_mm": 0.0,
+      "detection_probability": 0.7,
+      "expected_clutter_per_frame": 0.15,
+      "corruption_seed": 5,
+      "sampling_seed_start": 100,
+      "detection_cardinalities": [
+        0,
+        2,
+        4,
+        3,
+        4,
+        2,
+        1,
+        1
+      ],
+      "interval_mask_combinations_not_enumerated": 1874161,
+      "joint_hmm_state_count": 81,
+      "final_mh_sweeps": 8,
+      "target_ess_fraction": 0.8,
+      "runs": [
+        {
+          "seed": 100,
+          "runtime_seconds": 135.54648802199972,
+          "n_tempering_steps": 20,
+          "mean_acceptance_rate": 0.45595703125,
+          "mean_blocked_slot_acceptance_rate": 0.32110881211028836,
+          "mean_paired_slot_acceptance_rate": 0.6113257861163461,
+          "mean_paired_slot_state_change_rate": 0.30933923590529716,
+          "final_unique_state_count": 2045,
+          "mean_alive_slot_frames": 19.142578125,
+          "mean_assigned_detections": 14.794921875,
+          "log_evidence_estimate": 96.68695454177842
+        },
+        {
+          "seed": 101,
+          "runtime_seconds": 122.69694676500058,
+          "n_tempering_steps": 19,
+          "mean_acceptance_rate": 0.4628231650904605,
+          "mean_blocked_slot_acceptance_rate": 0.3286403170421659,
+          "mean_paired_slot_acceptance_rate": 0.6193045900957509,
+          "mean_paired_slot_state_change_rate": 0.3182144279179543,
+          "final_unique_state_count": 2029,
+          "mean_alive_slot_frames": 19.49951171875,
+          "mean_assigned_detections": 14.87841796875,
+          "log_evidence_estimate": 97.04309108572096
+        },
+        {
+          "seed": 102,
+          "runtime_seconds": 128.94604440700004,
+          "n_tempering_steps": 20,
+          "mean_acceptance_rate": 0.45711517333984375,
+          "mean_blocked_slot_acceptance_rate": 0.31786989154311507,
+          "mean_paired_slot_acceptance_rate": 0.6146432692056386,
+          "mean_paired_slot_state_change_rate": 0.3145890246213893,
+          "final_unique_state_count": 2045,
+          "mean_alive_slot_frames": 19.6455078125,
+          "mean_assigned_detections": 14.810546875,
+          "log_evidence_estimate": 96.7752731921629
+        }
+      ],
+      "cross_run_metrics": {
+        "maximum_existence_marginal_difference": 0.07666015625,
+        "maximum_missed_marginal_difference": 0.07666015625,
+        "maximum_clutter_marginal_difference": 0.064453125,
+        "maximum_birth_marginal_difference": 0.07666015625,
+        "maximum_death_marginal_difference": 0.060546875,
+        "maximum_alive_count_tv": 0.10009765625,
+        "maximum_assigned_count_tv": 0.05322265625
+      },
+      "stability_threshold": 0.1,
+      "checks": {
+        "maximum_existence_marginal_difference": true,
+        "maximum_missed_marginal_difference": true,
+        "maximum_clutter_marginal_difference": true,
+        "maximum_birth_marginal_difference": true,
+        "maximum_death_marginal_difference": true,
+        "maximum_alive_count_tv": false,
+        "maximum_assigned_count_tv": true
+      },
+      "stability_passed": false
+    }
+  },
+  "large_stability": {
+    "blocked": false,
+    "paired": false
+  },
+  "paired_gate_passed": false,
+  "interpretation_limit": "four-slot cross-run agreement is necessary but not an exact posterior-calibration proof; retain the three-slot exact ceiling"
+}

@@ -148,14 +148,35 @@ against a predeclared 0.10 stability threshold. Do not proceed to in-vivo
 claims until the representation/move choice is resolved. See
 `wp5_scalable_slots.md`.
 
-## WP6 — Open in-vivo trajectories
+## WP6 — Likelihood-informed paired-slot moves
+
+- [x] Add a two-slot, one-/two-frame conditional-support multiple-try move
+  with exact forward/reverse weight-sum correction
+- [x] Verify conditional support reversibility and posterior stationarity on
+  enumerable small cases
+- [x] Compare with the unchanged WP5 blocked mixture on the three-slot exact
+  oracle using identical seeds
+- [x] Rerun the frozen four-slot/eight-frame stability check at 2,048
+  particles and three independent seeds per method
+- [x] Repeat the paired four-slot check on three untouched seeds without
+  modifying the sampler or the 0.10 criterion
+
+**Observed gate:** all six paired exact-oracle runs pass at three slots.
+Four-slot clutter disagreement decreases from 0.2495 to 0.0645, but the
+frozen three-seed gate fails narrowly on alive-count TV (0.10010 versus
+0.10); runtime is approximately 1.9 times the control. The second triplet
+passes within-triplet stability, which is encouraging but does not overturn
+the frozen failure or provide a four-slot exact oracle. The calibrated ceiling
+remains three slots/six frames. See `wp6_paired_moves.md`.
+
+## WP7 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
 - Use existing tracks as reference outputs, not unquestioned ground truth
 - Create controlled corruptions and held-out prediction tasks
 - Compare with classical ULM tracking pipelines
 
-## WP7 — Image/IQ likelihood
+## WP8 — Image/IQ likelihood
 
 - Select a small PALA or ULMShare raw subset
 - Define the PSF/acoustic observation model and noise assumptions explicitly

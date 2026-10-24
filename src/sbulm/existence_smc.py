@@ -9,6 +9,7 @@ from numpy.typing import ArrayLike, NDArray
 from scipy.special import logsumexp
 
 from .data import DetectionSequence
+from .paired_moves import local_pair_multiple_try_move
 from .slot_existence import (
     ABSENT,
     MISSED,
@@ -34,6 +35,8 @@ class BirthDeathSMCConfig:
     interval_move_probability: float = 0.45
     slot_swap_probability: float = 0.10
     blocked_slot_move_probability: float = 0.0
+    paired_slot_move_probability: float = 0.0
+    paired_slot_candidates: int = 2
     max_tempering_steps: int = 128
     bisection_iterations: int = 48
     seed: int = 0
@@ -51,6 +54,7 @@ class BirthDeathSMCConfig:
                 self.interval_move_probability,
                 self.slot_swap_probability,
                 self.blocked_slot_move_probability,
+                self.paired_slot_move_probability,
             ],
             dtype=float,
         )
@@ -60,6 +64,8 @@ class BirthDeathSMCConfig:
             raise ValueError("move probabilities must sum to one")
         if self.max_tempering_steps < 1 or self.bisection_iterations < 1:
             raise ValueError("tempering and bisection iteration counts must be positive")
+        if self.paired_slot_candidates < 2:
+            raise ValueError("paired_slot_candidates must be at least two")
 
 
 @dataclass(frozen=True)
@@ -78,6 +84,8 @@ class BirthDeathSMCStageDiagnostics:
     interval_acceptance_rate: float
     slot_swap_acceptance_rate: float
     blocked_slot_acceptance_rate: float
+    paired_slot_acceptance_rate: float
+    paired_slot_state_change_rate: float
 
     def to_dict(self) -> dict[str, float | int]:
         return asdict(self)
@@ -336,11 +344,14 @@ def _propose_birth_death_moves(
             config.interval_move_probability,
             config.slot_swap_probability,
             config.blocked_slot_move_probability,
+            config.paired_slot_move_probability,
         ]
     )
     if model.n_slots < 2 and move_probabilities[2] > 0:
         raise ValueError("slot_swap_probability must be zero for a one-slot model")
-    move_types = rng.choice(4, size=current.shape[0], p=move_probabilities).astype(np.int64)
+    if model.n_slots < 2 and move_probabilities[4] > 0:
+        raise ValueError("paired_slot_move_probability must be zero for a one-slot model")
+    move_types = rng.choice(5, size=current.shape[0], p=move_probabilities).astype(np.int64)
     proposed = current.copy()
     log_hastings = np.zeros(current.shape[0], dtype=float)
     proposal_functions = (
@@ -377,7 +388,7 @@ def _metropolis_birth_death_rejuvenation(
     FloatArray,
     FloatArray,
     FloatArray,
-    tuple[float, float, float, float, float],
+    tuple[float, float, float, float, float, float, float],
 ]:
     if n_sweeps == 0:
         return (
@@ -385,13 +396,14 @@ def _metropolis_birth_death_rejuvenation(
             log_marginal_densities,
             log_count_densities,
             log_existence_priors,
-            (0.0, 0.0, 0.0, 0.0, 0.0),
+            (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
         )
 
     accepted_total = 0
     proposed_total = 0
-    accepted_by_move = np.zeros(4, dtype=np.int64)
-    proposed_by_move = np.zeros(4, dtype=np.int64)
+    accepted_by_move = np.zeros(5, dtype=np.int64)
+    proposed_by_move = np.zeros(5, dtype=np.int64)
+    paired_changes = 0
     current = associations
     current_marginal = log_marginal_densities
     current_count = log_count_densities
@@ -411,7 +423,9 @@ def _metropolis_birth_death_rejuvenation(
             + beta * (proposed_marginal - current_marginal)
             + log_hastings
         )
-        accepted = np.log(rng.random(current.shape[0])) < log_ratio
+        accepted = (np.log(rng.random(current.shape[0])) < log_ratio) & (
+            move_types != 4
+        )
         current[accepted] = proposed[accepted]
         current_marginal[accepted] = proposed_marginal[accepted]
         current_count[accepted] = proposed_count[accepted]
@@ -423,10 +437,44 @@ def _metropolis_birth_death_rejuvenation(
             proposed_by_move[move_type] += int(np.count_nonzero(selected))
             accepted_by_move[move_type] += int(np.count_nonzero(accepted & selected))
 
+        pair_rows = np.flatnonzero(move_types == 4).astype(np.int64)
+        if pair_rows.size:
+            (
+                pair_proposed,
+                pair_marginal,
+                pair_count,
+                pair_existence,
+                pair_accepted,
+            ) = local_pair_multiple_try_move(
+                current,
+                current_marginal,
+                current_count,
+                current_existence,
+                pair_rows,
+                model,
+                beta=beta,
+                n_candidates=config.paired_slot_candidates,
+                rng=rng,
+            )
+            selected_rows = pair_rows[pair_accepted]
+            selected_states = pair_proposed[pair_accepted]
+            paired_changes += int(
+                np.count_nonzero(
+                    np.any(selected_states != current[selected_rows], axis=(1, 2))
+                )
+            )
+            current[selected_rows] = selected_states
+            current_marginal[selected_rows] = pair_marginal[pair_accepted]
+            current_count[selected_rows] = pair_count[pair_accepted]
+            current_existence[selected_rows] = pair_existence[pair_accepted]
+            proposed_by_move[4] += pair_rows.size
+            accepted_by_move[4] += int(np.count_nonzero(pair_accepted))
+            accepted_total += int(np.count_nonzero(pair_accepted))
+
     rates = np.divide(
         accepted_by_move,
         proposed_by_move,
-        out=np.zeros(4, dtype=float),
+        out=np.zeros(5, dtype=float),
         where=proposed_by_move > 0,
     )
     return (
@@ -440,6 +488,8 @@ def _metropolis_birth_death_rejuvenation(
             float(rates[1]),
             float(rates[2]),
             float(rates[3]),
+            float(rates[4]),
+            paired_changes / proposed_by_move[4] if proposed_by_move[4] else 0.0,
         ),
     )
 
@@ -484,8 +534,10 @@ def sample_slot_existence_posterior(
         nu=nu,
         relative_jitter=relative_jitter,
     )
-    if n_slots < 2 and controls.slot_swap_probability > 0:
-        raise ValueError("slot_swap_probability must be zero for a one-slot model")
+    if n_slots < 2 and (
+        controls.slot_swap_probability > 0 or controls.paired_slot_move_probability > 0
+    ):
+        raise ValueError("slot-swap and paired-slot moves require at least two slots")
     rng = np.random.default_rng(controls.seed)
     associations = model.sample_base_associations(
         n_samples=controls.n_particles, rng=rng
@@ -553,6 +605,8 @@ def sample_slot_existence_posterior(
                 interval_acceptance_rate=acceptance[2],
                 slot_swap_acceptance_rate=acceptance[3],
                 blocked_slot_acceptance_rate=acceptance[4],
+                paired_slot_acceptance_rate=acceptance[5],
+                paired_slot_state_change_rate=acceptance[6],
             )
         )
         beta = next_beta
