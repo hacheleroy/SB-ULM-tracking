@@ -22,6 +22,7 @@ versioned with the benchmark.
 | `wp7_convergence_audit.json` | `python -m sbulm.wp7_convergence_audit --bridge-only` followed by `python -m sbulm.wp7_convergence_audit --large-only --large-particles 4096 8192` (checkpointed) |
 | `wp8_generalization.json` | `python -m sbulm.wp8_generalization --output results/wp8_generalization.json --n-particles 8192` (checkpointed) |
 | `wp9_ablation.json` | `python -m sbulm.wp9_ablation --wp8-output results/wp8_generalization.json --output results/wp9_ablation.json` (checkpointed) |
+| `wp10_convergence.json` | `python -m sbulm.wp10_convergence --wp8-output results/wp8_generalization.json --output results/wp10_convergence.json` (checkpointed) |
 
 The external summary records aggregate and per-seed metrics, upstream commit,
 parameters, and indicative runtime. Raw upstream messages and samples are not
@@ -99,3 +100,13 @@ at least one metric: removing observed clutter 0.1801, completing true
 detections 0.6143, widening the crossing 0.3907, and switching existence
 schedule 0.3832. This is a two-seed diagnostic screen, not a six-run
 stability claim or a causal decomposition. See `../docs/wp9_ablation.md`.
+
+WP10 changes only sampler computation on the exact WP8 failed observations
+and original two seeds. Doubling particles to 16,384 at eight sweeps fails
+the inherited gate (worst alive-count TV 0.2758). Doubling within-stage
+and final rejuvenation to 16 sweeps at 8,192 particles also fails (worst
+expected-clutter difference 0.1652 in frame 3), although its other six
+metrics are below 0.10. The JSON records the original failed comparison,
+per-run stage summaries, full seven-metric comparisons and runtime. No
+eight-frame exact posterior calibration is inferred. See
+`../docs/wp10_convergence.md`.

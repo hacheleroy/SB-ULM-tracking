@@ -222,21 +222,36 @@ unstable on every tested counterfactual. See `wp9_ablation.md`.
 
 ## WP10 — Sampler convergence on the frozen hard case
 
-- Predeclare a particle-count ladder on the original WP8 failed
-  observations and seeds before looking at outcomes
-- Diagnose divergent label-invariant modes, ancestry and state-change
-  rates; separate insufficient particle count from inadequate proposals
-- Test any modified move first on the existing small exact oracles, then
-  on untouched synthetic conditions with a frozen budget and criterion
+- [x] Predeclare doubled particles (16,384 with eight sweeps) and doubled
+  rejuvenation (8,192 with 16 sweeps) on the original WP8 observations
+  and seeds, holding the likelihood and paired move mixture fixed
+- [x] Compare all seven inherited metrics and stage, ancestry, state-change
+  and runtime diagnostics against the unchanged 8,192-particle baseline
 
-## WP11 — Open in-vivo trajectories
+**Observed boundary:** neither two-seed arm passes 0.10. Doubling particles
+gives worst alive-count TV 0.2758. Doubling sweeps brings six metrics below
+0.10, including alive-count TV 0.0674, but leaves frame-3 expected clutter
+discrepancy 0.1652. Extra applications of the same moves help without
+resolving this case; these pairs do not establish posterior calibration.
+See `wp10_convergence.md`.
+
+## WP11 — Targeted association/clutter mode moves
+
+- Design a reversible multi-frame proposal aimed at competing assignments
+  and clutter decisions while retaining explicit null and existence states
+- Test detailed balance and posterior weights on the existing small exact
+  oracles before any large-case claim
+- Freeze a new comparison on the unchanged hard case and untouched
+  synthetic realizations, reporting mode and count coverage as well as cost
+
+## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
 - Use existing tracks as reference outputs, not unquestioned ground truth
 - Create controlled corruptions and held-out prediction tasks
 - Compare with classical ULM tracking pipelines
 
-## WP12 — Image/IQ likelihood
+## WP13 — Image/IQ likelihood
 
 - Select a small PALA or ULMShare raw subset
 - Define the PSF/acoustic observation model and noise assumptions explicitly

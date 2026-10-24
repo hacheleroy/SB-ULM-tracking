@@ -246,6 +246,15 @@ restores reproducibility; this does not identify a unique physical cause.
 The next controlled test is sampler convergence on the unchanged failed
 observations, before an in-vivo posterior claim. See `docs/wp9_ablation.md`.
 
+WP10 keeps those observations and seeds fixed while doubling either the
+particle count or the number of rejuvenation sweeps. Neither two-seed arm
+passes the 0.10 gate: 16,384 particles with eight sweeps has worst
+alive-count TV 0.2758, while 8,192 particles with 16 sweeps reduces six
+of seven discrepancies below 0.10 but leaves expected clutter at 0.1652
+in frame 3. More applications of the existing moves help substantially
+without resolving this case. These are diagnostic pairs, not calibrated
+eight-frame posteriors. See `docs/wp10_convergence.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.
@@ -283,10 +292,13 @@ See `docs/resources.md` for the audited resources and licensing constraints.
     six-seed stability pass and one early-stop failure at two seeds; diagnose
     the difficult case with a predeclared ablation before in-vivo claims
 12. Diagnose particle-count and proposal-mixing sensitivity on the
-    unchanged failed synthetic case, retaining exact small-case gates
-13. Selected in-vivo ULMShare trajectories, with reference tracks treated
+    unchanged failed synthetic case — neither doubled budget passes the
+    original two-seed gate, although extra sweeps improve six metrics
+13. Develop and validate a targeted multi-frame association/clutter move
+    against exact small cases before a new frozen large-case test
+14. Selected in-vivo ULMShare trajectories, with reference tracks treated
     as imperfect and no inherited posterior-calibration claim
-14. Only then: IQ/RF likelihoods and acquisition-level inference
+15. Only then: IQ/RF likelihoods and acquisition-level inference
 
 ## Scientific checkpoints
 
