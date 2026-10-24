@@ -236,6 +236,16 @@ prior calibration and cannot establish exact posterior mode weights or
 prospective in-vivo performance. See
 `docs/wp8_generalization.md`.
 
+WP9 tests four predeclared counterfactual changes to the exact WP8 failed
+realization, reusing its two original seeds and the unchanged 8,192-particle
+sampler. Removing observed clutter, completing missed true detections,
+widening the crossing and switching the existence schedule all fail the
+0.10 two-seed diagnostic gate (worst discrepancies 0.1801, 0.6143,
+0.3907 and 0.3832, respectively). Thus no tested single intervention
+restores reproducibility; this does not identify a unique physical cause.
+The next controlled test is sampler convergence on the unchanged failed
+observations, before an in-vivo posterior claim. See `docs/wp9_ablation.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.
@@ -272,9 +282,11 @@ See `docs/resources.md` for the audited resources and licensing constraints.
 11. Validate across new synthetic crossing and corruption regimes — one
     six-seed stability pass and one early-stop failure at two seeds; diagnose
     the difficult case with a predeclared ablation before in-vivo claims
-12. Selected in-vivo ULMShare trajectories, with reference tracks treated
+12. Diagnose particle-count and proposal-mixing sensitivity on the
+    unchanged failed synthetic case, retaining exact small-case gates
+13. Selected in-vivo ULMShare trajectories, with reference tracks treated
     as imperfect and no inherited posterior-calibration claim
-13. Only then: IQ/RF likelihoods and acquisition-level inference
+14. Only then: IQ/RF likelihoods and acquisition-level inference
 
 ## Scientific checkpoints
 

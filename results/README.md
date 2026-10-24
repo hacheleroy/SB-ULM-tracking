@@ -21,6 +21,7 @@ versioned with the benchmark.
 | `wp6_paired_heldout.json` | `python -m sbulm.wp6_paired_scaling --output-dir results --n-particles 2048 --n-repeats 3 --heldout-only --heldout-seed-start 200` |
 | `wp7_convergence_audit.json` | `python -m sbulm.wp7_convergence_audit --bridge-only` followed by `python -m sbulm.wp7_convergence_audit --large-only --large-particles 4096 8192` (checkpointed) |
 | `wp8_generalization.json` | `python -m sbulm.wp8_generalization --output results/wp8_generalization.json --n-particles 8192` (checkpointed) |
+| `wp9_ablation.json` | `python -m sbulm.wp9_ablation --wp8-output results/wp8_generalization.json --output results/wp9_ablation.json` (checkpointed) |
 
 The external summary records aggregate and per-seed metrics, upstream commit,
 parameters, and indicative runtime. Raw upstream messages and samples are not
@@ -89,3 +90,12 @@ the remaining four seeds are intentionally not run. The JSON records every
 completed run, observed-data hash and early-stop status. This does not
 calibrate the eight-frame posterior or identify which simultaneous change
 caused the harder case to fail. See `../docs/wp8_generalization.md`.
+
+WP9 anchors four single-factor counterfactuals to the exact WP8 failed
+realization, preserving original observed points whenever the intervention
+permits. Both original seeds are rerun under the unchanged paired sampler
+and 8,192-particle budget. Every arm exceeds the inherited 0.10 gate on
+at least one metric: removing observed clutter 0.1801, completing true
+detections 0.6143, widening the crossing 0.3907, and switching existence
+schedule 0.3832. This is a two-seed diagnostic screen, not a six-run
+stability claim or a causal decomposition. See `../docs/wp9_ablation.md`.

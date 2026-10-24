@@ -207,21 +207,36 @@ eight-frame posterior calibration. See `wp8_generalization.md`.
 
 ## WP9 — Diagnose the difficult synthetic regime
 
-- Predeclare one-factor ablations of clutter, detection rate, crossing
-  offset and existence schedule to localize the source of disagreement
-- Compare distinct independent runs on label-invariant posterior summaries
-  and inspect divergent modes, not just final-state uniqueness
-- Test any sampler modification first on the existing small exact oracles,
-  then on untouched synthetic conditions with a frozen budget and criterion
+- [x] Predeclare four counterfactual interventions on the exact WP8 failed
+  realization: observed clutter, missed true detections, crossing offset
+  and existence schedule
+- [x] Compare seeds 100 and 200 at the unchanged 8,192-particle budget on
+  the inherited seven metrics, including label-invariant count histograms
 
-## WP10 — Open in-vivo trajectories
+**Observed boundary:** none of the four single interventions brings the
+two-seed discrepancy below 0.10. The worst metric is 0.1801 without
+observed clutter, 0.6143 with all true detections completed, 0.3907 with
+a wider crossing and 0.3832 with the WP7 existence schedule. This does
+not isolate a unique physical cause; the unchanged sampler remains
+unstable on every tested counterfactual. See `wp9_ablation.md`.
+
+## WP10 — Sampler convergence on the frozen hard case
+
+- Predeclare a particle-count ladder on the original WP8 failed
+  observations and seeds before looking at outcomes
+- Diagnose divergent label-invariant modes, ancestry and state-change
+  rates; separate insufficient particle count from inadequate proposals
+- Test any modified move first on the existing small exact oracles, then
+  on untouched synthetic conditions with a frozen budget and criterion
+
+## WP11 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
 - Use existing tracks as reference outputs, not unquestioned ground truth
 - Create controlled corruptions and held-out prediction tasks
 - Compare with classical ULM tracking pipelines
 
-## WP11 — Image/IQ likelihood
+## WP12 — Image/IQ likelihood
 
 - Select a small PALA or ULMShare raw subset
 - Define the PSF/acoustic observation model and noise assumptions explicitly
