@@ -1,0 +1,33 @@
+{
+  "experiment": "wp4_persistent_near_clean_evidence_particle_escalation",
+  "regime": "persistent_near_clean",
+  "smc_seed": 2,
+  "fixed_parameters": {
+    "target_ess_fraction": 0.8,
+    "mh_sweeps": 10,
+    "final_mh_sweeps": 10,
+    "absolute_log_evidence_error_threshold": 0.2
+  },
+  "primary_8192_particles": {
+    "absolute_log_evidence_error": 0.4731462218087188,
+    "signed_log_evidence_error": 0.4731462218087188,
+    "total_variation_distance": 0.007892551512354178,
+    "exact_mass_covered": 0.9973954552082537
+  },
+  "escalated_16384_particles": {
+    "absolute_log_evidence_error": 0.2653820543564862,
+    "signed_log_evidence_error": -0.2653820543564862,
+    "total_variation_distance": 0.006094158470103347,
+    "exact_mass_covered": 0.9992106962995793,
+    "max_existence_probability_error": 0.0016727618811395173,
+    "max_missed_probability_error": 0.0005351107866159075,
+    "max_expected_clutter_error": 0.003072971898005372,
+    "max_birth_time_probability_error": 0.0005922773080584303,
+    "max_death_time_probability_error": 0.0016727618811263056,
+    "runtime_seconds": 199.5868503899983,
+    "failed_checks": [
+      "absolute_log_evidence_error"
+    ]
+  },
+  "interpretation": "Doubling the particle count improves posterior diagnostics and support coverage, but does not make a single-run log-evidence estimate meet the 0.20-nat threshold. Evidence estimation remains a separate numerical limitation; it does not invalidate the calibrated posterior event marginals."
+}

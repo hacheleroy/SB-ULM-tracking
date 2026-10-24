@@ -1,0 +1,4462 @@
+{
+  "experiment": "wp3_explicit_null_association_smc_calibration",
+  "method": {
+    "latent_cardinality": "two persistent labelled bubbles (fixed)",
+    "association_state": "per-bubble detection index or -1; non-null indices are injective",
+    "unassigned_detections": "uniform Poisson clutter",
+    "base_distribution": "normalized frame-wise detection/miss/clutter count density",
+    "mutation": "reversible whole-frame partial-injection replacements plus contiguous label swaps",
+    "anchor": "complete clutter-free first frame fixes global labels",
+    "uses_exact_enumeration_during_inference": false
+  },
+  "observation_model": {
+    "localization_noise_std_um": 5.0,
+    "roi_lower_mm": [
+      -0.04,
+      -0.04
+    ],
+    "roi_upper_mm": [
+      0.04,
+      0.04
+    ],
+    "clutter_spatial_model": "uniform over ROI",
+    "gate_simulator_clutter_cap": 2,
+    "map_simulator_clutter_cap": 1,
+    "poisson_set_density_includes_factorial": false
+  },
+  "prior": {
+    "family": "Matern-3/2",
+    "rms_speed_mm_s": 6.84,
+    "coordinate_std_um": [
+      6.84,
+      6.84
+    ],
+    "length_scale_ms": 2.449489742783178
+  },
+  "configuration": {
+    "n_particles": 8192,
+    "n_smc_repeats": 3,
+    "map_n_particles": 4096,
+    "map_n_data_seeds": 4,
+    "target_ess_fraction": 0.8,
+    "mh_sweeps": 10,
+    "final_mh_sweeps": 10,
+    "n_projections": 128,
+    "baseline_replicates": 300,
+    "map_baseline_replicates": 100,
+    "detection_probabilities": [
+      0.65,
+      0.8,
+      0.95
+    ],
+    "clutter_rates": [
+      0.05,
+      0.35,
+      0.75
+    ]
+  },
+  "gate_definition": {
+    "association_tv": "at most max(0.05, 3 * exact-draw MC q95)",
+    "association_js": "at most max(0.01, 3 * exact-draw MC q95)",
+    "credible_set_recall_95": "at least the fifth percentile of equal-size exact draws",
+    "exact_mass_covered": "at least max(0.95, fifth percentile of equal-size exact draws)",
+    "max_null_probability_error": 0.05,
+    "max_expected_clutter_error": 0.05,
+    "path_sliced_wasserstein": "at most max(1 um, 3 * independent exact-draw baseline)",
+    "absolute_log_evidence_error": 0.15,
+    "aggregate_rule": "every repeat in every frozen regime must pass"
+  },
+  "gate_runs": [
+    {
+      "regime": {
+        "name": "near_clean",
+        "separation_um": 20.0,
+        "detection_probability": 0.95,
+        "expected_clutter_per_frame": 0.05,
+        "corruption_seed": 0
+      },
+      "smc_seed": 0,
+      "runtime_seconds": 155.83009369299907,
+      "support_size": 2401,
+      "detection_cardinalities": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.0057625700543407,
+        "jensen_shannon_divergence": 0.0004927121457602836,
+        "exact_map_sample_frequency": 0.8780517578125,
+        "empirical_support_size": 20,
+        "exact_mass_covered_by_empirical_support": 0.9992068265651597,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.004714095990316695,
+          "total_variation_q05": 0.002455218362838181,
+          "total_variation_q95": 0.009303774877427179,
+          "jensen_shannon_median": 0.000543740217538054,
+          "jensen_shannon_q05": 0.00039987038613250057,
+          "jensen_shannon_q95": 0.0007423333340156367,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9991369653866968,
+          "exact_mass_covered_q05": 0.9987482759957528,
+          "exact_mass_covered_q95": 0.9994555804991256
+        },
+        "max_null_probability_error": 0.0036079311815794823,
+        "max_expected_clutter_error": 0.004029980001420075,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.00021908070105345134,
+            0.00034436078051728025
+          ],
+          [
+            0.0001768321481017847,
+            0.00013768394295302262
+          ],
+          [
+            0.00021806133972447305,
+            0.00026848785089387465
+          ],
+          [
+            0.00994353319484372,
+            0.09686964993157948
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.000244140625,
+            0.0003662109375
+          ],
+          [
+            0.000244140625,
+            0.0
+          ],
+          [
+            0.0,
+            0.0003662109375
+          ],
+          [
+            0.009521484375,
+            0.09326171875
+          ]
+        ],
+        "exact_expected_clutter": [
+          -3.552713678800501e-15,
+          0.0005634414815667288,
+          0.0003145160910520417,
+          0.00048654919061497104,
+          0.10681318312642007
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.0006103515625,
+          0.000244140625,
+          0.0003662109375,
+          0.102783203125
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 8.86836636728328e-05,
+        "finite_sample_sliced_wasserstein_mm": 8.187332938001783e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 63.01169206903933,
+        "exact_log_evidence": 63.00165230579822,
+        "error": 0.010039763241110222
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.8732718506028567,
+        "reference_hypothesis_rank": 1,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 8,
+        "mean_mh_acceptance_rate": 0.2720245361328125,
+        "mean_frame_acceptance_rate": 0.20992767459368164,
+        "mean_segment_acceptance_rate": 0.33436368995056914,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.06002606692015888,
+            "beta_increment": 0.06002606692015888,
+            "effective_sample_size": 6553.600000000094,
+            "unique_parent_count": 6633,
+            "unique_state_count": 1521,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.70040283203125,
+            "frame_acceptance_rate": 0.5538457810303882,
+            "segment_acceptance_rate": 0.8491661337137797
+          },
+          {
+            "step": 2,
+            "beta": 0.1214435816500813,
+            "beta_increment": 0.06141751472992242,
+            "effective_sample_size": 6553.600000000005,
+            "unique_parent_count": 6611,
+            "unique_state_count": 1173,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.55380859375,
+            "frame_acceptance_rate": 0.4290663348703311,
+            "segment_acceptance_rate": 0.678727614766314
+          },
+          {
+            "step": 3,
+            "beta": 0.18678856442236763,
+            "beta_increment": 0.06534498277228633,
+            "effective_sample_size": 6553.600000000005,
+            "unique_parent_count": 6544,
+            "unique_state_count": 837,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.40303955078125,
+            "frame_acceptance_rate": 0.30630345264491604,
+            "segment_acceptance_rate": 0.5001590058465226
+          },
+          {
+            "step": 4,
+            "beta": 0.2610054307297225,
+            "beta_increment": 0.07421686630735486,
+            "effective_sample_size": 6553.600000000014,
+            "unique_parent_count": 6520,
+            "unique_state_count": 564,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.2646240234375,
+            "frame_acceptance_rate": 0.19554219517559937,
+            "segment_acceptance_rate": 0.3335609589542229
+          },
+          {
+            "step": 5,
+            "beta": 0.35338734964106494,
+            "beta_increment": 0.09238191891134245,
+            "effective_sample_size": 6553.600000000026,
+            "unique_parent_count": 6423,
+            "unique_state_count": 331,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.15311279296875,
+            "frame_acceptance_rate": 0.11311672683513839,
+            "segment_acceptance_rate": 0.19264095531661854
+          },
+          {
+            "step": 6,
+            "beta": 0.4880237785848798,
+            "beta_increment": 0.13463642894381483,
+            "effective_sample_size": 6553.600000000003,
+            "unique_parent_count": 6341,
+            "unique_state_count": 146,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.07154541015625,
+            "frame_acceptance_rate": 0.05284093699356676,
+            "segment_acceptance_rate": 0.09003738408506093
+          },
+          {
+            "step": 7,
+            "beta": 0.7610048712694262,
+            "beta_increment": 0.2729810926845464,
+            "effective_sample_size": 6553.600000000036,
+            "unique_parent_count": 6350,
+            "unique_state_count": 37,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.0207763671875,
+            "frame_acceptance_rate": 0.019021273470586797,
+            "segment_acceptance_rate": 0.022521974142338877
+          },
+          {
+            "step": 8,
+            "beta": 1.0,
+            "beta_increment": 0.23899512873057382,
+            "effective_sample_size": 7789.347286210662,
+            "unique_parent_count": 7542,
+            "unique_state_count": 20,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.00888671875,
+            "frame_acceptance_rate": 0.009684695728926593,
+            "segment_acceptance_rate": 0.008095492779695629
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.05,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9987482759957528,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "near_clean",
+        "separation_um": 20.0,
+        "detection_probability": 0.95,
+        "expected_clutter_per_frame": 0.05,
+        "corruption_seed": 0
+      },
+      "smc_seed": 1,
+      "runtime_seconds": 148.62227061500016,
+      "support_size": 2401,
+      "detection_cardinalities": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.006458847562629838,
+        "jensen_shannon_divergence": 0.00047134869899699214,
+        "exact_map_sample_frequency": 0.8773193359375,
+        "empirical_support_size": 16,
+        "exact_mass_covered_by_empirical_support": 0.9989981693990155,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.004898344908448864,
+          "total_variation_q05": 0.0026218470144575633,
+          "total_variation_q95": 0.008930172322938,
+          "jensen_shannon_median": 0.0005491275990346521,
+          "jensen_shannon_q05": 0.00038891904915759753,
+          "jensen_shannon_q95": 0.0007166828607784816,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9991605403579245,
+          "exact_mass_covered_q05": 0.9987591095638262,
+          "exact_mass_covered_q95": 0.9994803536600688
+        },
+        "max_null_probability_error": 0.005683126494079482,
+        "max_expected_clutter_error": 0.005250683126420075,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.00021908070105345134,
+            0.00034436078051728025
+          ],
+          [
+            0.0001768321481017847,
+            0.00013768394295302262
+          ],
+          [
+            0.00021806133972447305,
+            0.00026848785089387465
+          ],
+          [
+            0.00994353319484372,
+            0.09686964993157948
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.000244140625
+          ],
+          [
+            0.0003662109375,
+            0.0001220703125
+          ],
+          [
+            0.0001220703125,
+            0.0
+          ],
+          [
+            0.0103759765625,
+            0.0911865234375
+          ]
+        ],
+        "exact_expected_clutter": [
+          -3.552713678800501e-15,
+          0.0005634414815667288,
+          0.0003145160910520417,
+          0.00048654919061497104,
+          0.10681318312642007
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.000244140625,
+          0.00048828125,
+          0.0001220703125,
+          0.1015625
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 7.82672437588813e-05,
+        "finite_sample_sliced_wasserstein_mm": 8.356614690861389e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 63.03297503005595,
+        "exact_log_evidence": 63.00165230579822,
+        "error": 0.03132272425773408
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.8732718506028567,
+        "reference_hypothesis_rank": 1,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 8,
+        "mean_mh_acceptance_rate": 0.2746734619140625,
+        "mean_frame_acceptance_rate": 0.2121751026825734,
+        "mean_segment_acceptance_rate": 0.3369223972874226,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.05914147959103744,
+            "beta_increment": 0.05914147959103744,
+            "effective_sample_size": 6553.600000000065,
+            "unique_parent_count": 6670,
+            "unique_state_count": 1517,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.70108642578125,
+            "frame_acceptance_rate": 0.5551826355373723,
+            "segment_acceptance_rate": 0.8459891486825138
+          },
+          {
+            "step": 2,
+            "beta": 0.11941550683992769,
+            "beta_increment": 0.06027402724889025,
+            "effective_sample_size": 6553.600000000096,
+            "unique_parent_count": 6627,
+            "unique_state_count": 1199,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.55677490234375,
+            "frame_acceptance_rate": 0.43376220817240274,
+            "segment_acceptance_rate": 0.6779336580165249
+          },
+          {
+            "step": 3,
+            "beta": 0.18371404445620265,
+            "beta_increment": 0.06429853761627496,
+            "effective_sample_size": 6553.600000000089,
+            "unique_parent_count": 6586,
+            "unique_state_count": 869,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.40772705078125,
+            "frame_acceptance_rate": 0.3110516717325228,
+            "segment_acceptance_rate": 0.5051844588797647
+          },
+          {
+            "step": 4,
+            "beta": 0.2564577362898084,
+            "beta_increment": 0.07274369183360574,
+            "effective_sample_size": 6553.6,
+            "unique_parent_count": 6494,
+            "unique_state_count": 571,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.27105712890625,
+            "frame_acceptance_rate": 0.20165341657318442,
+            "segment_acceptance_rate": 0.34061690374932785
+          },
+          {
+            "step": 5,
+            "beta": 0.3472303311082694,
+            "beta_increment": 0.090772594818461,
+            "effective_sample_size": 6553.600000000019,
+            "unique_parent_count": 6415,
+            "unique_state_count": 327,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.15706787109375,
+            "frame_acceptance_rate": 0.11327610593571673,
+            "segment_acceptance_rate": 0.2009581072493523
+          },
+          {
+            "step": 6,
+            "beta": 0.480097627004646,
+            "beta_increment": 0.13286729589637658,
+            "effective_sample_size": 6553.600000000023,
+            "unique_parent_count": 6273,
+            "unique_state_count": 147,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.07362060546875,
+            "frame_acceptance_rate": 0.0540951446787641,
+            "segment_acceptance_rate": 0.09297520661157024
+          },
+          {
+            "step": 7,
+            "beta": 0.7430624410716041,
+            "beta_increment": 0.26296481406695815,
+            "effective_sample_size": 6553.600000000011,
+            "unique_parent_count": 6366,
+            "unique_state_count": 42,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.021435546875,
+            "frame_acceptance_rate": 0.01880571498351447,
+            "segment_acceptance_rate": 0.02406345332519829
+          },
+          {
+            "step": 8,
+            "beta": 1.0,
+            "beta_increment": 0.25693755892839587,
+            "effective_sample_size": 7731.648479268832,
+            "unique_parent_count": 7466,
+            "unique_state_count": 16,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.0086181640625,
+            "frame_acceptance_rate": 0.009573923847109552,
+            "segment_acceptance_rate": 0.00765824178512882
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.05,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9987591095638262,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "near_clean",
+        "separation_um": 20.0,
+        "detection_probability": 0.95,
+        "expected_clutter_per_frame": 0.05,
+        "corruption_seed": 0
+      },
+      "smc_seed": 2,
+      "runtime_seconds": 159.63750824599992,
+      "support_size": 2401,
+      "detection_cardinalities": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.004012237455653871,
+        "jensen_shannon_divergence": 0.0005522425543265969,
+        "exact_map_sample_frequency": 0.87548828125,
+        "empirical_support_size": 18,
+        "exact_mass_covered_by_empirical_support": 0.9990890190293993,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.005035448175936291,
+          "total_variation_q05": 0.0027881829083489912,
+          "total_variation_q95": 0.0091393686927753,
+          "jensen_shannon_median": 0.0005362381440599303,
+          "jensen_shannon_q05": 0.00037349316473147024,
+          "jensen_shannon_q95": 0.0007173554963749711,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9991638950909628,
+          "exact_mass_covered_q05": 0.9987521415836802,
+          "exact_mass_covered_q95": 0.9994929195495823
+        },
+        "max_null_probability_error": 0.0006661894448437202,
+        "max_expected_clutter_error": 0.0004131210184332712,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.00021908070105345134,
+            0.00034436078051728025
+          ],
+          [
+            0.0001768321481017847,
+            0.00013768394295302262
+          ],
+          [
+            0.00021806133972447305,
+            0.00026848785089387465
+          ],
+          [
+            0.00994353319484372,
+            0.09686964993157948
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.000244140625,
+            0.000732421875
+          ],
+          [
+            0.0003662109375,
+            0.0
+          ],
+          [
+            0.0001220703125,
+            0.0003662109375
+          ],
+          [
+            0.00927734375,
+            0.09716796875
+          ]
+        ],
+        "exact_expected_clutter": [
+          -3.552713678800501e-15,
+          0.0005634414815667288,
+          0.0003145160910520417,
+          0.00048654919061497104,
+          0.10681318312642007
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.0009765625,
+          0.0003662109375,
+          0.00048828125,
+          0.1064453125
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 9.325901155667694e-05,
+        "finite_sample_sliced_wasserstein_mm": 7.093600316857701e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 63.04377407521783,
+        "exact_log_evidence": 63.00165230579822,
+        "error": 0.04212176941961587
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.8732718506028567,
+        "reference_hypothesis_rank": 1,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 8,
+        "mean_mh_acceptance_rate": 0.27277297973632814,
+        "mean_frame_acceptance_rate": 0.2104309229390932,
+        "mean_segment_acceptance_rate": 0.33504500635654716,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.059420464569537756,
+            "beta_increment": 0.059420464569537756,
+            "effective_sample_size": 6553.600000000151,
+            "unique_parent_count": 6666,
+            "unique_state_count": 1488,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7026123046875,
+            "frame_acceptance_rate": 0.557790174202388,
+            "segment_acceptance_rate": 0.8468134866497758
+          },
+          {
+            "step": 2,
+            "beta": 0.12034654763347438,
+            "beta_increment": 0.060926083063936626,
+            "effective_sample_size": 6553.600000000123,
+            "unique_parent_count": 6646,
+            "unique_state_count": 1171,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.554638671875,
+            "frame_acceptance_rate": 0.43117270371999805,
+            "segment_acceptance_rate": 0.6778276349802468
+          },
+          {
+            "step": 3,
+            "beta": 0.18498316035759493,
+            "beta_increment": 0.06463661272412055,
+            "effective_sample_size": 6553.600000000102,
+            "unique_parent_count": 6590,
+            "unique_state_count": 844,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.40421142578125,
+            "frame_acceptance_rate": 0.3081565115826358,
+            "segment_acceptance_rate": 0.5009063296100333
+          },
+          {
+            "step": 4,
+            "beta": 0.2585564904670934,
+            "beta_increment": 0.07357333010949846,
+            "effective_sample_size": 6553.600000000022,
+            "unique_parent_count": 6543,
+            "unique_state_count": 550,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.268798828125,
+            "frame_acceptance_rate": 0.19795313762456235,
+            "segment_acceptance_rate": 0.3392409377510529
+          },
+          {
+            "step": 5,
+            "beta": 0.3503758785246651,
+            "beta_increment": 0.09181938805757173,
+            "effective_sample_size": 6553.600000000005,
+            "unique_parent_count": 6380,
+            "unique_state_count": 293,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.15494384765625,
+            "frame_acceptance_rate": 0.11192445648195594,
+            "segment_acceptance_rate": 0.19801157876737427
+          },
+          {
+            "step": 6,
+            "beta": 0.4883555636134217,
+            "beta_increment": 0.13797968508875658,
+            "effective_sample_size": 6553.600000000026,
+            "unique_parent_count": 6318,
+            "unique_state_count": 138,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.06861572265625,
+            "frame_acceptance_rate": 0.0490784084259801,
+            "segment_acceptance_rate": 0.08820653236847252
+          },
+          {
+            "step": 7,
+            "beta": 0.7686371648500372,
+            "beta_increment": 0.2802816012366155,
+            "effective_sample_size": 6553.600000000014,
+            "unique_parent_count": 6357,
+            "unique_state_count": 46,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.01954345703125,
+            "frame_acceptance_rate": 0.01735474566742441,
+            "segment_acceptance_rate": 0.02172693798922188
+          },
+          {
+            "step": 8,
+            "beta": 1.0,
+            "beta_increment": 0.2313628351499628,
+            "effective_sample_size": 7817.100655137382,
+            "unique_parent_count": 7562,
+            "unique_state_count": 18,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.008819580078125,
+            "frame_acceptance_rate": 0.010017245807800976,
+            "segment_acceptance_rate": 0.007626612736199608
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.05,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9987521415836802,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "missed_detections",
+        "separation_um": 0.0,
+        "detection_probability": 0.7,
+        "expected_clutter_per_frame": 0.05,
+        "corruption_seed": 0
+      },
+      "smc_seed": 0,
+      "runtime_seconds": 166.13966744000027,
+      "support_size": 63,
+      "detection_cardinalities": [
+        2,
+        2,
+        0,
+        1,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.009673114522703726,
+        "jensen_shannon_divergence": 0.0005775862862857223,
+        "exact_map_sample_frequency": 0.481689453125,
+        "empirical_support_size": 21,
+        "exact_mass_covered_by_empirical_support": 0.9993840853573833,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.0096186011174894,
+          "total_variation_q05": 0.005371847913478079,
+          "total_variation_q95": 0.015927791527515733,
+          "jensen_shannon_median": 0.0005036584456517734,
+          "jensen_shannon_q05": 0.00034489774816462876,
+          "jensen_shannon_q95": 0.0007020542676358935,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9993897705098778,
+          "exact_mass_covered_q05": 0.9989314993881035,
+          "exact_mass_covered_q95": 0.999734015739553
+        },
+        "max_null_probability_error": 0.004620383928598537,
+        "max_expected_clutter_error": 0.0007999268821898831,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0012900575907966382,
+            0.0018162655270148385
+          ],
+          [
+            1.0000000000000007,
+            1.0000000000000007
+          ],
+          [
+            0.32448713161171205,
+            0.6764953839285985
+          ],
+          [
+            0.6385001390169672,
+            0.36377270627101443
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0013427734375,
+            0.0025634765625
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.32861328125,
+            0.671875
+          ],
+          [
+            0.642578125,
+            0.3602294921875
+          ]
+        ],
+        "exact_expected_clutter": [
+          -1.3322676295501878e-15,
+          0.003106323117810117,
+          0.0,
+          0.000982515540309259,
+          0.0022728452879802186
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.00390625,
+          0.0,
+          0.00048828125,
+          0.0028076171875
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 7.79164629021266e-05,
+        "finite_sample_sliced_wasserstein_mm": 0.00010448135468972005
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 36.94030423127957,
+        "exact_log_evidence": 36.951796000841604,
+        "error": -0.011491769562034904
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.18165933807278442,
+        "reference_hypothesis_rank": 2,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 4,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 8,
+        "mean_mh_acceptance_rate": 0.687451171875,
+        "mean_frame_acceptance_rate": 0.5731399469786111,
+        "mean_segment_acceptance_rate": 0.8012610656709579,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.06912334246048601,
+            "beta_increment": 0.06912334246048601,
+            "effective_sample_size": 6553.6000000001095,
+            "unique_parent_count": 6627,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.8541259765625,
+            "frame_acceptance_rate": 0.72868705471817,
+            "segment_acceptance_rate": 0.9814532395336252
+          },
+          {
+            "step": 2,
+            "beta": 0.13899755195032082,
+            "beta_increment": 0.0698742094898348,
+            "effective_sample_size": 6553.600000000056,
+            "unique_parent_count": 6691,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.92490234375,
+            "frame_acceptance_rate": 0.894117934079875,
+            "segment_acceptance_rate": 0.9557303755100046
+          },
+          {
+            "step": 3,
+            "beta": 0.21164801474662476,
+            "beta_increment": 0.07265046279630394,
+            "effective_sample_size": 6553.60000000006,
+            "unique_parent_count": 6564,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.88939208984375,
+            "frame_acceptance_rate": 0.8612363246509588,
+            "segment_acceptance_rate": 0.9176594339391864
+          },
+          {
+            "step": 4,
+            "beta": 0.2923766301431075,
+            "beta_increment": 0.08072861539648274,
+            "effective_sample_size": 6553.600000000049,
+            "unique_parent_count": 6601,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.77681884765625,
+            "frame_acceptance_rate": 0.6879292225725249,
+            "segment_acceptance_rate": 0.8655220349730508
+          },
+          {
+            "step": 5,
+            "beta": 0.3871795442369437,
+            "beta_increment": 0.09480291409383618,
+            "effective_sample_size": 6553.600000000026,
+            "unique_parent_count": 6435,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6673828125,
+            "frame_acceptance_rate": 0.5257742086004077,
+            "segment_acceptance_rate": 0.8073347734278294
+          },
+          {
+            "step": 6,
+            "beta": 0.5142772157213085,
+            "beta_increment": 0.1270976714843648,
+            "effective_sample_size": 6553.60000000003,
+            "unique_parent_count": 6283,
+            "unique_state_count": 57,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.56300048828125,
+            "frame_acceptance_rate": 0.3880813239699455,
+            "segment_acceptance_rate": 0.7359324173423314
+          },
+          {
+            "step": 7,
+            "beta": 0.7505532613295577,
+            "beta_increment": 0.23627604560824922,
+            "effective_sample_size": 6553.600000000035,
+            "unique_parent_count": 6407,
+            "unique_state_count": 32,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.4460693359375,
+            "frame_acceptance_rate": 0.2748414893877451,
+            "segment_acceptance_rate": 0.6163716490954688
+          },
+          {
+            "step": 8,
+            "beta": 1.0,
+            "beta_increment": 0.24944673867044231,
+            "effective_sample_size": 7600.921023829672,
+            "unique_parent_count": 7406,
+            "unique_state_count": 21,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.37791748046875,
+            "frame_acceptance_rate": 0.224452017849262,
+            "segment_acceptance_rate": 0.5300846015461662
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.05,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9989314993881035,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "missed_detections",
+        "separation_um": 0.0,
+        "detection_probability": 0.7,
+        "expected_clutter_per_frame": 0.05,
+        "corruption_seed": 0
+      },
+      "smc_seed": 1,
+      "runtime_seconds": 154.80066475399872,
+      "support_size": 63,
+      "detection_cardinalities": [
+        2,
+        2,
+        0,
+        1,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.004060408483060266,
+        "jensen_shannon_divergence": 0.0003264518874459369,
+        "exact_map_sample_frequency": 0.4786376953125,
+        "empirical_support_size": 22,
+        "exact_mass_covered_by_empirical_support": 0.9994150767721249,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.009462027679760641,
+          "total_variation_q05": 0.005247808776112453,
+          "total_variation_q95": 0.01532669941732809,
+          "jensen_shannon_median": 0.0005123904880274159,
+          "jensen_shannon_q05": 0.0003656297286914215,
+          "jensen_shannon_q95": 0.0007114492565585058,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9994073296778085,
+          "exact_mass_covered_q05": 0.9988840783014458,
+          "exact_mass_covered_q95": 0.9996995081350672
+        },
+        "max_null_probability_error": 0.0020027906705327725,
+        "max_expected_clutter_error": 0.00029870593031011694,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0012900575907966382,
+            0.0018162655270148385
+          ],
+          [
+            1.0000000000000007,
+            1.0000000000000007
+          ],
+          [
+            0.32448713161171205,
+            0.6764953839285985
+          ],
+          [
+            0.6385001390169672,
+            0.36377270627101443
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.001220703125,
+            0.0015869140625
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.323974609375,
+            0.677001953125
+          ],
+          [
+            0.6405029296875,
+            0.36181640625
+          ]
+        ],
+        "exact_expected_clutter": [
+          -1.3322676295501878e-15,
+          0.003106323117810117,
+          0.0,
+          0.000982515540309259,
+          0.0022728452879802186
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.0028076171875,
+          0.0,
+          0.0009765625,
+          0.0023193359375
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 9.832498782383941e-05,
+        "finite_sample_sliced_wasserstein_mm": 9.703407314029264e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 36.95838324698828,
+        "exact_log_evidence": 36.951796000841604,
+        "error": 0.0065872461466724985
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.18165933807278442,
+        "reference_hypothesis_rank": 2,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 4,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 8,
+        "mean_mh_acceptance_rate": 0.6845794677734375,
+        "mean_frame_acceptance_rate": 0.5706040517441986,
+        "mean_segment_acceptance_rate": 0.7983665112943896,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.07055795722481051,
+            "beta_increment": 0.07055795722481051,
+            "effective_sample_size": 6553.600000000053,
+            "unique_parent_count": 6600,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.856982421875,
+            "frame_acceptance_rate": 0.7317180724662534,
+            "segment_acceptance_rate": 0.9813873141772707
+          },
+          {
+            "step": 2,
+            "beta": 0.14089989464580616,
+            "beta_increment": 0.07034193742099565,
+            "effective_sample_size": 6553.600000000013,
+            "unique_parent_count": 6679,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.9283203125,
+            "frame_acceptance_rate": 0.9005387586410489,
+            "segment_acceptance_rate": 0.9556831673572243
+          },
+          {
+            "step": 3,
+            "beta": 0.21378051528036296,
+            "beta_increment": 0.0728806206345568,
+            "effective_sample_size": 6553.600000000032,
+            "unique_parent_count": 6543,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.88870849609375,
+            "frame_acceptance_rate": 0.8599635258358662,
+            "segment_acceptance_rate": 0.917685990930261
+          },
+          {
+            "step": 4,
+            "beta": 0.29457418923190604,
+            "beta_increment": 0.08079367395154308,
+            "effective_sample_size": 6553.600000000015,
+            "unique_parent_count": 6599,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.775830078125,
+            "frame_acceptance_rate": 0.6839974637857874,
+            "segment_acceptance_rate": 0.8678691890306497
+          },
+          {
+            "step": 5,
+            "beta": 0.39026609163784504,
+            "beta_increment": 0.095691902405939,
+            "effective_sample_size": 6553.600000000003,
+            "unique_parent_count": 6419,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6601806640625,
+            "frame_acceptance_rate": 0.5197288201726576,
+            "segment_acceptance_rate": 0.8009483306447671
+          },
+          {
+            "step": 6,
+            "beta": 0.5229122451490167,
+            "beta_increment": 0.13264615351117165,
+            "effective_sample_size": 6553.600000000022,
+            "unique_parent_count": 6278,
+            "unique_state_count": 54,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.55400390625,
+            "frame_acceptance_rate": 0.38001471309465423,
+            "segment_acceptance_rate": 0.7264705882352941
+          },
+          {
+            "step": 7,
+            "beta": 0.774085513246856,
+            "beta_increment": 0.25117326809783935,
+            "effective_sample_size": 6553.600000000019,
+            "unique_parent_count": 6436,
+            "unique_state_count": 32,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.43726806640625,
+            "frame_acceptance_rate": 0.2660398095005495,
+            "segment_acceptance_rate": 0.6083709579011592
+          },
+          {
+            "step": 8,
+            "beta": 1.0,
+            "beta_increment": 0.22591448675314396,
+            "effective_sample_size": 7721.90077788607,
+            "unique_parent_count": 7479,
+            "unique_state_count": 22,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.375341796875,
+            "frame_acceptance_rate": 0.22283125045677118,
+            "segment_acceptance_rate": 0.5285165520784909
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.05,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9988840783014458,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "missed_detections",
+        "separation_um": 0.0,
+        "detection_probability": 0.7,
+        "expected_clutter_per_frame": 0.05,
+        "corruption_seed": 0
+      },
+      "smc_seed": 2,
+      "runtime_seconds": 149.9284718350009,
+      "support_size": 63,
+      "detection_cardinalities": [
+        2,
+        2,
+        0,
+        1,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.0090887279139397,
+        "jensen_shannon_divergence": 0.0004988573385986948,
+        "exact_map_sample_frequency": 0.4810791015625,
+        "empirical_support_size": 24,
+        "exact_mass_covered_by_empirical_support": 0.9992626353115435,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.009810833526496145,
+          "total_variation_q05": 0.005711202285833559,
+          "total_variation_q95": 0.015826155294471404,
+          "jensen_shannon_median": 0.0005035612929948021,
+          "jensen_shannon_q05": 0.00032445433669132305,
+          "jensen_shannon_q95": 0.0006884488016771984,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9994389527131484,
+          "exact_mass_covered_q05": 0.9989770581649453,
+          "exact_mass_covered_q95": 0.9997554070406569
+        },
+        "max_null_probability_error": 0.007449464083514434,
+        "max_expected_clutter_error": 0.00042077624281011694,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0012900575907966382,
+            0.0018162655270148385
+          ],
+          [
+            1.0000000000000007,
+            1.0000000000000007
+          ],
+          [
+            0.32448713161171205,
+            0.6764953839285985
+          ],
+          [
+            0.6385001390169672,
+            0.36377270627101443
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.001220703125,
+            0.00146484375
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.3262939453125,
+            0.67431640625
+          ],
+          [
+            0.6456298828125,
+            0.3563232421875
+          ]
+        ],
+        "exact_expected_clutter": [
+          -1.3322676295501878e-15,
+          0.003106323117810117,
+          0.0,
+          0.000982515540309259,
+          0.0022728452879802186
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.002685546875,
+          0.0,
+          0.0006103515625,
+          0.001953125
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 7.950415292573761e-05,
+        "finite_sample_sliced_wasserstein_mm": 8.905529238860503e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 36.95236936948523,
+        "exact_log_evidence": 36.951796000841604,
+        "error": 0.0005733686436286689
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.18165933807278442,
+        "reference_hypothesis_rank": 2,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 4,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 8,
+        "mean_mh_acceptance_rate": 0.684625244140625,
+        "mean_frame_acceptance_rate": 0.5706682262049798,
+        "mean_segment_acceptance_rate": 0.7984163098045484,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.07023313677716558,
+            "beta_increment": 0.07023313677716558,
+            "effective_sample_size": 6553.600000000136,
+            "unique_parent_count": 6569,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.856884765625,
+            "frame_acceptance_rate": 0.7319191622626737,
+            "segment_acceptance_rate": 0.9813145585655818
+          },
+          {
+            "step": 2,
+            "beta": 0.1407185836838932,
+            "beta_increment": 0.07048544690672762,
+            "effective_sample_size": 6553.600000000051,
+            "unique_parent_count": 6686,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.9263671875,
+            "frame_acceptance_rate": 0.8989587916116732,
+            "segment_acceptance_rate": 0.9537140906208847
+          },
+          {
+            "step": 3,
+            "beta": 0.21409267189053705,
+            "beta_increment": 0.07337408820664384,
+            "effective_sample_size": 6553.600000000126,
+            "unique_parent_count": 6515,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.88704833984375,
+            "frame_acceptance_rate": 0.8587210434105509,
+            "segment_acceptance_rate": 0.9155643738977073
+          },
+          {
+            "step": 4,
+            "beta": 0.29446494738846474,
+            "beta_increment": 0.08037227549792769,
+            "effective_sample_size": 6553.600000000024,
+            "unique_parent_count": 6578,
+            "unique_state_count": 63,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.77467041015625,
+            "frame_acceptance_rate": 0.6825894278089268,
+            "segment_acceptance_rate": 0.866226842271831
+          },
+          {
+            "step": 5,
+            "beta": 0.38898299992389007,
+            "beta_increment": 0.09451805253542533,
+            "effective_sample_size": 6553.600000000059,
+            "unique_parent_count": 6409,
+            "unique_state_count": 62,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6613037109375,
+            "frame_acceptance_rate": 0.5190932825805822,
+            "segment_acceptance_rate": 0.8036739380022963
+          },
+          {
+            "step": 6,
+            "beta": 0.5187365965965465,
+            "beta_increment": 0.1297535966726564,
+            "effective_sample_size": 6553.600000000028,
+            "unique_parent_count": 6284,
+            "unique_state_count": 56,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.553125,
+            "frame_acceptance_rate": 0.38309440218451335,
+            "segment_acceptance_rate": 0.7236211617445727
+          },
+          {
+            "step": 7,
+            "beta": 0.7722830280495263,
+            "beta_increment": 0.25354643145297984,
+            "effective_sample_size": 6553.600000000053,
+            "unique_parent_count": 6439,
+            "unique_state_count": 36,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.437353515625,
+            "frame_acceptance_rate": 0.2667986605069541,
+            "segment_acceptance_rate": 0.6075007925089615
+          },
+          {
+            "step": 8,
+            "beta": 1.0,
+            "beta_increment": 0.2277169719504737,
+            "effective_sample_size": 7713.317582647994,
+            "unique_parent_count": 7469,
+            "unique_state_count": 24,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.3802490234375,
+            "frame_acceptance_rate": 0.22417103927396373,
+            "segment_acceptance_rate": 0.5357147208245514
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.05,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9989770581649453,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "false_positives",
+        "separation_um": 0.0,
+        "detection_probability": 0.95,
+        "expected_clutter_per_frame": 0.75,
+        "corruption_seed": 0
+      },
+      "smc_seed": 0,
+      "runtime_seconds": 304.5237515680001,
+      "support_size": 8281,
+      "detection_cardinalities": [
+        2,
+        2,
+        3,
+        2,
+        3
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.03431411070281634,
+        "jensen_shannon_divergence": 0.004746100041341161,
+        "exact_map_sample_frequency": 0.1146240234375,
+        "empirical_support_size": 155,
+        "exact_mass_covered_by_empirical_support": 0.9922640499494791,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.03354727249590432,
+          "total_variation_q05": 0.028437162892473812,
+          "total_variation_q95": 0.03910774030743537,
+          "jensen_shannon_median": 0.004865279107165644,
+          "jensen_shannon_q05": 0.004421760827846535,
+          "jensen_shannon_q95": 0.00539234136545307,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9926639698117745,
+          "exact_mass_covered_q05": 0.9915193574415494,
+          "exact_mass_covered_q95": 0.9938170444753097
+        },
+        "max_null_probability_error": 0.001123430185776311,
+        "max_expected_clutter_error": 0.0015924131102260652,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0024812310370622395,
+            0.0039010155188591794
+          ],
+          [
+            0.002481657817180645,
+            0.002281897126947134
+          ],
+          [
+            0.003152521595718877,
+            0.0037216689313894703
+          ],
+          [
+            0.011743547373276311,
+            0.011821521986938161
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.001708984375,
+            0.00439453125
+          ],
+          [
+            0.002197265625,
+            0.001708984375
+          ],
+          [
+            0.0037841796875,
+            0.004638671875
+          ],
+          [
+            0.0106201171875,
+            0.0113525390625
+          ]
+        ],
+        "exact_expected_clutter": [
+          1.0658141036401503e-14,
+          0.006382246555932447,
+          1.004763554944137,
+          0.006874190527118129,
+          1.023565069360226
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.006103515625,
+          1.00390625,
+          0.0084228515625,
+          1.02197265625
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 0.00010253392477491225,
+        "finite_sample_sliced_wasserstein_mm": 8.396260809664881e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 79.04240001018994,
+        "exact_log_evidence": 79.07146750804321,
+        "error": -0.029067497853276336
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.02852243442939409,
+        "reference_hypothesis_rank": 11,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 2
+      },
+      "smc": {
+        "n_tempering_steps": 13,
+        "mean_mh_acceptance_rate": 0.638928692157452,
+        "mean_frame_acceptance_rate": 0.45580257435912386,
+        "mean_segment_acceptance_rate": 0.8222621722124275,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.05380024501486602,
+            "beta_increment": 0.05380024501486602,
+            "effective_sample_size": 6553.600000000042,
+            "unique_parent_count": 6724,
+            "unique_state_count": 2215,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7141357421875,
+            "frame_acceptance_rate": 0.4499345708331314,
+            "segment_acceptance_rate": 0.982314163427953
+          },
+          {
+            "step": 2,
+            "beta": 0.10581654599917184,
+            "beta_increment": 0.05201630098430582,
+            "effective_sample_size": 6553.600000000051,
+            "unique_parent_count": 6655,
+            "unique_state_count": 2755,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7486083984375,
+            "frame_acceptance_rate": 0.5342164971089804,
+            "segment_acceptance_rate": 0.9633040971390877
+          },
+          {
+            "step": 3,
+            "beta": 0.15635148350599193,
+            "beta_increment": 0.05053493750682009,
+            "effective_sample_size": 6553.600000000017,
+            "unique_parent_count": 6666,
+            "unique_state_count": 3274,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.78641357421875,
+            "frame_acceptance_rate": 0.6289564094442143,
+            "segment_acceptance_rate": 0.9444947283446268
+          },
+          {
+            "step": 4,
+            "beta": 0.2070621313641443,
+            "beta_increment": 0.05071064785815238,
+            "effective_sample_size": 6553.600000000076,
+            "unique_parent_count": 6699,
+            "unique_state_count": 3647,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.826416015625,
+            "frame_acceptance_rate": 0.7302343769093531,
+            "segment_acceptance_rate": 0.9223959222495914
+          },
+          {
+            "step": 5,
+            "beta": 0.258112586897494,
+            "beta_increment": 0.05105045553334969,
+            "effective_sample_size": 6553.6000000001095,
+            "unique_parent_count": 6639,
+            "unique_state_count": 3722,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.8276123046875,
+            "frame_acceptance_rate": 0.758392887841057,
+            "segment_acceptance_rate": 0.8960219412150191
+          },
+          {
+            "step": 6,
+            "beta": 0.31004060965622604,
+            "beta_increment": 0.05192802275873204,
+            "effective_sample_size": 6553.60000000006,
+            "unique_parent_count": 6659,
+            "unique_state_count": 3427,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.78125,
+            "frame_acceptance_rate": 0.6904680056966066,
+            "segment_acceptance_rate": 0.8710006311598777
+          },
+          {
+            "step": 7,
+            "beta": 0.3654713524811293,
+            "beta_increment": 0.055430742824903234,
+            "effective_sample_size": 6553.600000000027,
+            "unique_parent_count": 6589,
+            "unique_state_count": 2750,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.71591796875,
+            "frame_acceptance_rate": 0.5905407721119244,
+            "segment_acceptance_rate": 0.8406174673127024
+          },
+          {
+            "step": 8,
+            "beta": 0.4265963344665954,
+            "beta_increment": 0.06112498198546612,
+            "effective_sample_size": 6553.600000000075,
+            "unique_parent_count": 6576,
+            "unique_state_count": 2119,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.64232177734375,
+            "frame_acceptance_rate": 0.47583014986776373,
+            "segment_acceptance_rate": 0.8078083925615811
+          },
+          {
+            "step": 9,
+            "beta": 0.49647120110054666,
+            "beta_increment": 0.06987486663395126,
+            "effective_sample_size": 6553.60000000006,
+            "unique_parent_count": 6547,
+            "unique_state_count": 1464,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5722900390625,
+            "frame_acceptance_rate": 0.3699830620811547,
+            "segment_acceptance_rate": 0.7724060898914601
+          },
+          {
+            "step": 10,
+            "beta": 0.5833496536146372,
+            "beta_increment": 0.08687845251409054,
+            "effective_sample_size": 6553.600000000039,
+            "unique_parent_count": 6443,
+            "unique_state_count": 889,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.50235595703125,
+            "frame_acceptance_rate": 0.2709837985555339,
+            "segment_acceptance_rate": 0.7339994137189759
+          },
+          {
+            "step": 11,
+            "beta": 0.7066428828708522,
+            "beta_increment": 0.123293229256215,
+            "effective_sample_size": 6553.600000000051,
+            "unique_parent_count": 6314,
+            "unique_state_count": 492,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.44031982421875,
+            "frame_acceptance_rate": 0.19084469458056377,
+            "segment_acceptance_rate": 0.6930070273723524
+          },
+          {
+            "step": 12,
+            "beta": 0.9273128438093403,
+            "beta_increment": 0.22066996093848812,
+            "effective_sample_size": 6553.600000000002,
+            "unique_parent_count": 6401,
+            "unique_state_count": 206,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.37918701171875,
+            "frame_acceptance_rate": 0.12336603295927558,
+            "segment_acceptance_rate": 0.6365239109674575
+          },
+          {
+            "step": 13,
+            "beta": 1.0,
+            "beta_increment": 0.07268715619065969,
+            "effective_sample_size": 8073.068011393932,
+            "unique_parent_count": 7812,
+            "unique_state_count": 155,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.369244384765625,
+            "frame_acceptance_rate": 0.11168220867905132,
+            "segment_acceptance_rate": 0.6255144534008719
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.11732322092230611,
+        "jensen_shannon": 0.01617702409635921,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9915193574415494,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "false_positives",
+        "separation_um": 0.0,
+        "detection_probability": 0.95,
+        "expected_clutter_per_frame": 0.75,
+        "corruption_seed": 0
+      },
+      "smc_seed": 1,
+      "runtime_seconds": 305.2493090979988,
+      "support_size": 8281,
+      "detection_cardinalities": [
+        2,
+        2,
+        3,
+        2,
+        3
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.02959188439552244,
+        "jensen_shannon_divergence": 0.004309488447841706,
+        "exact_map_sample_frequency": 0.109375,
+        "empirical_support_size": 163,
+        "exact_mass_covered_by_empirical_support": 0.9930801601993446,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.033948911267961554,
+          "total_variation_q05": 0.0283148903045281,
+          "total_variation_q95": 0.03991931881800631,
+          "jensen_shannon_median": 0.004902797226133971,
+          "jensen_shannon_q05": 0.0043607689566476935,
+          "jensen_shannon_q95": 0.005419888454254662,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9927381109519744,
+          "exact_mass_covered_q05": 0.9914972103546814,
+          "exact_mass_covered_q95": 0.9938881896760073
+        },
+        "max_null_probability_error": 0.0010933983313591794,
+        "max_expected_clutter_error": 0.0008599912352260652,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0024812310370622395,
+            0.0039010155188591794
+          ],
+          [
+            0.002481657817180645,
+            0.002281897126947134
+          ],
+          [
+            0.003152521595718877,
+            0.0037216689313894703
+          ],
+          [
+            0.011743547373276311,
+            0.011821521986938161
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0028076171875,
+            0.0028076171875
+          ],
+          [
+            0.0023193359375,
+            0.0025634765625
+          ],
+          [
+            0.0029296875,
+            0.00390625
+          ],
+          [
+            0.011474609375,
+            0.01123046875
+          ]
+        ],
+        "exact_expected_clutter": [
+          1.0658141036401503e-14,
+          0.006382246555932447,
+          1.004763554944137,
+          0.006874190527118129,
+          1.023565069360226
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.005615234375,
+          1.0048828125,
+          0.0068359375,
+          1.022705078125
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 9.586507333523523e-05,
+        "finite_sample_sliced_wasserstein_mm": 9.822031183851854e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 79.05929963556281,
+        "exact_log_evidence": 79.07146750804321,
+        "error": -0.012167872480404185
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.02852243442939409,
+        "reference_hypothesis_rank": 11,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 2
+      },
+      "smc": {
+        "n_tempering_steps": 13,
+        "mean_mh_acceptance_rate": 0.6392573429987981,
+        "mean_frame_acceptance_rate": 0.4563198253228623,
+        "mean_segment_acceptance_rate": 0.8222306991342618,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.053741274242543824,
+            "beta_increment": 0.053741274242543824,
+            "effective_sample_size": 6553.6000000000095,
+            "unique_parent_count": 6714,
+            "unique_state_count": 2166,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.71773681640625,
+            "frame_acceptance_rate": 0.45312232048800805,
+            "segment_acceptance_rate": 0.9805357533879955
+          },
+          {
+            "step": 2,
+            "beta": 0.10558816403597193,
+            "beta_increment": 0.05184688979342811,
+            "effective_sample_size": 6553.600000000097,
+            "unique_parent_count": 6641,
+            "unique_state_count": 2779,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.75513916015625,
+            "frame_acceptance_rate": 0.5423503653226401,
+            "segment_acceptance_rate": 0.9647209905260352
+          },
+          {
+            "step": 3,
+            "beta": 0.1551378022497127,
+            "beta_increment": 0.049549638213740754,
+            "effective_sample_size": 6553.600000000105,
+            "unique_parent_count": 6691,
+            "unique_state_count": 3272,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.784912109375,
+            "frame_acceptance_rate": 0.6255562310030395,
+            "segment_acceptance_rate": 0.9455570535604854
+          },
+          {
+            "step": 4,
+            "beta": 0.2055663838308417,
+            "beta_increment": 0.050428581581129006,
+            "effective_sample_size": 6553.600000000119,
+            "unique_parent_count": 6662,
+            "unique_state_count": 3591,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.823876953125,
+            "frame_acceptance_rate": 0.7244061844608106,
+            "segment_acceptance_rate": 0.9235713936549836
+          },
+          {
+            "step": 5,
+            "beta": 0.25529625109635223,
+            "beta_increment": 0.04972986726551054,
+            "effective_sample_size": 6553.600000000042,
+            "unique_parent_count": 6587,
+            "unique_state_count": 3729,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.8276611328125,
+            "frame_acceptance_rate": 0.7595717699848803,
+            "segment_acceptance_rate": 0.8959036026787897
+          },
+          {
+            "step": 6,
+            "beta": 0.3079552088861548,
+            "beta_increment": 0.05265895778980256,
+            "effective_sample_size": 6553.600000000111,
+            "unique_parent_count": 6641,
+            "unique_state_count": 3368,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7844970703125,
+            "frame_acceptance_rate": 0.6958558116723884,
+            "segment_acceptance_rate": 0.8723626640738941
+          },
+          {
+            "step": 7,
+            "beta": 0.36388742109659183,
+            "beta_increment": 0.05593221221043704,
+            "effective_sample_size": 6553.600000000113,
+            "unique_parent_count": 6587,
+            "unique_state_count": 2742,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.71519775390625,
+            "frame_acceptance_rate": 0.5888142630357797,
+            "segment_acceptance_rate": 0.8414887126296522
+          },
+          {
+            "step": 8,
+            "beta": 0.4252750210319647,
+            "beta_increment": 0.06138759993537285,
+            "effective_sample_size": 6553.6000000000695,
+            "unique_parent_count": 6576,
+            "unique_state_count": 2104,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.64390869140625,
+            "frame_acceptance_rate": 0.480957483076024,
+            "segment_acceptance_rate": 0.8077054878347285
+          },
+          {
+            "step": 9,
+            "beta": 0.4956945250376128,
+            "beta_increment": 0.07041950400564811,
+            "effective_sample_size": 6553.600000000051,
+            "unique_parent_count": 6514,
+            "unique_state_count": 1450,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.568798828125,
+            "frame_acceptance_rate": 0.3697268052543075,
+            "segment_acceptance_rate": 0.7685817007850906
+          },
+          {
+            "step": 10,
+            "beta": 0.5829948051040537,
+            "beta_increment": 0.08730028006644086,
+            "effective_sample_size": 6553.60000000003,
+            "unique_parent_count": 6479,
+            "unique_state_count": 886,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.50189208984375,
+            "frame_acceptance_rate": 0.26804350482708056,
+            "segment_acceptance_rate": 0.735227411291306
+          },
+          {
+            "step": 11,
+            "beta": 0.7047270561144727,
+            "beta_increment": 0.12173225101041907,
+            "effective_sample_size": 6553.600000000002,
+            "unique_parent_count": 6331,
+            "unique_state_count": 492,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.43946533203125,
+            "frame_acceptance_rate": 0.19107290300645977,
+            "segment_acceptance_rate": 0.6905159295076334
+          },
+          {
+            "step": 12,
+            "beta": 0.9192066534895276,
+            "beta_increment": 0.21447959737505484,
+            "effective_sample_size": 6553.600000000028,
+            "unique_parent_count": 6414,
+            "unique_state_count": 203,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.37911376953125,
+            "frame_acceptance_rate": 0.12017020444096645,
+            "segment_acceptance_rate": 0.6371989860583016
+          },
+          {
+            "step": 13,
+            "beta": 1.0,
+            "beta_increment": 0.08079334651047243,
+            "effective_sample_size": 8047.449685058587,
+            "unique_parent_count": 7816,
+            "unique_state_count": 163,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.368145751953125,
+            "frame_acceptance_rate": 0.11250988262482516,
+            "segment_acceptance_rate": 0.6256294027565085
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.11975795645401893,
+        "jensen_shannon": 0.016259665362763985,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9914972103546814,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "false_positives",
+        "separation_um": 0.0,
+        "detection_probability": 0.95,
+        "expected_clutter_per_frame": 0.75,
+        "corruption_seed": 0
+      },
+      "smc_seed": 2,
+      "runtime_seconds": 302.999014979001,
+      "support_size": 8281,
+      "detection_cardinalities": [
+        2,
+        2,
+        3,
+        2,
+        3
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.03372166875317459,
+        "jensen_shannon_divergence": 0.005217592455356543,
+        "exact_map_sample_frequency": 0.1126708984375,
+        "empirical_support_size": 150,
+        "exact_mass_covered_by_empirical_support": 0.9921818810774469,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.033402511054487494,
+          "total_variation_q05": 0.028295130834330908,
+          "total_variation_q95": 0.03849586440822044,
+          "jensen_shannon_median": 0.004845972396668091,
+          "jensen_shannon_q05": 0.004353613245913068,
+          "jensen_shannon_q95": 0.005317017505895411,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.992819127534243,
+          "exact_mass_covered_q05": 0.9915832951324898,
+          "exact_mass_covered_q95": 0.9936407977291953
+        },
+        "max_null_probability_error": 0.001928327626723689,
+        "max_expected_clutter_error": 0.0017034853272739348,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0024812310370622395,
+            0.0039010155188591794
+          ],
+          [
+            0.002481657817180645,
+            0.002281897126947134
+          ],
+          [
+            0.003152521595718877,
+            0.0037216689313894703
+          ],
+          [
+            0.011743547373276311,
+            0.011821521986938161
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0023193359375,
+            0.0040283203125
+          ],
+          [
+            0.00146484375,
+            0.0028076171875
+          ],
+          [
+            0.0028076171875,
+            0.0040283203125
+          ],
+          [
+            0.013671875,
+            0.0115966796875
+          ]
+        ],
+        "exact_expected_clutter": [
+          1.0658141036401503e-14,
+          0.006382246555932447,
+          1.004763554944137,
+          0.006874190527118129,
+          1.023565069360226
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.00634765625,
+          1.0042724609375,
+          0.0068359375,
+          1.0252685546875
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 7.364177443036217e-05,
+        "finite_sample_sliced_wasserstein_mm": 7.935033182303409e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 79.06964392217954,
+        "exact_log_evidence": 79.07146750804321,
+        "error": -0.001823585863675703
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.02852243442939409,
+        "reference_hypothesis_rank": 11,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 2
+      },
+      "smc": {
+        "n_tempering_steps": 13,
+        "mean_mh_acceptance_rate": 0.6385939378004808,
+        "mean_frame_acceptance_rate": 0.45498263975946873,
+        "mean_segment_acceptance_rate": 0.821969682660446,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.05401716166030113,
+            "beta_increment": 0.05401716166030113,
+            "effective_sample_size": 6553.600000000133,
+            "unique_parent_count": 6727,
+            "unique_state_count": 2156,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.71895751953125,
+            "frame_acceptance_rate": 0.45412507339988256,
+            "segment_acceptance_rate": 0.982654453322939
+          },
+          {
+            "step": 2,
+            "beta": 0.10634647515308734,
+            "beta_increment": 0.05232931349278622,
+            "effective_sample_size": 6553.600000000098,
+            "unique_parent_count": 6646,
+            "unique_state_count": 2814,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.74993896484375,
+            "frame_acceptance_rate": 0.5362956445226573,
+            "segment_acceptance_rate": 0.9631029605423597
+          },
+          {
+            "step": 3,
+            "beta": 0.15639506047705098,
+            "beta_increment": 0.05004858532396364,
+            "effective_sample_size": 6553.600000000126,
+            "unique_parent_count": 6694,
+            "unique_state_count": 3316,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7848388671875,
+            "frame_acceptance_rate": 0.6275063266497956,
+            "segment_acceptance_rate": 0.9432196747011562
+          },
+          {
+            "step": 4,
+            "beta": 0.2061983311118331,
+            "beta_increment": 0.049803270634782126,
+            "effective_sample_size": 6553.600000000026,
+            "unique_parent_count": 6629,
+            "unique_state_count": 3675,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.82174072265625,
+            "frame_acceptance_rate": 0.7198051073623387,
+            "segment_acceptance_rate": 0.9230956496336149
+          },
+          {
+            "step": 5,
+            "beta": 0.25657547596890695,
+            "beta_increment": 0.05037714485707384,
+            "effective_sample_size": 6553.600000000043,
+            "unique_parent_count": 6633,
+            "unique_state_count": 3748,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.82562255859375,
+            "frame_acceptance_rate": 0.7575824122197009,
+            "segment_acceptance_rate": 0.8937391601729486
+          },
+          {
+            "step": 6,
+            "beta": 0.30956957553443254,
+            "beta_increment": 0.05299409956552559,
+            "effective_sample_size": 6553.600000000142,
+            "unique_parent_count": 6626,
+            "unique_state_count": 3329,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.77991943359375,
+            "frame_acceptance_rate": 0.6918519602106495,
+            "segment_acceptance_rate": 0.8682280461568551
+          },
+          {
+            "step": 7,
+            "beta": 0.3652046915799473,
+            "beta_increment": 0.05563511604551474,
+            "effective_sample_size": 6553.600000000049,
+            "unique_parent_count": 6601,
+            "unique_state_count": 2739,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.71483154296875,
+            "frame_acceptance_rate": 0.5882281049106597,
+            "segment_acceptance_rate": 0.8411324343436807
+          },
+          {
+            "step": 8,
+            "beta": 0.4265388417485012,
+            "beta_increment": 0.061334150168553925,
+            "effective_sample_size": 6553.600000000005,
+            "unique_parent_count": 6557,
+            "unique_state_count": 2076,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.64385986328125,
+            "frame_acceptance_rate": 0.4794901845883387,
+            "segment_acceptance_rate": 0.8081974416560883
+          },
+          {
+            "step": 9,
+            "beta": 0.4971776938951958,
+            "beta_increment": 0.07063885214669458,
+            "effective_sample_size": 6553.600000000003,
+            "unique_parent_count": 6515,
+            "unique_state_count": 1424,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.57418212890625,
+            "frame_acceptance_rate": 0.3721448877561023,
+            "segment_acceptance_rate": 0.7746862535266077
+          },
+          {
+            "step": 10,
+            "beta": 0.5848192187881174,
+            "beta_increment": 0.0876415248929216,
+            "effective_sample_size": 6553.600000000026,
+            "unique_parent_count": 6479,
+            "unique_state_count": 881,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.50250244140625,
+            "frame_acceptance_rate": 0.2705250305250305,
+            "segment_acceptance_rate": 0.7343666097144251
+          },
+          {
+            "step": 11,
+            "beta": 0.7075084072505056,
+            "beta_increment": 0.12268918846238819,
+            "effective_sample_size": 6553.6000000000095,
+            "unique_parent_count": 6295,
+            "unique_state_count": 488,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.43818359375,
+            "frame_acceptance_rate": 0.18350102569112045,
+            "segment_acceptance_rate": 0.6927169774480133
+          },
+          {
+            "step": 12,
+            "beta": 0.9285026177365588,
+            "beta_increment": 0.22099421048605328,
+            "effective_sample_size": 6553.600000000036,
+            "unique_parent_count": 6429,
+            "unique_state_count": 208,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.37891845703125,
+            "frame_acceptance_rate": 0.12260200603758886,
+            "segment_acceptance_rate": 0.6366908236215846
+          },
+          {
+            "step": 13,
+            "beta": 1.0,
+            "beta_increment": 0.07149738226344116,
+            "effective_sample_size": 8069.969101055915,
+            "unique_parent_count": 7831,
+            "unique_state_count": 150,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.36822509765625,
+            "frame_acceptance_rate": 0.11111655299922861,
+            "segment_acceptance_rate": 0.6237753897455245
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.11548759322466132,
+        "jensen_shannon": 0.015951052517686234,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9915832951324898,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "joint_corruption",
+        "separation_um": 0.0,
+        "detection_probability": 0.7,
+        "expected_clutter_per_frame": 0.75,
+        "corruption_seed": 0
+      },
+      "smc_seed": 0,
+      "runtime_seconds": 212.59235217700007,
+      "support_size": 441,
+      "detection_cardinalities": [
+        2,
+        2,
+        1,
+        2,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.016453114456671445,
+        "jensen_shannon_divergence": 0.001621562030303965,
+        "exact_map_sample_frequency": 0.422607421875,
+        "empirical_support_size": 62,
+        "exact_mass_covered_by_empirical_support": 0.9980705248890934,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.016809272106244062,
+          "total_variation_q05": 0.012441932994319059,
+          "total_variation_q95": 0.022436159353843337,
+          "jensen_shannon_median": 0.0014022983505876194,
+          "jensen_shannon_q05": 0.0011101130002708313,
+          "jensen_shannon_q95": 0.0017680097226130116,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9984719241426299,
+          "exact_mass_covered_q05": 0.997745674502239,
+          "exact_mass_covered_q95": 0.9989612916775367
+        },
+        "max_null_probability_error": 0.003223785760816056,
+        "max_expected_clutter_error": 0.0009342151308480151,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0189098078213451,
+            0.027190422934501326
+          ],
+          [
+            0.9999440457854564,
+            0.9999842963493727
+          ],
+          [
+            0.33063078934539886,
+            0.6603441991821357
+          ],
+          [
+            0.6471660014746101,
+            0.38605844080168394
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.018798828125,
+            0.0263671875
+          ],
+          [
+            0.999755859375,
+            1.0
+          ],
+          [
+            0.3326416015625,
+            0.6575927734375
+          ],
+          [
+            0.644287109375,
+            0.3892822265625
+          ]
+        ],
+        "exact_expected_clutter": [
+          1.7763568394002505e-15,
+          0.046100230755848015,
+          0.9999283421348308,
+          0.9909749885275367,
+          0.03322444227629695
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.045166015625,
+          0.999755859375,
+          0.990234375,
+          0.0335693359375
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 8.23964793381278e-05,
+        "finite_sample_sliced_wasserstein_mm": 0.00011548151727861758
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 43.0932081575709,
+        "exact_log_evidence": 43.091275014164914,
+        "error": 0.0019331434059850494
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.16242308770656538,
+        "reference_hypothesis_rank": 2,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 4,
+        "realized_false_positives": 2
+      },
+      "smc": {
+        "n_tempering_steps": 11,
+        "mean_mh_acceptance_rate": 0.5399941184303977,
+        "mean_frame_acceptance_rate": 0.27188329850209786,
+        "mean_segment_acceptance_rate": 0.808175815247387,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.11915691464356115,
+            "beta_increment": 0.11915691464356115,
+            "effective_sample_size": 6553.60000000003,
+            "unique_parent_count": 6913,
+            "unique_state_count": 90,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.53765869140625,
+            "frame_acceptance_rate": 0.09230359133427034,
+            "segment_acceptance_rate": 0.9897181089191716
+          },
+          {
+            "step": 2,
+            "beta": 0.21343748055072942,
+            "beta_increment": 0.09428056590716827,
+            "effective_sample_size": 6553.600000000038,
+            "unique_parent_count": 6699,
+            "unique_state_count": 120,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5601806640625,
+            "frame_acceptance_rate": 0.14472175461709239,
+            "segment_acceptance_rate": 0.9762282866287166
+          },
+          {
+            "step": 3,
+            "beta": 0.29481497043220417,
+            "beta_increment": 0.08137748988147475,
+            "effective_sample_size": 6553.6000000000795,
+            "unique_parent_count": 6677,
+            "unique_state_count": 130,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.58271484375,
+            "frame_acceptance_rate": 0.21217806583660243,
+            "segment_acceptance_rate": 0.9547200273979305
+          },
+          {
+            "step": 4,
+            "beta": 0.3683694581338496,
+            "beta_increment": 0.07355448770164541,
+            "effective_sample_size": 6553.600000000077,
+            "unique_parent_count": 6786,
+            "unique_state_count": 152,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.60869140625,
+            "frame_acceptance_rate": 0.29083266124104895,
+            "segment_acceptance_rate": 0.9258834719410775
+          },
+          {
+            "step": 5,
+            "beta": 0.4373476690572261,
+            "beta_increment": 0.06897821092337653,
+            "effective_sample_size": 6553.600000000048,
+            "unique_parent_count": 6609,
+            "unique_state_count": 148,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.63143310546875,
+            "frame_acceptance_rate": 0.3721112993934036,
+            "segment_acceptance_rate": 0.887721171816218
+          },
+          {
+            "step": 6,
+            "beta": 0.5052002749099929,
+            "beta_increment": 0.06785260585276676,
+            "effective_sample_size": 6553.600000000007,
+            "unique_parent_count": 6683,
+            "unique_state_count": 140,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.64703369140625,
+            "frame_acceptance_rate": 0.44755193242645974,
+            "segment_acceptance_rate": 0.8442491624993931
+          },
+          {
+            "step": 7,
+            "beta": 0.5749725680758632,
+            "beta_increment": 0.0697722931658703,
+            "effective_sample_size": 6553.600000000023,
+            "unique_parent_count": 6534,
+            "unique_state_count": 135,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.616650390625,
+            "frame_acceptance_rate": 0.44390315552400306,
+            "segment_acceptance_rate": 0.7884638796230917
+          },
+          {
+            "step": 8,
+            "beta": 0.6520257917975385,
+            "beta_increment": 0.07705322372167533,
+            "effective_sample_size": 6553.600000000003,
+            "unique_parent_count": 6555,
+            "unique_state_count": 123,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5533203125,
+            "frame_acceptance_rate": 0.37577137819570966,
+            "segment_acceptance_rate": 0.7297974880732159
+          },
+          {
+            "step": 9,
+            "beta": 0.7445345559967586,
+            "beta_increment": 0.09250876419922005,
+            "effective_sample_size": 6553.600000000023,
+            "unique_parent_count": 6418,
+            "unique_state_count": 99,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.4705810546875,
+            "frame_acceptance_rate": 0.2777327736455802,
+            "segment_acceptance_rate": 0.6613408445232256
+          },
+          {
+            "step": 10,
+            "beta": 0.873142258995911,
+            "beta_increment": 0.12860770299915247,
+            "effective_sample_size": 6553.600000000011,
+            "unique_parent_count": 6263,
+            "unique_state_count": 78,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.38924560546875,
+            "frame_acceptance_rate": 0.18785379660355261,
+            "segment_acceptance_rate": 0.5908735587258159
+          },
+          {
+            "step": 11,
+            "beta": 1.0,
+            "beta_increment": 0.12685774100408898,
+            "effective_sample_size": 7435.231303361495,
+            "unique_parent_count": 7111,
+            "unique_state_count": 62,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.342425537109375,
+            "frame_acceptance_rate": 0.14575587470535345,
+            "segment_acceptance_rate": 0.5409379675734014
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.06730847806153001,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.997745674502239,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "joint_corruption",
+        "separation_um": 0.0,
+        "detection_probability": 0.7,
+        "expected_clutter_per_frame": 0.75,
+        "corruption_seed": 0
+      },
+      "smc_seed": 1,
+      "runtime_seconds": 210.52768632299922,
+      "support_size": 441,
+      "detection_cardinalities": [
+        2,
+        2,
+        1,
+        2,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.02028358606833154,
+        "jensen_shannon_divergence": 0.0013268390435513407,
+        "exact_map_sample_frequency": 0.4359130859375,
+        "empirical_support_size": 60,
+        "exact_mass_covered_by_empirical_support": 0.998612305149986,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.016610002600606,
+          "total_variation_q05": 0.012320276053619777,
+          "total_variation_q95": 0.02254228596053923,
+          "jensen_shannon_median": 0.0014124978541499426,
+          "jensen_shannon_q05": 0.0011268722368822806,
+          "jensen_shannon_q95": 0.0017491823557507316,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.9983861774170624,
+          "exact_mass_covered_q05": 0.997694518658962,
+          "exact_mass_covered_q95": 0.9988627745645073
+        },
+        "max_null_probability_error": 0.009959807989183944,
+        "max_expected_clutter_error": 0.0009847541525367376,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0189098078213451,
+            0.027190422934501326
+          ],
+          [
+            0.9999440457854564,
+            0.9999842963493727
+          ],
+          [
+            0.33063078934539886,
+            0.6603441991821357
+          ],
+          [
+            0.6471660014746101,
+            0.38605844080168394
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0184326171875,
+            0.028564453125
+          ],
+          [
+            0.9998779296875,
+            1.0
+          ],
+          [
+            0.3319091796875,
+            0.6580810546875
+          ],
+          [
+            0.65673828125,
+            0.3760986328125
+          ]
+        ],
+        "exact_expected_clutter": [
+          1.7763568394002505e-15,
+          0.046100230755848015,
+          0.9999283421348308,
+          0.9909749885275367,
+          0.03322444227629695
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.0469970703125,
+          0.9998779296875,
+          0.989990234375,
+          0.0328369140625
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 7.956790791080728e-05,
+        "finite_sample_sliced_wasserstein_mm": 9.543365649074834e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 43.04262225491502,
+        "exact_log_evidence": 43.091275014164914,
+        "error": -0.048652759249897315
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.16242308770656538,
+        "reference_hypothesis_rank": 2,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 4,
+        "realized_false_positives": 2
+      },
+      "smc": {
+        "n_tempering_steps": 11,
+        "mean_mh_acceptance_rate": 0.5392800071022728,
+        "mean_frame_acceptance_rate": 0.2715790730792134,
+        "mean_segment_acceptance_rate": 0.8065159726420645,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.12264426729461064,
+            "beta_increment": 0.12264426729461064,
+            "effective_sample_size": 6553.600000000017,
+            "unique_parent_count": 6956,
+            "unique_state_count": 90,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5421875,
+            "frame_acceptance_rate": 0.09135451627918371,
+            "segment_acceptance_rate": 0.9899272523782876
+          },
+          {
+            "step": 2,
+            "beta": 0.21841572201164722,
+            "beta_increment": 0.09577145471703657,
+            "effective_sample_size": 6553.600000000046,
+            "unique_parent_count": 6714,
+            "unique_state_count": 112,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.56207275390625,
+            "frame_acceptance_rate": 0.14204531476789098,
+            "segment_acceptance_rate": 0.9757699110755736
+          },
+          {
+            "step": 3,
+            "beta": 0.2984505295558585,
+            "beta_increment": 0.08003480754421127,
+            "effective_sample_size": 6553.600000000056,
+            "unique_parent_count": 6705,
+            "unique_state_count": 132,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.58157958984375,
+            "frame_acceptance_rate": 0.21052887537993922,
+            "segment_acceptance_rate": 0.955631817624709
+          },
+          {
+            "step": 4,
+            "beta": 0.36999842224211754,
+            "beta_increment": 0.07154789268625905,
+            "effective_sample_size": 6553.60000000006,
+            "unique_parent_count": 6786,
+            "unique_state_count": 142,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6083251953125,
+            "frame_acceptance_rate": 0.29322538165146567,
+            "segment_acceptance_rate": 0.9241335484186342
+          },
+          {
+            "step": 5,
+            "beta": 0.43724999771980966,
+            "beta_increment": 0.06725157547769212,
+            "effective_sample_size": 6553.600000000021,
+            "unique_parent_count": 6602,
+            "unique_state_count": 147,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.63126220703125,
+            "frame_acceptance_rate": 0.3760669170365312,
+            "segment_acceptance_rate": 0.8870313340176956
+          },
+          {
+            "step": 6,
+            "beta": 0.5058075374268636,
+            "beta_increment": 0.06855753970705392,
+            "effective_sample_size": 6553.600000000035,
+            "unique_parent_count": 6720,
+            "unique_state_count": 148,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.646728515625,
+            "frame_acceptance_rate": 0.44970573810691516,
+            "segment_acceptance_rate": 0.8420272241127856
+          },
+          {
+            "step": 7,
+            "beta": 0.5753991807894219,
+            "beta_increment": 0.0695916433625583,
+            "effective_sample_size": 6553.6000000000295,
+            "unique_parent_count": 6551,
+            "unique_state_count": 149,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.61591796875,
+            "frame_acceptance_rate": 0.4431554524361949,
+            "segment_acceptance_rate": 0.7885539963392313
+          },
+          {
+            "step": 8,
+            "beta": 0.6515981591138035,
+            "beta_increment": 0.0761989783243816,
+            "effective_sample_size": 6553.600000000011,
+            "unique_parent_count": 6595,
+            "unique_state_count": 135,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.55125732421875,
+            "frame_acceptance_rate": 0.3748112794038864,
+            "segment_acceptance_rate": 0.728618984677143
+          },
+          {
+            "step": 9,
+            "beta": 0.7444495641422872,
+            "beta_increment": 0.09285140502848377,
+            "effective_sample_size": 6553.600000000023,
+            "unique_parent_count": 6430,
+            "unique_state_count": 111,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.46671142578125,
+            "frame_acceptance_rate": 0.2740233470621207,
+            "segment_acceptance_rate": 0.6600875583926431
+          },
+          {
+            "step": 10,
+            "beta": 0.8748335109336856,
+            "beta_increment": 0.1303839467913983,
+            "effective_sample_size": 6553.6,
+            "unique_parent_count": 6221,
+            "unique_state_count": 82,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3877197265625,
+            "frame_acceptance_rate": 0.18863497494806306,
+            "segment_acceptance_rate": 0.5863675161565662
+          },
+          {
+            "step": 11,
+            "beta": 1.0,
+            "beta_increment": 0.12516648906631445,
+            "effective_sample_size": 7465.97265807872,
+            "unique_parent_count": 7157,
+            "unique_state_count": 60,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.33831787109375,
+            "frame_acceptance_rate": 0.1438180067991568,
+            "segment_acceptance_rate": 0.5335265558694403
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.0676268578816177,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.997694518658962,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "joint_corruption",
+        "separation_um": 0.0,
+        "detection_probability": 0.7,
+        "expected_clutter_per_frame": 0.75,
+        "corruption_seed": 0
+      },
+      "smc_seed": 2,
+      "runtime_seconds": 194.3657347240005,
+      "support_size": 441,
+      "detection_cardinalities": [
+        2,
+        2,
+        1,
+        2,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.018347074169296918,
+        "jensen_shannon_divergence": 0.0014602884712308724,
+        "exact_map_sample_frequency": 0.43115234375,
+        "empirical_support_size": 56,
+        "exact_mass_covered_by_empirical_support": 0.9980555421528412,
+        "credible_set_recall_95": 1.0,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_median": 0.0167534273840136,
+          "total_variation_q05": 0.012409476692075254,
+          "total_variation_q95": 0.023043889175570913,
+          "jensen_shannon_median": 0.0014256411640517054,
+          "jensen_shannon_q05": 0.0011511907937846544,
+          "jensen_shannon_q95": 0.0017595988587090878,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_median": 0.99838040385743,
+          "exact_mass_covered_q05": 0.9975791563866196,
+          "exact_mass_covered_q95": 0.9989391857109569
+        },
+        "max_null_probability_error": 0.009457101279601143,
+        "max_expected_clutter_error": 0.0032877067849632624,
+        "exact_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0189098078213451,
+            0.027190422934501326
+          ],
+          [
+            0.9999440457854564,
+            0.9999842963493727
+          ],
+          [
+            0.33063078934539886,
+            0.6603441991821357
+          ],
+          [
+            0.6471660014746101,
+            0.38605844080168394
+          ]
+        ],
+        "sampled_null_probabilities": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0177001953125,
+            0.0263671875
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.340087890625,
+            0.6541748046875
+          ],
+          [
+            0.648193359375,
+            0.38330078125
+          ]
+        ],
+        "exact_expected_clutter": [
+          1.7763568394002505e-15,
+          0.046100230755848015,
+          0.9999283421348308,
+          0.9909749885275367,
+          0.03322444227629695
+        ],
+        "sampled_expected_clutter": [
+          0.0,
+          0.0440673828125,
+          1.0,
+          0.9942626953125,
+          0.031494140625
+        ],
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "sliced_wasserstein_mm": 8.03220445305949e-05,
+        "finite_sample_sliced_wasserstein_mm": 9.841972204060043e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 43.11287885479377,
+        "exact_log_evidence": 43.091275014164914,
+        "error": 0.02160384062885612
+      },
+      "reference": {
+        "reference_hypothesis_mass": 0.16242308770656538,
+        "reference_hypothesis_rank": 2,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 4,
+        "realized_false_positives": 2
+      },
+      "smc": {
+        "n_tempering_steps": 11,
+        "mean_mh_acceptance_rate": 0.5416176535866477,
+        "mean_frame_acceptance_rate": 0.2712947477017509,
+        "mean_segment_acceptance_rate": 0.8116771332708843,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.11776660542700768,
+            "beta_increment": 0.11776660542700768,
+            "effective_sample_size": 6553.600000000053,
+            "unique_parent_count": 6944,
+            "unique_state_count": 88,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5419189453125,
+            "frame_acceptance_rate": 0.09155412018007437,
+            "segment_acceptance_rate": 0.9903527577470279
+          },
+          {
+            "step": 2,
+            "beta": 0.20962499494273146,
+            "beta_increment": 0.09185838951572378,
+            "effective_sample_size": 6553.600000000024,
+            "unique_parent_count": 6679,
+            "unique_state_count": 106,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5584716796875,
+            "frame_acceptance_rate": 0.1409541966075182,
+            "segment_acceptance_rate": 0.9750524313515095
+          },
+          {
+            "step": 3,
+            "beta": 0.2902105119482812,
+            "beta_increment": 0.08058551700554972,
+            "effective_sample_size": 6553.600000000076,
+            "unique_parent_count": 6683,
+            "unique_state_count": 132,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.57998046875,
+            "frame_acceptance_rate": 0.20549445201479463,
+            "segment_acceptance_rate": 0.9569615912208504
+          },
+          {
+            "step": 4,
+            "beta": 0.36290637358356187,
+            "beta_increment": 0.07269586163528069,
+            "effective_sample_size": 6553.6000000001,
+            "unique_parent_count": 6794,
+            "unique_state_count": 138,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.60667724609375,
+            "frame_acceptance_rate": 0.28310848860269816,
+            "segment_acceptance_rate": 0.9284027558000828
+          },
+          {
+            "step": 5,
+            "beta": 0.4312889743455509,
+            "beta_increment": 0.06838260076198904,
+            "effective_sample_size": 6553.600000000048,
+            "unique_parent_count": 6619,
+            "unique_state_count": 144,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.62689208984375,
+            "frame_acceptance_rate": 0.3632969767952566,
+            "segment_acceptance_rate": 0.8907833988812077
+          },
+          {
+            "step": 6,
+            "beta": 0.4989671931666537,
+            "beta_increment": 0.06767821882110281,
+            "effective_sample_size": 6553.600000000059,
+            "unique_parent_count": 6682,
+            "unique_state_count": 143,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6430419921875,
+            "frame_acceptance_rate": 0.44226643261166376,
+            "segment_acceptance_rate": 0.8443672990416585
+          },
+          {
+            "step": 7,
+            "beta": 0.5690311526068657,
+            "beta_increment": 0.07006395944021193,
+            "effective_sample_size": 6553.600000000017,
+            "unique_parent_count": 6548,
+            "unique_state_count": 131,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.62127685546875,
+            "frame_acceptance_rate": 0.4459436337415365,
+            "segment_acceptance_rate": 0.7961910800068278
+          },
+          {
+            "step": 8,
+            "beta": 0.6441348007637956,
+            "beta_increment": 0.07510364815692994,
+            "effective_sample_size": 6553.600000000003,
+            "unique_parent_count": 6555,
+            "unique_state_count": 130,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5612548828125,
+            "frame_acceptance_rate": 0.3857310284207442,
+            "segment_acceptance_rate": 0.7367444585489699
+          },
+          {
+            "step": 9,
+            "beta": 0.7341237046254455,
+            "beta_increment": 0.08998890386164993,
+            "effective_sample_size": 6553.600000000038,
+            "unique_parent_count": 6471,
+            "unique_state_count": 106,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.48011474609375,
+            "frame_acceptance_rate": 0.28582982060582296,
+            "segment_acceptance_rate": 0.6729253818464831
+          },
+          {
+            "step": 10,
+            "beta": 0.8585321920092106,
+            "beta_increment": 0.12440848738376509,
+            "effective_sample_size": 6553.6000000000095,
+            "unique_parent_count": 6239,
+            "unique_state_count": 87,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.39827880859375,
+            "frame_acceptance_rate": 0.19623931623931623,
+            "segment_acceptance_rate": 0.6002196729314132
+          },
+          {
+            "step": 11,
+            "beta": 1.0,
+            "beta_increment": 0.1414678079907894,
+            "effective_sample_size": 7242.674886961584,
+            "unique_parent_count": 6929,
+            "unique_state_count": 56,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.339886474609375,
+            "frame_acceptance_rate": 0.1438237588998342,
+            "segment_acceptance_rate": 0.5364476386036962
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.06913166752671274,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9975791563866196,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.15
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_null_probability_error": true,
+        "max_expected_clutter_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    }
+  ],
+  "gate_summary": [
+    {
+      "regime": "near_clean",
+      "n_runs": 3,
+      "support_size": 2401,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 0,
+      "all_runs_passed": true,
+      "mean_total_variation": 0.005411218357541469,
+      "se_total_variation": 0.0007277960485882503,
+      "mean_max_null_probability_error": 0.003319082373500895,
+      "se_max_null_probability_error": 0.0014554483346429633,
+      "mean_max_expected_clutter_error": 0.0032312613820911404,
+      "se_max_expected_clutter_error": 0.0014524651873974435,
+      "mean_path_sliced_wasserstein_um": 0.08673663966279702,
+      "se_path_sliced_wasserstein_um": 0.004435893457448283,
+      "mean_absolute_log_evidence_error": 0.027828085639486726,
+      "se_absolute_log_evidence_error": 0.009424668949332351,
+      "mean_runtime_seconds": 154.69662418466638,
+      "se_runtime_seconds": 3.2299344607173417
+    },
+    {
+      "regime": "missed_detections",
+      "n_runs": 3,
+      "support_size": 63,
+      "realized_missed_detections": 4,
+      "realized_false_positives": 0,
+      "all_runs_passed": true,
+      "mean_total_variation": 0.007607416973234564,
+      "se_total_variation": 0.0017815095517708286,
+      "mean_max_null_probability_error": 0.004690879560881915,
+      "se_max_null_probability_error": 0.0015727142188531479,
+      "mean_max_expected_clutter_error": 0.0005064696851033723,
+      "se_max_expected_clutter_error": 0.00015090077886905834,
+      "mean_path_sliced_wasserstein_um": 0.08524853455056788,
+      "se_path_sliced_wasserstein_um": 0.006554271191592266,
+      "mean_absolute_log_evidence_error": 0.00621746145077869,
+      "se_absolute_log_evidence_error": 0.003157289195641914,
+      "mean_runtime_seconds": 156.95626800966662,
+      "se_runtime_seconds": 4.802280180038518
+    },
+    {
+      "regime": "false_positives",
+      "n_runs": 3,
+      "support_size": 8281,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 2,
+      "all_runs_passed": true,
+      "mean_total_variation": 0.03254255461717112,
+      "se_total_variation": 0.0014852146796133603,
+      "mean_max_null_probability_error": 0.0013817187146197266,
+      "se_max_null_probability_error": 0.00027344192263534445,
+      "mean_max_expected_clutter_error": 0.001385296557575355,
+      "se_max_expected_clutter_error": 0.00026460254509758015,
+      "mean_path_sliced_wasserstein_um": 0.09068025751350321,
+      "se_path_sliced_wasserstein_um": 0.008734048778811638,
+      "mean_absolute_log_evidence_error": 0.014352985399118742,
+      "se_absolute_log_evidence_error": 0.007940166328545984,
+      "mean_runtime_seconds": 304.2573585483333,
+      "se_runtime_seconds": 0.663118852140998
+    },
+    {
+      "regime": "joint_corruption",
+      "n_runs": 3,
+      "support_size": 441,
+      "realized_missed_detections": 4,
+      "realized_false_positives": 2,
+      "all_runs_passed": true,
+      "mean_total_variation": 0.0183612582314333,
+      "se_total_variation": 0.0011057846509225158,
+      "mean_max_null_probability_error": 0.007546898343200381,
+      "se_max_null_probability_error": 0.0021664221894590894,
+      "mean_max_expected_clutter_error": 0.0017355586894493384,
+      "se_max_expected_clutter_error": 0.0007762111677853176,
+      "mean_path_sliced_wasserstein_um": 0.08076214392651,
+      "se_path_sliced_wasserstein_um": 0.0008456692987563404,
+      "mean_absolute_log_evidence_error": 0.024063247761579493,
+      "se_absolute_log_evidence_error": 0.013542736537027915,
+      "mean_runtime_seconds": 205.8285910746666,
+      "se_runtime_seconds": 5.7623351186584575
+    }
+  ],
+  "gate_passed": true,
+  "map": {
+    "n_evaluations": 36,
+    "all_checks_pass_fraction": 0.9722222222222222,
+    "max_total_variation_distance": 0.08618296673214285,
+    "max_null_probability_error": 0.017223118190500264,
+    "max_expected_clutter_error": 0.012255026014322379,
+    "min_exact_mass_covered": 0.9636968350365744,
+    "max_absolute_log_evidence_error": 0.08847798640589133,
+    "max_support_size": 15379
+  },
+  "map_runs": [
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 0,
+      "support_size": 637,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.018427276809498305,
+      "jensen_shannon_divergence": 0.001294345211887403,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9982664481907633,
+      "max_null_probability_error": 0.000997778236256919,
+      "max_expected_clutter_error": 0.00043425372857086586,
+      "absolute_log_evidence_error": 0.022565638798276666,
+      "n_tempering_steps": 11,
+      "mean_mh_acceptance_rate": 0.648095703125,
+      "runtime_seconds": 144.6135777769996,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.0755860665682857,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9960266194514594,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 1,
+      "support_size": 343,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.019339249192033465,
+      "jensen_shannon_divergence": 0.0013282151260497052,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9984157717698307,
+      "max_null_probability_error": 0.0018309021346098733,
+      "max_expected_clutter_error": 0.0014535507767721167,
+      "absolute_log_evidence_error": 0.0032397808453339394,
+      "n_tempering_steps": 10,
+      "mean_mh_acceptance_rate": 0.66345458984375,
+      "runtime_seconds": 144.83298796999952,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.08517863482368998,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9954956508531823,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 2,
+      "support_size": 343,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.02236167382599535,
+      "jensen_shannon_divergence": 0.0021190581480799186,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9964693510738367,
+      "max_null_probability_error": 0.001607382964424076,
+      "max_expected_clutter_error": 0.002119130725591667,
+      "absolute_log_evidence_error": 0.0169392592096429,
+      "n_tempering_steps": 10,
+      "mean_mh_acceptance_rate": 0.69173095703125,
+      "runtime_seconds": 154.12302531100067,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.08401590679874249,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9957277317118568,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 3,
+      "support_size": 81,
+      "realized_missed_detections": 4,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.017023126091397636,
+      "jensen_shannon_divergence": 0.001423186284629156,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9983123910279452,
+      "max_null_probability_error": 0.009119656821691802,
+      "max_expected_clutter_error": 0.0010109862587294183,
+      "absolute_log_evidence_error": 0.026023337758680043,
+      "n_tempering_steps": 8,
+      "mean_mh_acceptance_rate": 0.6620010375976563,
+      "runtime_seconds": 47.294449087999965,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.10390552466539017,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9972212907935664,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 0,
+      "support_size": 1183,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 2,
+      "total_variation_distance": 0.0465469492090191,
+      "jensen_shannon_divergence": 0.007356476007579284,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9895768570212566,
+      "max_null_probability_error": 0.0039669832794354265,
+      "max_expected_clutter_error": 0.0031494279563402117,
+      "absolute_log_evidence_error": 0.04932618796581778,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.5504986102764423,
+      "runtime_seconds": 164.9053105139992,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.14629169130912534,
+        "jensen_shannon": 0.02265589774432026,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9883380728376446,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 1,
+      "support_size": 343,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.033621676700356505,
+      "jensen_shannon_divergence": 0.0038955329491000487,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9947595971357579,
+      "max_null_probability_error": 0.0028487218978313165,
+      "max_expected_clutter_error": 0.00221438476328939,
+      "absolute_log_evidence_error": 0.02406063561922167,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.6316903921274039,
+      "runtime_seconds": 187.84079926999948,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.11367877702523618,
+        "jensen_shannon": 0.012888277277887699,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.994200081304598,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 2,
+      "support_size": 637,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.04170305853851926,
+      "jensen_shannon_divergence": 0.006195530511389208,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.991658867427617,
+      "max_null_probability_error": 0.0025917735147274606,
+      "max_expected_clutter_error": 0.004532298894525999,
+      "absolute_log_evidence_error": 0.04832510699036874,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.6519803560697115,
+      "runtime_seconds": 183.70066326699998,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.15352875837726657,
+        "jensen_shannon": 0.023166164943722298,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9882335753573014,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 3,
+      "support_size": 819,
+      "realized_missed_detections": 3,
+      "realized_false_positives": 2,
+      "total_variation_distance": 0.061090738742326685,
+      "jensen_shannon_divergence": 0.009807267944822508,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9860006515451791,
+      "max_null_probability_error": 0.005911826179155033,
+      "max_expected_clutter_error": 0.008498899931636439,
+      "absolute_log_evidence_error": 0.07411590023662029,
+      "n_tempering_steps": 12,
+      "mean_mh_acceptance_rate": 0.5112274169921875,
+      "runtime_seconds": 147.19169452999995,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.19550503308500097,
+        "jensen_shannon": 0.033173123430652394,
+        "credible_set_recall_95": 0.9992957746478873,
+        "exact_mass_covered": 0.9833862186689727,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 0,
+      "support_size": 1183,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 2,
+      "total_variation_distance": 0.062046715262896894,
+      "jensen_shannon_divergence": 0.009148222908855853,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9868250925151276,
+      "max_null_probability_error": 0.009896204290133881,
+      "max_expected_clutter_error": 0.01016654306857867,
+      "absolute_log_evidence_error": 0.01373657066349665,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.5462843674879807,
+      "runtime_seconds": 162.2621763749994,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.1835113126491678,
+        "jensen_shannon": 0.0313322295942364,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9841659438526071,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 1,
+      "support_size": 637,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.03871686840460851,
+      "jensen_shannon_divergence": 0.006094556707355028,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9901280441580192,
+      "max_null_probability_error": 0.005430388398984454,
+      "max_expected_clutter_error": 0.007291790263196374,
+      "absolute_log_evidence_error": 0.015300214018104441,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.5939659705528846,
+      "runtime_seconds": 185.08435561199985,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.1432143108014528,
+        "jensen_shannon": 0.020376251372789905,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9894202462845061,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 2,
+      "support_size": 1911,
+      "realized_missed_detections": 3,
+      "realized_false_positives": 3,
+      "total_variation_distance": 0.06680152102626966,
+      "jensen_shannon_divergence": 0.014288548546932955,
+      "credible_set_recall_95": 0.9885057471264368,
+      "exact_mass_covered": 0.9798425430477262,
+      "max_null_probability_error": 0.00367103240678901,
+      "max_expected_clutter_error": 0.0043700136194615435,
+      "absolute_log_evidence_error": 0.04896589473566593,
+      "n_tempering_steps": 14,
+      "mean_mh_acceptance_rate": 0.5927376883370535,
+      "runtime_seconds": 128.23420946700026,
+      "passed": true,
+      "strict_all_credible_states_observed": false,
+      "thresholds": {
+        "total_variation": 0.2202605645449776,
+        "jensen_shannon": 0.04455677670681652,
+        "credible_set_recall_95": 0.9885057471264368,
+        "exact_mass_covered": 0.9768349276212591,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 3,
+      "support_size": 441,
+      "realized_missed_detections": 4,
+      "realized_false_positives": 2,
+      "total_variation_distance": 0.06391168232131844,
+      "jensen_shannon_divergence": 0.009742902724679718,
+      "credible_set_recall_95": 0.9883720930232558,
+      "exact_mass_covered": 0.9862292802416264,
+      "max_null_probability_error": 0.009499750978415406,
+      "max_expected_clutter_error": 0.009066337268227143,
+      "absolute_log_evidence_error": 0.062374999736370285,
+      "n_tempering_steps": 12,
+      "mean_mh_acceptance_rate": 0.5366221110026042,
+      "runtime_seconds": 142.90744787400035,
+      "passed": false,
+      "strict_all_credible_states_observed": false,
+      "thresholds": {
+        "total_variation": 0.20803990736499495,
+        "jensen_shannon": 0.030436974299641907,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9859733076194446,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 0,
+      "support_size": 1911,
+      "realized_missed_detections": 1,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.02868104364192947,
+      "jensen_shannon_divergence": 0.002321912603192003,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9961878034657172,
+      "max_null_probability_error": 0.016773542811093,
+      "max_expected_clutter_error": 0.0005399131811864022,
+      "absolute_log_evidence_error": 0.009121202714155174,
+      "n_tempering_steps": 10,
+      "mean_mh_acceptance_rate": 0.67107666015625,
+      "runtime_seconds": 102.1284216790009,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.09454086987990366,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9952670058417682,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 1,
+      "support_size": 343,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.021525676222677384,
+      "jensen_shannon_divergence": 0.0012326740465821331,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9982178412056228,
+      "max_null_probability_error": 0.0005983110622256294,
+      "max_expected_clutter_error": 0.0005448831972487689,
+      "absolute_log_evidence_error": 0.025647138071278164,
+      "n_tempering_steps": 9,
+      "mean_mh_acceptance_rate": 0.619052463107639,
+      "runtime_seconds": 101.11240806599926,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.08004525795935025,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.996389865292119,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 2,
+      "support_size": 1029,
+      "realized_missed_detections": 1,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.01565184441952496,
+      "jensen_shannon_divergence": 0.0021149283327676046,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9961443688850609,
+      "max_null_probability_error": 0.001844801583279709,
+      "max_expected_clutter_error": 0.0016060073354469129,
+      "absolute_log_evidence_error": 0.03667412206270626,
+      "n_tempering_steps": 9,
+      "mean_mh_acceptance_rate": 0.6505832248263889,
+      "runtime_seconds": 133.85425168800066,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.09759482664238228,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9950665343365594,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 3,
+      "support_size": 1029,
+      "realized_missed_detections": 1,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.02485043606347223,
+      "jensen_shannon_divergence": 0.0032370883265253714,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9954526743466453,
+      "max_null_probability_error": 0.002734383019521447,
+      "max_expected_clutter_error": 0.001662318538619978,
+      "absolute_log_evidence_error": 0.02942979768778997,
+      "n_tempering_steps": 9,
+      "mean_mh_acceptance_rate": 0.6415283203125,
+      "runtime_seconds": 129.2614254930013,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.11237597389833447,
+        "jensen_shannon": 0.012870656299000992,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9936231743421055,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 0,
+      "support_size": 1183,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 2,
+      "total_variation_distance": 0.0324782198661954,
+      "jensen_shannon_divergence": 0.004843134150220059,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9951720344278314,
+      "max_null_probability_error": 0.007893792016078205,
+      "max_expected_clutter_error": 0.007097565878525058,
+      "absolute_log_evidence_error": 0.028979228989093997,
+      "n_tempering_steps": 12,
+      "mean_mh_acceptance_rate": 0.5739593505859375,
+      "runtime_seconds": 166.5237658499991,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.12059905439590618,
+        "jensen_shannon": 0.01675598183368153,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9919601881020784,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 1,
+      "support_size": 343,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.02224624951578889,
+      "jensen_shannon_divergence": 0.0025628398112029897,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9965123290724339,
+      "max_null_probability_error": 0.0010480735655672493,
+      "max_expected_clutter_error": 0.0011989211594638505,
+      "absolute_log_evidence_error": 0.03525194344823035,
+      "n_tempering_steps": 12,
+      "mean_mh_acceptance_rate": 0.6521870930989584,
+      "runtime_seconds": 171.8364434140003,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.09266304894358558,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9958967650014829,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 2,
+      "support_size": 1911,
+      "realized_missed_detections": 1,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.047632520713224435,
+      "jensen_shannon_divergence": 0.008428169806716304,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9862115385423342,
+      "max_null_probability_error": 0.003882945661171866,
+      "max_expected_clutter_error": 0.0020449204589176873,
+      "absolute_log_evidence_error": 0.046463596597924095,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.6340322641225962,
+      "runtime_seconds": 151.58507037399977,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.15915425874748612,
+        "jensen_shannon": 0.027157593785741646,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9861379409727206,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 3,
+      "support_size": 4459,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.042403641762419356,
+      "jensen_shannon_divergence": 0.00967562654934974,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9855383548033604,
+      "max_null_probability_error": 0.007836671124179892,
+      "max_expected_clutter_error": 0.008376237054823932,
+      "absolute_log_evidence_error": 0.05207250566110133,
+      "n_tempering_steps": 14,
+      "mean_mh_acceptance_rate": 0.567230224609375,
+      "runtime_seconds": 137.05333865099965,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.16031425445023337,
+        "jensen_shannon": 0.03015347482471476,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9840011770637253,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 0,
+      "support_size": 1183,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 2,
+      "total_variation_distance": 0.03970632516456814,
+      "jensen_shannon_divergence": 0.006503154262013216,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9920888367734788,
+      "max_null_probability_error": 0.008301767719149922,
+      "max_expected_clutter_error": 0.012255026014322379,
+      "absolute_log_evidence_error": 0.036078069087700726,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.5502347506009615,
+      "runtime_seconds": 167.41494798499843,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.1474063922722558,
+        "jensen_shannon": 0.023226897790120483,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9879160773434457,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 1,
+      "support_size": 637,
+      "realized_missed_detections": 2,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.03106582045624377,
+      "jensen_shannon_divergence": 0.003892769031193311,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9949945286471032,
+      "max_null_probability_error": 0.0012441043815363852,
+      "max_expected_clutter_error": 0.0015992164172298207,
+      "absolute_log_evidence_error": 0.029053665590495825,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.5944232647235577,
+      "runtime_seconds": 199.7994567679998,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.12108283659274384,
+        "jensen_shannon": 0.014238304114553556,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9934743679539266,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 2,
+      "support_size": 8281,
+      "realized_missed_detections": 1,
+      "realized_false_positives": 3,
+      "total_variation_distance": 0.05570083265803075,
+      "jensen_shannon_divergence": 0.01402969111905867,
+      "credible_set_recall_95": 0.9879518072289156,
+      "exact_mass_covered": 0.9776092130741374,
+      "max_null_probability_error": 0.0034508569967243684,
+      "max_expected_clutter_error": 0.0035809647949809342,
+      "absolute_log_evidence_error": 0.060760735475895444,
+      "n_tempering_steps": 15,
+      "mean_mh_acceptance_rate": 0.56253662109375,
+      "runtime_seconds": 169.0129140249992,
+      "passed": true,
+      "strict_all_credible_states_observed": false,
+      "thresholds": {
+        "total_variation": 0.2037903019442515,
+        "jensen_shannon": 0.04662111636879295,
+        "credible_set_recall_95": 0.963855421686747,
+        "exact_mass_covered": 0.9754458929017619,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.8,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 3,
+      "support_size": 6591,
+      "realized_missed_detections": 1,
+      "realized_false_positives": 3,
+      "total_variation_distance": 0.08618296673214285,
+      "jensen_shannon_divergence": 0.02332539565094778,
+      "credible_set_recall_95": 0.953125,
+      "exact_mass_covered": 0.9636968350365744,
+      "max_null_probability_error": 0.011851709667432098,
+      "max_expected_clutter_error": 0.005668795469468524,
+      "absolute_log_evidence_error": 0.04081992960115599,
+      "n_tempering_steps": 14,
+      "mean_mh_acceptance_rate": 0.5150957380022322,
+      "runtime_seconds": 152.59348763100024,
+      "passed": true,
+      "strict_all_credible_states_observed": false,
+      "thresholds": {
+        "total_variation": 0.2892807471421637,
+        "jensen_shannon": 0.07635859007197936,
+        "credible_set_recall_95": 0.8958333333333334,
+        "exact_mass_covered": 0.9584474807549512,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 0,
+      "support_size": 4459,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.018336628200451423,
+      "jensen_shannon_divergence": 0.0016357829375840292,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9974328255445074,
+      "max_null_probability_error": 0.0006187691055301371,
+      "max_expected_clutter_error": 0.0009357609532427702,
+      "absolute_log_evidence_error": 0.047765169593887435,
+      "n_tempering_steps": 7,
+      "mean_mh_acceptance_rate": 0.5464913504464286,
+      "runtime_seconds": 103.97935594900082,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.088987890759508,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9968028149852078,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 1,
+      "support_size": 2401,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.021039485545895478,
+      "jensen_shannon_divergence": 0.001368322601392631,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.998375317437697,
+      "max_null_probability_error": 0.000557620313039475,
+      "max_expected_clutter_error": 0.0004322950551776117,
+      "absolute_log_evidence_error": 0.00637062094089913,
+      "n_tempering_steps": 7,
+      "mean_mh_acceptance_rate": 0.4768659319196429,
+      "runtime_seconds": 100.24526306299958,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.08836403992834563,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9982702092715727,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 2,
+      "support_size": 4459,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.033661843791700896,
+      "jensen_shannon_divergence": 0.002643793863665051,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9973926683453287,
+      "max_null_probability_error": 0.0005019126227530141,
+      "max_expected_clutter_error": 0.0002875381449403136,
+      "absolute_log_evidence_error": 0.014041997746545576,
+      "n_tempering_steps": 7,
+      "mean_mh_acceptance_rate": 0.5215611049107143,
+      "runtime_seconds": 90.8346818150003,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.12773919492833197,
+        "jensen_shannon": 0.010282447058653566,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.997063306806057,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.05,
+      "data_seed": 3,
+      "support_size": 2401,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.019216317859147306,
+      "jensen_shannon_divergence": 0.002293735208131009,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9968395136613355,
+      "max_null_probability_error": 0.000660296013806282,
+      "max_expected_clutter_error": 0.00035909012815293906,
+      "absolute_log_evidence_error": 0.019664637867279566,
+      "n_tempering_steps": 7,
+      "mean_mh_acceptance_rate": 0.42708914620535715,
+      "runtime_seconds": 89.95313166899905,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.08605456289149961,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9966456618084828,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 0,
+      "support_size": 3549,
+      "realized_missed_detections": 1,
+      "realized_false_positives": 2,
+      "total_variation_distance": 0.03735467609214927,
+      "jensen_shannon_divergence": 0.004897928297364506,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.99229785652429,
+      "max_null_probability_error": 0.002770534421048243,
+      "max_expected_clutter_error": 0.001595779940255726,
+      "absolute_log_evidence_error": 0.007650608483260157,
+      "n_tempering_steps": 11,
+      "mean_mh_acceptance_rate": 0.6190462979403409,
+      "runtime_seconds": 121.37242363199948,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.11524983257319005,
+        "jensen_shannon": 0.015980115748578015,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9917510533905085,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 1,
+      "support_size": 2401,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 0,
+      "total_variation_distance": 0.026695535043396976,
+      "jensen_shannon_divergence": 0.0035429510226351493,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9942227140658287,
+      "max_null_probability_error": 0.0012425227067048663,
+      "max_expected_clutter_error": 0.0011001465489064444,
+      "absolute_log_evidence_error": 0.02525348422273055,
+      "n_tempering_steps": 11,
+      "mean_mh_acceptance_rate": 0.6457231001420455,
+      "runtime_seconds": 180.49892685099985,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.10484064468881948,
+        "jensen_shannon": 0.011812979767913758,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9934526723911812,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 2,
+      "support_size": 4459,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.045709513669000335,
+      "jensen_shannon_divergence": 0.005867658643504222,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9914582588578911,
+      "max_null_probability_error": 0.000730058249203226,
+      "max_expected_clutter_error": 0.0004574123038678657,
+      "absolute_log_evidence_error": 0.012000940539138583,
+      "n_tempering_steps": 11,
+      "mean_mh_acceptance_rate": 0.6590054598721591,
+      "runtime_seconds": 144.6619165050015,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.15152048969360654,
+        "jensen_shannon": 0.02025433294928829,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9901317232403374,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.35,
+      "data_seed": 3,
+      "support_size": 4459,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 1,
+      "total_variation_distance": 0.03159089632313871,
+      "jensen_shannon_divergence": 0.003694549490672691,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.995349747708454,
+      "max_null_probability_error": 0.0020515419114658894,
+      "max_expected_clutter_error": 0.0035120279930414,
+      "absolute_log_evidence_error": 0.08847798640589133,
+      "n_tempering_steps": 11,
+      "mean_mh_acceptance_rate": 0.5686123934659091,
+      "runtime_seconds": 154.08608088399887,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.10529039036252025,
+        "jensen_shannon": 0.014845705650686755,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.992141647969887,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 0,
+      "support_size": 3549,
+      "realized_missed_detections": 1,
+      "realized_false_positives": 2,
+      "total_variation_distance": 0.037098980309760735,
+      "jensen_shannon_divergence": 0.00594788530584234,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9905272486786377,
+      "max_null_probability_error": 0.015105887813385455,
+      "max_expected_clutter_error": 0.005708491763862122,
+      "absolute_log_evidence_error": 0.011633600716137948,
+      "n_tempering_steps": 12,
+      "mean_mh_acceptance_rate": 0.6205210367838542,
+      "runtime_seconds": 127.90555455700087,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.14382667728840076,
+        "jensen_shannon": 0.01984006513313556,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9895597280740979,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 1,
+      "support_size": 15379,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 3,
+      "total_variation_distance": 0.02252046843272054,
+      "jensen_shannon_divergence": 0.004284655284300746,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9910230409086659,
+      "max_null_probability_error": 0.001450544431772509,
+      "max_expected_clutter_error": 0.0023374986308590806,
+      "absolute_log_evidence_error": 0.06735250785143876,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.5639131986177884,
+      "runtime_seconds": 117.03481830800047,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.11561744813448702,
+        "jensen_shannon": 0.016329698597157903,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9904716382709681,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 2,
+      "support_size": 3549,
+      "realized_missed_detections": 1,
+      "realized_false_positives": 2,
+      "total_variation_distance": 0.06015225987021795,
+      "jensen_shannon_divergence": 0.010282573431934762,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9842593669348529,
+      "max_null_probability_error": 0.017223118190500264,
+      "max_expected_clutter_error": 0.0008152884060708132,
+      "absolute_log_evidence_error": 0.020171967074745112,
+      "n_tempering_steps": 11,
+      "mean_mh_acceptance_rate": 0.6842373934659091,
+      "runtime_seconds": 87.43793599499986,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.22807828248311635,
+        "jensen_shannon": 0.03640604667156884,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9827064885144112,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    },
+    {
+      "detection_probability": 0.95,
+      "expected_clutter_per_frame": 0.75,
+      "data_seed": 3,
+      "support_size": 15379,
+      "realized_missed_detections": 0,
+      "realized_false_positives": 3,
+      "total_variation_distance": 0.054306341380312234,
+      "jensen_shannon_divergence": 0.013159592261347046,
+      "credible_set_recall_95": 1.0,
+      "exact_mass_covered": 0.9796283678367399,
+      "max_null_probability_error": 0.004606931544926245,
+      "max_expected_clutter_error": 0.006884078220255496,
+      "absolute_log_evidence_error": 0.032373550245381466,
+      "n_tempering_steps": 13,
+      "mean_mh_acceptance_rate": 0.5329233022836538,
+      "runtime_seconds": 40.845650011000544,
+      "passed": true,
+      "strict_all_credible_states_observed": true,
+      "thresholds": {
+        "total_variation": 0.1811324915839915,
+        "jensen_shannon": 0.03897311544165304,
+        "credible_set_recall_95": 0.9833333333333333,
+        "exact_mass_covered": 0.9794773953058997,
+        "max_null_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "absolute_log_evidence_error": 0.15
+      }
+    }
+  ]
+}

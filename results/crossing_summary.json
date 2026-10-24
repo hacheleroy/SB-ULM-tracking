@@ -1,0 +1,55 @@
+{
+  "experiment": "controlled_two_bubble_crossing",
+  "n_seeds": 32,
+  "config": {
+    "n_frames": 9,
+    "frame_period": 1.0,
+    "half_span": 1.0,
+    "central_separation": 0.05,
+    "localization_std": 0.075
+  },
+  "aggregate": {
+    "position_hungarian": {
+      "mean_association_accuracy": 0.46875,
+      "mean_identity_switches": 1.875,
+      "mean_trajectory_rmse": 0.42641575219829564
+    },
+    "constant_velocity_hungarian": {
+      "mean_association_accuracy": 0.8984375,
+      "mean_identity_switches": 2.125,
+      "mean_trajectory_rmse": 0.10100152379570401
+    },
+    "posterior": {
+      "mean_true_hypothesis_mass": 0.5565987524670118,
+      "mean_true_hypothesis_rank": 1.375,
+      "mean_true_in_95pct_credible_set": 1.0,
+      "mean_normalized_entropy": 0.10730656416949279,
+      "mean_credible_set_size_95": 2.03125,
+      "mean_map_association_accuracy": 0.953125,
+      "mean_map_identity_switches": 1.5
+    }
+  },
+  "illustrative_seed": {
+    "seed": 0,
+    "position_hungarian": {
+      "association_accuracy": 0.375,
+      "identity_switches": 2,
+      "trajectory_rmse": 0.47423499740097663
+    },
+    "constant_velocity_hungarian": {
+      "association_accuracy": 0.875,
+      "identity_switches": 4,
+      "trajectory_rmse": 0.061669588687698854
+    },
+    "posterior": {
+      "true_hypothesis_mass": 0.5234350417554702,
+      "true_hypothesis_rank": 1,
+      "true_in_95pct_credible_set": 1,
+      "normalized_entropy": 0.12514805083700514,
+      "credible_set_size_95": 2,
+      "map_association_accuracy": 1.0,
+      "map_identity_switches": 0
+    }
+  },
+  "interpretation": "The enumerable posterior is the exact association posterior under the stated linear-Gaussian motion model. It is a calibration target for future Smooth-SB/TSBM approximations, not itself a learned diffusion model."
+}

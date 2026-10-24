@@ -1,0 +1,95 @@
+{
+  "experiment": "external_smooth_sb_crossing_initial_validation",
+  "audit_date": "2026-10-16",
+  "upstream_repository": "https://github.com/WanliHongC/Smooth_SB",
+  "upstream_commit": "2e0388a56e06dbd922f27012ba0441277adc0731",
+  "data": {
+    "seed": 0,
+    "n_frames": 9,
+    "n_particles": 2,
+    "dimension": 2,
+    "central_separation": 0.05,
+    "localization_std": 0.075
+  },
+  "upstream_parameters": {
+    "nu": 1.5,
+    "length_scale": 3.0,
+    "scale_multiplier": 1.0,
+    "basis_Mi": 32,
+    "max_iterations": 200,
+    "precomputation_samples": 20,
+    "trajectory_samples_per_seed": 2000,
+    "sampling_seeds": [40, 41, 42, 43, 44]
+  },
+  "representative_runtime_seconds": {
+    "precomputation": 0.2303,
+    "message_passing": 14.1625,
+    "sampling_and_plotting": 9.103,
+    "complete_run": 24.93
+  },
+  "exact_localization_posterior": {
+    "reference_consistent_path_mass": 0.5234350417554702,
+    "smoother_competing_path_mass": 0.47635971119637754
+  },
+  "exact_matern_target": {
+    "reference_consistent_path_mass": 0.0002443400531496277,
+    "smoother_competing_path_mass": 0.9997556599468251
+  },
+  "smooth_sb_samples_across_seeds": {
+    "total_samples": 10000,
+    "mean_reference_consistent_path_frequency": 0.0,
+    "mean_smoother_competing_path_frequency": 0.9978,
+    "mean_invalid_non_bijective_frequency": 0.0022,
+    "invalid_frequency_standard_deviation": 0.0014832396974191323,
+    "invalid_frequency_range": [0.0005, 0.0045],
+    "valid_support_size_per_seed": 1
+  },
+  "per_seed_comparison": [
+    {
+      "seed": 40,
+      "invalid_frequency": 0.0005,
+      "total_variation_distance": 0.0004999999999873549,
+      "jensen_shannon_divergence": 0.00025797677790218037,
+      "exact_map_frequency": 0.9995
+    },
+    {
+      "seed": 41,
+      "invalid_frequency": 0.0015,
+      "total_variation_distance": 0.0014999999999873552,
+      "jensen_shannon_divergence": 0.0006047394521819617,
+      "exact_map_frequency": 0.9985
+    },
+    {
+      "seed": 42,
+      "invalid_frequency": 0.002,
+      "total_variation_distance": 0.0019999999999873834,
+      "jensen_shannon_divergence": 0.0007782147156596577,
+      "exact_map_frequency": 0.998
+    },
+    {
+      "seed": 43,
+      "invalid_frequency": 0.0045,
+      "total_variation_distance": 0.004499999999987356,
+      "jensen_shannon_divergence": 0.0016465321806069266,
+      "exact_map_frequency": 0.9955
+    },
+    {
+      "seed": 44,
+      "invalid_frequency": 0.0025,
+      "total_variation_distance": 0.002499999999987356,
+      "jensen_shannon_divergence": 0.0009517526594286337,
+      "exact_map_frequency": 0.9975
+    }
+  ],
+  "mean_comparison_to_exact_matern_target": {
+    "total_variation_distance": 0.002199999999987361,
+    "jensen_shannon_divergence": 0.000847843157155872,
+    "valid_conditioned_total_variation_distance": 0.00024434005316224534,
+    "valid_conditioned_jensen_shannon_divergence": 0.00008468927313887479
+  },
+  "discretization_sensitivity": {
+    "Mi8_invalid_frequency_seed42": 0.0515,
+    "Mi32_invalid_frequency_seed42": 0.002
+  },
+  "status": "Initial validation only: the Matérn target still requires physical ULM calibration."
+}

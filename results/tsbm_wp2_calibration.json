@@ -1,0 +1,939 @@
+{
+  "experiment": "public_tsbm_wp2_calibration",
+  "acceptance_gate": "all discrete, endpoint, continuous, and support checks",
+  "required_regimes": [
+    "easy",
+    "ambiguous"
+  ],
+  "runs": [
+    {
+      "label": "amb-f2",
+      "regime": "ambiguous",
+      "regime_parameters": {
+        "name": "ambiguous",
+        "separation_um": 0.0,
+        "localization_std_um": 5.0,
+        "simulation_seed": 0
+      },
+      "upstream": {
+        "repository": "https://github.com/maxencenoble/twisted-sb-matching",
+        "commit": "c9dfec715266a2fd45e1ab195eb3b388fa6e8ee8",
+        "license": "MIT"
+      },
+      "physical_design": {
+        "frame_rate_hz": 1000.0,
+        "speed_mm_s": 6.84,
+        "position_scale_mm": 0.01,
+        "brownian_diffusion_std_mm_per_sqrt_normalized_time": 0.01368,
+        "brownian_diffusion_std_scaled": 1.3679999999999999,
+        "potential_scale_sigma_squared": 1.8714239999999998
+      },
+      "training": {
+        "training_seed": 0,
+        "pretrain_epochs": 500,
+        "finetune_epochs": 250,
+        "spline_first_iterations": 1000,
+        "spline_iterations": 200,
+        "train_size": 256,
+        "test_size": 512,
+        "batch_size": 64,
+        "use_control_variate": true,
+        "num_s_per_t": 16,
+        "hidden_dim": 128,
+        "time_embed_dim": 128,
+        "pretrain_refresh_epochs": null,
+        "finetune_refresh_epochs": 250,
+        "spline_n_mean": 15,
+        "spline_n_std": 30,
+        "spline_grid_size": 1024,
+        "spline_time_samples": 100,
+        "spline_path_samples": 4,
+        "resume_score_checkpoint": {
+          "source_run": "strong1_ft1",
+          "file": "net_finetuning_002_0001000.ckpt"
+        },
+        "training_seconds": 91.01823773500018
+      },
+      "sampling": {
+        "sample_seed": 10000,
+        "n_samples": 4096,
+        "logged_times": [
+          0.0020000000949949026,
+          0.12650001049041748,
+          0.2510000169277191,
+          0.37550002336502075,
+          0.5,
+          0.6244999766349792,
+          0.7490000128746033,
+          0.8734999895095825,
+          0.9980000257492065
+        ],
+        "direction": "f"
+      },
+      "sample_direction": "f",
+      "training_seconds": 91.01823773500018,
+      "canonical_total_variation": 0.20065075163273405,
+      "canonical_jensen_shannon": 0.04167434402582752,
+      "rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.2007568267419738,
+        "jensen_shannon_divergence": 0.04204453957653098,
+        "exact_map_mass": 0.245810625145592,
+        "estimated_map_mass": 0.20899673809607522
+      },
+      "canonical_rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.20065075163273405,
+        "jensen_shannon_divergence": 0.04167434402582752,
+        "exact_map_mass": 0.491621250291184,
+        "estimated_map_mass": 0.4101120169826245
+      },
+      "hard_projection_canonical_total_variation": 0.22180306956442764,
+      "hard_projection_canonical_jensen_shannon": 0.04862837900610621,
+      "hard_projection_credible_set_recall_95": 1.0,
+      "hard_projection_exact_mass_covered": 0.9890188888053758,
+      "canonical_tv_finite_sample_q95": 0.021141404228881625,
+      "canonical_js_finite_sample_q95": 0.0009273175094158813,
+      "canonical_sliced_wasserstein_um": 3.6918654682628937,
+      "sliced_wasserstein_finite_sample_um": 0.13370749480204552,
+      "exact_endpoint_joint": [
+        [
+          0.44605351359700823,
+          0.05394648640299001
+        ],
+        [
+          0.05394648640299103,
+          0.4460535135970109
+        ]
+      ],
+      "sampled_endpoint_joint": [
+        [
+          0.492919921875,
+          0.007080078125
+        ],
+        [
+          0.005615234375,
+          0.494384765625
+        ]
+      ],
+      "endpoint_joint_total_variation": 0.09519766030598095,
+      "sampled_interior_residual_median_um": 10.42104985147676,
+      "exact_interior_residual_median_um": 5.5195906556850485,
+      "thresholds": {
+        "canonical_total_variation": 0.06342421268664487,
+        "canonical_jensen_shannon": 0.01,
+        "endpoint_joint_total_variation": 0.05,
+        "canonical_sliced_wasserstein_um": 1.0
+      },
+      "checks": {
+        "canonical_tv": false,
+        "canonical_js": false,
+        "endpoint_joint_tv": false,
+        "continuous_sliced_wasserstein": false,
+        "credible_mode_recall": true,
+        "support_mass": true
+      },
+      "gate_passed": false
+    },
+    {
+      "label": "amb-b1-fsample",
+      "regime": "ambiguous",
+      "regime_parameters": {
+        "name": "ambiguous",
+        "separation_um": 0.0,
+        "localization_std_um": 5.0,
+        "simulation_seed": 0
+      },
+      "upstream": {
+        "repository": "https://github.com/maxencenoble/twisted-sb-matching",
+        "commit": "c9dfec715266a2fd45e1ab195eb3b388fa6e8ee8",
+        "license": "MIT"
+      },
+      "physical_design": {
+        "frame_rate_hz": 1000.0,
+        "speed_mm_s": 6.84,
+        "position_scale_mm": 0.01,
+        "brownian_diffusion_std_mm_per_sqrt_normalized_time": 0.01368,
+        "brownian_diffusion_std_scaled": 1.3679999999999999,
+        "potential_scale_sigma_squared": 1.8714239999999998
+      },
+      "training": {
+        "training_seed": 0,
+        "pretrain_epochs": 500,
+        "finetune_epochs": 250,
+        "spline_first_iterations": 1000,
+        "spline_iterations": 200,
+        "train_size": 256,
+        "test_size": 512,
+        "batch_size": 64,
+        "use_control_variate": true,
+        "num_s_per_t": 16,
+        "hidden_dim": 128,
+        "time_embed_dim": 128,
+        "pretrain_refresh_epochs": null,
+        "finetune_refresh_epochs": 250,
+        "finetune_start_direction": "b",
+        "pretrain_lr": 0.0003,
+        "finetune_lr": 0.0001,
+        "spline_n_mean": 15,
+        "spline_n_std": 30,
+        "spline_grid_size": 1024,
+        "spline_time_samples": 100,
+        "spline_path_samples": 4,
+        "resume_score_checkpoint": {
+          "source_run": "strong1_ft2",
+          "file": "net_finetuning_002_0001000.ckpt"
+        },
+        "training_seconds": 106.39319852200015
+      },
+      "sampling": {
+        "sample_seed": 10000,
+        "n_samples": 4096,
+        "logged_times": [
+          0.0020000000949949026,
+          0.12650001049041748,
+          0.2510000169277191,
+          0.37550002336502075,
+          0.5,
+          0.6244999766349792,
+          0.7490000128746033,
+          0.8734999895095825,
+          0.9980000257492065
+        ],
+        "direction": "f"
+      },
+      "sample_direction": "f",
+      "training_seconds": 106.39319852200015,
+      "canonical_total_variation": 0.20150065991732924,
+      "canonical_jensen_shannon": 0.03916396787732514,
+      "rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.20163024012720893,
+        "jensen_shannon_divergence": 0.03993371787825292,
+        "exact_map_mass": 0.245810625145592,
+        "estimated_map_mass": 0.2173306655872568
+      },
+      "canonical_rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.20150065991732924,
+        "jensen_shannon_divergence": 0.03916396787732514,
+        "exact_map_mass": 0.491621250291184,
+        "estimated_map_mass": 0.4033366251751774
+      },
+      "hard_projection_canonical_total_variation": 0.22301113386005098,
+      "hard_projection_canonical_jensen_shannon": 0.044910902463812935,
+      "hard_projection_credible_set_recall_95": 1.0,
+      "hard_projection_exact_mass_covered": 0.9978406886829603,
+      "canonical_tv_finite_sample_q95": 0.021141404228881625,
+      "canonical_js_finite_sample_q95": 0.0009273175094158813,
+      "canonical_sliced_wasserstein_um": 3.504883131451253,
+      "sliced_wasserstein_finite_sample_um": 0.13370749480204552,
+      "exact_endpoint_joint": [
+        [
+          0.44605351359700823,
+          0.05394648640299001
+        ],
+        [
+          0.05394648640299103,
+          0.4460535135970109
+        ]
+      ],
+      "sampled_endpoint_joint": [
+        [
+          0.491455078125,
+          0.008544921875
+        ],
+        [
+          0.008056640625,
+          0.491943359375
+        ]
+      ],
+      "endpoint_joint_total_variation": 0.09129141030598095,
+      "sampled_interior_residual_median_um": 10.391457418083622,
+      "exact_interior_residual_median_um": 5.5195906556850485,
+      "thresholds": {
+        "canonical_total_variation": 0.06342421268664487,
+        "canonical_jensen_shannon": 0.01,
+        "endpoint_joint_total_variation": 0.05,
+        "canonical_sliced_wasserstein_um": 1.0
+      },
+      "checks": {
+        "canonical_tv": false,
+        "canonical_js": false,
+        "endpoint_joint_tv": false,
+        "continuous_sliced_wasserstein": false,
+        "credible_mode_recall": true,
+        "support_mass": true
+      },
+      "gate_passed": false
+    },
+    {
+      "label": "amb-b1-bsample",
+      "regime": "ambiguous",
+      "regime_parameters": {
+        "name": "ambiguous",
+        "separation_um": 0.0,
+        "localization_std_um": 5.0,
+        "simulation_seed": 0
+      },
+      "upstream": {
+        "repository": "https://github.com/maxencenoble/twisted-sb-matching",
+        "commit": "c9dfec715266a2fd45e1ab195eb3b388fa6e8ee8",
+        "license": "MIT"
+      },
+      "physical_design": {
+        "frame_rate_hz": 1000.0,
+        "speed_mm_s": 6.84,
+        "position_scale_mm": 0.01,
+        "brownian_diffusion_std_mm_per_sqrt_normalized_time": 0.01368,
+        "brownian_diffusion_std_scaled": 1.3679999999999999,
+        "potential_scale_sigma_squared": 1.8714239999999998
+      },
+      "training": {
+        "training_seed": 0,
+        "pretrain_epochs": 500,
+        "finetune_epochs": 250,
+        "spline_first_iterations": 1000,
+        "spline_iterations": 200,
+        "train_size": 256,
+        "test_size": 512,
+        "batch_size": 64,
+        "use_control_variate": true,
+        "num_s_per_t": 16,
+        "hidden_dim": 128,
+        "time_embed_dim": 128,
+        "pretrain_refresh_epochs": null,
+        "finetune_refresh_epochs": 250,
+        "finetune_start_direction": "b",
+        "pretrain_lr": 0.0003,
+        "finetune_lr": 0.0001,
+        "spline_n_mean": 15,
+        "spline_n_std": 30,
+        "spline_grid_size": 1024,
+        "spline_time_samples": 100,
+        "spline_path_samples": 4,
+        "resume_score_checkpoint": {
+          "source_run": "strong1_ft3b",
+          "file": "net_finetuning_002_0001000.ckpt"
+        },
+        "training_seconds": 0.025087655999413982
+      },
+      "sampling": {
+        "sample_seed": 10000,
+        "direction": "b",
+        "n_samples": 4096,
+        "logged_times": [
+          0.001999974250793457,
+          0.12650001049041748,
+          0.25099998712539673,
+          0.37550002336502075,
+          0.5,
+          0.6244999766349792,
+          0.7489999532699585,
+          0.8734999895095825,
+          0.9980000257492065
+        ]
+      },
+      "sample_direction": "b",
+      "training_seconds": 0.025087655999413982,
+      "canonical_total_variation": 0.20081739292527717,
+      "canonical_jensen_shannon": 0.04901493285097301,
+      "rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.2008379238352297,
+        "jensen_shannon_divergence": 0.04962034595612849,
+        "exact_map_mass": 0.245810625145592,
+        "estimated_map_mass": 0.198255313575693
+      },
+      "canonical_rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.20081739292527717,
+        "jensen_shannon_divergence": 0.04901493285097301,
+        "exact_map_mass": 0.491621250291184,
+        "estimated_map_mass": 0.41990043722901743
+      },
+      "hard_projection_canonical_total_variation": 0.21727009889941834,
+      "hard_projection_canonical_jensen_shannon": 0.054018817455484376,
+      "hard_projection_credible_set_recall_95": 1.0,
+      "hard_projection_exact_mass_covered": 0.9823684726111332,
+      "canonical_tv_finite_sample_q95": 0.021141404228881625,
+      "canonical_js_finite_sample_q95": 0.0009273175094158813,
+      "canonical_sliced_wasserstein_um": 4.36677057808489,
+      "sliced_wasserstein_finite_sample_um": 0.13370749480204552,
+      "exact_endpoint_joint": [
+        [
+          0.44605351359700823,
+          0.05394648640299001
+        ],
+        [
+          0.05394648640299103,
+          0.4460535135970109
+        ]
+      ],
+      "sampled_endpoint_joint": [
+        [
+          0.498046875,
+          0.001953125
+        ],
+        [
+          0.001953125,
+          0.498046875
+        ]
+      ],
+      "endpoint_joint_total_variation": 0.10398672280598095,
+      "sampled_interior_residual_median_um": 11.015092428035793,
+      "exact_interior_residual_median_um": 5.5195906556850485,
+      "thresholds": {
+        "canonical_total_variation": 0.06342421268664487,
+        "canonical_jensen_shannon": 0.01,
+        "endpoint_joint_total_variation": 0.05,
+        "canonical_sliced_wasserstein_um": 1.0
+      },
+      "checks": {
+        "canonical_tv": false,
+        "canonical_js": false,
+        "endpoint_joint_tv": false,
+        "continuous_sliced_wasserstein": false,
+        "credible_mode_recall": true,
+        "support_mass": true
+      },
+      "gate_passed": false
+    },
+    {
+      "label": "easy-pre",
+      "regime": "easy",
+      "regime_parameters": {
+        "name": "easy",
+        "separation_um": 20.0,
+        "localization_std_um": 2.5,
+        "simulation_seed": 0
+      },
+      "upstream": {
+        "repository": "https://github.com/maxencenoble/twisted-sb-matching",
+        "commit": "c9dfec715266a2fd45e1ab195eb3b388fa6e8ee8",
+        "license": "MIT"
+      },
+      "physical_design": {
+        "frame_rate_hz": 1000.0,
+        "speed_mm_s": 6.84,
+        "position_scale_mm": 0.01,
+        "brownian_diffusion_std_mm_per_sqrt_normalized_time": 0.01368,
+        "brownian_diffusion_std_scaled": 1.3679999999999999,
+        "potential_scale_sigma_squared": 1.8714239999999998
+      },
+      "training": {
+        "training_seed": 0,
+        "pretrain_epochs": 250,
+        "finetune_epochs": 1,
+        "spline_first_iterations": 1000,
+        "spline_iterations": 300,
+        "train_size": 256,
+        "test_size": 512,
+        "batch_size": 64,
+        "use_control_variate": true,
+        "num_s_per_t": 16,
+        "hidden_dim": 128,
+        "time_embed_dim": 128,
+        "pretrain_refresh_epochs": null,
+        "finetune_refresh_epochs": 1,
+        "finetune_start_direction": "f",
+        "pretrain_lr": 0.0003,
+        "finetune_lr": 0.0001,
+        "spline_n_mean": 15,
+        "spline_n_std": 30,
+        "spline_grid_size": 1024,
+        "spline_time_samples": 100,
+        "spline_path_samples": 4,
+        "resume_score_checkpoint": null,
+        "training_seconds": 196.22317899500013
+      },
+      "sampling": {
+        "sample_seed": 10000,
+        "n_samples": 4096,
+        "logged_times": [
+          0.0020000000949949026,
+          0.12650001049041748,
+          0.2510000169277191,
+          0.37550002336502075,
+          0.5,
+          0.6244999766349792,
+          0.7490000128746033,
+          0.8734999895095825,
+          0.9980000257492065
+        ],
+        "direction": "f"
+      },
+      "sample_direction": "f",
+      "training_seconds": 196.22317899500013,
+      "canonical_total_variation": 0.8777212327013961,
+      "canonical_jensen_shannon": 0.49663507583860106,
+      "rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.8777212327684276,
+        "jensen_shannon_divergence": 0.4970460433775057,
+        "exact_map_mass": 0.49931823041057494,
+        "estimated_map_mass": 0.06787249522921224
+      },
+      "canonical_rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.8777212327013961,
+        "jensen_shannon_divergence": 0.49663507583860106,
+        "exact_map_mass": 0.9986364608211499,
+        "estimated_map_mass": 0.12091522812054752
+      },
+      "hard_projection_canonical_total_variation": 0.877542711012681,
+      "hard_projection_canonical_jensen_shannon": 0.4964386160554583,
+      "hard_projection_credible_set_recall_95": 1.0,
+      "hard_projection_exact_mass_covered": 0.9999999998084688,
+      "canonical_tv_finite_sample_q95": 0.0011193985538501831,
+      "canonical_js_finite_sample_q95": 0.00025605075007286197,
+      "canonical_sliced_wasserstein_um": 15.35670976739352,
+      "sliced_wasserstein_finite_sample_um": 0.05901001104509327,
+      "exact_endpoint_joint": [
+        [
+          0.0006802850795446207,
+          0.4993197149204554
+        ],
+        [
+          0.49931971492045546,
+          0.0006802850795445983
+        ]
+      ],
+      "sampled_endpoint_joint": [
+        [
+          0.4150390625,
+          0.0849609375
+        ],
+        [
+          0.0615234375,
+          0.4384765625
+        ]
+      ],
+      "endpoint_joint_total_variation": 0.8521550548409108,
+      "sampled_interior_residual_median_um": 9.089374502926944,
+      "exact_interior_residual_median_um": 2.8358038254592546,
+      "thresholds": {
+        "canonical_total_variation": 0.05,
+        "canonical_jensen_shannon": 0.01,
+        "endpoint_joint_total_variation": 0.05,
+        "canonical_sliced_wasserstein_um": 1.0
+      },
+      "checks": {
+        "canonical_tv": false,
+        "canonical_js": false,
+        "endpoint_joint_tv": false,
+        "continuous_sliced_wasserstein": false,
+        "credible_mode_recall": true,
+        "support_mass": true
+      },
+      "gate_passed": false
+    },
+    {
+      "label": "easy-f1",
+      "regime": "easy",
+      "regime_parameters": {
+        "name": "easy",
+        "separation_um": 20.0,
+        "localization_std_um": 2.5,
+        "simulation_seed": 0
+      },
+      "upstream": {
+        "repository": "https://github.com/maxencenoble/twisted-sb-matching",
+        "commit": "c9dfec715266a2fd45e1ab195eb3b388fa6e8ee8",
+        "license": "MIT"
+      },
+      "physical_design": {
+        "frame_rate_hz": 1000.0,
+        "speed_mm_s": 6.84,
+        "position_scale_mm": 0.01,
+        "brownian_diffusion_std_mm_per_sqrt_normalized_time": 0.01368,
+        "brownian_diffusion_std_scaled": 1.3679999999999999,
+        "potential_scale_sigma_squared": 1.8714239999999998
+      },
+      "training": {
+        "training_seed": 0,
+        "pretrain_epochs": 250,
+        "finetune_epochs": 250,
+        "spline_first_iterations": 1000,
+        "spline_iterations": 300,
+        "train_size": 256,
+        "test_size": 512,
+        "batch_size": 64,
+        "use_control_variate": true,
+        "num_s_per_t": 16,
+        "hidden_dim": 128,
+        "time_embed_dim": 128,
+        "pretrain_refresh_epochs": null,
+        "finetune_refresh_epochs": 250,
+        "finetune_start_direction": "f",
+        "pretrain_lr": 0.0003,
+        "finetune_lr": 0.0001,
+        "spline_n_mean": 15,
+        "spline_n_std": 30,
+        "spline_grid_size": 1024,
+        "spline_time_samples": 100,
+        "spline_path_samples": 4,
+        "resume_score_checkpoint": {
+          "source_run": "easy_fresh_pre",
+          "file": "net_finetuning_002_0000004.ckpt"
+        },
+        "training_seconds": 109.7784803150007
+      },
+      "sampling": {
+        "sample_seed": 10000,
+        "n_samples": 4096,
+        "logged_times": [
+          0.0020000000949949026,
+          0.12650001049041748,
+          0.2510000169277191,
+          0.37550002336502075,
+          0.5,
+          0.6244999766349792,
+          0.7490000128746033,
+          0.8734999895095825,
+          0.9980000257492065
+        ],
+        "direction": "f"
+      },
+      "sample_direction": "f",
+      "training_seconds": 109.7784803150007,
+      "canonical_total_variation": 0.9364502732108541,
+      "canonical_jensen_shannon": 0.5697796249722529,
+      "rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.9364502732846216,
+        "jensen_shannon_divergence": 0.569839455485174,
+        "exact_map_mass": 0.49931823041057494,
+        "estimated_map_mass": 0.033059633046429095
+      },
+      "canonical_rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.9364502732108541,
+        "jensen_shannon_divergence": 0.5697796249722529,
+        "exact_map_mass": 0.9986364608211499,
+        "estimated_map_mass": 0.06218618763237094
+      },
+      "hard_projection_canonical_total_variation": 0.9366247422625305,
+      "hard_projection_canonical_jensen_shannon": 0.5700264606095531,
+      "hard_projection_credible_set_recall_95": 1.0,
+      "hard_projection_exact_mass_covered": 0.9999999998086195,
+      "canonical_tv_finite_sample_q95": 0.0011193985538501831,
+      "canonical_js_finite_sample_q95": 0.00025605075007286197,
+      "canonical_sliced_wasserstein_um": 15.83461373622043,
+      "sliced_wasserstein_finite_sample_um": 0.05901001104509327,
+      "exact_endpoint_joint": [
+        [
+          0.0006802850795446207,
+          0.4993197149204554
+        ],
+        [
+          0.49931971492045546,
+          0.0006802850795445983
+        ]
+      ],
+      "sampled_endpoint_joint": [
+        [
+          0.4560546875,
+          0.0439453125
+        ],
+        [
+          0.03466796875,
+          0.46533203125
+        ]
+      ],
+      "endpoint_joint_total_variation": 0.9200261485909108,
+      "sampled_interior_residual_median_um": 8.349840397813619,
+      "exact_interior_residual_median_um": 2.8358038254592546,
+      "thresholds": {
+        "canonical_total_variation": 0.05,
+        "canonical_jensen_shannon": 0.01,
+        "endpoint_joint_total_variation": 0.05,
+        "canonical_sliced_wasserstein_um": 1.0
+      },
+      "checks": {
+        "canonical_tv": false,
+        "canonical_js": false,
+        "endpoint_joint_tv": false,
+        "continuous_sliced_wasserstein": false,
+        "credible_mode_recall": true,
+        "support_mass": true
+      },
+      "gate_passed": false
+    },
+    {
+      "label": "easy-b1-fsample",
+      "regime": "easy",
+      "regime_parameters": {
+        "name": "easy",
+        "separation_um": 20.0,
+        "localization_std_um": 2.5,
+        "simulation_seed": 0
+      },
+      "upstream": {
+        "repository": "https://github.com/maxencenoble/twisted-sb-matching",
+        "commit": "c9dfec715266a2fd45e1ab195eb3b388fa6e8ee8",
+        "license": "MIT"
+      },
+      "physical_design": {
+        "frame_rate_hz": 1000.0,
+        "speed_mm_s": 6.84,
+        "position_scale_mm": 0.01,
+        "brownian_diffusion_std_mm_per_sqrt_normalized_time": 0.01368,
+        "brownian_diffusion_std_scaled": 1.3679999999999999,
+        "potential_scale_sigma_squared": 1.8714239999999998
+      },
+      "training": {
+        "training_seed": 0,
+        "pretrain_epochs": 250,
+        "finetune_epochs": 250,
+        "spline_first_iterations": 1000,
+        "spline_iterations": 300,
+        "train_size": 256,
+        "test_size": 512,
+        "batch_size": 64,
+        "use_control_variate": true,
+        "num_s_per_t": 16,
+        "hidden_dim": 128,
+        "time_embed_dim": 128,
+        "pretrain_refresh_epochs": null,
+        "finetune_refresh_epochs": 250,
+        "finetune_start_direction": "b",
+        "pretrain_lr": 0.0003,
+        "finetune_lr": 0.0001,
+        "spline_n_mean": 15,
+        "spline_n_std": 30,
+        "spline_grid_size": 1024,
+        "spline_time_samples": 100,
+        "spline_path_samples": 4,
+        "resume_score_checkpoint": {
+          "source_run": "easy_f1",
+          "file": "net_finetuning_002_0001000.ckpt"
+        },
+        "training_seconds": 98.15602156899968
+      },
+      "sampling": {
+        "sample_seed": 10000,
+        "n_samples": 4096,
+        "logged_times": [
+          0.0020000000949949026,
+          0.12650001049041748,
+          0.2510000169277191,
+          0.37550002336502075,
+          0.5,
+          0.6244999766349792,
+          0.7490000128746033,
+          0.8734999895095825,
+          0.9980000257492065
+        ],
+        "direction": "f"
+      },
+      "sample_direction": "f",
+      "training_seconds": 98.15602156899968,
+      "canonical_total_variation": 0.9508201768010044,
+      "canonical_jensen_shannon": 0.5909050334827799,
+      "rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.9508201768959539,
+        "jensen_shannon_divergence": 0.590910451242803,
+        "exact_map_mass": 0.49931823041057494,
+        "estimated_map_mass": 0.023415447728183932
+      },
+      "canonical_rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.9508201768010044,
+        "jensen_shannon_divergence": 0.5909050334827799,
+        "exact_map_mass": 0.9986364608211499,
+        "estimated_map_mass": 0.047816284020949
+      },
+      "hard_projection_canonical_total_variation": 0.9502966172626408,
+      "hard_projection_canonical_jensen_shannon": 0.5900976887936804,
+      "hard_projection_credible_set_recall_95": 1.0,
+      "hard_projection_exact_mass_covered": 0.999999999808509,
+      "canonical_tv_finite_sample_q95": 0.0011193985538501831,
+      "canonical_js_finite_sample_q95": 0.00025605075007286197,
+      "canonical_sliced_wasserstein_um": 17.01955718034586,
+      "sliced_wasserstein_finite_sample_um": 0.05901001104509327,
+      "exact_endpoint_joint": [
+        [
+          0.0006802850795446207,
+          0.4993197149204554
+        ],
+        [
+          0.49931971492045546,
+          0.0006802850795445983
+        ]
+      ],
+      "sampled_endpoint_joint": [
+        [
+          0.469970703125,
+          0.030029296875
+        ],
+        [
+          0.02783203125,
+          0.47216796875
+        ]
+      ],
+      "endpoint_joint_total_variation": 0.9407781017159108,
+      "sampled_interior_residual_median_um": 8.317642144088612,
+      "exact_interior_residual_median_um": 2.8358038254592546,
+      "thresholds": {
+        "canonical_total_variation": 0.05,
+        "canonical_jensen_shannon": 0.01,
+        "endpoint_joint_total_variation": 0.05,
+        "canonical_sliced_wasserstein_um": 1.0
+      },
+      "checks": {
+        "canonical_tv": false,
+        "canonical_js": false,
+        "endpoint_joint_tv": false,
+        "continuous_sliced_wasserstein": false,
+        "credible_mode_recall": true,
+        "support_mass": true
+      },
+      "gate_passed": false
+    },
+    {
+      "label": "easy-b1-bsample",
+      "regime": "easy",
+      "regime_parameters": {
+        "name": "easy",
+        "separation_um": 20.0,
+        "localization_std_um": 2.5,
+        "simulation_seed": 0
+      },
+      "upstream": {
+        "repository": "https://github.com/maxencenoble/twisted-sb-matching",
+        "commit": "c9dfec715266a2fd45e1ab195eb3b388fa6e8ee8",
+        "license": "MIT"
+      },
+      "physical_design": {
+        "frame_rate_hz": 1000.0,
+        "speed_mm_s": 6.84,
+        "position_scale_mm": 0.01,
+        "brownian_diffusion_std_mm_per_sqrt_normalized_time": 0.01368,
+        "brownian_diffusion_std_scaled": 1.3679999999999999,
+        "potential_scale_sigma_squared": 1.8714239999999998
+      },
+      "training": {
+        "training_seed": 0,
+        "pretrain_epochs": 250,
+        "finetune_epochs": 250,
+        "spline_first_iterations": 1000,
+        "spline_iterations": 300,
+        "train_size": 256,
+        "test_size": 512,
+        "batch_size": 64,
+        "use_control_variate": true,
+        "num_s_per_t": 16,
+        "hidden_dim": 128,
+        "time_embed_dim": 128,
+        "pretrain_refresh_epochs": null,
+        "finetune_refresh_epochs": 250,
+        "finetune_start_direction": "b",
+        "pretrain_lr": 0.0003,
+        "finetune_lr": 0.0001,
+        "spline_n_mean": 15,
+        "spline_n_std": 30,
+        "spline_grid_size": 1024,
+        "spline_time_samples": 100,
+        "spline_path_samples": 4,
+        "resume_score_checkpoint": {
+          "source_run": "easy_b1",
+          "file": "net_finetuning_002_0001000.ckpt"
+        },
+        "training_seconds": 0.016103633999591693
+      },
+      "sampling": {
+        "sample_seed": 10000,
+        "direction": "b",
+        "n_samples": 4096,
+        "logged_times": [
+          0.001999974250793457,
+          0.12650001049041748,
+          0.25099998712539673,
+          0.37550002336502075,
+          0.5,
+          0.6244999766349792,
+          0.7489999532699585,
+          0.8734999895095825,
+          0.9980000257492065
+        ]
+      },
+      "sample_direction": "b",
+      "training_seconds": 0.016103633999591693,
+      "canonical_total_variation": 0.9739211310078438,
+      "canonical_jensen_shannon": 0.6299719342067824,
+      "rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.9739211310092606,
+        "jensen_shannon_divergence": 0.6300516505582396,
+        "exact_map_mass": 0.49931823041057494,
+        "estimated_map_mass": 0.01104564796437481
+      },
+      "canonical_rao_blackwellized_target": {
+        "n_path_samples": 4096,
+        "total_variation_distance": 0.9739211310078438,
+        "jensen_shannon_divergence": 0.6299719342067824,
+        "exact_map_mass": 0.9986364608211499,
+        "estimated_map_mass": 0.02471532981330623
+      },
+      "hard_projection_canonical_total_variation": 0.9739782576990013,
+      "hard_projection_canonical_jensen_shannon": 0.6300784321315671,
+      "hard_projection_credible_set_recall_95": 1.0,
+      "hard_projection_exact_mass_covered": 0.9999999999971485,
+      "canonical_tv_finite_sample_q95": 0.0011193985538501831,
+      "canonical_js_finite_sample_q95": 0.00025605075007286197,
+      "canonical_sliced_wasserstein_um": 17.168758578382228,
+      "sliced_wasserstein_finite_sample_um": 0.05901001104509327,
+      "exact_endpoint_joint": [
+        [
+          0.0006802850795446207,
+          0.4993197149204554
+        ],
+        [
+          0.49931971492045546,
+          0.0006802850795445983
+        ]
+      ],
+      "sampled_endpoint_joint": [
+        [
+          0.483642578125,
+          0.0185546875
+        ],
+        [
+          0.016357421875,
+          0.4814453125
+        ]
+      ],
+      "endpoint_joint_total_variation": 0.9637273204659108,
+      "sampled_interior_residual_median_um": 10.171697662904101,
+      "exact_interior_residual_median_um": 2.8358038254592546,
+      "thresholds": {
+        "canonical_total_variation": 0.05,
+        "canonical_jensen_shannon": 0.01,
+        "endpoint_joint_total_variation": 0.05,
+        "canonical_sliced_wasserstein_um": 1.0
+      },
+      "checks": {
+        "canonical_tv": false,
+        "canonical_js": false,
+        "endpoint_joint_tv": false,
+        "continuous_sliced_wasserstein": false,
+        "credible_mode_recall": true,
+        "support_mass": true
+      },
+      "gate_passed": false
+    }
+  ],
+  "best_canonical_tv_checkpoint_by_regime": {
+    "ambiguous": "amb-f2",
+    "easy": "easy-pre"
+  },
+  "gate_passed_by_regime": {
+    "easy": false,
+    "ambiguous": false
+  },
+  "gate_passed_any_run": false,
+  "gate_passed_all_required_regimes": false,
+  "decision": "NO-GO for downstream ULM use: retain the public TSBM adapter as a calibration-tested negative baseline and do not add missed detections until an approximate sampler recovers the enumerable target."
+}

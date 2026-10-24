@@ -1,0 +1,5623 @@
+{
+  "experiment": "wp4_explicit_birth_death_slot_smc_calibration",
+  "method": {
+    "maximum_slots": 2,
+    "association_states": {
+      "-2": "slot absent",
+      "-1": "slot exists but is missed",
+      ">=0": "assigned detection index"
+    },
+    "existence_constraint": "one contiguous alive interval per slot, including never alive",
+    "unassigned_detections": "uniform Poisson clutter",
+    "base_distribution": "exact normalized existence-prior times count density",
+    "mutation": "reversible whole-frame association replacement, birth/death interval replacement with exact Hastings correction, and global slot swaps",
+    "label_treatment": "exchangeable labelled slots; no first-frame anchor",
+    "uses_exact_enumeration_during_inference": false
+  },
+  "observation_model": {
+    "n_frames": 4,
+    "localization_noise_std_um": 5.0,
+    "roi_lower_mm": [
+      -0.04,
+      -0.04
+    ],
+    "roi_upper_mm": [
+      0.04,
+      0.04
+    ],
+    "simulator_clutter_cap": 1,
+    "poisson_set_density_includes_factorial": false
+  },
+  "existence_prior": {
+    "initial_probability": 0.5,
+    "birth_probability": 0.25,
+    "survival_probability": 0.8
+  },
+  "motion_prior": {
+    "family": "Matern-3/2",
+    "rms_speed_mm_s": 6.84,
+    "coordinate_std_um": [
+      5.407494798887929,
+      5.407494798887929
+    ],
+    "length_scale_ms": 1.9364916731037085
+  },
+  "configuration": {
+    "n_particles": 8192,
+    "n_smc_repeats": 3,
+    "target_ess_fraction": 0.8,
+    "mh_sweeps": 10,
+    "final_mh_sweeps": 10,
+    "n_projections": 128,
+    "baseline_replicates": 300
+  },
+  "gate_definition": {
+    "association_and_mask_tv": "at most max(0.05, 3 * exact-draw MC q95)",
+    "association_and_mask_js": "at most max(0.01, 3 * exact-draw MC q95)",
+    "credible_set_recall_95": "at least the fifth percentile of equal-size exact draws",
+    "exact_mass_covered": "at least max(0.95, exact-draw fifth percentile)",
+    "event_marginal_errors": 0.05,
+    "masked_path_sliced_wasserstein": "at most max(1 um, 3 * exact-draw baseline)",
+    "absolute_log_evidence_error": 0.2,
+    "aggregate_rule": "every repeat in every frozen regime must pass"
+  },
+  "gate_runs": [
+    {
+      "regime": {
+        "name": "persistent_near_clean",
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "separation_um": 20.0,
+        "detection_probability": 0.95,
+        "expected_clutter_per_frame": 0.05,
+        "corruption_seed": 0
+      },
+      "smc_seed": 0,
+      "runtime_seconds": 135.83260531999986,
+      "support_size": 16877,
+      "detection_cardinalities": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.007392782463745475,
+        "jensen_shannon_divergence": 0.0011688806541188142,
+        "exact_map_sample_frequency": 0.4742431640625,
+        "empirical_support_size": 37,
+        "exact_mass_covered_by_empirical_support": 0.9980307812522218,
+        "credible_set_recall_95": 1.0,
+        "max_existence_probability_error": 0.002710359537388851,
+        "max_missed_probability_error": 0.0006245571821340925,
+        "max_expected_clutter_error": 0.002096409398005372,
+        "max_birth_time_probability_error": 0.0003381185307450574,
+        "max_death_time_probability_error": 0.00271035953737897,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.005734980653026909,
+          "total_variation_median": 0.009100242161399682,
+          "total_variation_q95": 0.015441459615172676,
+          "jensen_shannon_q05": 0.0010427387174700231,
+          "jensen_shannon_median": 0.0012676842918465932,
+          "jensen_shannon_q95": 0.0015556518344226192,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_q05": 0.9973814771065044,
+          "exact_mass_covered_median": 0.9980060302762832,
+          "exact_mass_covered_q95": 0.9985131541471717
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.9988073892817612,
+              0.9988073892817595
+            ],
+            [
+              0.9999414433830739,
+              0.999941443383074
+            ],
+            [
+              0.9996073196533791,
+              0.9996073196533801
+            ],
+            [
+              0.9916019610998895,
+              0.9916019610998889
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.00018845538814480237,
+              0.0001884553881448023
+            ],
+            [
+              0.00043246604020027036,
+              0.00043246604020026803
+            ],
+            [
+              0.00024551268522994817,
+              0.0002455126852299474
+            ],
+            [
+              0.0016011196821340925,
+              0.0016011196821340827
+            ]
+          ],
+          "expected_clutter": [
+            0.0027621322127655556,
+            0.000982045314258606,
+            0.001276386063712831,
+            0.019998317164494628
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9988073892817579,
+              0.0011777422231915697,
+              1.3985430454334457e-05,
+              1.8138377951148275e-07,
+              7.016808156986045e-07
+            ],
+            [
+              0.9988073892817549,
+              0.0011777422231915677,
+              1.3985430454334443e-05,
+              1.813837795114825e-07,
+              7.016808156986045e-07
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              4.368812187921743e-05,
+              0.0003481091601492385,
+              0.008005539937269084,
+              0.9916019610998763,
+              7.016808156986045e-07
+            ],
+            [
+              4.368812187921722e-05,
+              0.00034810916014923907,
+              0.008005539937269041,
+              0.991601961099879,
+              7.016808156986045e-07
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.9989013671875,
+              0.9991455078125
+            ],
+            [
+              1.0,
+              0.999755859375
+            ],
+            [
+              0.9998779296875,
+              0.99951171875
+            ],
+            [
+              0.9918212890625,
+              0.9888916015625
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.0003662109375,
+              0.0001220703125
+            ],
+            [
+              0.0003662109375,
+              0.0001220703125
+            ],
+            [
+              0.000244140625,
+              0.000244140625
+            ],
+            [
+              0.0009765625,
+              0.0018310546875
+            ]
+          ],
+          "expected_clutter": [
+            0.00244140625,
+            0.000732421875,
+            0.0010986328125,
+            0.0220947265625
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9989013671875,
+              0.0010986328125,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.9991455078125,
+              0.0008544921875,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.0,
+              0.0001220703125,
+              0.008056640625,
+              0.9918212890625,
+              0.0
+            ],
+            [
+              0.000244140625,
+              0.000244140625,
+              0.0106201171875,
+              0.9888916015625,
+              0.0
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 5.957480077723176e-05,
+        "finite_sample_sliced_wasserstein_mm": 9.018983116861962e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 50.25621831572744,
+        "exact_log_evidence": 50.31709902953507,
+        "error": -0.06088071380763438
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.4758401276628857,
+        "reference_hypothesis_rank": 2,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 13,
+        "mean_mh_acceptance_rate": 0.31982750525841347,
+        "mean_association_acceptance_rate": 0.34877244018633524,
+        "mean_interval_acceptance_rate": 0.13999251108705274,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.06877521747507842,
+            "beta_increment": 0.06877521747507842,
+            "effective_sample_size": 6553.60000000005,
+            "unique_parent_count": 6847,
+            "unique_state_count": 738,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.60509033203125,
+            "association_acceptance_rate": 0.8994737698692562,
+            "interval_acceptance_rate": 0.22461630078769998,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.12388020407735831,
+            "beta_increment": 0.05510498660227989,
+            "effective_sample_size": 6553.600000000114,
+            "unique_parent_count": 6863,
+            "unique_state_count": 1013,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.59622802734375,
+            "association_acceptance_rate": 0.8221327859110799,
+            "interval_acceptance_rate": 0.2780487804878049,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.17190478252562585,
+            "beta_increment": 0.048024578448267546,
+            "effective_sample_size": 6553.600000000047,
+            "unique_parent_count": 6684,
+            "unique_state_count": 1283,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.56475830078125,
+            "association_acceptance_rate": 0.7226710768897082,
+            "interval_acceptance_rate": 0.3093388384853588,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.21692425458683973,
+            "beta_increment": 0.04501947206121387,
+            "effective_sample_size": 6553.600000000023,
+            "unique_parent_count": 6651,
+            "unique_state_count": 1470,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5031982421875,
+            "association_acceptance_rate": 0.6048672807543468,
+            "interval_acceptance_rate": 0.2906151846637063,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.26213280388488536,
+            "beta_increment": 0.04520854929804563,
+            "effective_sample_size": 6553.600000000102,
+            "unique_parent_count": 6583,
+            "unique_state_count": 1552,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.41837158203125,
+            "association_acceptance_rate": 0.46752825393392095,
+            "interval_acceptance_rate": 0.24110875821252103,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.3084694566157765,
+            "beta_increment": 0.04633665273089116,
+            "effective_sample_size": 6553.600000000146,
+            "unique_parent_count": 6612,
+            "unique_state_count": 1547,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.33592529296875,
+            "association_acceptance_rate": 0.3503356069458409,
+            "interval_acceptance_rate": 0.17358193988996992,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.35706215652289786,
+            "beta_increment": 0.04859269990712134,
+            "effective_sample_size": 6553.600000000036,
+            "unique_parent_count": 6714,
+            "unique_state_count": 1407,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.26707763671875,
+            "association_acceptance_rate": 0.2536823114414196,
+            "interval_acceptance_rate": 0.12107781826091685,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.40699445064528506,
+            "beta_increment": 0.0499322941223872,
+            "effective_sample_size": 6553.600000000111,
+            "unique_parent_count": 6608,
+            "unique_state_count": 1141,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.2202392578125,
+            "association_acceptance_rate": 0.1793747617232177,
+            "interval_acceptance_rate": 0.08498522114054831,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.46092557557547986,
+            "beta_increment": 0.05393112493019481,
+            "effective_sample_size": 6553.600000000078,
+            "unique_parent_count": 6515,
+            "unique_state_count": 830,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.1786376953125,
+            "association_acceptance_rate": 0.11752928762749926,
+            "interval_acceptance_rate": 0.0514896993242319,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.5249715873333731,
+            "beta_increment": 0.06404601175789326,
+            "effective_sample_size": 6553.6,
+            "unique_parent_count": 6426,
+            "unique_state_count": 561,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.1436279296875,
+            "association_acceptance_rate": 0.06907233302537906,
+            "interval_acceptance_rate": 0.029577160160051907,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.6153073045092126,
+            "beta_increment": 0.09033571717583944,
+            "effective_sample_size": 6553.600000000021,
+            "unique_parent_count": 6373,
+            "unique_state_count": 263,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.120751953125,
+            "association_acceptance_rate": 0.03552873687628531,
+            "interval_acceptance_rate": 0.012297084532276454,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 0.7914685952373599,
+            "beta_increment": 0.17616129072814735,
+            "effective_sample_size": 6553.600000000007,
+            "unique_parent_count": 6259,
+            "unique_state_count": 91,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.10379638671875,
+            "association_acceptance_rate": 0.009143071643071644,
+            "interval_acceptance_rate": 0.0025986815110649124,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 13,
+            "beta": 1.0,
+            "beta_increment": 0.2085314047626401,
+            "effective_sample_size": 7594.931315999157,
+            "unique_parent_count": 7376,
+            "unique_state_count": 37,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.100054931640625,
+            "association_acceptance_rate": 0.002702445781332754,
+            "interval_acceptance_rate": 0.0005671766755344289,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.05,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9973814771065044,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "persistent_near_clean",
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "separation_um": 20.0,
+        "detection_probability": 0.95,
+        "expected_clutter_per_frame": 0.05,
+        "corruption_seed": 0
+      },
+      "smc_seed": 1,
+      "runtime_seconds": 137.07411840699933,
+      "support_size": 16877,
+      "detection_cardinalities": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.011389642118916568,
+        "jensen_shannon_divergence": 0.0011822759361091268,
+        "exact_map_sample_frequency": 0.471923828125,
+        "empirical_support_size": 37,
+        "exact_mass_covered_by_empirical_support": 0.9981225138921181,
+        "credible_set_recall_95": 1.0,
+        "max_existence_probability_error": 0.0013179607751111488,
+        "max_missed_probability_error": 0.0008686978071340925,
+        "max_expected_clutter_error": 0.004007106226994628,
+        "max_birth_time_probability_error": 0.0003943033442549426,
+        "max_death_time_probability_error": 0.001535813374769041,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.005430405109589258,
+          "total_variation_median": 0.00857137445847312,
+          "total_variation_q95": 0.015421439836021185,
+          "jensen_shannon_q05": 0.0010113653133843733,
+          "jensen_shannon_median": 0.0012473847263912903,
+          "jensen_shannon_q95": 0.0015497048994288015,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_q05": 0.9974061694769437,
+          "exact_mass_covered_median": 0.9980489955399738,
+          "exact_mass_covered_q95": 0.9985660264515636
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.9988073892817612,
+              0.9988073892817595
+            ],
+            [
+              0.9999414433830739,
+              0.999941443383074
+            ],
+            [
+              0.9996073196533791,
+              0.9996073196533801
+            ],
+            [
+              0.9916019610998895,
+              0.9916019610998889
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.00018845538814480237,
+              0.0001884553881448023
+            ],
+            [
+              0.00043246604020027036,
+              0.00043246604020026803
+            ],
+            [
+              0.00024551268522994817,
+              0.0002455126852299474
+            ],
+            [
+              0.0016011196821340925,
+              0.0016011196821340827
+            ]
+          ],
+          "expected_clutter": [
+            0.0027621322127655556,
+            0.000982045314258606,
+            0.001276386063712831,
+            0.019998317164494628
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9988073892817579,
+              0.0011777422231915697,
+              1.3985430454334457e-05,
+              1.8138377951148275e-07,
+              7.016808156986045e-07
+            ],
+            [
+              0.9988073892817549,
+              0.0011777422231915677,
+              1.3985430454334443e-05,
+              1.813837795114825e-07,
+              7.016808156986045e-07
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              4.368812187921743e-05,
+              0.0003481091601492385,
+              0.008005539937269084,
+              0.9916019610998763,
+              7.016808156986045e-07
+            ],
+            [
+              4.368812187921722e-05,
+              0.00034810916014923907,
+              0.008005539937269041,
+              0.991601961099879,
+              7.016808156986045e-07
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.9990234375,
+              0.9984130859375
+            ],
+            [
+              1.0,
+              0.9996337890625
+            ],
+            [
+              0.99951171875,
+              0.9993896484375
+            ],
+            [
+              0.992919921875,
+              0.992919921875
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0003662109375,
+              0.0001220703125
+            ],
+            [
+              0.0001220703125,
+              0.000244140625
+            ],
+            [
+              0.000732421875,
+              0.0010986328125
+            ]
+          ],
+          "expected_clutter": [
+            0.0025634765625,
+            0.0008544921875,
+            0.00146484375,
+            0.0159912109375
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9990234375,
+              0.0009765625,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.9984130859375,
+              0.00146484375,
+              0.0001220703125,
+              0.0,
+              0.0
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.0,
+              0.00048828125,
+              0.006591796875,
+              0.992919921875,
+              0.0
+            ],
+            [
+              0.000244140625,
+              0.0003662109375,
+              0.0064697265625,
+              0.992919921875,
+              0.0
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 7.028062247555875e-05,
+        "finite_sample_sliced_wasserstein_mm": 7.028326060995056e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 50.135054278841324,
+        "exact_log_evidence": 50.31709902953507,
+        "error": -0.18204475069374837
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.4758401276628857,
+        "reference_hypothesis_rank": 2,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 13,
+        "mean_mh_acceptance_rate": 0.3193265474759615,
+        "mean_association_acceptance_rate": 0.34779384769940636,
+        "mean_interval_acceptance_rate": 0.1402163735442198,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.07040633501420146,
+            "beta_increment": 0.07040633501420146,
+            "effective_sample_size": 6553.600000000051,
+            "unique_parent_count": 6788,
+            "unique_state_count": 758,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.60872802734375,
+            "association_acceptance_rate": 0.8996551909918646,
+            "interval_acceptance_rate": 0.22681369070364102,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.12559220613540045,
+            "beta_increment": 0.05518587112119899,
+            "effective_sample_size": 6553.600000000006,
+            "unique_parent_count": 6844,
+            "unique_state_count": 996,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.592041015625,
+            "association_acceptance_rate": 0.8132755188306199,
+            "interval_acceptance_rate": 0.28260576118355335,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.17423675713456105,
+            "beta_increment": 0.048644550999160596,
+            "effective_sample_size": 6553.600000000044,
+            "unique_parent_count": 6683,
+            "unique_state_count": 1263,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.55831298828125,
+            "association_acceptance_rate": 0.7143206123446068,
+            "interval_acceptance_rate": 0.3051696590570585,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.2201553433274983,
+            "beta_increment": 0.04591858619293726,
+            "effective_sample_size": 6553.600000000081,
+            "unique_parent_count": 6620,
+            "unique_state_count": 1459,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.4962890625,
+            "association_acceptance_rate": 0.5906060358668734,
+            "interval_acceptance_rate": 0.29280397022332505,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.2659392735878918,
+            "beta_increment": 0.04578393026039351,
+            "effective_sample_size": 6553.600000000065,
+            "unique_parent_count": 6597,
+            "unique_state_count": 1578,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.4200439453125,
+            "association_acceptance_rate": 0.4702350224154327,
+            "interval_acceptance_rate": 0.24016709162914338,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.31248241075357486,
+            "beta_increment": 0.046543137165683035,
+            "effective_sample_size": 6553.600000000075,
+            "unique_parent_count": 6626,
+            "unique_state_count": 1529,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3416259765625,
+            "association_acceptance_rate": 0.3576660222724426,
+            "interval_acceptance_rate": 0.17971939120326566,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.36084349086403655,
+            "beta_increment": 0.048361080110461696,
+            "effective_sample_size": 6553.600000000035,
+            "unique_parent_count": 6718,
+            "unique_state_count": 1376,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.27010498046875,
+            "association_acceptance_rate": 0.25662614722365107,
+            "interval_acceptance_rate": 0.12185649883221987,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.4107389165304543,
+            "beta_increment": 0.04989542566641775,
+            "effective_sample_size": 6553.60000000008,
+            "unique_parent_count": 6610,
+            "unique_state_count": 1143,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.21591796875,
+            "association_acceptance_rate": 0.17851637504394624,
+            "interval_acceptance_rate": 0.0796498667971511,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.46376471022782384,
+            "beta_increment": 0.05302579369736954,
+            "effective_sample_size": 6553.6000000000395,
+            "unique_parent_count": 6528,
+            "unique_state_count": 892,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.17752685546875,
+            "association_acceptance_rate": 0.12018606663781913,
+            "interval_acceptance_rate": 0.05147539198606272,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.5264604371842492,
+            "beta_increment": 0.06269572695642533,
+            "effective_sample_size": 6553.600000000019,
+            "unique_parent_count": 6419,
+            "unique_state_count": 573,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.14632568359375,
+            "association_acceptance_rate": 0.07405593644575036,
+            "interval_acceptance_rate": 0.02818083378451543,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.6154513948932551,
+            "beta_increment": 0.08899095770900589,
+            "effective_sample_size": 6553.600000000053,
+            "unique_parent_count": 6353,
+            "unique_state_count": 316,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.1194091796875,
+            "association_acceptance_rate": 0.03473014837762922,
+            "interval_acceptance_rate": 0.011606564456920751,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 0.7926753286610019,
+            "beta_increment": 0.1772239337677468,
+            "effective_sample_size": 6553.600000000039,
+            "unique_parent_count": 6276,
+            "unique_state_count": 106,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.10382080078125,
+            "association_acceptance_rate": 0.008617419110075335,
+            "interval_acceptance_rate": 0.0023025246505580235,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 13,
+            "beta": 1.0,
+            "beta_increment": 0.20732467133899812,
+            "effective_sample_size": 7653.7604020296985,
+            "unique_parent_count": 7451,
+            "unique_state_count": 37,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.1010986328125,
+            "association_acceptance_rate": 0.0028295245315715367,
+            "interval_acceptance_rate": 0.0004616115674428077,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.05,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9974061694769437,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "persistent_near_clean",
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "separation_um": 20.0,
+        "detection_probability": 0.95,
+        "expected_clutter_per_frame": 0.05,
+        "corruption_seed": 0
+      },
+      "smc_seed": 2,
+      "runtime_seconds": 136.11027050899975,
+      "support_size": 16877,
+      "detection_cardinalities": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.007892551512354178,
+        "jensen_shannon_divergence": 0.0013640022113830363,
+        "exact_map_sample_frequency": 0.47998046875,
+        "empirical_support_size": 37,
+        "exact_mass_covered_by_empirical_support": 0.9973954552082537,
+        "credible_set_recall_95": 1.0,
+        "max_existence_probability_error": 0.0019283123376111488,
+        "max_missed_probability_error": 0.0003804165571340925,
+        "max_expected_clutter_error": 0.004617457789494628,
+        "max_birth_time_probability_error": 0.0004601888432450574,
+        "max_death_time_probability_error": 0.0023903055622690843,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.005578178209067897,
+          "total_variation_median": 0.008938422531566412,
+          "total_variation_q95": 0.015125368948116369,
+          "jensen_shannon_q05": 0.0010380726535928787,
+          "jensen_shannon_median": 0.0012735086200428027,
+          "jensen_shannon_q95": 0.001543815033707764,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_q05": 0.9974030149974532,
+          "exact_mass_covered_median": 0.9980177553906687,
+          "exact_mass_covered_q95": 0.9984946242757787
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.9988073892817612,
+              0.9988073892817595
+            ],
+            [
+              0.9999414433830739,
+              0.999941443383074
+            ],
+            [
+              0.9996073196533791,
+              0.9996073196533801
+            ],
+            [
+              0.9916019610998895,
+              0.9916019610998889
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.00018845538814480237,
+              0.0001884553881448023
+            ],
+            [
+              0.00043246604020027036,
+              0.00043246604020026803
+            ],
+            [
+              0.00024551268522994817,
+              0.0002455126852299474
+            ],
+            [
+              0.0016011196821340925,
+              0.0016011196821340827
+            ]
+          ],
+          "expected_clutter": [
+            0.0027621322127655556,
+            0.000982045314258606,
+            0.001276386063712831,
+            0.019998317164494628
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9988073892817579,
+              0.0011777422231915697,
+              1.3985430454334457e-05,
+              1.8138377951148275e-07,
+              7.016808156986045e-07
+            ],
+            [
+              0.9988073892817549,
+              0.0011777422231915677,
+              1.3985430454334443e-05,
+              1.813837795114825e-07,
+              7.016808156986045e-07
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              4.368812187921743e-05,
+              0.0003481091601492385,
+              0.008005539937269084,
+              0.9916019610998763,
+              7.016808156986045e-07
+            ],
+            [
+              4.368812187921722e-05,
+              0.00034810916014923907,
+              0.008005539937269041,
+              0.991601961099879,
+              7.016808156986045e-07
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.999267578125,
+              0.999267578125
+            ],
+            [
+              0.9998779296875,
+              1.0
+            ],
+            [
+              0.9991455078125,
+              0.99951171875
+            ],
+            [
+              0.9935302734375,
+              0.9935302734375
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.0,
+              0.0001220703125
+            ],
+            [
+              0.000244140625,
+              0.00048828125
+            ],
+            [
+              0.000244140625,
+              0.0001220703125
+            ],
+            [
+              0.001220703125,
+              0.001220703125
+            ]
+          ],
+          "expected_clutter": [
+            0.0015869140625,
+            0.0008544921875,
+            0.001708984375,
+            0.015380859375
+          ],
+          "birth_time_probabilities": [
+            [
+              0.999267578125,
+              0.000732421875,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.999267578125,
+              0.000732421875,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.0001220703125,
+              0.000732421875,
+              0.005615234375,
+              0.9935302734375,
+              0.0
+            ],
+            [
+              0.0,
+              0.00048828125,
+              0.0059814453125,
+              0.9935302734375,
+              0.0
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 9.582216505068475e-05,
+        "finite_sample_sliced_wasserstein_mm": 6.931854320801583e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 50.79024525134379,
+        "exact_log_evidence": 50.31709902953507,
+        "error": 0.4731462218087188
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.4758401276628857,
+        "reference_hypothesis_rank": 2,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 13,
+        "mean_mh_acceptance_rate": 0.3219242976262019,
+        "mean_association_acceptance_rate": 0.35123130080046255,
+        "mean_interval_acceptance_rate": 0.14201652596149678,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.0684619793388066,
+            "beta_increment": 0.0684619793388066,
+            "effective_sample_size": 6553.600000000011,
+            "unique_parent_count": 6839,
+            "unique_state_count": 752,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6060302734375,
+            "association_acceptance_rate": 0.9033196487316821,
+            "interval_acceptance_rate": 0.22417333045169657,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.12311886549067648,
+            "beta_increment": 0.05465688615186988,
+            "effective_sample_size": 6553.600000000032,
+            "unique_parent_count": 6892,
+            "unique_state_count": 1008,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.59783935546875,
+            "association_acceptance_rate": 0.8237698262328804,
+            "interval_acceptance_rate": 0.2837673070149294,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.17118447360672462,
+            "beta_increment": 0.04806560811604814,
+            "effective_sample_size": 6553.600000000191,
+            "unique_parent_count": 6743,
+            "unique_state_count": 1249,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.56383056640625,
+            "association_acceptance_rate": 0.7205600151355442,
+            "interval_acceptance_rate": 0.31080530901392395,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.21528527912297934,
+            "beta_increment": 0.044100805516254726,
+            "effective_sample_size": 6553.600000000142,
+            "unique_parent_count": 6676,
+            "unique_state_count": 1430,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.50279541015625,
+            "association_acceptance_rate": 0.6011885379355258,
+            "interval_acceptance_rate": 0.294222896955567,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.2584782801672879,
+            "beta_increment": 0.043193001044308565,
+            "effective_sample_size": 6553.600000000014,
+            "unique_parent_count": 6633,
+            "unique_state_count": 1577,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.42554931640625,
+            "association_acceptance_rate": 0.4787934632374861,
+            "interval_acceptance_rate": 0.2462484424941763,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.30230723401452364,
+            "beta_increment": 0.04382895384723573,
+            "effective_sample_size": 6553.6000000000795,
+            "unique_parent_count": 6662,
+            "unique_state_count": 1504,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3457275390625,
+            "association_acceptance_rate": 0.3642085842964892,
+            "interval_acceptance_rate": 0.18172693486693975,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.34701514900775465,
+            "beta_increment": 0.04470791499323101,
+            "effective_sample_size": 6553.600000000107,
+            "unique_parent_count": 6749,
+            "unique_state_count": 1394,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.27755126953125,
+            "association_acceptance_rate": 0.2642888188634141,
+            "interval_acceptance_rate": 0.1283805799934832,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.393508951552279,
+            "beta_increment": 0.04649380254452434,
+            "effective_sample_size": 6553.600000000075,
+            "unique_parent_count": 6599,
+            "unique_state_count": 1153,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.21964111328125,
+            "association_acceptance_rate": 0.1790561675506596,
+            "interval_acceptance_rate": 0.08468277863672119,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.44473727438748006,
+            "beta_increment": 0.05122832283520107,
+            "effective_sample_size": 6553.600000000063,
+            "unique_parent_count": 6490,
+            "unique_state_count": 874,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.17889404296875,
+            "association_acceptance_rate": 0.11900576096070105,
+            "interval_acceptance_rate": 0.05288159654918234,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.5075714604676609,
+            "beta_increment": 0.06283418608018082,
+            "effective_sample_size": 6553.600000000023,
+            "unique_parent_count": 6388,
+            "unique_state_count": 560,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.14293212890625,
+            "association_acceptance_rate": 0.07036376115305422,
+            "interval_acceptance_rate": 0.026487760458514115,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.6035549605095389,
+            "beta_increment": 0.09598350004187806,
+            "effective_sample_size": 6553.600000000044,
+            "unique_parent_count": 6341,
+            "unique_state_count": 286,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.1189208984375,
+            "association_acceptance_rate": 0.031420249204379955,
+            "interval_acceptance_rate": 0.010315749256338182,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 0.8243856473268107,
+            "beta_increment": 0.2208306868172718,
+            "effective_sample_size": 6553.600000000035,
+            "unique_parent_count": 6327,
+            "unique_state_count": 76,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.1038818359375,
+            "association_acceptance_rate": 0.00734994982506577,
+            "interval_acceptance_rate": 0.0020604023206636664,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 13,
+            "beta": 1.0,
+            "beta_increment": 0.17561435267318926,
+            "effective_sample_size": 7870.644386069138,
+            "unique_parent_count": 7693,
+            "unique_state_count": 37,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.101422119140625,
+            "association_acceptance_rate": 0.0026821272791308823,
+            "interval_acceptance_rate": 0.0004617494873222604,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.05,
+        "jensen_shannon": 0.01,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9974030149974532,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": false,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": false
+      },
+      "passed": false
+    },
+    {
+      "regime": {
+        "name": "delayed_birth",
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "separation_um": 0.0,
+        "detection_probability": 0.8,
+        "expected_clutter_per_frame": 0.15,
+        "corruption_seed": 1
+      },
+      "smc_seed": 0,
+      "runtime_seconds": 122.4025027810003,
+      "support_size": 3529,
+      "detection_cardinalities": [
+        2,
+        0,
+        2,
+        2
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.03600343851675747,
+        "jensen_shannon_divergence": 0.0047733754698981185,
+        "exact_map_sample_frequency": 0.1331787109375,
+        "empirical_support_size": 146,
+        "exact_mass_covered_by_empirical_support": 0.9938351627686735,
+        "credible_set_recall_95": 1.0,
+        "max_existence_probability_error": 0.005849549524889364,
+        "max_missed_probability_error": 0.005849549524889364,
+        "max_expected_clutter_error": 0.0018544696527771354,
+        "max_birth_time_probability_error": 0.007064276526686286,
+        "max_death_time_probability_error": 0.0012786827220966244,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.02468631991830051,
+          "total_variation_median": 0.0300396569988232,
+          "total_variation_q95": 0.03555845934613216,
+          "jensen_shannon_q05": 0.003744953173378258,
+          "jensen_shannon_median": 0.004261362524668079,
+          "jensen_shannon_q95": 0.004696440784771724,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_q05": 0.9924260104369838,
+          "exact_mass_covered_median": 0.993485078701609,
+          "exact_mass_covered_q95": 0.9944803609975028
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.5407060934991712,
+              0.5407060934991709
+            ],
+            [
+              0.6204932239126111,
+              0.6204932239126106
+            ],
+            [
+              0.9953045219257973,
+              0.9953045219257978
+            ],
+            [
+              0.9960969493884984,
+              0.9960969493884986
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.05120113329728403,
+              0.05120113329728403
+            ],
+            [
+              0.6204932239126111,
+              0.6204932239126106
+            ],
+            [
+              0.0024041434891595268,
+              0.002404143489159522
+            ],
+            [
+              0.002799109093359375,
+              0.0027991090933593703
+            ]
+          ],
+          "expected_clutter": [
+            1.020990079596226,
+            0.0,
+            0.01419924312672416,
+            0.013404319409722865
+          ],
+          "birth_time_probabilities": [
+            [
+              0.5407060934991715,
+              0.07997185628581367,
+              0.3748456404713569,
+              0.004274486928104279,
+              0.00020192281555021847
+            ],
+            [
+              0.5407060934991709,
+              0.07997185628581371,
+              0.3748456404713574,
+              0.004274486928104276,
+              0.00020192281555021847
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.00018472587237400583,
+              3.4342458170660954e-05,
+              0.0034820594654033756,
+              0.9960969493884982,
+              0.00020192281555021847
+            ],
+            [
+              0.00018472587237400583,
+              3.434245817066094e-05,
+              0.0034820594654033717,
+              0.9960969493884975,
+              0.00020192281555021847
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.539794921875,
+              0.53955078125
+            ],
+            [
+              0.6240234375,
+              0.6263427734375
+            ],
+            [
+              0.9957275390625,
+              0.9952392578125
+            ],
+            [
+              0.994873046875,
+              0.99560546875
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.0513916015625,
+              0.0489501953125
+            ],
+            [
+              0.6240234375,
+              0.6263427734375
+            ],
+            [
+              0.003173828125,
+              0.002685546875
+            ],
+            [
+              0.0029296875,
+              0.0028076171875
+            ]
+          ],
+          "expected_clutter": [
+            1.02099609375,
+            0.0,
+            0.014892578125,
+            0.0152587890625
+          ],
+          "birth_time_probabilities": [
+            [
+              0.539794921875,
+              0.0845947265625,
+              0.3717041015625,
+              0.00390625,
+              0.0
+            ],
+            [
+              0.53955078125,
+              0.0870361328125,
+              0.368896484375,
+              0.0042724609375,
+              0.000244140625
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.0003662109375,
+              0.0,
+              0.0047607421875,
+              0.994873046875,
+              0.0
+            ],
+            [
+              0.000244140625,
+              0.0,
+              0.00390625,
+              0.99560546875,
+              0.000244140625
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 6.0109645201774606e-05,
+        "finite_sample_sliced_wasserstein_mm": 6.016620035829616e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 36.37390803694852,
+        "exact_log_evidence": 36.31638593255455,
+        "error": 0.057522104393967766
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.11500474532186711,
+        "reference_hypothesis_rank": 4,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 1,
+        "realized_false_positives": 1
+      },
+      "smc": {
+        "n_tempering_steps": 12,
+        "mean_mh_acceptance_rate": 0.4790156046549479,
+        "mean_association_acceptance_rate": 0.6584002302860351,
+        "mean_interval_acceptance_rate": 0.1838633694432613,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.11632294355525019,
+            "beta_increment": 0.11632294355525019,
+            "effective_sample_size": 6553.600000000077,
+            "unique_parent_count": 7172,
+            "unique_state_count": 395,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5881591796875,
+            "association_acceptance_rate": 0.9311206475093704,
+            "interval_acceptance_rate": 0.15317809260163925,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.20217928782070146,
+            "beta_increment": 0.08585634426545127,
+            "effective_sample_size": 6553.600000000036,
+            "unique_parent_count": 6905,
+            "unique_state_count": 541,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6169921875,
+            "association_acceptance_rate": 0.9484558444727638,
+            "interval_acceptance_rate": 0.19974478714161598,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.27160995507586927,
+            "beta_increment": 0.0694306672551678,
+            "effective_sample_size": 6553.600000000106,
+            "unique_parent_count": 6748,
+            "unique_state_count": 710,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6357666015625,
+            "association_acceptance_rate": 0.9308569725541196,
+            "interval_acceptance_rate": 0.2574227786093346,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.3306481032372156,
+            "beta_increment": 0.05903814816134634,
+            "effective_sample_size": 6553.600000000088,
+            "unique_parent_count": 6806,
+            "unique_state_count": 921,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.62587890625,
+            "association_acceptance_rate": 0.8671298423940959,
+            "interval_acceptance_rate": 0.29892385233619395,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.3854838461324116,
+            "beta_increment": 0.054835742895195994,
+            "effective_sample_size": 6553.600000000105,
+            "unique_parent_count": 6639,
+            "unique_state_count": 998,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.59664306640625,
+            "association_acceptance_rate": 0.7922606924643585,
+            "interval_acceptance_rate": 0.314406825422539,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.43790752340313166,
+            "beta_increment": 0.05242367727072006,
+            "effective_sample_size": 6553.600000000023,
+            "unique_parent_count": 6721,
+            "unique_state_count": 1045,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5487060546875,
+            "association_acceptance_rate": 0.7096940716187579,
+            "interval_acceptance_rate": 0.2889604241620905,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.4908403008403278,
+            "beta_increment": 0.052932777437196155,
+            "effective_sample_size": 6553.600000000063,
+            "unique_parent_count": 6649,
+            "unique_state_count": 1026,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.49158935546875,
+            "association_acceptance_rate": 0.6321654752520997,
+            "interval_acceptance_rate": 0.23947090805810273,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.5455723975936221,
+            "beta_increment": 0.05473209675329427,
+            "effective_sample_size": 6553.600000000001,
+            "unique_parent_count": 6624,
+            "unique_state_count": 887,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.42706298828125,
+            "association_acceptance_rate": 0.5465326741767296,
+            "interval_acceptance_rate": 0.17975296550223094,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.6072958399765849,
+            "beta_increment": 0.06172344238296279,
+            "effective_sample_size": 6553.600000000053,
+            "unique_parent_count": 6440,
+            "unique_state_count": 727,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.367529296875,
+            "association_acceptance_rate": 0.47144058828317914,
+            "interval_acceptance_rate": 0.12140974430042661,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.6859764774103312,
+            "beta_increment": 0.07868063743374631,
+            "effective_sample_size": 6553.600000000035,
+            "unique_parent_count": 6401,
+            "unique_state_count": 516,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.31707763671875,
+            "association_acceptance_rate": 0.40797954798879493,
+            "interval_acceptance_rate": 0.07662172750114825,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.810113699986899,
+            "beta_increment": 0.12413722257656779,
+            "effective_sample_size": 6553.6,
+            "unique_parent_count": 6233,
+            "unique_state_count": 288,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.2772705078125,
+            "association_acceptance_rate": 0.3503014246708659,
+            "interval_acceptance_rate": 0.04569009957402936,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 1.0,
+            "beta_increment": 0.18988630001310103,
+            "effective_sample_size": 7195.84334766372,
+            "unique_parent_count": 7047,
+            "unique_state_count": 146,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.255511474609375,
+            "association_acceptance_rate": 0.31286498204728674,
+            "interval_acceptance_rate": 0.030778228109784294,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.10667537803839647,
+        "jensen_shannon": 0.014089322354315172,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9924260104369838,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "delayed_birth",
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "separation_um": 0.0,
+        "detection_probability": 0.8,
+        "expected_clutter_per_frame": 0.15,
+        "corruption_seed": 1
+      },
+      "smc_seed": 1,
+      "runtime_seconds": 123.15725915900111,
+      "support_size": 3529,
+      "detection_cardinalities": [
+        2,
+        0,
+        2,
+        2
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.029819415594589394,
+        "jensen_shannon_divergence": 0.0038939399222957965,
+        "exact_map_sample_frequency": 0.137451171875,
+        "empirical_support_size": 139,
+        "exact_mass_covered_by_empirical_support": 0.9937146539152917,
+        "credible_set_recall_95": 1.0,
+        "max_existence_probability_error": 0.003230507561671203,
+        "max_missed_probability_error": 0.0038378520472840266,
+        "max_expected_clutter_error": 0.0008154053107758408,
+        "max_birth_time_probability_error": 0.005965643714186328,
+        "max_death_time_probability_error": 0.0008576915759982429,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.024896096531400777,
+          "total_variation_median": 0.02970204193502398,
+          "total_variation_q95": 0.03519151134821728,
+          "jensen_shannon_q05": 0.003774652660624693,
+          "jensen_shannon_median": 0.004290068651065074,
+          "jensen_shannon_q95": 0.0047127545582095875,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_q05": 0.9923075975447199,
+          "exact_mass_covered_median": 0.993492899807135,
+          "exact_mass_covered_q95": 0.9945263774661527
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.5407060934991712,
+              0.5407060934991709
+            ],
+            [
+              0.6204932239126111,
+              0.6204932239126106
+            ],
+            [
+              0.9953045219257973,
+              0.9953045219257978
+            ],
+            [
+              0.9960969493884984,
+              0.9960969493884986
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.05120113329728403,
+              0.05120113329728403
+            ],
+            [
+              0.6204932239126111,
+              0.6204932239126106
+            ],
+            [
+              0.0024041434891595268,
+              0.002404143489159522
+            ],
+            [
+              0.002799109093359375,
+              0.0027991090933593703
+            ]
+          ],
+          "expected_clutter": [
+            1.020990079596226,
+            0.0,
+            0.01419924312672416,
+            0.013404319409722865
+          ],
+          "birth_time_probabilities": [
+            [
+              0.5407060934991715,
+              0.07997185628581367,
+              0.3748456404713569,
+              0.004274486928104279,
+              0.00020192281555021847
+            ],
+            [
+              0.5407060934991709,
+              0.07997185628581371,
+              0.3748456404713574,
+              0.004274486928104276,
+              0.00020192281555021847
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.00018472587237400583,
+              3.4342458170660954e-05,
+              0.0034820594654033756,
+              0.9960969493884982,
+              0.00020192281555021847
+            ],
+            [
+              0.00018472587237400583,
+              3.434245817066094e-05,
+              0.0034820594654033717,
+              0.9960969493884975,
+              0.00020192281555021847
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.5374755859375,
+              0.5386962890625
+            ],
+            [
+              0.6231689453125,
+              0.6190185546875
+            ],
+            [
+              0.9945068359375,
+              0.9954833984375
+            ],
+            [
+              0.9952392578125,
+              0.9964599609375
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.0504150390625,
+              0.04736328125
+            ],
+            [
+              0.6231689453125,
+              0.6190185546875
+            ],
+            [
+              0.0025634765625,
+              0.00244140625
+            ],
+            [
+              0.0015869140625,
+              0.0032958984375
+            ]
+          ],
+          "expected_clutter": [
+            1.0216064453125,
+            0.0,
+            0.0150146484375,
+            0.01318359375
+          ],
+          "birth_time_probabilities": [
+            [
+              0.5374755859375,
+              0.0859375,
+              0.3714599609375,
+              0.0050048828125,
+              0.0001220703125
+            ],
+            [
+              0.5386962890625,
+              0.080322265625,
+              0.37646484375,
+              0.00439453125,
+              0.0001220703125
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.000244140625,
+              0.0001220703125,
+              0.0042724609375,
+              0.9952392578125,
+              0.0001220703125
+            ],
+            [
+              0.0,
+              0.0,
+              0.00341796875,
+              0.9964599609375,
+              0.0001220703125
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 7.5829922449838e-05,
+        "finite_sample_sliced_wasserstein_mm": 5.409041484325385e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 36.35673982702715,
+        "exact_log_evidence": 36.31638593255455,
+        "error": 0.040353894472595186
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.11500474532186711,
+        "reference_hypothesis_rank": 4,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 1,
+        "realized_false_positives": 1
+      },
+      "smc": {
+        "n_tempering_steps": 12,
+        "mean_mh_acceptance_rate": 0.4767608642578125,
+        "mean_association_acceptance_rate": 0.6538604808960462,
+        "mean_interval_acceptance_rate": 0.18307872780614554,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.11938480838211873,
+            "beta_increment": 0.11938480838211873,
+            "effective_sample_size": 6553.600000000089,
+            "unique_parent_count": 7164,
+            "unique_state_count": 377,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5884765625,
+            "association_acceptance_rate": 0.9302565215033354,
+            "interval_acceptance_rate": 0.1546313389075904,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.20517946676016394,
+            "beta_increment": 0.0857946583780452,
+            "effective_sample_size": 6553.600000000114,
+            "unique_parent_count": 6800,
+            "unique_state_count": 529,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.62044677734375,
+            "association_acceptance_rate": 0.9509864948983734,
+            "interval_acceptance_rate": 0.2022122929380994,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.27435626921846334,
+            "beta_increment": 0.06917680245829941,
+            "effective_sample_size": 6553.6000000000595,
+            "unique_parent_count": 6741,
+            "unique_state_count": 711,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.63548583984375,
+            "association_acceptance_rate": 0.9310850042054427,
+            "interval_acceptance_rate": 0.25770254849752755,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.33369062898207225,
+            "beta_increment": 0.0593343597636089,
+            "effective_sample_size": 6553.600000000081,
+            "unique_parent_count": 6781,
+            "unique_state_count": 923,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6216064453125,
+            "association_acceptance_rate": 0.8595147219193021,
+            "interval_acceptance_rate": 0.30303112022005285,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.38836499782694217,
+            "beta_increment": 0.054674368844869925,
+            "effective_sample_size": 6553.600000000048,
+            "unique_parent_count": 6608,
+            "unique_state_count": 1021,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5943115234375,
+            "association_acceptance_rate": 0.780258934885492,
+            "interval_acceptance_rate": 0.3172194777699365,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.4412791138848179,
+            "beta_increment": 0.052914116057875715,
+            "effective_sample_size": 6553.600000000018,
+            "unique_parent_count": 6715,
+            "unique_state_count": 1068,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.54632568359375,
+            "association_acceptance_rate": 0.7024324324324325,
+            "interval_acceptance_rate": 0.28816373186729444,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.4945802731960075,
+            "beta_increment": 0.053301159311189616,
+            "effective_sample_size": 6553.6,
+            "unique_parent_count": 6587,
+            "unique_state_count": 995,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.480615234375,
+            "association_acceptance_rate": 0.6145824825070109,
+            "interval_acceptance_rate": 0.23063165596292984,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.5509869636263098,
+            "beta_increment": 0.05640669043030233,
+            "effective_sample_size": 6553.6000000000595,
+            "unique_parent_count": 6652,
+            "unique_state_count": 888,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.426806640625,
+            "association_acceptance_rate": 0.5479744713072637,
+            "interval_acceptance_rate": 0.17491542071374006,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.6139572451119852,
+            "beta_increment": 0.0629702814856754,
+            "effective_sample_size": 6553.600000000019,
+            "unique_parent_count": 6459,
+            "unique_state_count": 712,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3647705078125,
+            "association_acceptance_rate": 0.4708739181159617,
+            "interval_acceptance_rate": 0.1189818575683726,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.6943872418012362,
+            "beta_increment": 0.080429996689251,
+            "effective_sample_size": 6553.600000000018,
+            "unique_parent_count": 6362,
+            "unique_state_count": 513,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.31475830078125,
+            "association_acceptance_rate": 0.4021343615923532,
+            "interval_acceptance_rate": 0.07636914913776767,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.8237527405869669,
+            "beta_increment": 0.12936549878573067,
+            "effective_sample_size": 6553.600000000014,
+            "unique_parent_count": 6215,
+            "unique_state_count": 279,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.272412109375,
+            "association_acceptance_rate": 0.3421109842926246,
+            "interval_acceptance_rate": 0.04195425632697253,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 1.0,
+            "beta_increment": 0.1762472594130331,
+            "effective_sample_size": 7330.13541177401,
+            "unique_parent_count": 7161,
+            "unique_state_count": 139,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.25511474609375,
+            "association_acceptance_rate": 0.31411544309296263,
+            "interval_acceptance_rate": 0.031131883763462712,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.10557453404465185,
+        "jensen_shannon": 0.014138263674628762,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9923075975447199,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "delayed_birth",
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "separation_um": 0.0,
+        "detection_probability": 0.8,
+        "expected_clutter_per_frame": 0.15,
+        "corruption_seed": 1
+      },
+      "smc_seed": 2,
+      "runtime_seconds": 121.31223295500058,
+      "support_size": 3529,
+      "detection_cardinalities": [
+        2,
+        0,
+        2,
+        2
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.03313355160955254,
+        "jensen_shannon_divergence": 0.004117509920482485,
+        "exact_map_sample_frequency": 0.1295166015625,
+        "empirical_support_size": 142,
+        "exact_mass_covered_by_empirical_support": 0.9940652419473732,
+        "credible_set_recall_95": 1.0,
+        "max_existence_probability_error": 0.0016991588998889195,
+        "max_missed_probability_error": 0.0016991588998889195,
+        "max_expected_clutter_error": 0.0012597900017241592,
+        "max_birth_time_probability_error": 0.0018152530891863278,
+        "max_death_time_probability_error": 0.0006071521740017571,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.02455827021901062,
+          "total_variation_median": 0.030099964814371598,
+          "total_variation_q95": 0.03517360408165776,
+          "jensen_shannon_q05": 0.0038039204373258527,
+          "jensen_shannon_median": 0.004267114623470717,
+          "jensen_shannon_q95": 0.004721211880740496,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_q05": 0.9924471616239267,
+          "exact_mass_covered_median": 0.9934907942751674,
+          "exact_mass_covered_q95": 0.9944253747598002
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.5407060934991712,
+              0.5407060934991709
+            ],
+            [
+              0.6204932239126111,
+              0.6204932239126106
+            ],
+            [
+              0.9953045219257973,
+              0.9953045219257978
+            ],
+            [
+              0.9960969493884984,
+              0.9960969493884986
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.05120113329728403,
+              0.05120113329728403
+            ],
+            [
+              0.6204932239126111,
+              0.6204932239126106
+            ],
+            [
+              0.0024041434891595268,
+              0.002404143489159522
+            ],
+            [
+              0.002799109093359375,
+              0.0027991090933593703
+            ]
+          ],
+          "expected_clutter": [
+            1.020990079596226,
+            0.0,
+            0.01419924312672416,
+            0.013404319409722865
+          ],
+          "birth_time_probabilities": [
+            [
+              0.5407060934991715,
+              0.07997185628581367,
+              0.3748456404713569,
+              0.004274486928104279,
+              0.00020192281555021847
+            ],
+            [
+              0.5407060934991709,
+              0.07997185628581371,
+              0.3748456404713574,
+              0.004274486928104276,
+              0.00020192281555021847
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.00018472587237400583,
+              3.4342458170660954e-05,
+              0.0034820594654033756,
+              0.9960969493884982,
+              0.00020192281555021847
+            ],
+            [
+              0.00018472587237400583,
+              3.434245817066094e-05,
+              0.0034820594654033717,
+              0.9960969493884975,
+              0.00020192281555021847
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.540771484375,
+              0.54052734375
+            ],
+            [
+              0.6221923828125,
+              0.6207275390625
+            ],
+            [
+              0.9954833984375,
+              0.9954833984375
+            ],
+            [
+              0.9967041015625,
+              0.996337890625
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.049560546875,
+              0.0518798828125
+            ],
+            [
+              0.6221923828125,
+              0.6207275390625
+            ],
+            [
+              0.001708984375,
+              0.002197265625
+            ],
+            [
+              0.0028076171875,
+              0.003173828125
+            ]
+          ],
+          "expected_clutter": [
+            1.0201416015625,
+            0.0,
+            0.012939453125,
+            0.012939453125
+          ],
+          "birth_time_probabilities": [
+            [
+              0.540771484375,
+              0.081787109375,
+              0.373291015625,
+              0.004150390625,
+              0.0
+            ],
+            [
+              0.54052734375,
+              0.080322265625,
+              0.374755859375,
+              0.0042724609375,
+              0.0001220703125
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.0003662109375,
+              0.0,
+              0.0029296875,
+              0.9967041015625,
+              0.0
+            ],
+            [
+              0.0001220703125,
+              0.0,
+              0.00341796875,
+              0.996337890625,
+              0.0001220703125
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 6.0919975561129943e-05,
+        "finite_sample_sliced_wasserstein_mm": 5.2491242809244285e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 36.380280350943224,
+        "exact_log_evidence": 36.31638593255455,
+        "error": 0.06389441838867072
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.11500474532186711,
+        "reference_hypothesis_rank": 4,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 1,
+        "realized_false_positives": 1
+      },
+      "smc": {
+        "n_tempering_steps": 12,
+        "mean_mh_acceptance_rate": 0.4786702473958333,
+        "mean_association_acceptance_rate": 0.6579361865011504,
+        "mean_interval_acceptance_rate": 0.18373998257904106,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.11461015926654028,
+            "beta_increment": 0.11461015926654028,
+            "effective_sample_size": 6553.600000000053,
+            "unique_parent_count": 7205,
+            "unique_state_count": 397,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5873046875,
+            "association_acceptance_rate": 0.933342402394232,
+            "interval_acceptance_rate": 0.15308161832226003,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.19920457723354817,
+            "beta_increment": 0.0845944179670079,
+            "effective_sample_size": 6553.600000000126,
+            "unique_parent_count": 6860,
+            "unique_state_count": 535,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.61700439453125,
+            "association_acceptance_rate": 0.9499564838990426,
+            "interval_acceptance_rate": 0.20071985278198745,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.26956337095273364,
+            "beta_increment": 0.07035879371918546,
+            "effective_sample_size": 6553.60000000013,
+            "unique_parent_count": 6740,
+            "unique_state_count": 690,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6329345703125,
+            "association_acceptance_rate": 0.9327683309866782,
+            "interval_acceptance_rate": 0.2529719190879796,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.33009739337191774,
+            "beta_increment": 0.0605340224191841,
+            "effective_sample_size": 6553.600000000026,
+            "unique_parent_count": 6779,
+            "unique_state_count": 870,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.62574462890625,
+            "association_acceptance_rate": 0.8707451701931923,
+            "interval_acceptance_rate": 0.297867722858228,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.385693298134007,
+            "beta_increment": 0.055595904762089254,
+            "effective_sample_size": 6553.600000000035,
+            "unique_parent_count": 6621,
+            "unique_state_count": 1011,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.59814453125,
+            "association_acceptance_rate": 0.7923944884452642,
+            "interval_acceptance_rate": 0.3163591103414687,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.43801830447906986,
+            "beta_increment": 0.052325006345062874,
+            "effective_sample_size": 6553.60000000009,
+            "unique_parent_count": 6733,
+            "unique_state_count": 1033,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.545458984375,
+            "association_acceptance_rate": 0.7059558404171532,
+            "interval_acceptance_rate": 0.28533542608177953,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.4907835412276468,
+            "beta_increment": 0.052765236748576916,
+            "effective_sample_size": 6553.600000000081,
+            "unique_parent_count": 6652,
+            "unique_state_count": 994,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.48939208984375,
+            "association_acceptance_rate": 0.6296457056046878,
+            "interval_acceptance_rate": 0.23610583961394568,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.5456670167260126,
+            "beta_increment": 0.05488347549836581,
+            "effective_sample_size": 6553.600000000017,
+            "unique_parent_count": 6669,
+            "unique_state_count": 877,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.42965087890625,
+            "association_acceptance_rate": 0.5477942174562237,
+            "interval_acceptance_rate": 0.18278926911472915,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.606947560207254,
+            "beta_increment": 0.061280543481241456,
+            "effective_sample_size": 6553.600000000035,
+            "unique_parent_count": 6425,
+            "unique_state_count": 708,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.370703125,
+            "association_acceptance_rate": 0.4745003258744297,
+            "interval_acceptance_rate": 0.12672886044367304,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.684649940347471,
+            "beta_increment": 0.07770238014021691,
+            "effective_sample_size": 6553.6000000000395,
+            "unique_parent_count": 6391,
+            "unique_state_count": 487,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.317431640625,
+            "association_acceptance_rate": 0.40241557667831124,
+            "interval_acceptance_rate": 0.0783619680344161,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.8107112551398548,
+            "beta_increment": 0.1260613147923838,
+            "effective_sample_size": 6553.600000000011,
+            "unique_parent_count": 6238,
+            "unique_state_count": 292,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.27625732421875,
+            "association_acceptance_rate": 0.3444795124340208,
+            "interval_acceptance_rate": 0.04519559437903532,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 1.0,
+            "beta_increment": 0.18928874486014524,
+            "effective_sample_size": 7223.516879445168,
+            "unique_parent_count": 7068,
+            "unique_state_count": 142,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.25401611328125,
+            "association_acceptance_rate": 0.31123618363056893,
+            "interval_acceptance_rate": 0.02936260988899004,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.10552081224497328,
+        "jensen_shannon": 0.014163635642221487,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9924471616239267,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "early_death",
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "separation_um": 0.0,
+        "detection_probability": 0.8,
+        "expected_clutter_per_frame": 0.15,
+        "corruption_seed": 2
+      },
+      "smc_seed": 0,
+      "runtime_seconds": 127.88852460800081,
+      "support_size": 5347,
+      "detection_cardinalities": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.035159795323125534,
+        "jensen_shannon_divergence": 0.006035665046341878,
+        "exact_map_sample_frequency": 0.165771484375,
+        "empirical_support_size": 177,
+        "exact_mass_covered_by_empirical_support": 0.9893003124152913,
+        "credible_set_recall_95": 1.0,
+        "max_existence_probability_error": 0.0009499132362856821,
+        "max_missed_probability_error": 0.002493166641060085,
+        "max_expected_clutter_error": 0.0029864736793727698,
+        "max_birth_time_probability_error": 0.0004799841603986641,
+        "max_death_time_probability_error": 0.0011688253530625081,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.03188142985895143,
+          "total_variation_median": 0.036306348897007235,
+          "total_variation_q95": 0.042531538485116156,
+          "jensen_shannon_q05": 0.005631924770155572,
+          "jensen_shannon_median": 0.006089930496728826,
+          "jensen_shannon_q95": 0.006608171946515367,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_q05": 0.9892619251709062,
+          "exact_mass_covered_median": 0.9904353755218408,
+          "exact_mass_covered_q95": 0.9914124456358401
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.9918586521028597,
+              0.9918586521028587
+            ],
+            [
+              0.9931422442855731,
+              0.9931422442855734
+            ],
+            [
+              0.6600075304237845,
+              0.6600075304237857
+            ],
+            [
+              0.5695858649433894,
+              0.5695858649433903
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.004948568630046673,
+              0.004948568630046684
+            ],
+            [
+              0.0027309427822778385,
+              0.0027309427822778437
+            ],
+            [
+              0.16069629164106009,
+              0.16069629164105942
+            ],
+            [
+              0.07240488629226956,
+              0.0724048862922695
+            ]
+          ],
+          "expected_clutter": [
+            0.02617983305437277,
+            0.01917739699340748,
+            0.0013775224345475845,
+            0.005638042697758472
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9918586521028615,
+              0.007682132597898626,
+              6.536149127352043e-05,
+              5.63140737572496e-05,
+              0.0003375397342077103
+            ],
+            [
+              0.9918586521028618,
+              0.007682132597898664,
+              6.536149127352045e-05,
+              5.631407375724972e-05,
+              0.0003375397342077103
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.006398540415184733,
+              0.3332000753530625,
+              0.09047797955415318,
+              0.5695858649433885,
+              0.0003375397342077103
+            ],
+            [
+              0.006398540415184742,
+              0.33320007535306095,
+              0.09047797955415299,
+              0.5695858649433895,
+              0.0003375397342077103
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.9923095703125,
+              0.9921875
+            ],
+            [
+              0.992431640625,
+              0.9931640625
+            ],
+            [
+              0.660400390625,
+              0.6590576171875
+            ],
+            [
+              0.5694580078125,
+              0.569580078125
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.00439453125,
+              0.0032958984375
+            ],
+            [
+              0.0018310546875,
+              0.0030517578125
+            ],
+            [
+              0.158203125,
+              0.1627197265625
+            ],
+            [
+              0.0726318359375,
+              0.071533203125
+            ]
+          ],
+          "expected_clutter": [
+            0.023193359375,
+            0.019287109375,
+            0.00146484375,
+            0.005126953125
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9923095703125,
+              0.0074462890625,
+              0.0,
+              0.0,
+              0.000244140625
+            ],
+            [
+              0.9921875,
+              0.0072021484375,
+              0.0001220703125,
+              0.0,
+              0.00048828125
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.00732421875,
+              0.33203125,
+              0.0909423828125,
+              0.5694580078125,
+              0.000244140625
+            ],
+            [
+              0.0062255859375,
+              0.334228515625,
+              0.0894775390625,
+              0.569580078125,
+              0.00048828125
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 6.177541206985783e-05,
+        "finite_sample_sliced_wasserstein_mm": 7.159819904494958e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 41.46396765900367,
+        "exact_log_evidence": 41.46827457181677,
+        "error": -0.004306912813099473
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.09224261883223793,
+        "reference_hypothesis_rank": 4,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 13,
+        "mean_mh_acceptance_rate": 0.4494483360877404,
+        "mean_association_acceptance_rate": 0.5510490878156715,
+        "mean_interval_acceptance_rate": 0.22588533262785976,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.11230735625432331,
+            "beta_increment": 0.11230735625432331,
+            "effective_sample_size": 6553.600000000036,
+            "unique_parent_count": 7082,
+            "unique_state_count": 464,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.592431640625,
+            "association_acceptance_rate": 0.9255368118924481,
+            "interval_acceptance_rate": 0.16974689718714434,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.18719059879640157,
+            "beta_increment": 0.07488324254207826,
+            "effective_sample_size": 6553.6000000000195,
+            "unique_parent_count": 6921,
+            "unique_state_count": 661,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.643603515625,
+            "association_acceptance_rate": 0.9560344827586207,
+            "interval_acceptance_rate": 0.2452148196829048,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.24770558723665526,
+            "beta_increment": 0.060514988440253686,
+            "effective_sample_size": 6553.600000000048,
+            "unique_parent_count": 6843,
+            "unique_state_count": 950,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.68729248046875,
+            "association_acceptance_rate": 0.9812924246538148,
+            "interval_acceptance_rate": 0.3237663782112145,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.2998458499364288,
+            "beta_increment": 0.052140262699773565,
+            "effective_sample_size": 6553.600000000172,
+            "unique_parent_count": 6798,
+            "unique_state_count": 1294,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6881591796875,
+            "association_acceptance_rate": 0.9070587596983344,
+            "interval_acceptance_rate": 0.39928848817315266,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.3460373431550898,
+            "beta_increment": 0.046191493218661006,
+            "effective_sample_size": 6553.600000000188,
+            "unique_parent_count": 6663,
+            "unique_state_count": 1582,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6578857421875,
+            "association_acceptance_rate": 0.8069211306689882,
+            "interval_acceptance_rate": 0.4323107386009168,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.39122431797084267,
+            "beta_increment": 0.045186974815752845,
+            "effective_sample_size": 6553.600000000138,
+            "unique_parent_count": 6576,
+            "unique_state_count": 1791,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5861328125,
+            "association_acceptance_rate": 0.6811743637054323,
+            "interval_acceptance_rate": 0.3991157883316607,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.4377553847387774,
+            "beta_increment": 0.046531066767934726,
+            "effective_sample_size": 6553.600000000077,
+            "unique_parent_count": 6611,
+            "unique_state_count": 1795,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.49229736328125,
+            "association_acceptance_rate": 0.5529316181448883,
+            "interval_acceptance_rate": 0.32042806827418047,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.4889966025203427,
+            "beta_increment": 0.05124121778156532,
+            "effective_sample_size": 6553.600000000064,
+            "unique_parent_count": 6537,
+            "unique_state_count": 1611,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.39658203125,
+            "association_acceptance_rate": 0.4278547604197738,
+            "interval_acceptance_rate": 0.2335803938541441,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.5466573551638849,
+            "beta_increment": 0.0576607526435422,
+            "effective_sample_size": 6553.600000000044,
+            "unique_parent_count": 6586,
+            "unique_state_count": 1357,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3236083984375,
+            "association_acceptance_rate": 0.3271705489493403,
+            "interval_acceptance_rate": 0.16747308905077743,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.6149251504058552,
+            "beta_increment": 0.06826779524197024,
+            "effective_sample_size": 6553.60000000004,
+            "unique_parent_count": 6508,
+            "unique_state_count": 985,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.25631103515625,
+            "association_acceptance_rate": 0.2398728502730459,
+            "interval_acceptance_rate": 0.10817249126986275,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.7044370368140052,
+            "beta_increment": 0.08951188640815,
+            "effective_sample_size": 6553.600000000002,
+            "unique_parent_count": 6339,
+            "unique_state_count": 637,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.203076171875,
+            "association_acceptance_rate": 0.16603079254268474,
+            "interval_acceptance_rate": 0.06713044419781826,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 0.8513295959373834,
+            "beta_increment": 0.14689255912337829,
+            "effective_sample_size": 6553.600000000009,
+            "unique_parent_count": 6275,
+            "unique_state_count": 307,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.165478515625,
+            "association_acceptance_rate": 0.10809927261830168,
+            "interval_acceptance_rate": 0.039135829107778616,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 13,
+            "beta": 1.0,
+            "beta_increment": 0.14867040406261656,
+            "effective_sample_size": 7566.6066600012155,
+            "unique_parent_count": 7297,
+            "unique_state_count": 177,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.149969482421875,
+            "association_acceptance_rate": 0.0836603252780559,
+            "interval_acceptance_rate": 0.031145898220621294,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.12759461545534848,
+        "jensen_shannon": 0.0198245158395461,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9892619251709062,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "early_death",
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "separation_um": 0.0,
+        "detection_probability": 0.8,
+        "expected_clutter_per_frame": 0.15,
+        "corruption_seed": 2
+      },
+      "smc_seed": 1,
+      "runtime_seconds": 128.76005862499915,
+      "support_size": 5347,
+      "detection_cardinalities": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.035126348205795715,
+        "jensen_shannon_divergence": 0.005508104921310765,
+        "exact_map_sample_frequency": 0.1749267578125,
+        "empirical_support_size": 182,
+        "exact_mass_covered_by_empirical_support": 0.9913964656257195,
+        "credible_set_recall_95": 1.0,
+        "max_existence_probability_error": 0.007228797701214318,
+        "max_missed_probability_error": 0.003488278671439915,
+        "max_expected_clutter_error": 0.0029420454309074806,
+        "max_birth_time_probability_error": 0.0014274807096384956,
+        "max_death_time_probability_error": 0.004858934508347013,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.031403907236363764,
+          "total_variation_median": 0.03616757441014901,
+          "total_variation_q95": 0.04122320963406178,
+          "jensen_shannon_q05": 0.0055752238033486895,
+          "jensen_shannon_median": 0.006102462067475203,
+          "jensen_shannon_q95": 0.0066639767582545644,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_q05": 0.9891046742317299,
+          "exact_mass_covered_median": 0.990395065854982,
+          "exact_mass_covered_q95": 0.9914025245122267
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.9918586521028597,
+              0.9918586521028587
+            ],
+            [
+              0.9931422442855731,
+              0.9931422442855734
+            ],
+            [
+              0.6600075304237845,
+              0.6600075304237857
+            ],
+            [
+              0.5695858649433894,
+              0.5695858649433903
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.004948568630046673,
+              0.004948568630046684
+            ],
+            [
+              0.0027309427822778385,
+              0.0027309427822778437
+            ],
+            [
+              0.16069629164106009,
+              0.16069629164105942
+            ],
+            [
+              0.07240488629226956,
+              0.0724048862922695
+            ]
+          ],
+          "expected_clutter": [
+            0.02617983305437277,
+            0.01917739699340748,
+            0.0013775224345475845,
+            0.005638042697758472
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9918586521028615,
+              0.007682132597898626,
+              6.536149127352043e-05,
+              5.63140737572496e-05,
+              0.0003375397342077103
+            ],
+            [
+              0.9918586521028618,
+              0.007682132597898664,
+              6.536149127352045e-05,
+              5.631407375724972e-05,
+              0.0003375397342077103
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.006398540415184733,
+              0.3332000753530625,
+              0.09047797955415318,
+              0.5695858649433885,
+              0.0003375397342077103
+            ],
+            [
+              0.006398540415184742,
+              0.33320007535306095,
+              0.09047797955415299,
+              0.5695858649433895,
+              0.0003375397342077103
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.9932861328125,
+              0.99169921875
+            ],
+            [
+              0.9937744140625,
+              0.995849609375
+            ],
+            [
+              0.6575927734375,
+              0.667236328125
+            ],
+            [
+              0.5679931640625,
+              0.5718994140625
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.0052490234375,
+              0.004638671875
+            ],
+            [
+              0.0035400390625,
+              0.0023193359375
+            ],
+            [
+              0.1641845703125,
+              0.1624755859375
+            ],
+            [
+              0.072509765625,
+              0.072509765625
+            ]
+          ],
+          "expected_clutter": [
+            0.02490234375,
+            0.0162353515625,
+            0.0018310546875,
+            0.005126953125
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9932861328125,
+              0.006591796875,
+              0.0,
+              0.0,
+              0.0001220703125
+            ],
+            [
+              0.99169921875,
+              0.008056640625,
+              0.0,
+              0.0,
+              0.000244140625
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.006103515625,
+              0.336181640625,
+              0.089599609375,
+              0.5679931640625,
+              0.0001220703125
+            ],
+            [
+              0.00390625,
+              0.32861328125,
+              0.0953369140625,
+              0.5718994140625,
+              0.000244140625
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 6.539669429127783e-05,
+        "finite_sample_sliced_wasserstein_mm": 5.864070816957512e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 41.43209101928563,
+        "exact_log_evidence": 41.46827457181677,
+        "error": -0.03618355253114203
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.09224261883223793,
+        "reference_hypothesis_rank": 4,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 13,
+        "mean_mh_acceptance_rate": 0.4458599384014423,
+        "mean_association_acceptance_rate": 0.5445987487598777,
+        "mean_interval_acceptance_rate": 0.22424715287352068,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.11388304256281856,
+            "beta_increment": 0.11388304256281856,
+            "effective_sample_size": 6553.600000000078,
+            "unique_parent_count": 7108,
+            "unique_state_count": 463,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.592333984375,
+            "association_acceptance_rate": 0.9239919082939987,
+            "interval_acceptance_rate": 0.16681198910081743,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.19163098982616855,
+            "beta_increment": 0.07774794726334999,
+            "effective_sample_size": 6553.600000000107,
+            "unique_parent_count": 6918,
+            "unique_state_count": 719,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.63992919921875,
+            "association_acceptance_rate": 0.9595286048663655,
+            "interval_acceptance_rate": 0.24262498986020603,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.25157235167580216,
+            "beta_increment": 0.05994136184963361,
+            "effective_sample_size": 6553.6000000001095,
+            "unique_parent_count": 6823,
+            "unique_state_count": 995,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.68760986328125,
+            "association_acceptance_rate": 0.978162609595382,
+            "interval_acceptance_rate": 0.3304251526119605,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.30360856585456475,
+            "beta_increment": 0.052036214178762585,
+            "effective_sample_size": 6553.600000000119,
+            "unique_parent_count": 6768,
+            "unique_state_count": 1323,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.68843994140625,
+            "association_acceptance_rate": 0.9002120833106748,
+            "interval_acceptance_rate": 0.4085791610284168,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.35001325690795354,
+            "beta_increment": 0.04640469105338879,
+            "effective_sample_size": 6553.60000000014,
+            "unique_parent_count": 6665,
+            "unique_state_count": 1646,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.65472412109375,
+            "association_acceptance_rate": 0.793787303309821,
+            "interval_acceptance_rate": 0.43901711372081037,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.39526660642730627,
+            "beta_increment": 0.045253349519352726,
+            "effective_sample_size": 6553.600000000114,
+            "unique_parent_count": 6563,
+            "unique_state_count": 1815,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5761474609375,
+            "association_acceptance_rate": 0.6670459162941893,
+            "interval_acceptance_rate": 0.3930513840409124,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.4424191532064465,
+            "beta_increment": 0.047152546779140214,
+            "effective_sample_size": 6553.600000000043,
+            "unique_parent_count": 6617,
+            "unique_state_count": 1789,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.485400390625,
+            "association_acceptance_rate": 0.5423733412933164,
+            "interval_acceptance_rate": 0.31370580414077553,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.4949198781410159,
+            "beta_increment": 0.05250072493456942,
+            "effective_sample_size": 6553.600000000005,
+            "unique_parent_count": 6558,
+            "unique_state_count": 1619,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3910888671875,
+            "association_acceptance_rate": 0.41755146262188514,
+            "interval_acceptance_rate": 0.22753627133407736,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.5540383565588296,
+            "beta_increment": 0.0591184784178137,
+            "effective_sample_size": 6553.60000000006,
+            "unique_parent_count": 6533,
+            "unique_state_count": 1304,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.31075439453125,
+            "association_acceptance_rate": 0.31423771069318734,
+            "interval_acceptance_rate": 0.1548122829861111,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.6233525904885986,
+            "beta_increment": 0.06931423392976899,
+            "effective_sample_size": 6553.60000000004,
+            "unique_parent_count": 6540,
+            "unique_state_count": 990,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.24918212890625,
+            "association_acceptance_rate": 0.23046026921406862,
+            "interval_acceptance_rate": 0.10342123056119,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.7162256779522658,
+            "beta_increment": 0.09287308746366718,
+            "effective_sample_size": 6553.6,
+            "unique_parent_count": 6285,
+            "unique_state_count": 600,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.202001953125,
+            "association_acceptance_rate": 0.16293455066043597,
+            "interval_acceptance_rate": 0.06420445266996898,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 0.8721902207233038,
+            "beta_increment": 0.155964542771038,
+            "effective_sample_size": 6553.600000000002,
+            "unique_parent_count": 6316,
+            "unique_state_count": 297,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.1660888671875,
+            "association_acceptance_rate": 0.10552736547906548,
+            "interval_acceptance_rate": 0.03940217391304348,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 13,
+            "beta": 1.0,
+            "beta_increment": 0.12780977927669623,
+            "effective_sample_size": 7727.633605459613,
+            "unique_parent_count": 7463,
+            "unique_state_count": 182,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.15247802734375,
+            "association_acceptance_rate": 0.08397060824601987,
+            "interval_acceptance_rate": 0.03162098138747885,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.12366962890218533,
+        "jensen_shannon": 0.019991930274763692,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9891046742317299,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "early_death",
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "separation_um": 0.0,
+        "detection_probability": 0.8,
+        "expected_clutter_per_frame": 0.15,
+        "corruption_seed": 2
+      },
+      "smc_seed": 2,
+      "runtime_seconds": 127.64545833600096,
+      "support_size": 5347,
+      "detection_cardinalities": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.03238837122311008,
+        "jensen_shannon_divergence": 0.005419089549524161,
+        "exact_map_sample_frequency": 0.1705322265625,
+        "empirical_support_size": 197,
+        "exact_mass_covered_by_empirical_support": 0.9916971367033722,
+        "credible_set_recall_95": 1.0,
+        "max_existence_probability_error": 0.002536827298784461,
+        "max_missed_probability_error": 0.003347658828559419,
+        "max_expected_clutter_error": 0.0018963388206272302,
+        "max_birth_time_probability_error": 0.0007697849153615044,
+        "max_death_time_probability_error": 0.0033197764291531817,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.03111045616521747,
+          "total_variation_median": 0.03629055061771039,
+          "total_variation_q95": 0.04226137189364119,
+          "jensen_shannon_q05": 0.005585199504390949,
+          "jensen_shannon_median": 0.006090537902036093,
+          "jensen_shannon_q95": 0.0067813314192053335,
+          "credible_set_recall_95_q05": 1.0,
+          "credible_set_recall_95_median": 1.0,
+          "credible_set_recall_95_q95": 1.0,
+          "exact_mass_covered_q05": 0.9890931459616734,
+          "exact_mass_covered_median": 0.9904541880286613,
+          "exact_mass_covered_q95": 0.991537412456177
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.9918586521028597,
+              0.9918586521028587
+            ],
+            [
+              0.9931422442855731,
+              0.9931422442855734
+            ],
+            [
+              0.6600075304237845,
+              0.6600075304237857
+            ],
+            [
+              0.5695858649433894,
+              0.5695858649433903
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.004948568630046673,
+              0.004948568630046684
+            ],
+            [
+              0.0027309427822778385,
+              0.0027309427822778437
+            ],
+            [
+              0.16069629164106009,
+              0.16069629164105942
+            ],
+            [
+              0.07240488629226956,
+              0.0724048862922695
+            ]
+          ],
+          "expected_clutter": [
+            0.02617983305437277,
+            0.01917739699340748,
+            0.0013775224345475845,
+            0.005638042697758472
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9918586521028615,
+              0.007682132597898626,
+              6.536149127352043e-05,
+              5.63140737572496e-05,
+              0.0003375397342077103
+            ],
+            [
+              0.9918586521028618,
+              0.007682132597898664,
+              6.536149127352045e-05,
+              5.631407375724972e-05,
+              0.0003375397342077103
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.006398540415184733,
+              0.3332000753530625,
+              0.09047797955415318,
+              0.5695858649433885,
+              0.0003375397342077103
+            ],
+            [
+              0.006398540415184742,
+              0.33320007535306095,
+              0.09047797955415299,
+              0.5695858649433895,
+              0.0003375397342077103
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.9910888671875,
+              0.9913330078125
+            ],
+            [
+              0.9930419921875,
+              0.9927978515625
+            ],
+            [
+              0.657470703125,
+              0.658447265625
+            ],
+            [
+              0.5703125,
+              0.5694580078125
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.0052490234375,
+              0.0052490234375
+            ],
+            [
+              0.0032958984375,
+              0.002197265625
+            ],
+            [
+              0.159912109375,
+              0.1573486328125
+            ],
+            [
+              0.0750732421875,
+              0.0699462890625
+            ]
+          ],
+          "expected_clutter": [
+            0.028076171875,
+            0.0196533203125,
+            0.0013427734375,
+            0.0052490234375
+          ],
+          "birth_time_probabilities": [
+            [
+              0.9910888671875,
+              0.0084228515625,
+              0.0,
+              0.0,
+              0.00048828125
+            ],
+            [
+              0.9913330078125,
+              0.0079345703125,
+              0.0,
+              0.0,
+              0.000732421875
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.0064697265625,
+              0.3355712890625,
+              0.087158203125,
+              0.5703125,
+              0.00048828125
+            ],
+            [
+              0.0064697265625,
+              0.3343505859375,
+              0.0889892578125,
+              0.5694580078125,
+              0.000732421875
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": true
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 6.313956126882648e-05,
+        "finite_sample_sliced_wasserstein_mm": 5.9861702671503714e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 41.447160057724375,
+        "exact_log_evidence": 41.46827457181677,
+        "error": -0.021114514092396064
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.09224261883223793,
+        "reference_hypothesis_rank": 4,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 0,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 13,
+        "mean_mh_acceptance_rate": 0.4493023212139423,
+        "mean_association_acceptance_rate": 0.5498246245298124,
+        "mean_interval_acceptance_rate": 0.2263366830630188,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.10674044075701516,
+            "beta_increment": 0.10674044075701516,
+            "effective_sample_size": 6553.600000000123,
+            "unique_parent_count": 7094,
+            "unique_state_count": 459,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.59066162109375,
+            "association_acceptance_rate": 0.9250917992656059,
+            "interval_acceptance_rate": 0.1686968264686023,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.1844144135568757,
+            "beta_increment": 0.07767397279986055,
+            "effective_sample_size": 6553.600000000105,
+            "unique_parent_count": 6926,
+            "unique_state_count": 708,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.63914794921875,
+            "association_acceptance_rate": 0.95598829965874,
+            "interval_acceptance_rate": 0.2418172936003908,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.24647942266827383,
+            "beta_increment": 0.06206500911139812,
+            "effective_sample_size": 6553.600000000071,
+            "unique_parent_count": 6797,
+            "unique_state_count": 1023,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.69146728515625,
+            "association_acceptance_rate": 0.983356787183373,
+            "interval_acceptance_rate": 0.3315805166291708,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.29849147413757005,
+            "beta_increment": 0.05201205146929622,
+            "effective_sample_size": 6553.600000000084,
+            "unique_parent_count": 6749,
+            "unique_state_count": 1346,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.69033203125,
+            "association_acceptance_rate": 0.90402124430956,
+            "interval_acceptance_rate": 0.4079318576388889,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.3455037664476078,
+            "beta_increment": 0.04701229231003773,
+            "effective_sample_size": 6553.60000000009,
+            "unique_parent_count": 6670,
+            "unique_state_count": 1569,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.65762939453125,
+            "association_acceptance_rate": 0.8029260363045245,
+            "interval_acceptance_rate": 0.43513256288239294,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.39123207821995964,
+            "beta_increment": 0.04572831177235187,
+            "effective_sample_size": 6553.60000000001,
+            "unique_parent_count": 6540,
+            "unique_state_count": 1836,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.58836669921875,
+            "association_acceptance_rate": 0.68231135282121,
+            "interval_acceptance_rate": 0.4017915309446254,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.4391652870643349,
+            "beta_increment": 0.04793320884437524,
+            "effective_sample_size": 6553.600000000007,
+            "unique_parent_count": 6647,
+            "unique_state_count": 1804,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.495556640625,
+            "association_acceptance_rate": 0.5521844660194175,
+            "interval_acceptance_rate": 0.32363805510712235,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.49089886097193647,
+            "beta_increment": 0.05173357390760158,
+            "effective_sample_size": 6553.6000000001,
+            "unique_parent_count": 6567,
+            "unique_state_count": 1619,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.39776611328125,
+            "association_acceptance_rate": 0.42879673691366416,
+            "interval_acceptance_rate": 0.23451686121919585,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.5499431675729336,
+            "beta_increment": 0.05904430660099713,
+            "effective_sample_size": 6553.6000000000095,
+            "unique_parent_count": 6572,
+            "unique_state_count": 1305,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3146728515625,
+            "association_acceptance_rate": 0.3152653370497659,
+            "interval_acceptance_rate": 0.15908161317590597,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.6191818411593585,
+            "beta_increment": 0.06923867358642488,
+            "effective_sample_size": 6553.600000000063,
+            "unique_parent_count": 6512,
+            "unique_state_count": 970,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.25426025390625,
+            "association_acceptance_rate": 0.23770714479760935,
+            "interval_acceptance_rate": 0.10540855293448528,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.7093947150248707,
+            "beta_increment": 0.09021287386551224,
+            "effective_sample_size": 6553.6000000000295,
+            "unique_parent_count": 6358,
+            "unique_state_count": 608,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.2029541015625,
+            "association_acceptance_rate": 0.16612316399407087,
+            "interval_acceptance_rate": 0.0633639610655179,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 0.8561732507407904,
+            "beta_increment": 0.1467785357159197,
+            "effective_sample_size": 6553.600000000023,
+            "unique_parent_count": 6263,
+            "unique_state_count": 331,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.167236328125,
+            "association_acceptance_rate": 0.10974420117060481,
+            "interval_acceptance_rate": 0.03907184001738941,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 13,
+            "beta": 1.0,
+            "beta_increment": 0.14382674925920957,
+            "effective_sample_size": 7570.895976237788,
+            "unique_parent_count": 7315,
+            "unique_state_count": 197,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.15087890625,
+            "association_acceptance_rate": 0.08420354939941564,
+            "interval_acceptance_rate": 0.0303454081355564,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.12678411568092357,
+        "jensen_shannon": 0.020343994257616002,
+        "credible_set_recall_95": 1.0,
+        "exact_mass_covered": 0.9890931459616734,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "turnover_with_misses_and_clutter",
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "separation_um": 0.0,
+        "detection_probability": 0.7,
+        "expected_clutter_per_frame": 0.55,
+        "corruption_seed": 3
+      },
+      "smc_seed": 0,
+      "runtime_seconds": 115.60728262300108,
+      "support_size": 3267,
+      "detection_cardinalities": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.08034053288619857,
+        "jensen_shannon_divergence": 0.016077517737987886,
+        "exact_map_sample_frequency": 0.0252685546875,
+        "empirical_support_size": 570,
+        "exact_mass_covered_by_empirical_support": 0.9769409541571892,
+        "credible_set_recall_95": 0.9867986798679867,
+        "max_existence_probability_error": 0.007426985092123584,
+        "max_missed_probability_error": 0.0056146884663133,
+        "max_expected_clutter_error": 0.0045125429977846965,
+        "max_birth_time_probability_error": 0.007426985092124805,
+        "max_death_time_probability_error": 0.0045052078707179255,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.07642126065613773,
+          "total_variation_median": 0.08170282661105802,
+          "total_variation_q95": 0.08719641268033297,
+          "jensen_shannon_q05": 0.015455975258244633,
+          "jensen_shannon_median": 0.016463908591781363,
+          "jensen_shannon_q95": 0.017499330410081868,
+          "credible_set_recall_95_q05": 0.9570957095709571,
+          "credible_set_recall_95_median": 0.9702970297029703,
+          "credible_set_recall_95_q95": 0.9834983498349835,
+          "exact_mass_covered_q05": 0.9733176102132525,
+          "exact_mass_covered_median": 0.9756311766785729,
+          "exact_mass_covered_q95": 0.9778932768377996
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.6338083664703764,
+              0.6338083664703762
+            ],
+            [
+              0.7859482236575808,
+              0.7859482236575801
+            ],
+            [
+              0.9432758840372012,
+              0.9432758840372004
+            ],
+            [
+              0.7406716557177294,
+              0.7406716557177289
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.16329216796424445,
+              0.16329216796424464
+            ],
+            [
+              0.2982183193461867,
+              0.2982183193461863
+            ],
+            [
+              0.014594879133443945,
+              0.01459487913344393
+            ],
+            [
+              0.25330279491083685,
+              0.25330279491083674
+            ]
+          ],
+          "expected_clutter": [
+            0.05896760298773773,
+            0.024540191377215304,
+            0.1426379901924919,
+            0.025262278386216752
+          ],
+          "birth_time_probabilities": [
+            [
+              0.6338083664703752,
+              0.16655714464279264,
+              0.1692563359258379,
+              0.006490823301248011,
+              0.023887329659744654
+            ],
+            [
+              0.6338083664703749,
+              0.1665571446427926,
+              0.1692563359258378,
+              0.0064908233012480245,
+              0.023887329659744654
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.014417287455589688,
+              0.011928675546218268,
+              0.2090950516207178,
+              0.7406716557177274,
+              0.023887329659744654
+            ],
+            [
+              0.014417287455589674,
+              0.011928675546218261,
+              0.20909505162071793,
+              0.7406716557177273,
+              0.023887329659744654
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.6412353515625,
+              0.62646484375
+            ],
+            [
+              0.7855224609375,
+              0.7850341796875
+            ],
+            [
+              0.94091796875,
+              0.94189453125
+            ],
+            [
+              0.7401123046875,
+              0.7437744140625
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.163330078125,
+              0.16259765625
+            ],
+            [
+              0.3038330078125,
+              0.2957763671875
+            ],
+            [
+              0.01318359375,
+              0.01416015625
+            ],
+            [
+              0.2540283203125,
+              0.25634765625
+            ]
+          ],
+          "expected_clutter": [
+            0.0582275390625,
+            0.029052734375,
+            0.14453125,
+            0.0264892578125
+          ],
+          "birth_time_probabilities": [
+            [
+              0.6412353515625,
+              0.159912109375,
+              0.169677734375,
+              0.0062255859375,
+              0.02294921875
+            ],
+            [
+              0.62646484375,
+              0.1717529296875,
+              0.1705322265625,
+              0.0064697265625,
+              0.0247802734375
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.015625,
+              0.0142822265625,
+              0.20703125,
+              0.7401123046875,
+              0.02294921875
+            ],
+            [
+              0.01318359375,
+              0.013671875,
+              0.20458984375,
+              0.7437744140625,
+              0.0247802734375
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": false
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 7.921417142673952e-05,
+        "finite_sample_sliced_wasserstein_mm": 8.418858744245637e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 31.559629808283592,
+        "exact_log_evidence": 31.558009914061603,
+        "error": 0.0016198942219887158
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.011385342009488729,
+        "reference_hypothesis_rank": 27,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 1,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 12,
+        "mean_mh_acceptance_rate": 0.5370040893554687,
+        "mean_association_acceptance_rate": 0.6601885307766632,
+        "mean_interval_acceptance_rate": 0.3107973490151351,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.1774347903163509,
+            "beta_increment": 0.1774347903163509,
+            "effective_sample_size": 6553.600000000102,
+            "unique_parent_count": 7630,
+            "unique_state_count": 310,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.54256591796875,
+            "association_acceptance_rate": 0.8318219960479658,
+            "interval_acceptance_rate": 0.152799609734945,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.29769046589383963,
+            "beta_increment": 0.12025567557748873,
+            "effective_sample_size": 6553.600000000059,
+            "unique_parent_count": 7207,
+            "unique_state_count": 483,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5779296875,
+            "association_acceptance_rate": 0.8469528151725254,
+            "interval_acceptance_rate": 0.21131334079187927,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.3803342964899576,
+            "beta_increment": 0.08264383059611796,
+            "effective_sample_size": 6553.600000000036,
+            "unique_parent_count": 6937,
+            "unique_state_count": 729,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.62874755859375,
+            "association_acceptance_rate": 0.8811160314053628,
+            "interval_acceptance_rate": 0.29368201177332287,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.44928043662549344,
+            "beta_increment": 0.06894614013553585,
+            "effective_sample_size": 6553.600000000106,
+            "unique_parent_count": 6741,
+            "unique_state_count": 1057,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7023681640625,
+            "association_acceptance_rate": 0.9340131810908302,
+            "interval_acceptance_rate": 0.40240681750115714,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.5062261543061205,
+            "beta_increment": 0.05694571768062706,
+            "effective_sample_size": 6553.6000000000295,
+            "unique_parent_count": 6801,
+            "unique_state_count": 1379,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7452880859375,
+            "association_acceptance_rate": 0.9541025432239503,
+            "interval_acceptance_rate": 0.48230243797078753,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.5589776423269368,
+            "beta_increment": 0.052751488020816306,
+            "effective_sample_size": 6553.600000000047,
+            "unique_parent_count": 6587,
+            "unique_state_count": 1687,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.71954345703125,
+            "association_acceptance_rate": 0.866057632356529,
+            "interval_acceptance_rate": 0.5104644534325036,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.6110342598952181,
+            "beta_increment": 0.05205661756828128,
+            "effective_sample_size": 6553.600000000003,
+            "unique_parent_count": 6662,
+            "unique_state_count": 1819,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.645654296875,
+            "association_acceptance_rate": 0.7388753990123591,
+            "interval_acceptance_rate": 0.4746179186693309,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.6660221689872429,
+            "beta_increment": 0.05498790909202478,
+            "effective_sample_size": 6553.600000000002,
+            "unique_parent_count": 6565,
+            "unique_state_count": 1711,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5458251953125,
+            "association_acceptance_rate": 0.5979165533373225,
+            "interval_acceptance_rate": 0.39236355753075713,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.7278882625280638,
+            "beta_increment": 0.061866093540820954,
+            "effective_sample_size": 6553.600000000049,
+            "unique_parent_count": 6527,
+            "unique_state_count": 1543,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.4444091796875,
+            "association_acceptance_rate": 0.46330002700513095,
+            "interval_acceptance_rate": 0.29882134164684004,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.8005269910066297,
+            "beta_increment": 0.0726387284785659,
+            "effective_sample_size": 6553.600000000023,
+            "unique_parent_count": 6566,
+            "unique_state_count": 1203,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3588623046875,
+            "association_acceptance_rate": 0.35347497690593926,
+            "interval_acceptance_rate": 0.22103207961602084,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.8932544170348574,
+            "beta_increment": 0.0927274260282277,
+            "effective_sample_size": 6553.600000000013,
+            "unique_parent_count": 6377,
+            "unique_state_count": 820,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.28853759765625,
+            "association_acceptance_rate": 0.2596143459003997,
+            "interval_acceptance_rate": 0.16249287787937164,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 1.0,
+            "beta_increment": 0.10674558296514258,
+            "effective_sample_size": 7000.062165251809,
+            "unique_parent_count": 6578,
+            "unique_state_count": 570,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.244317626953125,
+            "association_acceptance_rate": 0.19501686786164288,
+            "interval_acceptance_rate": 0.1272717416347053,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.26158923804099893,
+        "jensen_shannon": 0.05249799123024561,
+        "credible_set_recall_95": 0.9570957095709571,
+        "exact_mass_covered": 0.9733176102132525,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "turnover_with_misses_and_clutter",
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "separation_um": 0.0,
+        "detection_probability": 0.7,
+        "expected_clutter_per_frame": 0.55,
+        "corruption_seed": 3
+      },
+      "smc_seed": 1,
+      "runtime_seconds": 113.93868133700016,
+      "support_size": 3267,
+      "detection_cardinalities": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.08386530967510553,
+        "jensen_shannon_divergence": 0.016037664866301073,
+        "exact_map_sample_frequency": 0.0233154296875,
+        "empirical_support_size": 568,
+        "exact_mass_covered_by_empirical_support": 0.9771667367055344,
+        "credible_set_recall_95": 0.9603960396039604,
+        "max_existence_probability_error": 0.010273210220376416,
+        "max_missed_probability_error": 0.010010311533686311,
+        "max_expected_clutter_error": 0.005555369182508096,
+        "max_birth_time_probability_error": 0.010273210220375195,
+        "max_death_time_probability_error": 0.008371851030227417,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.07610632764050562,
+          "total_variation_median": 0.08146044350850773,
+          "total_variation_q95": 0.08704132424924918,
+          "jensen_shannon_q05": 0.015426579393995676,
+          "jensen_shannon_median": 0.016391003602976753,
+          "jensen_shannon_q95": 0.01751472772056742,
+          "credible_set_recall_95_q05": 0.9537953795379538,
+          "credible_set_recall_95_median": 0.9702970297029703,
+          "credible_set_recall_95_q95": 0.9834983498349835,
+          "exact_mass_covered_q05": 0.9727932250243014,
+          "exact_mass_covered_median": 0.9755218644466057,
+          "exact_mass_covered_q95": 0.9779033938055258
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.6338083664703764,
+              0.6338083664703762
+            ],
+            [
+              0.7859482236575808,
+              0.7859482236575801
+            ],
+            [
+              0.9432758840372012,
+              0.9432758840372004
+            ],
+            [
+              0.7406716557177294,
+              0.7406716557177289
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.16329216796424445,
+              0.16329216796424464
+            ],
+            [
+              0.2982183193461867,
+              0.2982183193461863
+            ],
+            [
+              0.014594879133443945,
+              0.01459487913344393
+            ],
+            [
+              0.25330279491083685,
+              0.25330279491083674
+            ]
+          ],
+          "expected_clutter": [
+            0.05896760298773773,
+            0.024540191377215304,
+            0.1426379901924919,
+            0.025262278386216752
+          ],
+          "birth_time_probabilities": [
+            [
+              0.6338083664703752,
+              0.16655714464279264,
+              0.1692563359258379,
+              0.006490823301248011,
+              0.023887329659744654
+            ],
+            [
+              0.6338083664703749,
+              0.1665571446427926,
+              0.1692563359258378,
+              0.0064908233012480245,
+              0.023887329659744654
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.014417287455589688,
+              0.011928675546218268,
+              0.2090950516207178,
+              0.7406716557177274,
+              0.023887329659744654
+            ],
+            [
+              0.014417287455589674,
+              0.011928675546218261,
+              0.20909505162071793,
+              0.7406716557177273,
+              0.023887329659744654
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.62353515625,
+              0.640869140625
+            ],
+            [
+              0.7821044921875,
+              0.785888671875
+            ],
+            [
+              0.93896484375,
+              0.942626953125
+            ],
+            [
+              0.7322998046875,
+              0.7431640625
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.157470703125,
+              0.16064453125
+            ],
+            [
+              0.3037109375,
+              0.2882080078125
+            ],
+            [
+              0.0128173828125,
+              0.0169677734375
+            ],
+            [
+              0.253662109375,
+              0.25
+            ]
+          ],
+          "expected_clutter": [
+            0.0537109375,
+            0.02392578125,
+            0.148193359375,
+            0.0281982421875
+          ],
+          "birth_time_probabilities": [
+            [
+              0.62353515625,
+              0.172119140625,
+              0.17041015625,
+              0.0069580078125,
+              0.0269775390625
+            ],
+            [
+              0.640869140625,
+              0.1612548828125,
+              0.1690673828125,
+              0.0057373046875,
+              0.0230712890625
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.0135498046875,
+              0.0135498046875,
+              0.213623046875,
+              0.7322998046875,
+              0.0269775390625
+            ],
+            [
+              0.0162353515625,
+              0.0123291015625,
+              0.2052001953125,
+              0.7431640625,
+              0.0230712890625
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": false
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 6.873811140968626e-05,
+        "finite_sample_sliced_wasserstein_mm": 6.162832291740014e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 31.535144062084374,
+        "exact_log_evidence": 31.558009914061603,
+        "error": -0.022865851977229568
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.011385342009488729,
+        "reference_hypothesis_rank": 27,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 1,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 12,
+        "mean_mh_acceptance_rate": 0.534076436360677,
+        "mean_association_acceptance_rate": 0.6554775664561172,
+        "mean_interval_acceptance_rate": 0.3091901944618482,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.18686492145720734,
+            "beta_increment": 0.18686492145720734,
+            "effective_sample_size": 6553.6000000000295,
+            "unique_parent_count": 7659,
+            "unique_state_count": 305,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.54510498046875,
+            "association_acceptance_rate": 0.8342308212691111,
+            "interval_acceptance_rate": 0.1538775066572469,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.3035278413062479,
+            "beta_increment": 0.11666291984904054,
+            "effective_sample_size": 6553.6000000000095,
+            "unique_parent_count": 7163,
+            "unique_state_count": 508,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.58343505859375,
+            "association_acceptance_rate": 0.8557357422725294,
+            "interval_acceptance_rate": 0.22028350376021208,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.3873124071144901,
+            "beta_increment": 0.08378456580824223,
+            "effective_sample_size": 6553.600000000035,
+            "unique_parent_count": 6876,
+            "unique_state_count": 752,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.637939453125,
+            "association_acceptance_rate": 0.8873082665942718,
+            "interval_acceptance_rate": 0.30860550210055565,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.4538221167122428,
+            "beta_increment": 0.06650970959775271,
+            "effective_sample_size": 6553.60000000003,
+            "unique_parent_count": 6774,
+            "unique_state_count": 1056,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7067626953125,
+            "association_acceptance_rate": 0.9403537414965987,
+            "interval_acceptance_rate": 0.41174885475613043,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.5111746950798612,
+            "beta_increment": 0.05735257836761842,
+            "effective_sample_size": 6553.600000000065,
+            "unique_parent_count": 6791,
+            "unique_state_count": 1410,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.74615478515625,
+            "association_acceptance_rate": 0.9464450100178697,
+            "interval_acceptance_rate": 0.4893622795115332,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.5631467614519475,
+            "beta_increment": 0.05197206637208629,
+            "effective_sample_size": 6553.600000000063,
+            "unique_parent_count": 6598,
+            "unique_state_count": 1690,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.713330078125,
+            "association_acceptance_rate": 0.8580815792343767,
+            "interval_acceptance_rate": 0.5056924200221747,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.614767228546597,
+            "beta_increment": 0.051620467094649514,
+            "effective_sample_size": 6553.600000000006,
+            "unique_parent_count": 6627,
+            "unique_state_count": 1821,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.63131103515625,
+            "association_acceptance_rate": 0.7232509177283524,
+            "interval_acceptance_rate": 0.458012985954522,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.6706089356175967,
+            "beta_increment": 0.05584170707099967,
+            "effective_sample_size": 6553.600000000017,
+            "unique_parent_count": 6561,
+            "unique_state_count": 1706,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5328857421875,
+            "association_acceptance_rate": 0.5855391097666378,
+            "interval_acceptance_rate": 0.37565373719764655,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.7329840947132408,
+            "beta_increment": 0.06237515909564406,
+            "effective_sample_size": 6553.600000000021,
+            "unique_parent_count": 6472,
+            "unique_state_count": 1477,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.4334228515625,
+            "association_acceptance_rate": 0.45238866396761135,
+            "interval_acceptance_rate": 0.2870009006304413,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.8070604662472304,
+            "beta_increment": 0.0740763715339896,
+            "effective_sample_size": 6553.600000000026,
+            "unique_parent_count": 6565,
+            "unique_state_count": 1134,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3510009765625,
+            "association_acceptance_rate": 0.33995668651867894,
+            "interval_acceptance_rate": 0.2169110645591316,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.9018772076590686,
+            "beta_increment": 0.09481674141183827,
+            "effective_sample_size": 6553.6000000000195,
+            "unique_parent_count": 6375,
+            "unique_state_count": 814,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.2829833984375,
+            "association_acceptance_rate": 0.24740648446599312,
+            "interval_acceptance_rate": 0.15771857737625514,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 1.0,
+            "beta_increment": 0.09812279234093135,
+            "effective_sample_size": 7175.852168225744,
+            "unique_parent_count": 6726,
+            "unique_state_count": 568,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.244586181640625,
+            "association_acceptance_rate": 0.1950337741413757,
+            "interval_acceptance_rate": 0.12541500101632902,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.26112397274774757,
+        "jensen_shannon": 0.05254418316170226,
+        "credible_set_recall_95": 0.9537953795379538,
+        "exact_mass_covered": 0.9727932250243014,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    },
+    {
+      "regime": {
+        "name": "turnover_with_misses_and_clutter",
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "separation_um": 0.0,
+        "detection_probability": 0.7,
+        "expected_clutter_per_frame": 0.55,
+        "corruption_seed": 3
+      },
+      "smc_seed": 2,
+      "runtime_seconds": 116.52411403599945,
+      "support_size": 3267,
+      "detection_cardinalities": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "association_and_events": {
+        "n_samples": 8192,
+        "invalid_sample_fraction": 0.0,
+        "total_variation_distance": 0.08257113380887027,
+        "jensen_shannon_divergence": 0.016512300003839603,
+        "exact_map_sample_frequency": 0.0255126953125,
+        "empirical_support_size": 574,
+        "exact_mass_covered_by_empirical_support": 0.9761724709368986,
+        "credible_set_recall_95": 0.9603960396039604,
+        "max_existence_probability_error": 0.01301052290522886,
+        "max_missed_probability_error": 0.007331115223336848,
+        "max_expected_clutter_error": 0.007020212932508096,
+        "max_birth_time_probability_error": 0.006658679675837803,
+        "max_death_time_probability_error": 0.013538410995717787,
+        "finite_sample_baseline": {
+          "n_samples": 8192,
+          "n_replicates": 300,
+          "total_variation_q05": 0.07618443191973187,
+          "total_variation_median": 0.08202417798305167,
+          "total_variation_q95": 0.0865387773169625,
+          "jensen_shannon_q05": 0.015420516426920338,
+          "jensen_shannon_median": 0.01648540864376451,
+          "jensen_shannon_q95": 0.017609585679833496,
+          "credible_set_recall_95_q05": 0.9537953795379538,
+          "credible_set_recall_95_median": 0.9702970297029703,
+          "credible_set_recall_95_q95": 0.9836633663366338,
+          "exact_mass_covered_q05": 0.9731058623986211,
+          "exact_mass_covered_median": 0.975550303561298,
+          "exact_mass_covered_q95": 0.9779496463449957
+        },
+        "exact_events": {
+          "existence_probabilities": [
+            [
+              0.6338083664703764,
+              0.6338083664703762
+            ],
+            [
+              0.7859482236575808,
+              0.7859482236575801
+            ],
+            [
+              0.9432758840372012,
+              0.9432758840372004
+            ],
+            [
+              0.7406716557177294,
+              0.7406716557177289
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.16329216796424445,
+              0.16329216796424464
+            ],
+            [
+              0.2982183193461867,
+              0.2982183193461863
+            ],
+            [
+              0.014594879133443945,
+              0.01459487913344393
+            ],
+            [
+              0.25330279491083685,
+              0.25330279491083674
+            ]
+          ],
+          "expected_clutter": [
+            0.05896760298773773,
+            0.024540191377215304,
+            0.1426379901924919,
+            0.025262278386216752
+          ],
+          "birth_time_probabilities": [
+            [
+              0.6338083664703752,
+              0.16655714464279264,
+              0.1692563359258379,
+              0.006490823301248011,
+              0.023887329659744654
+            ],
+            [
+              0.6338083664703749,
+              0.1665571446427926,
+              0.1692563359258378,
+              0.0064908233012480245,
+              0.023887329659744654
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.014417287455589688,
+              0.011928675546218268,
+              0.2090950516207178,
+              0.7406716557177274,
+              0.023887329659744654
+            ],
+            [
+              0.014417287455589674,
+              0.011928675546218261,
+              0.20909505162071793,
+              0.7406716557177273,
+              0.023887329659744654
+            ]
+          ]
+        },
+        "sampled_events": {
+          "existence_probabilities": [
+            [
+              0.6343994140625,
+              0.6339111328125
+            ],
+            [
+              0.7757568359375,
+              0.79052734375
+            ],
+            [
+              0.9383544921875,
+              0.9404296875
+            ],
+            [
+              0.7498779296875,
+              0.7276611328125
+            ]
+          ],
+          "missed_probabilities": [
+            [
+              0.1607666015625,
+              0.1654052734375
+            ],
+            [
+              0.298095703125,
+              0.2919921875
+            ],
+            [
+              0.013427734375,
+              0.0150146484375
+            ],
+            [
+              0.2459716796875,
+              0.2574462890625
+            ]
+          ],
+          "expected_clutter": [
+            0.057861328125,
+            0.0238037109375,
+            0.149658203125,
+            0.02587890625
+          ],
+          "birth_time_probabilities": [
+            [
+              0.6343994140625,
+              0.1602783203125,
+              0.1746826171875,
+              0.007080078125,
+              0.0235595703125
+            ],
+            [
+              0.6339111328125,
+              0.173095703125,
+              0.16259765625,
+              0.007080078125,
+              0.0233154296875
+            ]
+          ],
+          "death_time_probabilities": [
+            [
+              0.0189208984375,
+              0.0120849609375,
+              0.195556640625,
+              0.7498779296875,
+              0.0235595703125
+            ],
+            [
+              0.0164794921875,
+              0.0126953125,
+              0.2198486328125,
+              0.7276611328125,
+              0.0233154296875
+            ]
+          ]
+        },
+        "strict_all_credible_states_observed": false
+      },
+      "continuous": {
+        "masked_path_sliced_wasserstein_mm": 6.019642419893472e-05,
+        "finite_sample_sliced_wasserstein_mm": 5.699490216683809e-05
+      },
+      "normalizing_constant": {
+        "smc_log_evidence": 31.540309178945854,
+        "exact_log_evidence": 31.558009914061603,
+        "error": -0.01770073511574921
+      },
+      "reference": {
+        "truth_mask": [
+          [
+            true,
+            false
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            true,
+            true
+          ],
+          [
+            false,
+            true
+          ]
+        ],
+        "reference_hypothesis_mass": 0.011385342009488729,
+        "reference_hypothesis_rank": 27,
+        "reference_in_95pct_credible_set": 1,
+        "realized_missed_detections": 1,
+        "realized_false_positives": 0
+      },
+      "smc": {
+        "n_tempering_steps": 12,
+        "mean_mh_acceptance_rate": 0.5340723673502604,
+        "mean_association_acceptance_rate": 0.6527144215574822,
+        "mean_interval_acceptance_rate": 0.3123874593679567,
+        "mean_slot_swap_acceptance_rate": 1.0,
+        "stages": [
+          {
+            "step": 1,
+            "beta": 0.20093551567037338,
+            "beta_increment": 0.20093551567037338,
+            "effective_sample_size": 6553.600000000049,
+            "unique_parent_count": 7548,
+            "unique_state_count": 343,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5447509765625,
+            "association_acceptance_rate": 0.8309097333587019,
+            "interval_acceptance_rate": 0.1605521936459909,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 2,
+            "beta": 0.3070409128603083,
+            "beta_increment": 0.10610539718993495,
+            "effective_sample_size": 6553.600000000044,
+            "unique_parent_count": 7213,
+            "unique_state_count": 518,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5848388671875,
+            "association_acceptance_rate": 0.8508275320313134,
+            "interval_acceptance_rate": 0.22468242526453228,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 3,
+            "beta": 0.3921269866620585,
+            "beta_increment": 0.08508607380175015,
+            "effective_sample_size": 6553.6000000000695,
+            "unique_parent_count": 6859,
+            "unique_state_count": 808,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6408935546875,
+            "association_acceptance_rate": 0.8854308235933678,
+            "interval_acceptance_rate": 0.3169733597116453,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 4,
+            "beta": 0.4565772139616635,
+            "beta_increment": 0.06445022729960503,
+            "effective_sample_size": 6553.600000000111,
+            "unique_parent_count": 6746,
+            "unique_state_count": 1084,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7137451171875,
+            "association_acceptance_rate": 0.9441823899371069,
+            "interval_acceptance_rate": 0.41936972394886135,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 5,
+            "beta": 0.5135541760441652,
+            "beta_increment": 0.05697696208250169,
+            "effective_sample_size": 6553.600000000007,
+            "unique_parent_count": 6748,
+            "unique_state_count": 1403,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.747412109375,
+            "association_acceptance_rate": 0.944314789687924,
+            "interval_acceptance_rate": 0.49534329651288717,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 6,
+            "beta": 0.5652483415244702,
+            "beta_increment": 0.05169416548030503,
+            "effective_sample_size": 6553.600000000011,
+            "unique_parent_count": 6581,
+            "unique_state_count": 1659,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.7106201171875,
+            "association_acceptance_rate": 0.8497625830959165,
+            "interval_acceptance_rate": 0.5083479907996211,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 7,
+            "beta": 0.6174827656639236,
+            "beta_increment": 0.05223442413945334,
+            "effective_sample_size": 6553.600000000032,
+            "unique_parent_count": 6571,
+            "unique_state_count": 1799,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.6294189453125,
+            "association_acceptance_rate": 0.71779910568219,
+            "interval_acceptance_rate": 0.46122361051271005,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 8,
+            "beta": 0.6731006132714725,
+            "beta_increment": 0.055617847607548954,
+            "effective_sample_size": 6553.600000000042,
+            "unique_parent_count": 6547,
+            "unique_state_count": 1697,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.5303955078125,
+            "association_acceptance_rate": 0.5804560082910598,
+            "interval_acceptance_rate": 0.37621247737159225,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 9,
+            "beta": 0.7358887365489502,
+            "beta_increment": 0.06278812327747763,
+            "effective_sample_size": 6553.600000000005,
+            "unique_parent_count": 6502,
+            "unique_state_count": 1504,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.42923583984375,
+            "association_acceptance_rate": 0.4456751340518876,
+            "interval_acceptance_rate": 0.285399733601544,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 10,
+            "beta": 0.8096211721563622,
+            "beta_increment": 0.07373243560741205,
+            "effective_sample_size": 6553.600000000022,
+            "unique_parent_count": 6574,
+            "unique_state_count": 1161,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.3503662109375,
+            "association_acceptance_rate": 0.3344072339388689,
+            "interval_acceptance_rate": 0.2206798943959065,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 11,
+            "beta": 0.9046589948426333,
+            "beta_increment": 0.09503782268627115,
+            "effective_sample_size": 6553.600000000014,
+            "unique_parent_count": 6328,
+            "unique_state_count": 806,
+            "mh_sweeps": 10,
+            "mh_acceptance_rate": 0.281982421875,
+            "association_acceptance_rate": 0.25153241703345663,
+            "interval_acceptance_rate": 0.15481398951058453,
+            "slot_swap_acceptance_rate": 1.0
+          },
+          {
+            "step": 12,
+            "beta": 1.0,
+            "beta_increment": 0.09534100515736665,
+            "effective_sample_size": 7216.889900803998,
+            "unique_parent_count": 6758,
+            "unique_state_count": 574,
+            "mh_sweeps": 20,
+            "mh_acceptance_rate": 0.245208740234375,
+            "association_acceptance_rate": 0.1972753079879929,
+            "interval_acceptance_rate": 0.12505081713960484,
+            "slot_swap_acceptance_rate": 1.0
+          }
+        ]
+      },
+      "thresholds": {
+        "total_variation": 0.2596163319508875,
+        "jensen_shannon": 0.05282875703950049,
+        "credible_set_recall_95": 0.9537953795379538,
+        "exact_mass_covered": 0.9731058623986211,
+        "max_existence_probability_error": 0.05,
+        "max_missed_probability_error": 0.05,
+        "max_expected_clutter_error": 0.05,
+        "max_birth_time_probability_error": 0.05,
+        "max_death_time_probability_error": 0.05,
+        "path_sliced_wasserstein_mm": 0.001,
+        "absolute_log_evidence_error": 0.2
+      },
+      "checks": {
+        "total_variation": true,
+        "jensen_shannon": true,
+        "credible_set_recall_95": true,
+        "exact_mass_covered": true,
+        "max_existence_probability_error": true,
+        "max_missed_probability_error": true,
+        "max_expected_clutter_error": true,
+        "max_birth_time_probability_error": true,
+        "max_death_time_probability_error": true,
+        "path_sliced_wasserstein": true,
+        "absolute_log_evidence_error": true
+      },
+      "passed": true
+    }
+  ],
+  "gate_summary": [
+    {
+      "regime": "persistent_near_clean",
+      "n_runs": 3,
+      "support_size": 16877,
+      "detection_cardinalities": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "realized_missed_detections": 0,
+      "realized_false_positives": 0,
+      "all_runs_passed": false,
+      "mean_total_variation": 0.00889165869833874,
+      "se_total_variation": 0.0012572964583579178,
+      "mean_max_existence_probability_error": 0.0019855442167037163,
+      "se_max_existence_probability_error": 0.00040296823459857193,
+      "mean_max_birth_time_probability_error": 0.0003975369060816858,
+      "se_max_birth_time_probability_error": 3.5275734058166394e-05,
+      "mean_max_death_time_probability_error": 0.002212159491472365,
+      "se_max_death_time_probability_error": 0.00035056701163052026,
+      "mean_max_expected_clutter_error": 0.0035736578048315426,
+      "se_max_expected_clutter_error": 0.0007593482729868626,
+      "mean_absolute_log_evidence_error": 0.23869056210336717,
+      "se_absolute_log_evidence_error": 0.12233461384598478,
+      "mean_runtime_seconds": 136.33899807866632,
+      "se_runtime_seconds": 0.37619849022465157
+    },
+    {
+      "regime": "delayed_birth",
+      "n_runs": 3,
+      "support_size": 3529,
+      "detection_cardinalities": [
+        2,
+        0,
+        2,
+        2
+      ],
+      "realized_missed_detections": 1,
+      "realized_false_positives": 1,
+      "all_runs_passed": true,
+      "mean_total_variation": 0.03298546857363313,
+      "se_total_variation": 0.0017867084554771264,
+      "mean_max_existence_probability_error": 0.0035930719954831622,
+      "se_max_existence_probability_error": 0.001211751530020619,
+      "mean_max_birth_time_probability_error": 0.004948391110019647,
+      "se_max_birth_time_probability_error": 0.0015983495557781774,
+      "mean_max_death_time_probability_error": 0.0009145088240322081,
+      "se_max_death_time_probability_error": 0.00019592470408447143,
+      "mean_max_expected_clutter_error": 0.0013098883217590451,
+      "se_max_expected_clutter_error": 0.0003009961560980385,
+      "mean_absolute_log_evidence_error": 0.05392347241841122,
+      "se_absolute_log_evidence_error": 0.007029738748878569,
+      "mean_runtime_seconds": 122.29066496500066,
+      "se_runtime_seconds": 0.5355405979561927
+    },
+    {
+      "regime": "early_death",
+      "n_runs": 3,
+      "support_size": 5347,
+      "detection_cardinalities": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "realized_missed_detections": 0,
+      "realized_false_positives": 0,
+      "all_runs_passed": true,
+      "mean_total_variation": 0.03422483825067711,
+      "se_total_variation": 0.0009182842760496489,
+      "mean_max_existence_probability_error": 0.003571846078761487,
+      "se_max_existence_probability_error": 0.001884988544364783,
+      "mean_max_birth_time_probability_error": 0.000892416595132888,
+      "se_max_birth_time_probability_error": 0.00028030716744790915,
+      "mean_max_death_time_probability_error": 0.0031158454301875673,
+      "se_max_death_time_probability_error": 0.0010701117206056829,
+      "mean_max_expected_clutter_error": 0.00260828597696916,
+      "se_max_expected_clutter_error": 0.0003562045444137136,
+      "mean_absolute_log_evidence_error": 0.020534993145545855,
+      "se_absolute_log_evidence_error": 0.009206554247280407,
+      "mean_runtime_seconds": 128.09801385633364,
+      "se_runtime_seconds": 0.3383773829784346
+    },
+    {
+      "regime": "turnover_with_misses_and_clutter",
+      "n_runs": 3,
+      "support_size": 3267,
+      "detection_cardinalities": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "realized_missed_detections": 1,
+      "realized_false_positives": 0,
+      "all_runs_passed": true,
+      "mean_total_variation": 0.08225899212339145,
+      "se_total_variation": 0.0010294152347756279,
+      "mean_max_existence_probability_error": 0.010236906072576287,
+      "se_max_existence_probability_error": 0.0016119307388920009,
+      "mean_max_birth_time_probability_error": 0.008119624996112601,
+      "se_max_birth_time_probability_error": 0.0010993968485485746,
+      "mean_max_death_time_probability_error": 0.008805156632221043,
+      "se_max_death_time_probability_error": 0.0026166457525437733,
+      "mean_max_expected_clutter_error": 0.005696041704266963,
+      "se_max_expected_clutter_error": 0.0007273109592103445,
+      "mean_absolute_log_evidence_error": 0.014062160438322499,
+      "se_absolute_log_evidence_error": 0.0063973197381606076,
+      "mean_runtime_seconds": 115.35669266533357,
+      "se_runtime_seconds": 0.7567941277579036
+    }
+  ],
+  "gate_components": {
+    "distribution_event_path_checks_passed": true,
+    "finite_sample_support_checks_passed": false,
+    "individual_evidence_checks_passed": false,
+    "pooled_evidence_errors_by_regime": {
+      "persistent_near_clean": 0.11912600540879481,
+      "delayed_birth": 0.05397280788772463,
+      "early_death": -0.02045020977417522,
+      "turnover_with_misses_and_clutter": -0.012926589517725517
+    },
+    "pooled_evidence_checks_passed": true
+  },
+  "gate_passed": false
+}

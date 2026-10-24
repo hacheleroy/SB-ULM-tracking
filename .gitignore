@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+data/
+results/tsbm_calibration/
+results/tsbm_eval/
+results/tsbm_logs/
+results/tsbm_runs/
+
