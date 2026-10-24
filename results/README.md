@@ -19,6 +19,7 @@ versioned with the benchmark.
 | `wp5_scaling_calibration.json/.png` | `python -m sbulm.wp5_scaling_calibration --output-dir results --n-particles 2048 --n-repeats 3 --baseline-replicates 100` |
 | `wp6_paired_scaling.json/.png` | `python -m sbulm.wp6_paired_scaling --output-dir results --n-particles 2048 --n-repeats 3 --baseline-replicates 100` |
 | `wp6_paired_heldout.json` | `python -m sbulm.wp6_paired_scaling --output-dir results --n-particles 2048 --n-repeats 3 --heldout-only --heldout-seed-start 200` |
+| `wp7_convergence_audit.json` | `python -m sbulm.wp7_convergence_audit --bridge-only` followed by `python -m sbulm.wp7_convergence_audit --large-only --large-particles 4096 8192` (checkpointed) |
 
 The external summary records aggregate and per-seed metrics, upstream commit,
 parameters, and indicative runtime. Raw upstream messages and samples are not
@@ -69,3 +70,12 @@ four-slot agreement but misses the frozen 0.10 stability threshold by 0.00010
 on alive-count TV; a second untouched seed triplet passes within-triplet
 checks. Neither result is an exact four-slot calibration claim. See
 `../docs/wp6_paired_moves.md`.
+
+WP7 adds an exactly enumerable, sparse four-slot/four-frame bridge; three
+independent paired-sampler runs pass its inherited finite-draw and marginal
+checks. On the unchanged four-slot/eight-frame case, the original three seeds
+pass at 4,096 particles, but the held-out triplet and combined six runs fail
+the 0.10 stability threshold. At 8,192 particles, all seven metrics pass over
+the combined six independent runs (worst 0.0557). This is stability evidence
+for the frozen synthetic case, not an exact eight-frame posterior oracle or a
+transfer claim. See `../docs/wp7_convergence_audit.md`.

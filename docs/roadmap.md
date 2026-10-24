@@ -169,14 +169,34 @@ passes within-triplet stability, which is encouraging but does not overturn
 the frozen failure or provide a four-slot exact oracle. The calibrated ceiling
 remains three slots/six frames. See `wp6_paired_moves.md`.
 
-## WP7 — Open in-vivo trajectories
+## WP7 — Four-slot convergence audit
+
+- [x] Freeze an exactly enumerable four-slot/four-frame sparse benchmark
+  (282,469 labelled states) and compare three paired-sampler runs with it
+- [x] Increase to 4,096 particles on the unchanged four-slot/eight-frame
+  data with the original and independent held-out seed triplets
+- [x] Compare within-triplet and combined six-run event and count marginals
+- [x] Test the discordant 200/201 pair at 8,192 particles as a diagnostic;
+  their alive-count TV falls from 0.1418 to 0.0267
+- [x] Finish the two original independent triplets at 8,192 particles and
+  assess all seven metrics over the combined six-run set
+
+**Observed boundary:** all three sparse four-slot oracle runs pass the
+inherited checks. The combined six eight-frame runs at 4,096 particles fail
+the 0.10 stability gate (alive-count TV 0.1453, clutter 0.1084,
+assigned-count TV 0.1182); at 8,192 particles, all seven combined six-run
+metrics pass (worst 0.0557). This establishes independent-run stability at
+that count on the frozen synthetic case, not exact calibration of its mode
+weights or transfer to other ULM conditions. See `wp7_convergence_audit.md`.
+
+## WP8 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
 - Use existing tracks as reference outputs, not unquestioned ground truth
 - Create controlled corruptions and held-out prediction tasks
 - Compare with classical ULM tracking pipelines
 
-## WP8 — Image/IQ likelihood
+## WP9 — Image/IQ likelihood
 
 - Select a small PALA or ULMShare raw subset
 - Define the PSF/acoustic observation model and noise assumptions explicitly

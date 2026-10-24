@@ -18,9 +18,12 @@ latent bubbles. WP4 adds births and deaths through explicit exchangeable slots
 with a contiguous existence mask while preserving an exact small-case oracle.
 WP5 replaces interval-product initialization by an exact sequential HMM base
 sampler and calibrates a blocked slot proposal through three slots and six
-frames. A new likelihood-informed paired-slot move improves four-slot
-cross-run agreement, but narrowly misses the frozen stability gate; it is not
-yet a four-slot calibration claim.
+frames. A likelihood-informed paired-slot move improves four-slot cross-run
+agreement. A subsequent exact oracle also passes for a sparse four-slot,
+four-frame case. Six independent four-slot/eight-frame runs fail the
+stability gate at 4,096 particles but pass all seven cross-run checks at
+8,192. This is a reproducible result on one synthetic case, not an exact
+eight-frame calibration claim.
 
 ## Current contents
 
@@ -53,6 +56,8 @@ yet a four-slot calibration claim.
 - A joint two-slot, one-/two-frame multiple-try proposal that scores candidate
   births, misses, clutter, and associations with the exact tempered posterior,
   with a separate exact-oracle and four-slot stability comparison
+- A fixed-sampler convergence audit with a sparse four-slot exact oracle,
+  higher-particle eight-frame replicates, and label-invariant count diagnostics
 - Metrics for identity accuracy, identity switches, posterior mass, entropy,
   and credible-set coverage
 - A tested exporter to the public Smooth-SB notebook format and distributional
@@ -86,6 +91,8 @@ python -m sbulm.wp3_null_calibration --output-dir results --workers 6
 python -m sbulm.wp4_existence_calibration --output-dir results --workers 6
 python -m sbulm.wp5_scaling_calibration --output-dir results
 python -m sbulm.wp6_paired_scaling --output-dir results
+python -m sbulm.wp7_convergence_audit --bridge-only
+python -m sbulm.wp7_convergence_audit --large-only --large-particles 4096
 ```
 
 Public-TSBM experiments use `experiments/run_tsbm_wp2.py` with an external
@@ -130,6 +137,8 @@ The experiment writes:
   exact-oracle and four-slot stability comparison
 - `results/wp6_paired_heldout.json`: an untuned second triplet of four-slot
   independent runs
+- `results/wp7_convergence_audit.json`: exact four-slot bridge and
+  independent eight-frame particle-scaling diagnostics
 
 The NPZ stores hidden identities and latent trajectories under separate keys
 for auditing, but the upstream method receives only the unordered observations
@@ -200,8 +209,20 @@ exact-target runs and reduces four-slot expected-clutter disagreement from
 small margin (alive-count TV 0.10010 versus 0.10), while costing about 1.9
 times as much per four-slot run. Three untouched new seeds pass within their
 triplet, so the result is promising but not a robust four-slot calibration.
-The exact-oracle ceiling remains three slots/six frames. See
+At WP6, the exact-oracle ceiling was three slots/six frames. See
 `docs/wp6_paired_moves.md`.
+
+The WP7 audit extends exact-target checking to one sparse four-slot/four-frame
+case: three independent 2,048-particle runs pass. It does not make the
+four-slot/eight-frame problem calibrated. At 4,096 particles, the original
+three-seed group passes all seven stability checks, but the held-out triplet
+and combined six seeds fail on clutter and label-invariant count histograms.
+At 8,192 particles, all seven metrics pass over both independent triplets
+and their combined six runs (worst disagreement 0.0557). The eight-frame
+result is therefore stable under this fixed test at substantial compute
+cost, but its mode weights have not been checked against an exact oracle
+and may not transfer to other corruption regimes. See
+`docs/wp7_convergence_audit.md`.
 
 ## Data strategy
 
@@ -229,13 +250,16 @@ See `docs/resources.md` for the audited resources and licensing constraints.
 7. Births/deaths and genuinely variable latent cardinality
    — completed for two explicit exchangeable slots on enumerable cases
 8. Scale the discrete representation beyond two slots and four frames
-   — exact three-slot/six-frame gate passed; four-slot/eight-frame stability
-   remains a no-go
+   — exact three-slot/six-frame gate passed; the initial four-slot/eight-frame
+   2,048-particle stability gate failed
 9. Test likelihood-informed collective multi-slot moves — exact three-slot
-   gate passed and four-slot disagreement improved, but strict stability
-   still narrowly fails
-10. Selected in-vivo ULMShare trajectories
-11. Only then: IQ/RF likelihoods and acquisition-level inference
+   gate passed and four-slot disagreement improved, but the 2,048-particle
+   frozen stability gate still failed narrowly
+10. Audit four-slot convergence — sparse four-frame oracle passed;
+    six-run eight-frame stability fails at 4,096 but passes at 8,192
+11. Validate across new synthetic crossing and corruption regimes before
+    selected in-vivo ULMShare trajectories
+12. Only then: IQ/RF likelihoods and acquisition-level inference
 
 ## Scientific checkpoints
 
@@ -250,5 +274,6 @@ Three choices are intentionally not hidden in implementation details:
 The current frozen choice is a finite set of exchangeable labelled slots with
 unordered noisy localizations and a time-varying existence mask. Labels are a
 computational representation, not a claim that bubbles are intrinsically
-ordered; the present calibrated ceiling is three slots over six frames.
+ordered; exact checks now include three slots over six frames and one sparse
+four-slot/four-frame case, but not the four-slot/eight-frame target.
 
