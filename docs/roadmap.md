@@ -189,14 +189,39 @@ metrics pass (worst 0.0557). This establishes independent-run stability at
 that count on the frozen synthetic case, not exact calibration of its mode
 weights or transfer to other ULM conditions. See `wp7_convergence_audit.md`.
 
-## WP8 — Open in-vivo trajectories
+## WP8 — Held-out synthetic generalization
+
+- [x] Freeze two new four-slot/eight-frame observation regimes before inference:
+  a miss-heavy simultaneous crossing and a cluttered staggered crossing
+- [x] Test the unchanged 8,192-particle paired sampler against the inherited
+  seven-metric, 0.10 stability gate, requiring six seeds for a pass
+- [x] Preserve failures and early stops rather than tuning to pass a regime
+
+**Observed boundary:** the miss-heavy simultaneous crossing passes over six
+independent seeds (worst 0.0497), while the cluttered staggered crossing
+fails after two seeds (clutter difference 0.2013, alive-count TV 0.1511),
+triggering the predeclared early stop. The unchanged sampler's stability
+does not transfer across both cases. These are computational stability
+checks conditional on simulator-informed prior parameters, not exact
+eight-frame posterior calibration. See `wp8_generalization.md`.
+
+## WP9 — Diagnose the difficult synthetic regime
+
+- Predeclare one-factor ablations of clutter, detection rate, crossing
+  offset and existence schedule to localize the source of disagreement
+- Compare distinct independent runs on label-invariant posterior summaries
+  and inspect divergent modes, not just final-state uniqueness
+- Test any sampler modification first on the existing small exact oracles,
+  then on untouched synthetic conditions with a frozen budget and criterion
+
+## WP10 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
 - Use existing tracks as reference outputs, not unquestioned ground truth
 - Create controlled corruptions and held-out prediction tasks
 - Compare with classical ULM tracking pipelines
 
-## WP9 — Image/IQ likelihood
+## WP11 — Image/IQ likelihood
 
 - Select a small PALA or ULMShare raw subset
 - Define the PSF/acoustic observation model and noise assumptions explicitly

@@ -224,6 +224,18 @@ cost, but its mode weights have not been checked against an exact oracle
 and may not transfer to other corruption regimes. See
 `docs/wp7_convergence_audit.md`.
 
+WP8 holds the 8,192-particle paired sampler and seven-metric, 0.10
+independent-run gate fixed while changing the synthetic crossing and
+corruption conditions. The miss-heavy simultaneous-crossing case passes
+over six seeds (worst pairwise difference 0.0497). The separate cluttered,
+staggered-crossing case fails after two seeds (expected-clutter difference
+0.2013, alive-count TV 0.1511), triggering the predeclared early stop.
+Stability therefore does not generalize across both held-out regimes under
+this sampler and budget. The comparison is conditional on simulator-informed
+prior calibration and cannot establish exact posterior mode weights or
+prospective in-vivo performance. See
+`docs/wp8_generalization.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.
@@ -257,9 +269,12 @@ See `docs/resources.md` for the audited resources and licensing constraints.
    frozen stability gate still failed narrowly
 10. Audit four-slot convergence — sparse four-frame oracle passed;
     six-run eight-frame stability fails at 4,096 but passes at 8,192
-11. Validate across new synthetic crossing and corruption regimes before
-    selected in-vivo ULMShare trajectories
-12. Only then: IQ/RF likelihoods and acquisition-level inference
+11. Validate across new synthetic crossing and corruption regimes — one
+    six-seed stability pass and one early-stop failure at two seeds; diagnose
+    the difficult case with a predeclared ablation before in-vivo claims
+12. Selected in-vivo ULMShare trajectories, with reference tracks treated
+    as imperfect and no inherited posterior-calibration claim
+13. Only then: IQ/RF likelihoods and acquisition-level inference
 
 ## Scientific checkpoints
 

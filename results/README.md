@@ -20,6 +20,7 @@ versioned with the benchmark.
 | `wp6_paired_scaling.json/.png` | `python -m sbulm.wp6_paired_scaling --output-dir results --n-particles 2048 --n-repeats 3 --baseline-replicates 100` |
 | `wp6_paired_heldout.json` | `python -m sbulm.wp6_paired_scaling --output-dir results --n-particles 2048 --n-repeats 3 --heldout-only --heldout-seed-start 200` |
 | `wp7_convergence_audit.json` | `python -m sbulm.wp7_convergence_audit --bridge-only` followed by `python -m sbulm.wp7_convergence_audit --large-only --large-particles 4096 8192` (checkpointed) |
+| `wp8_generalization.json` | `python -m sbulm.wp8_generalization --output results/wp8_generalization.json --n-particles 8192` (checkpointed) |
 
 The external summary records aggregate and per-seed metrics, upstream commit,
 parameters, and indicative runtime. Raw upstream messages and samples are not
@@ -79,3 +80,12 @@ the 0.10 stability threshold. At 8,192 particles, all seven metrics pass over
 the combined six independent runs (worst 0.0557). This is stability evidence
 for the frozen synthetic case, not an exact eight-frame posterior oracle or a
 transfer claim. See `../docs/wp7_convergence_audit.md`.
+
+WP8 tests transfer to two new frozen synthetic four-slot/eight-frame cases
+without changing the paired sampler, particle count or seven-metric gate.
+The miss-heavy case passes all six independent seeds (worst 0.0497); the
+cluttered staggered case fails after seeds 100 and 200 (worst 0.2013), so
+the remaining four seeds are intentionally not run. The JSON records every
+completed run, observed-data hash and early-stop status. This does not
+calibrate the eight-frame posterior or identify which simultaneous change
+caused the harder case to fail. See `../docs/wp8_generalization.md`.
