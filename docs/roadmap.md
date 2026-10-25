@@ -380,6 +380,23 @@ current wall times are not a controlled speed comparison. The status is
 `failed_early_before_new_holdout`, not a larger-case stability pass. See
 `wp11g_exposed_wp8_high_particle.md`.
 
+## WP11h — Passive joint-mode diagnosis of WP11g
+
+- [x] Reproduce both exposed WP11g seeds with an RNG-free observer and the
+  original 1,800-process-CPU-second cap
+- [x] Preserve full synthetic associations, label-invariant count signatures,
+  stage joint distributions, and local/PG mode transitions
+- [x] Decompose the remaining frame-six clutter and alive-count disagreements
+  without changing the original stability verdict or opening a holdout
+
+**Observed mechanism:** 0.0783 of the 0.1335 clutter gap comes from different
+weights on low- and high-alive hypotheses; 0.0553 persists within those
+bands, with differing detection-subset assignments. The discrepancy grows
+mostly after beta about 0.75, despite appreciable PG mode transitions.
+The next method test is a fixed-budget, beta-dependent allocation of the
+existing PG update, first on the exact oracle and new development data. See
+`wp11h_joint_mode_diagnostic.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
