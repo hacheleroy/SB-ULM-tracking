@@ -121,3 +121,13 @@ large runs, observed-data hashes, edge and per-detection clutter marginals,
 count-signature histograms, tracklet acceptance versus actual state-change
 rates, and runtimes. These two-seed comparisons are diagnostic, not exact
 eight-frame posterior calibration. See `../docs/wp11_tracklet_validation.md`.
+
+`wp11b_conditional_validation.json` records the GP-predictive non-self
+tracklet proposal, its three passed exact-oracle runs, and a frozen two-arm
+comparison on a previously unused eight-frame synthetic realization. Both
+two-seed arms fail the inherited 0.10 diagnostic gate: worst 0.1827 for the
+new mixture and 0.2484 for the paired control. The artifact includes the
+full seven-metric vector, per-detection clutter, association edges,
+count-signature histograms, actual tracklet state-change rates, tempering
+stages, and run times. Neither pair establishes exact eight-frame posterior
+mass calibration. See `../docs/wp11b_conditional_validation.md`.

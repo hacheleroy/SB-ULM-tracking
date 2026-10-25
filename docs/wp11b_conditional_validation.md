@@ -71,6 +71,48 @@ per selected move, at 137, 170 and 192 seconds per run. The sparse oracle
 therefore supports correctness and meaningful local mutation, but does not
 establish eight-frame mode-weight calibration or transfer.
 
+## Reserved eight-frame comparison
+
+Both arms completed the predeclared seeds 310 and 410 on the same held-out
+observation. Neither passes the inherited inclusive 0.10 seven-metric
+two-seed gate. The GP-predictive non-self mixture has a worst discrepancy of
+0.1827 (alive-count total variation); the paired-slot control has a worst
+discrepancy of 0.2484 (maximum clutter marginal). The new mixture improves
+six of seven gated discrepancies relative to the control, but its
+assigned-count total variation is slightly worse.
+
+| Cross-seed diagnostic | GP-predictive non-self | Paired control |
+| --- | ---: | ---: |
+| Maximum existence-marginal difference | 0.0851 | 0.1206 |
+| Maximum missed-marginal difference | 0.0570 | 0.1351 |
+| Maximum clutter-marginal difference | 0.1653 | 0.2484 |
+| Maximum birth-marginal difference | 0.0685 | 0.0691 |
+| Maximum death-marginal difference | 0.0631 | 0.0916 |
+| Maximum alive-count TV | 0.1827 | 0.2136 |
+| Maximum assigned-count TV | 0.1136 | 0.0975 |
+| Maximum per-detection clutter difference (ungated) | 0.1174 | 0.2406 |
+| Maximum association-edge difference (ungated) | 0.1744 | 0.2377 |
+| Count-signature histogram TV (ungated) | 0.6831 | 0.7670 |
+
+The new move changes the selected state in about 0.400 and 0.411 of its
+applications across the two runs, versus approximately 0.01 for WP11's
+earlier guided tracklet move on different observations. Final unique-state
+fractions are 0.983 and 0.980 for the new mixture, versus 0.958 and 0.965
+for the paired control. These are useful within-run diagnostics, but the
+remaining between-run count, clutter, and edge disagreements show that
+frequent local mutations do not guarantee adequate global mode mixing.
+
+Both arms take 21 and 20 tempering stages for seeds 310 and 410,
+respectively. Recorded elapsed times are 3,119 and 1,493 seconds for the
+new mixture and 3,112 and 2,281 seconds for the paired control. The shared
+host's load varied markedly during these runs, so these wall-clock times
+should not be interpreted as a controlled speed comparison. The large-case
+pair is diagnostic only: it has no exact posterior oracle, uses just two
+seeds on one realization, and establishes neither calibrated mode weights
+nor generalization to in-vivo ULM. A subsequent proposal should target
+global count/existence and association-clutter alternatives, then pass the
+small exact oracles before another untouched large-case validation.
+
 ```bash
 python -m sbulm.wp11b_conditional_validation --stage oracle
 python -m sbulm.wp11b_conditional_validation --stage reserved

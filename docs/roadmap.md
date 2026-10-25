@@ -255,6 +255,28 @@ against 432 seconds for the earlier paired mixture. This is a correct but
 inefficient proposal under the tested protocol, not a posterior-calibration
 claim. See `wp11_tracklet_validation.md`.
 
+## WP11b — GP-predictive non-self tracklets
+
+- [x] Condition the auxiliary localization proposal only on fixed detections
+  outside a selected three-frame window, and exclude the current path with
+  an exact non-self Hastings correction
+- [x] Check finite-state detailed balance and three inherited small exact
+  oracles before the reserved eight-frame inference
+- [x] Compare two seeds against the paired-slot control on one previously
+  unused synthetic realization with the same model and computational budget
+
+**Observed boundary:** all three small exact-oracle runs pass, and accepted
+tracklet state changes rise to about 0.40 per selected move. The reserved
+two-seed pair nevertheless fails the inherited 0.10 gate, with worst
+discrepancy 0.1827 (alive-count TV). The paired control also fails, at
+0.2484 (clutter marginal). Six of seven gated discrepancies and the ungated
+edge/clutter diagnostics improve relative to the control, but assigned-count
+TV worsens slightly. This is a relative gain on one held-out synthetic
+realization, not calibrated posterior mass or generalization. The next
+methodological boundary is global count/existence and association-clutter
+mode mixing, checked against exact small oracles before a new held-out case.
+See `wp11b_conditional_validation.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`

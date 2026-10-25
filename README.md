@@ -267,6 +267,17 @@ while hard-case runtime rises to 904 seconds/run on average. This validates
 the transition rule, not practical eight-frame mixing or exact posterior
 mass calibration. See `docs/wp11_tracklet_validation.md`.
 
+WP11b replaces the weakly mutating guided tracklet with a GP-predictive,
+non-self three-frame proposal and an exact Hastings correction. All three
+inherited four-slot exact-oracle runs pass, with roughly 0.40 accepted
+tracklet state changes per selected move. On a previously unused eight-frame
+realization, however, the two-seed diagnostic still fails the 0.10 gate:
+worst discrepancy 0.1827 versus 0.2484 for the matched paired-slot control.
+Six of seven gated discrepancies improve, but count, clutter and edge
+summaries remain inconsistent across runs. This is evidence of better local
+mutation and relative two-seed mixing on one synthetic case, not calibrated
+eight-frame posterior masses. See `docs/wp11b_conditional_validation.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.
