@@ -349,7 +349,7 @@ as `stopped_before_holdout`. See `wp11e_selective_pg_development.md`.
 - [x] Pass a frozen four-versus-eight internal-path exact-oracle screen
 - [x] Freeze a new eight-frame development observation before inference
 - [x] Pass its two-seed same-start count-movement and median-CPU-cost gate
-- [ ] Test independent high-particle stability on an already exposed hard
+- [x] Test independent high-particle stability on an already exposed hard
   observation before contemplating a truly untouched holdout
 
 **Observed boundary:** median eight-path sparse/local CPU ratios are 2.262
@@ -361,6 +361,24 @@ and 1.868× median CPU cost. Assigned-count and clutter cross-run
 discrepancies improve but alive-count TV worsens to 0.223 from 0.208;
 no eight-frame posterior-calibration or stability claim follows.
 See `wp11f_cost_path_count_development.md`.
+
+## WP11g — Frozen 8,192-particle exposed-case diagnostic
+
+- [x] Reuse and verify the original failed WP8 two-seed control checkpoint
+- [x] Run independent seeds 100 and 200 with the frozen 10% four-path PG
+  mixture and a 1,800-process-CPU-second cap per seed
+- [x] Apply the unchanged seven label-free metrics and 0.10 limit; stop on
+  the first failed pair without opening a new observation
+- [ ] Resolve the remaining clutter and alive-count mode disagreements
+  before a new holdout or eight-frame calibration claim
+
+**Observed boundary:** all seven seed-pair discrepancies decrease versus
+the archived control, but the candidate still fails on expected clutter
+(0.1335) and alive-count histogram TV (0.1171). Each candidate seed
+costs about 1,460 process CPU seconds at 8,192 particles; archived and
+current wall times are not a controlled speed comparison. The status is
+`failed_early_before_new_holdout`, not a larger-case stability pass. See
+`wp11g_exposed_wp8_high_particle.md`.
 
 ## WP12 — Open in-vivo trajectories
 
