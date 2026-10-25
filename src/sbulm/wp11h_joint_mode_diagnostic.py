@@ -8,11 +8,13 @@ This is a post-hoc diagnosis, not another stability or holdout test.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import os
 import resource
 import time
+import zlib
 from pathlib import Path
 from typing import Any
 
@@ -50,7 +52,7 @@ def _joint(states: NDArray[np.int64], cardinality: int) -> NDArray[np.int64]:
     ).reshape(states.shape[1] * states.shape[2] + 1, cardinality + 1)
 
 
-def _empty_move() -> dict[str, Any]:
+def _empty_move(n_frames: int) -> dict[str, Any]:
     return {
         "selected": 0,
         "accepted": 0,
@@ -59,6 +61,8 @@ def _empty_move() -> dict[str, Any]:
         "alive_total_changed": 0,
         "frame_six_clutter_changed": 0,
         "both_changed": 0,
+        "per_frame_alive_changes": [0] * n_frames,
+        "per_frame_assigned_changes": [0] * n_frames,
         "alive_band_transitions": [[0] * 3 for _ in range(3)],
     }
 
@@ -66,8 +70,9 @@ def _empty_move() -> dict[str, Any]:
 class JointModeObserver:
     """Compact label-invariant stage and pair-update statistics."""
 
-    def __init__(self, cardinality: int) -> None:
+    def __init__(self, cardinality: int, n_frames: int) -> None:
         self.cardinality = cardinality
+        self.n_frames = n_frames
         self.stages: list[dict[str, Any]] = []
         self._active: dict[str, Any] | None = None
 
@@ -75,7 +80,7 @@ class JointModeObserver:
         self._active = {
             "step": step,
             "beta": float(beta),
-            "moves": {"local": _empty_move(), "pg": _empty_move()},
+            "moves": {"local": _empty_move(self.n_frames), "pg": _empty_move(self.n_frames)},
         }
 
     def record_resampling(
@@ -123,6 +128,13 @@ class JointModeObserver:
             stats["both_changed"] += int(
                 np.count_nonzero(changed & alive_changed & clutter_changed)
             )
+            for time_index in range(self.n_frames):
+                stats["per_frame_alive_changes"][time_index] += int(np.count_nonzero(
+                    changed & (before_alive[:, time_index] != after_alive[:, time_index])
+                ))
+                stats["per_frame_assigned_changes"][time_index] += int(np.count_nonzero(
+                    changed & (before_assigned[:, time_index] != after_assigned[:, time_index])
+                ))
             transitions = np.bincount(
                 3 * before_band[changed] + after_band[changed], minlength=9
             ).reshape(3, 3)
@@ -156,6 +168,7 @@ def _protocol() -> dict[str, Any]:
         "thread_env": {name: "1" for name in THREAD_ENV},
         "frame_index_zero_based": FRAME_INDEX,
         "alive_bands": ["0..20", "21", "22..32"],
+        "final_count_signatures": "all 8192 per-particle alive/assigned vectors, zlib+base64 uint8",
         "reproduction_check": "all saved WP11g summary fields except measured wall runtime equal exactly",
         "holdout": "closed",
     }
@@ -170,6 +183,30 @@ def _reference(path: Path) -> dict[str, Any]:
     if set(result["candidate_runs"]) != {str(seed) for seed in SEEDS}:
         raise ValueError("WP11g candidate seeds differ")
     return result
+
+
+def _encode_signatures(associations: NDArray[np.int64]) -> dict[str, Any]:
+    alive = np.count_nonzero(associations != ABSENT, axis=2)
+    assigned = np.count_nonzero(associations >= 0, axis=2)
+    signatures = np.concatenate((alive, assigned), axis=1).astype(np.uint8)
+    raw = signatures.tobytes()
+    return {
+        "shape": list(signatures.shape),
+        "encoding": "zlib+base64:uint8:C-order",
+        "sha256_uncompressed": hashlib.sha256(raw).hexdigest(),
+        "data": base64.b64encode(zlib.compress(raw, level=9)).decode("ascii"),
+    }
+
+
+def _decode_signatures(record: dict[str, Any]) -> NDArray[np.uint8]:
+    if record["encoding"] != "zlib+base64:uint8:C-order":
+        raise ValueError("unknown count-signature encoding")
+    raw = zlib.decompress(base64.b64decode(record["data"], validate=True))
+    if hashlib.sha256(raw).hexdigest() != record["sha256_uncompressed"]:
+        raise ValueError("count-signature checksum differs")
+    if len(raw) != int(np.prod(record["shape"])):
+        raise ValueError("count-signature shape differs")
+    return np.frombuffer(raw, dtype=np.uint8).reshape(record["shape"])
 
 
 def _diagnosis(runs: dict[str, Any]) -> dict[str, Any]:
@@ -205,7 +242,32 @@ def _diagnosis(runs: dict[str, Any]) -> dict[str, Any]:
                 if sub.sum() else None
             )
             groups[name].append({"mass": mass, "conditional_frame_six_clutter": conditional_clutter})
-    return {"stage_differences": stage_differences, "final_alive_groups": groups}
+    signature_a, signature_b = (
+        _decode_signatures(runs[str(seed)]["final_count_signatures"]) for seed in SEEDS
+    )
+    n_frames = signature_a.shape[1] // 2
+    comparisons = {}
+    for name, view in (("alive_per_frame", slice(None, n_frames)),
+                       ("assigned_per_frame", slice(n_frames, None)),
+                       ("complete_count_signature", slice(None))):
+        x, y = signature_a[:, view], signature_b[:, view]
+        patterns, inverse = np.unique(np.concatenate((x, y)), axis=0, return_inverse=True)
+        p = np.bincount(inverse[:len(x)], minlength=len(patterns)) / len(x)
+        q = np.bincount(inverse[len(x):], minlength=len(patterns)) / len(y)
+        order = np.argsort(np.abs(p - q))[::-1][:10]
+        comparisons[name] = {
+            "descriptive_tv": float(np.abs(p - q).sum() / 2),
+            "distinct_patterns": len(patterns),
+            "largest_mass_differences": [
+                {"pattern": patterns[i].tolist(), "seed_100_mass": float(p[i]),
+                 "seed_200_mass": float(q[i])} for i in order
+            ],
+        }
+    return {
+        "stage_differences": stage_differences,
+        "final_alive_groups": groups,
+        "signature_comparisons": comparisons,
+    }
 
 
 def run_seed(*, output: Path, control_path: Path, reference_path: Path, seed: int) -> dict:
@@ -239,7 +301,9 @@ def run_seed(*, output: Path, control_path: Path, reference_path: Path, seed: in
     if hard != resource.RLIM_INFINITY and hard < CPU_LIMIT_SECONDS + 5:
         raise RuntimeError("system CPU hard limit is below the frozen budget")
     resource.setrlimit(resource.RLIMIT_CPU, (CPU_LIMIT_SECONDS, CPU_LIMIT_SECONDS + 5))
-    observer = JointModeObserver(case.model.sequence.cardinalities[FRAME_INDEX])
+    observer = JointModeObserver(
+        case.model.sequence.cardinalities[FRAME_INDEX], case.model.sequence.n_frames
+    )
     started_cpu, started_wall = time.process_time(), time.perf_counter()
     sampled = sample_slot_existence_posterior(
         case.model.sequence, n_slots=case.model.n_slots,
@@ -265,6 +329,7 @@ def run_seed(*, output: Path, control_path: Path, reference_path: Path, seed: in
         "reproduced_wp11g_summary": True,
         "cpu_seconds": cpu_seconds, "wall_seconds": wall_seconds,
         "stages": observer.stages,
+        "final_count_signatures": _encode_signatures(sampled.associations),
     }
     if len(result["runs"]) == len(SEEDS):
         result["diagnosis"] = _diagnosis(result["runs"])
