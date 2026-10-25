@@ -1,5 +1,6 @@
 """Read-only diagnostic must preserve the frozen sampler's random trajectory."""
 
+import json
 from dataclasses import replace
 from pathlib import Path
 
@@ -89,3 +90,22 @@ def test_frozen_reference_and_read_only_observer() -> None:
     diagnosis = _diagnosis({"100": record, "200": record})
     assert all(stage["joint_tv"] == 0 for stage in diagnosis["stage_differences"])
     assert diagnosis["signature_comparisons"]["complete_count_signature"]["descriptive_tv"] == 0
+
+
+def test_compact_joint_summary_reloads_without_particle_records() -> None:
+    result = json.loads((ROOT / "results/wp11h_joint_mode_summary.json").read_text())
+    reference = _reference(ROOT / "results/wp11g_exposed_wp8_high_particle.json")
+    assert result["protocol"] == _protocol()
+    assert result["status"] == "diagnostic_complete_no_holdout"
+    assert set(result["runs"]) == {"100", "200"}
+    assert len(result["full_private_artifact_sha256"]) == 64
+    assert "final_associations" not in result["runs"]["100"]
+    assert "final_count_signatures" not in result["runs"]["100"]
+    for seed, run in result["runs"].items():
+        assert run["reproduced_wp11g_summary"] is True
+        assert run["cpu_seconds"] < result["protocol"]["maximum_process_cpu_seconds_per_seed"]
+        expected_clutter = reference["candidate_runs"][seed]["summary"]["event_marginals"]["clutter"][5]
+        assert run["stages"][-1]["mean_frame_six_clutter"] == expected_clutter
+    masks = result["diagnosis"]["frame_six_clutter_masks"]
+    assert masks["descriptive_tv"] > 0.14
+    assert result["diagnosis"]["stage_differences"][-1]["alive_total_tv"] > 0.11
