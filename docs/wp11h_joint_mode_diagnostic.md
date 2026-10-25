@@ -18,9 +18,12 @@ the new diagnostic is saved.
 At each annealing stage the observer records a label-invariant table of total
 alive slot-frames by sixth-frame clutter count, plus the weighted-to-resampled
 joint-table difference. Local and PG pair proposals have separate accepted
-state/count-change tallies, frame-six clutter changes, and transitions among
-total-alive bands (0–20, 21, and 22–32). This distinguishes a marginal shift
-from a coupled mode shift and shows when the seed populations diverge.
+state/count-change tallies, per-frame alive and assigned changes, frame-six
+clutter changes, and transitions among total-alive bands (0–20, 21, and
+22–32). Each run also keeps the full per-particle label-invariant vectors of
+alive and assigned counts at all eight frames, compressed with zlib and
+checksummed. These records distinguish a marginal shift from coupled mode
+shifts and show when the seed populations diverge.
 
 These are **post-hoc development diagnostics**, not a revised WP11g gate or
 a posterior-calibration measurement. In particular, pair-proposal activity
