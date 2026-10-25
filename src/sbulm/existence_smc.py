@@ -60,6 +60,8 @@ class BirthDeathSMCConfig:
     paired_slot_scope: str = "local"
     paired_slot_path_particles: int = 8
     paired_slot_pg_fraction: float = 1.0
+    paired_slot_pg_beta_switch: float | None = None
+    paired_slot_pg_early_fraction: float | None = None
     tracklet_move_probability: float = 0.0
     tracklet_proposal_kind: str = "displacement"
     max_tempering_steps: int = 128
@@ -100,6 +102,19 @@ class BirthDeathSMCConfig:
             raise ValueError("paired_slot_pg_fraction must lie in [0, 1]")
         if self.paired_slot_scope != "conditional_smc" and self.paired_slot_pg_fraction != 1:
             raise ValueError("paired_slot_pg_fraction requires conditional_smc scope")
+        if (self.paired_slot_pg_beta_switch is None) != (self.paired_slot_pg_early_fraction is None):
+            raise ValueError("PG beta switch and early fraction must be set together")
+        if self.paired_slot_pg_beta_switch is not None:
+            if self.paired_slot_scope != "conditional_smc":
+                raise ValueError("PG beta schedule requires conditional_smc scope")
+            if not np.isfinite(self.paired_slot_pg_beta_switch) or not (
+                0 < self.paired_slot_pg_beta_switch <= 1
+            ):
+                raise ValueError("PG beta switch must lie in (0, 1]")
+            if not np.isfinite(self.paired_slot_pg_early_fraction) or not (
+                0 <= self.paired_slot_pg_early_fraction <= 1
+            ):
+                raise ValueError("PG early fraction must lie in [0, 1]")
         if self.tracklet_proposal_kind not in ("displacement", "conditional_gp_nonself"):
             raise ValueError("unknown tracklet_proposal_kind")
 
@@ -418,6 +433,16 @@ def _propose_birth_death_moves(
     return proposed, log_hastings, move_types
 
 
+def _paired_pg_fraction(config: BirthDeathSMCConfig, beta: float) -> float:
+    """Fixed-in-advance, state-independent PG selection at this temperature."""
+
+    if (config.paired_slot_pg_beta_switch is not None
+            and beta < config.paired_slot_pg_beta_switch):
+        assert config.paired_slot_pg_early_fraction is not None
+        return config.paired_slot_pg_early_fraction
+    return config.paired_slot_pg_fraction
+
+
 def _metropolis_birth_death_rejuvenation(
     associations: IntArray,
     log_marginal_densities: FloatArray,
@@ -524,7 +549,7 @@ def _metropolis_birth_death_rejuvenation(
                 )
                 pair_existence = model.log_existence_prior(pair_proposed)
             else:
-                fraction = config.paired_slot_pg_fraction
+                fraction = _paired_pg_fraction(config, beta)
                 if fraction == 1:
                     pg_mask[:] = True
                 elif fraction > 0:
