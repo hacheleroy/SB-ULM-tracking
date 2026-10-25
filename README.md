@@ -308,6 +308,14 @@ but remains 15.7--18.9× more expensive per pair-update arm, exceeding its
 frozen 10× budget. It therefore stops before an 8,192-particle comparison
 or a fresh holdout. See `docs/wp11d_wp8_development.md`.
 
+WP11e tries a sparse, opt-in 10% conditional-PG fraction within the paired
+move and freezes a new synthetic eight-frame *development* case. The
+small oracle remains valid and both 512-particle seeds make more actual
+count changes, but one pair-update runtime ratio exceeds the predeclared
+3× limit (4.19×), while between-seed count agreement changes little.
+The run is stopped before a high-particle or held-out claim. See
+`docs/wp11e_selective_pg_development.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.

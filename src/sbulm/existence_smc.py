@@ -42,6 +42,7 @@ class BirthDeathSMCConfig:
     paired_slot_candidates: int = 2
     paired_slot_scope: str = "local"
     paired_slot_path_particles: int = 8
+    paired_slot_pg_fraction: float = 1.0
     tracklet_move_probability: float = 0.0
     tracklet_proposal_kind: str = "displacement"
     max_tempering_steps: int = 128
@@ -78,6 +79,10 @@ class BirthDeathSMCConfig:
             raise ValueError("paired_slot_path_particles must be at least two")
         if self.paired_slot_scope not in ("local", "full_sequence", "conditional_smc"):
             raise ValueError("unknown paired_slot_scope")
+        if not np.isfinite(self.paired_slot_pg_fraction) or not 0 <= self.paired_slot_pg_fraction <= 1:
+            raise ValueError("paired_slot_pg_fraction must lie in [0, 1]")
+        if self.paired_slot_scope != "conditional_smc" and self.paired_slot_pg_fraction != 1:
+            raise ValueError("paired_slot_pg_fraction requires conditional_smc scope")
         if self.tracklet_proposal_kind not in ("displacement", "conditional_gp_nonself"):
             raise ValueError("unknown tracklet_proposal_kind")
 
@@ -103,6 +108,8 @@ class BirthDeathSMCStageDiagnostics:
     tracklet_acceptance_rate: float
     tracklet_state_change_rate: float
     paired_slot_count_signature_change_rate: float = 0.0
+    paired_slot_pg_selected_fraction: float = 0.0
+    paired_slot_pg_count_signature_change_rate: float = 0.0
 
     def to_dict(self) -> dict[str, float | int]:
         return asdict(self)
@@ -418,7 +425,7 @@ def _metropolis_birth_death_rejuvenation(
             log_marginal_densities,
             log_count_densities,
             log_existence_priors,
-            (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+            (0.0,) * 12,
         )
 
     accepted_total = 0
@@ -427,6 +434,8 @@ def _metropolis_birth_death_rejuvenation(
     proposed_by_move = np.zeros(6, dtype=np.int64)
     paired_changes = 0
     paired_count_changes = 0
+    paired_pg_selected = 0
+    paired_pg_count_changes = 0
     tracklet_changes = 0
     current = associations
     current_marginal = log_marginal_densities
@@ -463,6 +472,7 @@ def _metropolis_birth_death_rejuvenation(
 
         pair_rows = np.flatnonzero(move_types == 4).astype(np.int64)
         if pair_rows.size:
+            pg_mask = np.zeros(pair_rows.size, dtype=bool)
             if config.paired_slot_scope == "local":
                 (
                     pair_proposed,
@@ -496,20 +506,48 @@ def _metropolis_birth_death_rejuvenation(
                 )
                 pair_existence = model.log_existence_prior(pair_proposed)
             else:
-                pair_proposed = conditional_pair_pg_move(
-                    current, pair_rows, model,
-                    beta=beta,
-                    n_particles=config.paired_slot_path_particles,
-                    rng=rng,
-                )
-                pair_marginal = model.log_marginal_density(pair_proposed)
-                pair_count = model.log_count_density(
-                    pair_proposed, include_poisson_void=False
-                )
-                pair_existence = model.log_existence_prior(pair_proposed)
-                # A conditional particle-Gibbs step always leaves the target
-                # invariant; the state-change diagnostics measure its mixing.
-                pair_accepted = np.ones(pair_rows.size, dtype=bool)
+                fraction = config.paired_slot_pg_fraction
+                if fraction == 1:
+                    pg_mask[:] = True
+                elif fraction > 0:
+                    pg_mask = rng.random(pair_rows.size) < fraction
+                pair_proposed = current[pair_rows].copy()
+                pair_marginal = current_marginal[pair_rows].copy()
+                pair_count = current_count[pair_rows].copy()
+                pair_existence = current_existence[pair_rows].copy()
+                pair_accepted = np.zeros(pair_rows.size, dtype=bool)
+                local_positions = np.flatnonzero(~pg_mask)
+                if local_positions.size:
+                    local_rows = pair_rows[local_positions]
+                    local_state, local_marginal, local_count, local_existence, local_accept = (
+                        local_pair_multiple_try_move(
+                            current, current_marginal, current_count, current_existence,
+                            local_rows, model, beta=beta,
+                            n_candidates=config.paired_slot_candidates, rng=rng,
+                        )
+                    )
+                    pair_proposed[local_positions] = local_state
+                    pair_marginal[local_positions] = local_marginal
+                    pair_count[local_positions] = local_count
+                    pair_existence[local_positions] = local_existence
+                    pair_accepted[local_positions] = local_accept
+                pg_positions = np.flatnonzero(pg_mask)
+                if pg_positions.size:
+                    pg_state = conditional_pair_pg_move(
+                        current, pair_rows[pg_positions], model,
+                        beta=beta, n_particles=config.paired_slot_path_particles,
+                        rng=rng,
+                    )
+                    pair_proposed[pg_positions] = pg_state
+                    pair_marginal[pg_positions] = model.log_marginal_density(pg_state)
+                    pair_count[pg_positions] = model.log_count_density(
+                        pg_state, include_poisson_void=False
+                    )
+                    pair_existence[pg_positions] = model.log_existence_prior(pg_state)
+                    # Particle Gibbs always leaves the target invariant; only
+                    # its actual state/count changes measure mixing.
+                    pair_accepted[pg_positions] = True
+                paired_pg_selected += pg_positions.size
             selected_rows = pair_rows[pair_accepted]
             selected_states = pair_proposed[pair_accepted]
             paired_changes += int(
@@ -524,6 +562,17 @@ def _metropolis_birth_death_rejuvenation(
             paired_count_changes += int(np.count_nonzero(np.any(
                 (old_alive != new_alive) | (old_assigned != new_assigned), axis=1
             )))
+            if np.any(pg_mask):
+                pg_rows = pair_rows[pg_mask]
+                pg_states = pair_proposed[pg_mask]
+                pg_old_alive = np.count_nonzero(current[pg_rows] != ABSENT, axis=2)
+                pg_new_alive = np.count_nonzero(pg_states != ABSENT, axis=2)
+                pg_old_assigned = np.count_nonzero(current[pg_rows] >= 0, axis=2)
+                pg_new_assigned = np.count_nonzero(pg_states >= 0, axis=2)
+                paired_pg_count_changes += int(np.count_nonzero(np.any(
+                    (pg_old_alive != pg_new_alive)
+                    | (pg_old_assigned != pg_new_assigned), axis=1
+                )))
             current[selected_rows] = selected_states
             current_marginal[selected_rows] = pair_marginal[pair_accepted]
             current_count[selected_rows] = pair_count[pair_accepted]
@@ -588,6 +637,8 @@ def _metropolis_birth_death_rejuvenation(
             float(rates[5]),
             tracklet_changes / proposed_by_move[5] if proposed_by_move[5] else 0.0,
             paired_count_changes / proposed_by_move[4] if proposed_by_move[4] else 0.0,
+            paired_pg_selected / proposed_by_move[4] if proposed_by_move[4] else 0.0,
+            paired_pg_count_changes / paired_pg_selected if paired_pg_selected else 0.0,
         ),
     )
 
@@ -710,6 +761,8 @@ def sample_slot_existence_posterior(
                 tracklet_acceptance_rate=acceptance[7],
                 tracklet_state_change_rate=acceptance[8],
                 paired_slot_count_signature_change_rate=acceptance[9],
+                paired_slot_pg_selected_fraction=acceptance[10],
+                paired_slot_pg_count_signature_change_rate=acceptance[11],
             )
         )
         beta = next_beta

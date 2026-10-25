@@ -156,3 +156,11 @@ Despite stronger count movement, the global kernel exceeds the cost limit
 on both seeds; the artifact records `stopped_before_large_inference`. No new
 holdout or exact eight-frame posterior inference is claimed. See
 `../docs/wp11d_wp8_development.md`.
+
+`wp11e_selective_pg_development.json` freezes a new four-slot/eight-frame
+synthetic development observation, two baseline association hashes, and
+same-start comparisons of 10% conditional PG with local-only pair moves.
+It records observed PG selection, actual state/count changes, per-frame
+count and clutter summaries, and paired runtime ratios. Count movement
+increases but one seed exceeds the 3× cost ceiling, giving
+`stopped_before_holdout`. See `../docs/wp11e_selective_pg_development.md`.

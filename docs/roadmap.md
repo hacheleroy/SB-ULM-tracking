@@ -324,6 +324,24 @@ costs 15.7×/18.9× more, failing the predeclared 10× operational gate.
 Stopped before large inference and any new holdout. See
 `wp11d_wp8_development.md`.
 
+## WP11e — Sparse global pair updates
+
+- [x] Add a state-independent, opt-in 10% conditional-PG fraction to the
+  existing paired move, retaining the default local kernel and diagnostics
+- [x] Verify zero-fraction equivalence and small exact-posterior count
+  behavior before development inference
+- [x] Freeze a new eight-frame development observation and two same-start
+  paired comparisons, with a 3× runtime and movement gate
+- [ ] Establish controlled cost and stable count-mode behavior before
+  reserving another expensive high-particle/held-out test
+
+**Observed boundary:** the sparse mixture raises count-signature change
+rates on both development seeds (0.246/0.244 versus 0.208/0.188), but its
+runtime ratios are 1.26× and 4.19×, failing the frozen 3× gate on the
+second seed. Two-seed count agreement barely changes and remains far
+from a calibrated eight-frame claim. The development result is preserved
+as `stopped_before_holdout`. See `wp11e_selective_pg_development.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`

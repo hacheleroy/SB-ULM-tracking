@@ -9,6 +9,7 @@ from sbulm.data import DetectionSequence
 from sbulm.existence_smc import BirthDeathSMCConfig, _metropolis_birth_death_rejuvenation
 from sbulm.paired_moves import PairConditionalBase
 from sbulm.slot_existence import SlotExistenceMaternModel, enumerate_slot_existence_support
+from sbulm.wp11c_full_history_pilot import _pilot_model
 
 
 def _model(n_frames: int = 2, n_slots: int = 2) -> SlotExistenceMaternModel:
@@ -134,3 +135,71 @@ def test_pg_configuration_is_opt_in() -> None:
     assert BirthDeathSMCConfig().paired_slot_scope == "local"
     with pytest.raises(ValueError, match="paired_slot_path_particles"):
         BirthDeathSMCConfig(paired_slot_path_particles=1)
+    with pytest.raises(ValueError, match="paired_slot_pg_fraction"):
+        BirthDeathSMCConfig(paired_slot_scope="conditional_smc", paired_slot_pg_fraction=1.1)
+    with pytest.raises(ValueError, match="requires conditional_smc"):
+        BirthDeathSMCConfig(paired_slot_pg_fraction=0.1)
+
+
+def test_zero_pg_fraction_is_identical_to_default_local_move() -> None:
+    model = _pilot_model()
+    states = model.sample_base_associations(n_samples=64, rng=np.random.default_rng(18))
+    common = {
+        "n_particles": len(states), "mh_sweeps": 2, "final_mh_sweeps": 0,
+        "association_move_probability": 0, "interval_move_probability": 0,
+        "slot_swap_probability": 0, "blocked_slot_move_probability": 0,
+        "paired_slot_move_probability": 1,
+    }
+    local = _metropolis_birth_death_rejuvenation(
+        states.copy(), model.log_marginal_density(states),
+        model.log_count_density(states, include_poisson_void=False),
+        model.log_existence_prior(states), model, beta=1, n_sweeps=2,
+        config=BirthDeathSMCConfig(**common), rng=np.random.default_rng(43),
+    )
+    mixed = _metropolis_birth_death_rejuvenation(
+        states.copy(), model.log_marginal_density(states),
+        model.log_count_density(states, include_poisson_void=False),
+        model.log_existence_prior(states), model, beta=1, n_sweeps=2,
+        config=BirthDeathSMCConfig(
+            **common, paired_slot_scope="conditional_smc", paired_slot_pg_fraction=0
+        ), rng=np.random.default_rng(43),
+    )
+    for expected, observed in zip(local[:4], mixed[:4], strict=True):
+        assert np.array_equal(expected, observed)
+    assert local[-1] == mixed[-1]
+
+
+def test_sparse_pg_mixture_from_exact_posterior_retains_count_modes() -> None:
+    model = _pilot_model()
+    support, _ = enumerate_slot_existence_support(model)
+    log_target = model.log_joint_density(support)
+    exact = np.exp(log_target - logsumexp(log_target))
+    rng = np.random.default_rng(77)
+    current = support[rng.choice(len(support), size=512, p=exact)]
+    controls = BirthDeathSMCConfig(
+        n_particles=len(current), mh_sweeps=2, final_mh_sweeps=0,
+        association_move_probability=0, interval_move_probability=0,
+        slot_swap_probability=0, blocked_slot_move_probability=0,
+        paired_slot_move_probability=1, paired_slot_scope="conditional_smc",
+        paired_slot_pg_fraction=0.1, paired_slot_path_particles=8,
+    )
+    result = _metropolis_birth_death_rejuvenation(
+        current.copy(), model.log_marginal_density(current),
+        model.log_count_density(current, include_poisson_void=False),
+        model.log_existence_prior(current), model, beta=1, n_sweeps=2,
+        config=controls, rng=np.random.default_rng(177),
+    )
+    assert 0.06 < result[-1][10] < 0.14
+    assert result[-1][11] > 0.2
+    mode_labels, inverse = np.unique(
+        np.concatenate((
+            np.count_nonzero(support != -2, axis=2),
+            np.count_nonzero(support >= 0, axis=2),
+        ), axis=1), axis=0, return_inverse=True,
+    )
+    assert len(mode_labels) > 1
+    lookup = {state.tobytes(): i for i, state in enumerate(support)}
+    indices = np.asarray([lookup[state.tobytes()] for state in result[0]])
+    exact_modes = np.bincount(inverse, weights=exact)
+    sampled_modes = np.bincount(inverse[indices], minlength=len(exact_modes)) / len(indices)
+    assert 0.5 * np.sum(np.abs(exact_modes - sampled_modes)) < 0.12
