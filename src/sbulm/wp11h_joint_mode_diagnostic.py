@@ -169,6 +169,7 @@ def _protocol() -> dict[str, Any]:
         "frame_index_zero_based": FRAME_INDEX,
         "alive_bands": ["0..20", "21", "22..32"],
         "final_count_signatures": "all 8192 per-particle alive/assigned vectors, zlib+base64 uint8",
+        "final_associations": "all 8192 synthetic association arrays, zlib+base64 int8",
         "reproduction_check": "all saved WP11g summary fields except measured wall runtime equal exactly",
         "holdout": "closed",
     }
@@ -209,6 +210,47 @@ def _decode_signatures(record: dict[str, Any]) -> NDArray[np.uint8]:
     return np.frombuffer(raw, dtype=np.uint8).reshape(record["shape"])
 
 
+def _encode_associations(associations: NDArray[np.int64]) -> dict[str, Any]:
+    if np.any(associations < -128) or np.any(associations > 127):
+        raise ValueError("diagnostic int8 association encoding is out of range")
+    raw = associations.astype(np.int8).tobytes()
+    return {
+        "shape": list(associations.shape),
+        "encoding": "zlib+base64:int8:C-order",
+        "sha256_uncompressed": hashlib.sha256(raw).hexdigest(),
+        "data": base64.b64encode(zlib.compress(raw, level=9)).decode("ascii"),
+    }
+
+
+def _decode_associations(record: dict[str, Any]) -> NDArray[np.int8]:
+    if record["encoding"] != "zlib+base64:int8:C-order":
+        raise ValueError("unknown association encoding")
+    raw = zlib.decompress(base64.b64decode(record["data"], validate=True))
+    if hashlib.sha256(raw).hexdigest() != record["sha256_uncompressed"]:
+        raise ValueError("association checksum differs")
+    if len(raw) != int(np.prod(record["shape"])):
+        raise ValueError("association shape differs")
+    return np.frombuffer(raw, dtype=np.int8).reshape(record["shape"])
+
+
+def _canonical_associations(associations: NDArray[np.int8]) -> NDArray[np.int8]:
+    """Sort full slot histories lexicographically, removing slot permutations."""
+
+    order = np.lexsort(
+        tuple(associations[:, t, :] for t in reversed(range(associations.shape[1]))),
+        axis=1,
+    )
+    return np.take_along_axis(associations, order[:, None, :], axis=2)
+
+
+def _clutter_mask(associations: NDArray[np.int8], cardinality: int) -> NDArray[np.int64]:
+    claimed = np.any(
+        associations[:, FRAME_INDEX, :, None] == np.arange(cardinality)[None, None, :],
+        axis=1,
+    )
+    return ((~claimed).astype(np.int64) * (1 << np.arange(cardinality))).sum(axis=1)
+
+
 def _diagnosis(runs: dict[str, Any]) -> dict[str, Any]:
     first, second = (runs[str(seed)]["stages"] for seed in SEEDS)
     if len(first) != len(second):
@@ -245,6 +287,14 @@ def _diagnosis(runs: dict[str, Any]) -> dict[str, Any]:
     signature_a, signature_b = (
         _decode_signatures(runs[str(seed)]["final_count_signatures"]) for seed in SEEDS
     )
+    association_a, association_b = (
+        _decode_associations(runs[str(seed)]["final_associations"]) for seed in SEEDS
+    )
+    for signatures, associations in ((signature_a, association_a),
+                                     (signature_b, association_b)):
+        if not np.array_equal(signatures[:, :associations.shape[1]],
+                              np.count_nonzero(associations != ABSENT, axis=2)):
+            raise ValueError("association and count-signature records disagree")
     n_frames = signature_a.shape[1] // 2
     comparisons = {}
     for name, view in (("alive_per_frame", slice(None, n_frames)),
@@ -263,10 +313,38 @@ def _diagnosis(runs: dict[str, Any]) -> dict[str, Any]:
                  "seed_200_mass": float(q[i])} for i in order
             ],
         }
+    canonical_a = _canonical_associations(association_a).reshape(len(association_a), -1)
+    canonical_b = _canonical_associations(association_b).reshape(len(association_b), -1)
+    patterns, inverse = np.unique(
+        np.concatenate((canonical_a, canonical_b)), axis=0, return_inverse=True
+    )
+    p = np.bincount(inverse[:len(canonical_a)], minlength=len(patterns)) / len(canonical_a)
+    q = np.bincount(inverse[len(canonical_a):], minlength=len(patterns)) / len(canonical_b)
+    comparisons["complete_association_history"] = {
+        "descriptive_tv": float(np.abs(p - q).sum() / 2),
+        "distinct_histories": len(patterns),
+        "warning": "sparse complete-history TV is descriptive, not a calibrated gate",
+    }
+    cardinality = final_a.shape[1] - 1
+    mask_a = _clutter_mask(association_a, cardinality)
+    mask_b = _clutter_mask(association_b, cardinality)
+    clutter_masks = np.bincount(mask_a, minlength=1 << cardinality) / len(mask_a)
+    clutter_masks_other = np.bincount(mask_b, minlength=1 << cardinality) / len(mask_b)
+    mask_order = np.argsort(np.abs(clutter_masks - clutter_masks_other))[::-1][:10]
     return {
         "stage_differences": stage_differences,
         "final_alive_groups": groups,
         "signature_comparisons": comparisons,
+        "frame_six_clutter_masks": {
+            "descriptive_tv": float(np.abs(clutter_masks - clutter_masks_other).sum() / 2),
+            "largest_mass_differences": [
+                {"clutter_detection_indexes_zero_based": [
+                    j for j in range(cardinality) if int(mask) & (1 << j)
+                ], "seed_100_mass": float(clutter_masks[mask]),
+                 "seed_200_mass": float(clutter_masks_other[mask])}
+                for mask in mask_order
+            ],
+        },
     }
 
 
@@ -330,6 +408,7 @@ def run_seed(*, output: Path, control_path: Path, reference_path: Path, seed: in
         "cpu_seconds": cpu_seconds, "wall_seconds": wall_seconds,
         "stages": observer.stages,
         "final_count_signatures": _encode_signatures(sampled.associations),
+        "final_associations": _encode_associations(sampled.associations),
     }
     if len(result["runs"]) == len(SEEDS):
         result["diagnosis"] = _diagnosis(result["runs"])
