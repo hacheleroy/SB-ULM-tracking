@@ -325,6 +325,8 @@ def _diagnosis(runs: dict[str, Any]) -> dict[str, Any]:
         "distinct_histories": len(patterns),
         "warning": "sparse complete-history TV is descriptive, not a calibrated gate",
     }
+
+
     cardinality = final_a.shape[1] - 1
     mask_a = _clutter_mask(association_a, cardinality)
     mask_b = _clutter_mask(association_b, cardinality)
@@ -345,6 +347,57 @@ def _diagnosis(runs: dict[str, Any]) -> dict[str, Any]:
                 for mask in mask_order
             ],
         },
+    }
+
+
+def compact_summary(result: dict[str, Any], full_sha256: str) -> dict[str, Any]:
+    """Publish aggregate synthetic diagnostics without per-particle arrays."""
+
+    if result["status"] != "diagnostic_complete_no_holdout":
+        raise ValueError("cannot summarize an incomplete diagnostic")
+    runs = {}
+    for seed in SEEDS:
+        original = result["runs"][str(seed)]
+        stages = original["stages"]
+        moves = {}
+        for name in ("local", "pg"):
+            keys = (
+                "selected", "accepted", "state_changed", "count_signature_changed",
+                "alive_total_changed", "frame_six_clutter_changed", "both_changed",
+            )
+            moves[name] = {key: sum(stage["moves"][name][key] for stage in stages)
+                           for key in keys}
+            moves[name]["per_frame_alive_changes"] = [
+                sum(stage["moves"][name]["per_frame_alive_changes"][i]
+                    for stage in stages) for i in range(8)
+            ]
+            moves[name]["per_frame_assigned_changes"] = [
+                sum(stage["moves"][name]["per_frame_assigned_changes"][i]
+                    for stage in stages) for i in range(8)
+            ]
+            moves[name]["alive_band_transitions"] = [
+                [sum(stage["moves"][name]["alive_band_transitions"][i][j]
+                     for stage in stages) for j in range(3)] for i in range(3)
+            ]
+        runs[str(seed)] = {
+            "reproduced_wp11g_summary": original["reproduced_wp11g_summary"],
+            "cpu_seconds": original["cpu_seconds"],
+            "wall_seconds": original["wall_seconds"],
+            "moves": moves,
+            "stages": [
+                {key: stage[key] for key in (
+                    "step", "beta", "resampling_joint_tv", "mean_alive_total",
+                    "mean_frame_six_clutter",
+                )} for stage in stages
+            ],
+        }
+    return {
+        "experiment": "wp11h_joint_mode_summary",
+        "protocol": result["protocol"],
+        "full_private_artifact_sha256": full_sha256,
+        "runs": runs,
+        "diagnosis": result["diagnosis"],
+        "status": result["status"],
     }
 
 
@@ -414,6 +467,11 @@ def run_seed(*, output: Path, control_path: Path, reference_path: Path, seed: in
         result["diagnosis"] = _diagnosis(result["runs"])
         result["status"] = "diagnostic_complete_no_holdout"
     _save(output, result)
+    if result["status"] == "diagnostic_complete_no_holdout":
+        summary_path = output.with_name(output.stem.replace("diagnostic", "summary") + ".json")
+        _save(summary_path, compact_summary(
+            result, hashlib.sha256(output.read_bytes()).hexdigest()
+        ))
     print(f"seed {seed}: {cpu_seconds:.1f}s CPU, {wall_seconds:.1f}s wall; "
           f"status={result['status']}", flush=True)
     return result
