@@ -307,6 +307,18 @@ def _controls(
             paired_slot_candidates=2,
             tracklet_move_probability=0.15,
         )
+    if method == "conditional_gp_nonself":
+        return BirthDeathSMCConfig(
+            **common,
+            association_move_probability=0.15,
+            interval_move_probability=0.30,
+            slot_swap_probability=0.05,
+            blocked_slot_move_probability=0.15,
+            paired_slot_move_probability=0.20,
+            paired_slot_candidates=2,
+            tracklet_move_probability=0.15,
+            tracklet_proposal_kind="conditional_gp_nonself",
+        )
     raise ValueError(f"unknown method: {method}")
 
 

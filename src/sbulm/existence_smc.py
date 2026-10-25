@@ -8,6 +8,7 @@ import numpy as np
 from numpy.typing import ArrayLike, NDArray
 from scipy.special import logsumexp
 
+from .conditional_tracklet_moves import propose_conditional_gp_tracklets
 from .data import DetectionSequence
 from .paired_moves import local_pair_multiple_try_move
 from .slot_existence import (
@@ -39,6 +40,7 @@ class BirthDeathSMCConfig:
     paired_slot_move_probability: float = 0.0
     paired_slot_candidates: int = 2
     tracklet_move_probability: float = 0.0
+    tracklet_proposal_kind: str = "displacement"
     max_tempering_steps: int = 128
     bisection_iterations: int = 48
     seed: int = 0
@@ -69,6 +71,8 @@ class BirthDeathSMCConfig:
             raise ValueError("tempering and bisection iteration counts must be positive")
         if self.paired_slot_candidates < 2:
             raise ValueError("paired_slot_candidates must be at least two")
+        if self.tracklet_proposal_kind not in ("displacement", "conditional_gp_nonself"):
+            raise ValueError("unknown tracklet_proposal_kind")
 
 
 @dataclass(frozen=True)
@@ -484,7 +488,12 @@ def _metropolis_birth_death_rejuvenation(
 
         tracklet_rows = np.flatnonzero(move_types == 5).astype(np.int64)
         if tracklet_rows.size:
-            tracklet_proposed, tracklet_hastings = propose_guided_tracklets(
+            move = (
+                propose_guided_tracklets
+                if config.tracklet_proposal_kind == "displacement"
+                else propose_conditional_gp_tracklets
+            )
+            tracklet_proposed, tracklet_hastings = move(
                 current, tracklet_rows, model, rng
             )
             tracklet_marginal = model.log_marginal_density(tracklet_proposed)
