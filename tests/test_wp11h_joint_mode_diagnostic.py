@@ -11,7 +11,12 @@ from sbulm.wp11g_exposed_wp8_high_particle import _candidate_controls, _frozen_i
 from sbulm.wp11h_joint_mode_diagnostic import (
     FRAME_INDEX,
     JointModeObserver,
+    _canonical_associations,
+    _clutter_mask,
+    _decode_associations,
     _decode_signatures,
+    _diagnosis,
+    _encode_associations,
     _encode_signatures,
     _joint,
     _protocol,
@@ -66,3 +71,21 @@ def test_frozen_reference_and_read_only_observer() -> None:
         signatures[:, :case.model.sequence.n_frames],
         np.count_nonzero(traced.associations != ABSENT, axis=2),
     )
+    decoded = _decode_associations(_encode_associations(traced.associations))
+    np.testing.assert_array_equal(decoded, traced.associations)
+    np.testing.assert_array_equal(
+        _canonical_associations(decoded),
+        _canonical_associations(decoded[:, :, ::-1]),
+    )
+    clutter_mask = _clutter_mask(decoded, case.model.sequence.cardinalities[FRAME_INDEX])
+    assert all(int(mask).bit_count() == case.model.sequence.cardinalities[FRAME_INDEX]
+               - int(np.count_nonzero(row[FRAME_INDEX] >= 0))
+               for row, mask in zip(decoded, clutter_mask, strict=True))
+    record = {
+        "stages": observer.stages,
+        "final_count_signatures": _encode_signatures(traced.associations),
+        "final_associations": _encode_associations(traced.associations),
+    }
+    diagnosis = _diagnosis({"100": record, "200": record})
+    assert all(stage["joint_tv"] == 0 for stage in diagnosis["stage_differences"])
+    assert diagnosis["signature_comparisons"]["complete_count_signature"]["descriptive_tv"] == 0
