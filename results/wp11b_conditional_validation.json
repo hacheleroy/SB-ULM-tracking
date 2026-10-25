@@ -1,0 +1,241 @@
+{
+  "experiment": "wp11b_gp_predictive_nonself_tracklets",
+  "protocol": {
+    "proposal": "GP prediction from fixed outside-window detections; non-self three-frame pair HMM",
+    "proposal_mixture": {
+      "association": 0.15,
+      "interval": 0.3,
+      "slot_swap": 0.05,
+      "blocked_slot": 0.15,
+      "paired_slot": 0.2,
+      "conditional_gp_nonself_tracklet": 0.15
+    },
+    "oracle_seeds": [
+      400,
+      401,
+      402
+    ],
+    "oracle_particles": 2048,
+    "oracle_thresholds": {
+      "total_variation": 0.8999175536986822,
+      "jensen_shannon": 0.5493833011027436,
+      "exact_mass_covered": 0.10492826162262153,
+      "credible_set_recall_95": 0.0,
+      "maximum_event_error": 0.06
+    },
+    "reserved_regime": {
+      "name": "cluttered_staggered_reserved_c",
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.45,
+      "central_separation": 0.006,
+      "trajectory_seed": 53,
+      "corruption_seed": 29,
+      "max_clutter_per_frame": null,
+      "truth_mask": [
+        [
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          false,
+          true,
+          true
+        ]
+      ]
+    },
+    "reserved_observation_hash": "bd8c6aed400ffd38c24621610e34b7baf9c74a8a9eca620b65a33b8e4006815c",
+    "reserved_seeds": [
+      310,
+      410
+    ],
+    "reserved_particles": 8192,
+    "arms_in_order": [
+      "conditional_gp_nonself",
+      "paired"
+    ],
+    "ess_target": 0.8,
+    "sweeps_per_stage": 8,
+    "extra_final_sweeps": 8,
+    "seven_metric_gate": 0.1,
+    "interpretation": "two-seed diagnostic only; no exact eight-frame posterior"
+  },
+  "bridge": {
+    "metadata": {
+      "n_slots": 4,
+      "n_frames": 4,
+      "detection_cardinalities": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "detections_sha256": "62d3aeeafff58eb47404f87291829004f5bd498d07ab1494afa86ba77115b8ef",
+      "detection_probability": 0.35,
+      "expected_clutter_per_frame": 0.15,
+      "birth_death_prior": {
+        "initial_probability": 0.5,
+        "birth_probability": 0.25,
+        "survival_probability": 0.8
+      }
+    },
+    "status": "passed",
+    "runs": {
+      "400": {
+        "comparison": {
+          "n_samples": 2048,
+          "invalid_sample_fraction": 0.0,
+          "total_variation_distance": 0.865623348929486,
+          "jensen_shannon_divergence": 0.5245003471431178,
+          "exact_map_sample_frequency": 0.00244140625,
+          "empirical_support_size": 1881,
+          "exact_mass_covered_by_empirical_support": 0.13716741733539212,
+          "credible_set_recall_95": 0.02622129069136852
+        },
+        "maximum_event_error": 0.019998386271961044,
+        "maximum_edge_error": 0.0007113443341631442,
+        "maximum_detection_clutter_error": 0.004410609842289345,
+        "mean_tracklet_acceptance_rate": 0.4826356567719986,
+        "mean_tracklet_state_change_rate": 0.3940902153474644,
+        "runtime_seconds": 136.84197101999985,
+        "checks": {
+          "valid_support": true,
+          "total_variation": true,
+          "jensen_shannon": true,
+          "exact_mass_covered": true,
+          "credible_set_recall_95": true,
+          "event_marginals": true
+        },
+        "passed": true
+      },
+      "401": {
+        "comparison": {
+          "n_samples": 2048,
+          "invalid_sample_fraction": 0.0,
+          "total_variation_distance": 0.8626500860025226,
+          "jensen_shannon_divergence": 0.5235237707503266,
+          "exact_map_sample_frequency": 0.0029296875,
+          "empirical_support_size": 1895,
+          "exact_mass_covered_by_empirical_support": 0.14245379558334145,
+          "credible_set_recall_95": 0.026426488047254018
+        },
+        "maximum_event_error": 0.024392917521961044,
+        "maximum_edge_error": 0.00026521816583685576,
+        "maximum_detection_clutter_error": 0.004112337205151615,
+        "mean_tracklet_acceptance_rate": 0.48288786611006107,
+        "mean_tracklet_state_change_rate": 0.3971555228840649,
+        "runtime_seconds": 170.00245683800017,
+        "checks": {
+          "valid_support": true,
+          "total_variation": true,
+          "jensen_shannon": true,
+          "exact_mass_covered": true,
+          "credible_set_recall_95": true,
+          "event_marginals": true
+        },
+        "passed": true
+      },
+      "402": {
+        "comparison": {
+          "n_samples": 2048,
+          "invalid_sample_fraction": 0.0,
+          "total_variation_distance": 0.8699596041580306,
+          "jensen_shannon_divergence": 0.5296316371170768,
+          "exact_map_sample_frequency": 0.001953125,
+          "empirical_support_size": 1902,
+          "exact_mass_covered_by_empirical_support": 0.13566544916893658,
+          "credible_set_recall_95": 0.026265261553343983
+        },
+        "maximum_event_error": 0.025328455365643515,
+        "maximum_edge_error": 0.0007113443341631442,
+        "maximum_detection_clutter_error": 0.0026220438061102594,
+        "mean_tracklet_acceptance_rate": 0.47834219706525005,
+        "mean_tracklet_state_change_rate": 0.39546173483651686,
+        "runtime_seconds": 191.6272901169998,
+        "checks": {
+          "valid_support": true,
+          "total_variation": true,
+          "jensen_shannon": true,
+          "exact_mass_covered": true,
+          "credible_set_recall_95": true,
+          "event_marginals": true
+        },
+        "passed": true
+      }
+    }
+  },
+  "reserved": {
+    "metadata": {
+      "n_slots": 4,
+      "n_frames": 8,
+      "detection_cardinalities": [
+        2,
+        3,
+        3,
+        2,
+        2,
+        4,
+        2,
+        2
+      ],
+      "detections_sha256": "bd8c6aed400ffd38c24621610e34b7baf9c74a8a9eca620b65a33b8e4006815c",
+      "detection_probability": 0.65,
+      "expected_clutter_per_frame": 0.45,
+      "birth_death_prior": {
+        "initial_probability": 0.5,
+        "birth_probability": 0.25,
+        "survival_probability": 0.8
+      }
+    },
+    "arms": {
+      "conditional_gp_nonself": {
+        "status": "in_progress",
+        "runs": {},
+        "cross_run": null
+      },
+      "paired": {
+        "status": "in_progress",
+        "runs": {},
+        "cross_run": null
+      }
+    }
+  }
+}

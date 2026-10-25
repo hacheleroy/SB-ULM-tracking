@@ -60,6 +60,17 @@ the reserved observations/seeds are changed after seeing the reserved runs.
 The checkpoint verifies hashes and blocks reserved inference until all
 three exact-oracle runs pass.
 
+## Exact-oracle gate
+
+All three predeclared four-slot runs pass the inherited exact-oracle checks.
+Maximum event-marginal errors are 0.0200, 0.0244 and 0.0253 against the
+0.06 limit. Maximum adjacent association-edge errors are 0.0007, 0.0003
+and 0.0007; per-detection clutter errors are 0.0044, 0.0041 and 0.0026.
+The mean accepted tracklet state-change rates are 0.394, 0.397 and 0.395
+per selected move, at 137, 170 and 192 seconds per run. The sparse oracle
+therefore supports correctness and meaningful local mutation, but does not
+establish eight-frame mode-weight calibration or transfer.
+
 ```bash
 python -m sbulm.wp11b_conditional_validation --stage oracle
 python -m sbulm.wp11b_conditional_validation --stage reserved
