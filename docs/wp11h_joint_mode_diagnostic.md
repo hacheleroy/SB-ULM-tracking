@@ -22,8 +22,12 @@ state/count-change tallies, per-frame alive and assigned changes, frame-six
 clutter changes, and transitions among total-alive bands (0–20, 21, and
 22–32). Each run also keeps the full per-particle label-invariant vectors of
 alive and assigned counts at all eight frames, compressed with zlib and
-checksummed. These records distinguish a marginal shift from coupled mode
-shifts and show when the seed populations diverge.
+checksummed. The exact synthetic association arrays are also retained in
+compressed, checksummed form; this allows an analysis of which detections
+are clutter and of complete slot-permutation-invariant histories. These
+records distinguish a marginal shift from coupled mode shifts and show
+when the seed populations diverge. Full-history empirical TV is reported
+only descriptively because its support is sparse at this sample size.
 
 These are **post-hoc development diagnostics**, not a revised WP11g gate or
 a posterior-calibration measurement. In particular, pair-proposal activity
