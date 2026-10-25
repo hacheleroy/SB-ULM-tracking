@@ -278,6 +278,16 @@ summaries remain inconsistent across runs. This is evidence of better local
 mutation and relative two-seed mixing on one synthetic case, not calibrated
 eight-frame posterior masses. See `docs/wp11b_conditional_validation.md`.
 
+WP11c tests the already available whole-sequence two-slot conditional-base
+multiple-try move as an opt-in replacement for the local paired update.
+Finite-state detailed balance passes, but a three-seed exact-posterior pilot
+finds only 0.0020 accepted count-signature changes per selected move, below
+the predeclared 0.01 early-stop gate. The corresponding local update gives
+0.1270--0.1572. No new eight-frame holdout was opened. The base proposal
+is too far from the localization-conditioned posterior; the next sampler
+must guide a global path update with measurement information while retaining
+exact posterior invariance. See `docs/wp11c_full_history_pilot.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.

@@ -10,7 +10,7 @@ from scipy.special import logsumexp
 
 from .conditional_tracklet_moves import propose_conditional_gp_tracklets
 from .data import DetectionSequence
-from .paired_moves import local_pair_multiple_try_move
+from .paired_moves import local_pair_multiple_try_move, multiple_try_paired_move
 from .slot_existence import (
     ABSENT,
     MISSED,
@@ -39,6 +39,7 @@ class BirthDeathSMCConfig:
     blocked_slot_move_probability: float = 0.0
     paired_slot_move_probability: float = 0.0
     paired_slot_candidates: int = 2
+    paired_slot_scope: str = "local"
     tracklet_move_probability: float = 0.0
     tracklet_proposal_kind: str = "displacement"
     max_tempering_steps: int = 128
@@ -71,6 +72,8 @@ class BirthDeathSMCConfig:
             raise ValueError("tempering and bisection iteration counts must be positive")
         if self.paired_slot_candidates < 2:
             raise ValueError("paired_slot_candidates must be at least two")
+        if self.paired_slot_scope not in ("local", "full_sequence"):
+            raise ValueError("unknown paired_slot_scope")
         if self.tracklet_proposal_kind not in ("displacement", "conditional_gp_nonself"):
             raise ValueError("unknown tracklet_proposal_kind")
 
@@ -95,6 +98,7 @@ class BirthDeathSMCStageDiagnostics:
     paired_slot_state_change_rate: float
     tracklet_acceptance_rate: float
     tracklet_state_change_rate: float
+    paired_slot_count_signature_change_rate: float = 0.0
 
     def to_dict(self) -> dict[str, float | int]:
         return asdict(self)
@@ -410,7 +414,7 @@ def _metropolis_birth_death_rejuvenation(
             log_marginal_densities,
             log_count_densities,
             log_existence_priors,
-            (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+            (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
         )
 
     accepted_total = 0
@@ -418,6 +422,7 @@ def _metropolis_birth_death_rejuvenation(
     accepted_by_move = np.zeros(6, dtype=np.int64)
     proposed_by_move = np.zeros(6, dtype=np.int64)
     paired_changes = 0
+    paired_count_changes = 0
     tracklet_changes = 0
     current = associations
     current_marginal = log_marginal_densities
@@ -454,23 +459,38 @@ def _metropolis_birth_death_rejuvenation(
 
         pair_rows = np.flatnonzero(move_types == 4).astype(np.int64)
         if pair_rows.size:
-            (
-                pair_proposed,
-                pair_marginal,
-                pair_count,
-                pair_existence,
-                pair_accepted,
-            ) = local_pair_multiple_try_move(
-                current,
-                current_marginal,
-                current_count,
-                current_existence,
-                pair_rows,
-                model,
-                beta=beta,
-                n_candidates=config.paired_slot_candidates,
-                rng=rng,
-            )
+            if config.paired_slot_scope == "local":
+                (
+                    pair_proposed,
+                    pair_marginal,
+                    pair_count,
+                    pair_existence,
+                    pair_accepted,
+                ) = local_pair_multiple_try_move(
+                    current,
+                    current_marginal,
+                    current_count,
+                    current_existence,
+                    pair_rows,
+                    model,
+                    beta=beta,
+                    n_candidates=config.paired_slot_candidates,
+                    rng=rng,
+                )
+            else:
+                pair_proposed, pair_marginal, pair_accepted = multiple_try_paired_move(
+                    current,
+                    current_marginal,
+                    pair_rows,
+                    model,
+                    beta=beta,
+                    n_candidates=config.paired_slot_candidates,
+                    rng=rng,
+                )
+                pair_count = model.log_count_density(
+                    pair_proposed, include_poisson_void=False
+                )
+                pair_existence = model.log_existence_prior(pair_proposed)
             selected_rows = pair_rows[pair_accepted]
             selected_states = pair_proposed[pair_accepted]
             paired_changes += int(
@@ -478,6 +498,13 @@ def _metropolis_birth_death_rejuvenation(
                     np.any(selected_states != current[selected_rows], axis=(1, 2))
                 )
             )
+            old_alive = np.count_nonzero(current[selected_rows] != ABSENT, axis=2)
+            new_alive = np.count_nonzero(selected_states != ABSENT, axis=2)
+            old_assigned = np.count_nonzero(current[selected_rows] >= 0, axis=2)
+            new_assigned = np.count_nonzero(selected_states >= 0, axis=2)
+            paired_count_changes += int(np.count_nonzero(np.any(
+                (old_alive != new_alive) | (old_assigned != new_assigned), axis=1
+            )))
             current[selected_rows] = selected_states
             current_marginal[selected_rows] = pair_marginal[pair_accepted]
             current_count[selected_rows] = pair_count[pair_accepted]
@@ -541,6 +568,7 @@ def _metropolis_birth_death_rejuvenation(
             paired_changes / proposed_by_move[4] if proposed_by_move[4] else 0.0,
             float(rates[5]),
             tracklet_changes / proposed_by_move[5] if proposed_by_move[5] else 0.0,
+            paired_count_changes / proposed_by_move[4] if proposed_by_move[4] else 0.0,
         ),
     )
 
@@ -662,6 +690,7 @@ def sample_slot_existence_posterior(
                 paired_slot_state_change_rate=acceptance[6],
                 tracklet_acceptance_rate=acceptance[7],
                 tracklet_state_change_rate=acceptance[8],
+                paired_slot_count_signature_change_rate=acceptance[9],
             )
         )
         beta = next_beta

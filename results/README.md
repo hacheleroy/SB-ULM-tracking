@@ -131,3 +131,10 @@ full seven-metric vector, per-detection clutter, association edges,
 count-signature histograms, actual tracklet state-change rates, tempering
 stages, and run times. Neither pair establishes exact eight-frame posterior
 mass calibration. See `../docs/wp11b_conditional_validation.md`.
+
+`wp11c_full_history_pilot.json` records the exact two-slot/three-frame
+posterior pilot for the opt-in whole-sequence paired move. Its three fixed
+seeds yield a mean accepted count-signature change rate of 0.0020, below
+the predeclared 0.01 gate. The artifact includes the unchanged local-pair
+control and records `stopped_before_fresh_holdout`; no new eight-frame
+validation data were opened. See `../docs/wp11c_full_history_pilot.md`.

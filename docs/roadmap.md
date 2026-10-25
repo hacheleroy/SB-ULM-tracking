@@ -277,6 +277,23 @@ methodological boundary is global count/existence and association-clutter
 mode mixing, checked against exact small oracles before a new held-out case.
 See `wp11b_conditional_validation.md`.
 
+## WP11c — Full-history pair move pilot
+
+- [x] Expose the existing whole-sequence two-slot multiple-try move as an
+  opt-in alternative while preserving the local paired default
+- [x] Check finite-state detailed balance and measure actual count-mode
+  transitions on an exactly enumerable posterior at three fixed seeds
+- [x] Apply the predeclared small-case early-stop gate before any new
+  eight-frame holdout
+
+**Observed boundary:** the full-history kernel is valid but its mean
+accepted count-signature change rate is 0.0020, below the 0.01 pilot gate;
+the local paired control yields 0.1270--0.1572 across the same three seeds.
+The base proposal has negligible overlap with the small-case posterior.
+No fresh large-case observation was opened. Next, test a likelihood-guided
+sequential or conditional path update on small exact oracles before
+reserving a new synthetic realization. See `wp11c_full_history_pilot.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
