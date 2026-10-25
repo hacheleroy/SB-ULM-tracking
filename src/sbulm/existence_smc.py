@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from typing import Protocol
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
@@ -24,6 +25,22 @@ from .tracklet_moves import propose_guided_tracklets
 FloatArray = NDArray[np.float64]
 IntArray = NDArray[np.int64]
 BoolArray = NDArray[np.bool_]
+
+
+class BirthDeathSMCObserver(Protocol):
+    """Optional read-only diagnostics; callbacks must not consume sampler RNG."""
+
+    def begin_stage(self, step: int, beta: float) -> None: ...
+
+    def record_resampling(
+        self, associations: IntArray, weights: FloatArray, ancestors: IntArray
+    ) -> None: ...
+
+    def record_pair(
+        self, before: IntArray, proposed: IntArray, accepted: BoolArray, pg_selected: BoolArray
+    ) -> None: ...
+
+    def end_stage(self, associations: IntArray) -> None: ...
 
 
 @dataclass(frozen=True)
@@ -412,6 +429,7 @@ def _metropolis_birth_death_rejuvenation(
     n_sweeps: int,
     config: BirthDeathSMCConfig,
     rng: np.random.Generator,
+    observer: BirthDeathSMCObserver | None = None,
 ) -> tuple[
     IntArray,
     FloatArray,
@@ -548,6 +566,8 @@ def _metropolis_birth_death_rejuvenation(
                     # its actual state/count changes measure mixing.
                     pair_accepted[pg_positions] = True
                 paired_pg_selected += pg_positions.size
+            if observer is not None:
+                observer.record_pair(current[pair_rows], pair_proposed, pair_accepted, pg_mask)
             selected_rows = pair_rows[pair_accepted]
             selected_states = pair_proposed[pair_accepted]
             paired_changes += int(
@@ -658,6 +678,7 @@ def sample_slot_existence_posterior(
     nu: float = 1.5,
     relative_jitter: float = 1e-10,
     config: BirthDeathSMCConfig | None = None,
+    observer: BirthDeathSMCObserver | None = None,
 ) -> BirthDeathSMCResult:
     r"""Sample the posterior over explicit birth/death slots.
 
@@ -715,6 +736,9 @@ def sample_slot_existence_posterior(
         log_evidence += log_weight_sum - np.log(controls.n_particles)
 
         ancestors = systematic_resample(weights, rng)
+        if observer is not None:
+            observer.begin_stage(step, next_beta)
+            observer.record_resampling(associations, weights, ancestors)
         associations = associations[ancestors].copy()
         log_marginal = log_marginal[ancestors].copy()
         log_count = log_count[ancestors].copy()
@@ -738,6 +762,7 @@ def sample_slot_existence_posterior(
             n_sweeps=stage_sweeps,
             config=controls,
             rng=rng,
+            observer=observer,
         )
         unique_states = np.unique(
             associations.reshape(controls.n_particles, -1), axis=0
@@ -765,6 +790,8 @@ def sample_slot_existence_posterior(
                 paired_slot_pg_count_signature_change_rate=acceptance[11],
             )
         )
+        if observer is not None:
+            observer.end_stage(associations)
         beta = next_beta
         if beta == 1.0:
             break
