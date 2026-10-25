@@ -1,5 +1,6 @@
 """Protocol regression for a reserved observation set and oracle-first gate."""
 
+import json
 from pathlib import Path
 
 import pytest
@@ -31,3 +32,7 @@ def test_frozen_observations_and_blocked_reserved_inference(tmp_path: Path) -> N
     assert protocol["seven_metric_gate"] == 0.10
     with pytest.raises(RuntimeError, match="oracle gate"):
         run_reserved(result, tmp_path / "new.json")
+    (tmp_path / "new.json").write_text(json.dumps(result), encoding="utf-8")
+    assert _load_or_initialize(
+        tmp_path / "new.json", Path("results/wp7_convergence_audit.json")
+    )["protocol"] == protocol

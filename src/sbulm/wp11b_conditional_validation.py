@@ -75,7 +75,7 @@ def _load_or_initialize(output: Path, wp7_output: Path) -> dict[str, Any]:
         "oracle_seeds": list(ORACLE_SEEDS),
         "oracle_particles": ORACLE_PARTICLES,
         "oracle_thresholds": thresholds,
-        "reserved_regime": asdict(RESERVED),
+        "reserved_regime": json.loads(json.dumps(asdict(RESERVED))),
         "reserved_observation_hash": RESERVED_HASH,
         "reserved_seeds": list(RESERVED_SEEDS),
         "reserved_particles": RESERVED_PARTICLES,
