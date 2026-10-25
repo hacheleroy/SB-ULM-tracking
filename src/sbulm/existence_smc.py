@@ -17,6 +17,7 @@ from .slot_existence import (
     SlotExistenceMaternModel,
 )
 from .smc import _next_beta, _normalized_weights, systematic_resample
+from .tracklet_moves import propose_guided_tracklets
 
 FloatArray = NDArray[np.float64]
 IntArray = NDArray[np.int64]
@@ -37,6 +38,7 @@ class BirthDeathSMCConfig:
     blocked_slot_move_probability: float = 0.0
     paired_slot_move_probability: float = 0.0
     paired_slot_candidates: int = 2
+    tracklet_move_probability: float = 0.0
     max_tempering_steps: int = 128
     bisection_iterations: int = 48
     seed: int = 0
@@ -55,6 +57,7 @@ class BirthDeathSMCConfig:
                 self.slot_swap_probability,
                 self.blocked_slot_move_probability,
                 self.paired_slot_move_probability,
+                self.tracklet_move_probability,
             ],
             dtype=float,
         )
@@ -86,6 +89,8 @@ class BirthDeathSMCStageDiagnostics:
     blocked_slot_acceptance_rate: float
     paired_slot_acceptance_rate: float
     paired_slot_state_change_rate: float
+    tracklet_acceptance_rate: float
+    tracklet_state_change_rate: float
 
     def to_dict(self) -> dict[str, float | int]:
         return asdict(self)
@@ -345,13 +350,18 @@ def _propose_birth_death_moves(
             config.slot_swap_probability,
             config.blocked_slot_move_probability,
             config.paired_slot_move_probability,
+            config.tracklet_move_probability,
         ]
     )
     if model.n_slots < 2 and move_probabilities[2] > 0:
         raise ValueError("slot_swap_probability must be zero for a one-slot model")
     if model.n_slots < 2 and move_probabilities[4] > 0:
         raise ValueError("paired_slot_move_probability must be zero for a one-slot model")
-    move_types = rng.choice(5, size=current.shape[0], p=move_probabilities).astype(np.int64)
+    if model.n_slots < 2 and move_probabilities[5] > 0:
+        raise ValueError("tracklet_move_probability must be zero for a one-slot model")
+    if model.sequence.n_frames < 3 and move_probabilities[5] > 0:
+        raise ValueError("tracklet moves require at least three frames")
+    move_types = rng.choice(6, size=current.shape[0], p=move_probabilities).astype(np.int64)
     proposed = current.copy()
     log_hastings = np.zeros(current.shape[0], dtype=float)
     proposal_functions = (
@@ -388,7 +398,7 @@ def _metropolis_birth_death_rejuvenation(
     FloatArray,
     FloatArray,
     FloatArray,
-    tuple[float, float, float, float, float, float, float],
+    tuple[float, ...],
 ]:
     if n_sweeps == 0:
         return (
@@ -396,14 +406,15 @@ def _metropolis_birth_death_rejuvenation(
             log_marginal_densities,
             log_count_densities,
             log_existence_priors,
-            (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
+            (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0),
         )
 
     accepted_total = 0
     proposed_total = 0
-    accepted_by_move = np.zeros(5, dtype=np.int64)
-    proposed_by_move = np.zeros(5, dtype=np.int64)
+    accepted_by_move = np.zeros(6, dtype=np.int64)
+    proposed_by_move = np.zeros(6, dtype=np.int64)
     paired_changes = 0
+    tracklet_changes = 0
     current = associations
     current_marginal = log_marginal_densities
     current_count = log_count_densities
@@ -424,7 +435,7 @@ def _metropolis_birth_death_rejuvenation(
             + log_hastings
         )
         accepted = (np.log(rng.random(current.shape[0])) < log_ratio) & (
-            move_types != 4
+            (move_types != 4) & (move_types != 5)
         )
         current[accepted] = proposed[accepted]
         current_marginal[accepted] = proposed_marginal[accepted]
@@ -471,10 +482,39 @@ def _metropolis_birth_death_rejuvenation(
             accepted_by_move[4] += int(np.count_nonzero(pair_accepted))
             accepted_total += int(np.count_nonzero(pair_accepted))
 
+        tracklet_rows = np.flatnonzero(move_types == 5).astype(np.int64)
+        if tracklet_rows.size:
+            tracklet_proposed, tracklet_hastings = propose_guided_tracklets(
+                current, tracklet_rows, model, rng
+            )
+            tracklet_marginal = model.log_marginal_density(tracklet_proposed)
+            tracklet_count = model.log_count_density(
+                tracklet_proposed, include_poisson_void=False
+            )
+            tracklet_existence = model.log_existence_prior(tracklet_proposed)
+            tracklet_ratio = (
+                tracklet_existence - current_existence[tracklet_rows]
+                + tracklet_count - current_count[tracklet_rows]
+                + beta * (tracklet_marginal - current_marginal[tracklet_rows])
+                + tracklet_hastings
+            )
+            tracklet_accepted = np.log(rng.random(tracklet_rows.size)) < tracklet_ratio
+            accepted_rows = tracklet_rows[tracklet_accepted]
+            tracklet_changes += int(np.count_nonzero(np.any(
+                tracklet_proposed[tracklet_accepted] != current[accepted_rows], axis=(1, 2)
+            )))
+            current[accepted_rows] = tracklet_proposed[tracklet_accepted]
+            current_marginal[accepted_rows] = tracklet_marginal[tracklet_accepted]
+            current_count[accepted_rows] = tracklet_count[tracklet_accepted]
+            current_existence[accepted_rows] = tracklet_existence[tracklet_accepted]
+            proposed_by_move[5] += tracklet_rows.size
+            accepted_by_move[5] += int(np.count_nonzero(tracklet_accepted))
+            accepted_total += int(np.count_nonzero(tracklet_accepted))
+
     rates = np.divide(
         accepted_by_move,
         proposed_by_move,
-        out=np.zeros(5, dtype=float),
+        out=np.zeros(6, dtype=float),
         where=proposed_by_move > 0,
     )
     return (
@@ -490,6 +530,8 @@ def _metropolis_birth_death_rejuvenation(
             float(rates[3]),
             float(rates[4]),
             paired_changes / proposed_by_move[4] if proposed_by_move[4] else 0.0,
+            float(rates[5]),
+            tracklet_changes / proposed_by_move[5] if proposed_by_move[5] else 0.0,
         ),
     )
 
@@ -535,9 +577,11 @@ def sample_slot_existence_posterior(
         relative_jitter=relative_jitter,
     )
     if n_slots < 2 and (
-        controls.slot_swap_probability > 0 or controls.paired_slot_move_probability > 0
+        controls.slot_swap_probability > 0
+        or controls.paired_slot_move_probability > 0
+        or controls.tracklet_move_probability > 0
     ):
-        raise ValueError("slot-swap and paired-slot moves require at least two slots")
+        raise ValueError("slot-swap, paired-slot and tracklet moves require at least two slots")
     rng = np.random.default_rng(controls.seed)
     associations = model.sample_base_associations(
         n_samples=controls.n_particles, rng=rng
@@ -607,6 +651,8 @@ def sample_slot_existence_posterior(
                 blocked_slot_acceptance_rate=acceptance[4],
                 paired_slot_acceptance_rate=acceptance[5],
                 paired_slot_state_change_rate=acceptance[6],
+                tracklet_acceptance_rate=acceptance[7],
+                tracklet_state_change_rate=acceptance[8],
             )
         )
         beta = next_beta

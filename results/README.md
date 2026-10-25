@@ -110,3 +110,14 @@ metrics are below 0.10. The JSON records the original failed comparison,
 per-run stage summaries, full seven-metric comparisons and runtime. No
 eight-frame exact posterior calibration is inferred. See
 `../docs/wp10_convergence.md`.
+
+WP11 introduces a guided, three-frame two-slot association/clutter move
+and checks finite-state detailed balance before large-case use. Three
+2,048-particle four-slot/four-frame runs pass the inherited exact-oracle
+checks. At 8,192 particles, the unchanged WP8 hard-case seed pair and
+two predeclared untouched eight-frame realizations all fail the seven-metric
+0.10 gate (worst 0.3456, 0.3708, and 0.1439). The JSON preserves all six
+large runs, observed-data hashes, edge and per-detection clutter marginals,
+count-signature histograms, tracklet acceptance versus actual state-change
+rates, and runtimes. These two-seed comparisons are diagnostic, not exact
+eight-frame posterior calibration. See `../docs/wp11_tracklet_validation.md`.

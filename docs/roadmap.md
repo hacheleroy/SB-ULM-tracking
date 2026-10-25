@@ -237,12 +237,23 @@ See `wp10_convergence.md`.
 
 ## WP11 — Targeted association/clutter mode moves
 
-- Design a reversible multi-frame proposal aimed at competing assignments
+- [x] Design a reversible multi-frame proposal aimed at competing assignments
   and clutter decisions while retaining explicit null and existence states
-- Test detailed balance and posterior weights on the existing small exact
+- [x] Test detailed balance and posterior weights on the existing small exact
   oracles before any large-case claim
-- Freeze a new comparison on the unchanged hard case and untouched
+- [x] Freeze a new comparison on the unchanged hard case and untouched
   synthetic realizations, reporting mode and count coverage as well as cost
+
+**Observed boundary:** the three-frame guided two-slot move passes all three
+2,048-particle runs on the exactly enumerable four-slot bridge and the
+finite-state detailed-balance checks. At 8,192 particles, all three
+predeclared eight-frame two-seed pairs fail the inherited 0.10 gate: worst
+0.3456 on the unchanged WP8 hard case, 0.3708 and 0.1439 on two untouched
+synthetic realizations. Accepted tracklet state changes occur in only
+about 1% of selected moves. The original case takes about 904 seconds/run,
+against 432 seconds for the earlier paired mixture. This is a correct but
+inefficient proposal under the tested protocol, not a posterior-calibration
+claim. See `wp11_tracklet_validation.md`.
 
 ## WP12 — Open in-vivo trajectories
 

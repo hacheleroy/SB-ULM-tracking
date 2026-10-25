@@ -255,6 +255,18 @@ in frame 3. More applications of the existing moves help substantially
 without resolving this case. These are diagnostic pairs, not calibrated
 eight-frame posteriors. See `docs/wp10_convergence.md`.
 
+WP11 adds an exactly reversible, three-frame two-slot association/clutter
+proposal with a guided auxiliary Markov chain and an explicit Hastings
+correction. Finite-state detailed balance and all three inherited
+four-slot/four-frame exact-oracle runs pass. At the unchanged 8,192-particle
+hard-case budget, however, the two seeds disagree by 0.3456 on expected
+clutter (limit 0.10), compared with 0.2013 for the old paired mixture;
+two predeclared untouched realizations also fail (worst 0.3708 and 0.1439).
+Only about 1% of selected tracklet moves yield an accepted state change,
+while hard-case runtime rises to 904 seconds/run on average. This validates
+the transition rule, not practical eight-frame mixing or exact posterior
+mass calibration. See `docs/wp11_tracklet_validation.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.
