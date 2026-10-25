@@ -1,0 +1,93 @@
+{
+  "experiment": "wp11i_late_pg_oracle",
+  "protocol": {
+    "observation_sha256": "c645fab464abe15579b843a35081078e62983d6fdfd014c7692a88a368dace72",
+    "exact_support_size": 269,
+    "seeds": [
+      610,
+      611,
+      612
+    ],
+    "arms": [
+      "constant",
+      "late"
+    ],
+    "n_particles": 512,
+    "sweeps": 2,
+    "internal_paths": 4,
+    "control_pg_fraction": 0.1,
+    "candidate_early_fraction": 0.025,
+    "candidate_late_fraction": 0.25,
+    "beta_switch": 0.75,
+    "finite_sample_count_tv_q99": 0.08892790897077366,
+    "arm_order_by_seed": {
+      "610": [
+        "constant",
+        "late"
+      ],
+      "611": [
+        "late",
+        "constant"
+      ],
+      "612": [
+        "constant",
+        "late"
+      ]
+    },
+    "gate": "all six count TVs <= frozen 99% exact multinomial envelope; candidate mean count-change rate > constant at beta=1",
+    "interpretation": "exact-target and movement pilot, not an eight-frame stability result"
+  },
+  "runs": {
+    "constant": {
+      "610": {
+        "cpu_seconds": 1.199652794,
+        "count_change_rate": 0.1640625,
+        "actual_pg_fraction": 0.0986328125,
+        "count_tv_against_exact": 0.06428790175426408,
+        "within_exact_envelope": true
+      },
+      "611": {
+        "cpu_seconds": 1.2511268100000006,
+        "count_change_rate": 0.150390625,
+        "actual_pg_fraction": 0.103515625,
+        "count_tv_against_exact": 0.05077515762360794,
+        "within_exact_envelope": true
+      },
+      "612": {
+        "cpu_seconds": 1.076625204,
+        "count_change_rate": 0.16015625,
+        "actual_pg_fraction": 0.1025390625,
+        "count_tv_against_exact": 0.026760621551032735,
+        "within_exact_envelope": true
+      }
+    },
+    "late": {
+      "610": {
+        "cpu_seconds": 1.72695943,
+        "count_change_rate": 0.1650390625,
+        "actual_pg_fraction": 0.2734375,
+        "count_tv_against_exact": 0.03445724568313184,
+        "within_exact_envelope": true
+      },
+      "611": {
+        "cpu_seconds": 1.7094672010000003,
+        "count_change_rate": 0.1884765625,
+        "actual_pg_fraction": 0.2568359375,
+        "count_tv_against_exact": 0.07186370711464557,
+        "within_exact_envelope": true
+      },
+      "612": {
+        "cpu_seconds": 1.5657875720000005,
+        "count_change_rate": 0.181640625,
+        "actual_pg_fraction": 0.255859375,
+        "count_tv_against_exact": 0.05836338842425642,
+        "within_exact_envelope": true
+      }
+    }
+  },
+  "status": "exact_oracle_passed",
+  "mean_count_change_rate": {
+    "constant": 0.158203125,
+    "late": 0.17838541666666666
+  }
+}
