@@ -1,0 +1,95 @@
+{
+  "experiment": "wp11f_path_particle_count_exact_oracle",
+  "protocol": {
+    "case": "unchanged 269-state two-slot/three-frame exact posterior",
+    "observation_sha256": "c645fab464abe15579b843a35081078e62983d6fdfd014c7692a88a368dace72",
+    "seeds": [
+      81,
+      82,
+      83
+    ],
+    "n_particles": 512,
+    "sweeps": 2,
+    "beta": 1.0,
+    "arms_path_particles": [
+      4,
+      8
+    ],
+    "arm_order": [
+      [
+        4,
+        8
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        4,
+        8
+      ]
+    ],
+    "finite_sample_envelope": "99% max-of-three count-TV from 2000 exact multinomial triplets, seed 1122",
+    "minimum_mean_four_count_change": 0.2,
+    "maximum_median_four_eight_cpu_ratio": 0.75,
+    "gate": "all six count-TV within envelope; N=4 mean change >= .20; median CPU ratio <= .75"
+  },
+  "exact_support_size": 269,
+  "exact_count_tv_max_q99": 0.08892790897077366,
+  "runs": {
+    "4": {
+      "81": {
+        "cpu_seconds": 7.340696757000001,
+        "wall_seconds": 22.926940542998636,
+        "count_signature_change_rate": 0.28515625,
+        "count_tv_against_exact": 0.024306491600550463,
+        "within_exact_count_tv_q99": true
+      },
+      "82": {
+        "cpu_seconds": 5.2630150449999995,
+        "wall_seconds": 6.449902838998241,
+        "count_signature_change_rate": 0.2568359375,
+        "count_tv_against_exact": 0.051997273483397714,
+        "within_exact_count_tv_q99": true
+      },
+      "83": {
+        "cpu_seconds": 5.733514189000001,
+        "wall_seconds": 11.308214700999088,
+        "count_signature_change_rate": 0.283203125,
+        "count_tv_against_exact": 0.04492725875448881,
+        "within_exact_count_tv_q99": true
+      }
+    },
+    "8": {
+      "81": {
+        "cpu_seconds": 9.071796242,
+        "wall_seconds": 16.914596365997568,
+        "count_signature_change_rate": 0.4130859375,
+        "count_tv_against_exact": 0.05075465931079833,
+        "within_exact_count_tv_q99": true
+      },
+      "82": {
+        "cpu_seconds": 8.327316344,
+        "wall_seconds": 11.297141192000709,
+        "count_signature_change_rate": 0.3994140625,
+        "count_tv_against_exact": 0.038009852673719716,
+        "within_exact_count_tv_q99": true
+      },
+      "83": {
+        "cpu_seconds": 11.724596657000006,
+        "wall_seconds": 27.028457582000556,
+        "count_signature_change_rate": 0.400390625,
+        "count_tv_against_exact": 0.04554973261121719,
+        "within_exact_count_tv_q99": true
+      }
+    }
+  },
+  "status": "small_oracle_path_count_passed",
+  "cpu_ratios_four_to_eight": [
+    0.8091778696499521,
+    0.6320181469738577,
+    0.4890159002251806
+  ],
+  "median_cpu_ratio_four_to_eight": 0.6320181469738577,
+  "mean_four_count_change_rate": 0.2750651041666667
+}

@@ -316,6 +316,16 @@ count changes, but one pair-update runtime ratio exceeds the predeclared
 The run is stopped before a high-particle or held-out claim. See
 `docs/wp11e_selective_pg_development.md`.
 
+WP11f follows that failed single-run wall-time gate with an interleaved
+CPU-time diagnostic on the exposed data (median 2.26× and 2.61×), a
+four-versus-eight-path exact-oracle comparison, and a separately frozen
+new synthetic development case. The four-path 10% mixture increases
+count-mode movement on both new seeds at 1.57× and 1.87× median paired
+CPU cost. Cross-run assigned counts/clutter improve while alive counts
+slightly worsen, so this is an operational development pass, not
+eight-frame calibration or an opened holdout. See
+`docs/wp11f_cost_path_count_development.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.

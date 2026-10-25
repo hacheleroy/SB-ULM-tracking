@@ -1,0 +1,253 @@
+{
+  "experiment": "wp11f_interleaved_cpu_time_on_exposed_wp11e",
+  "protocol": {
+    "case": "unchanged exposed WP11e synthetic development observation",
+    "observation_sha256": "9665d3a3377254df2211d251ad6ae746d8880b7501f1938ae4a2886afcfd3d37",
+    "baseline_hashes": {
+      "310": "8dbfe98e5306996f154338ee7675d6c406be9c568828b44d21a025f5606640d1",
+      "311": "5361dd1ba25217758c9e32880a919f8d03a7c0397938b1d6b9b43d7cf39bf1e7"
+    },
+    "seeds": [
+      310,
+      311
+    ],
+    "n_particles": 512,
+    "pair_sweeps": 2,
+    "repeats": 4,
+    "arm_order": [
+      [
+        "local",
+        "sparse_pg"
+      ],
+      [
+        "sparse_pg",
+        "local"
+      ],
+      [
+        "local",
+        "sparse_pg"
+      ],
+      [
+        "sparse_pg",
+        "local"
+      ]
+    ],
+    "rng": "same seed+10000+repeat in each arm, fresh identical baseline copies",
+    "thread_env": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "max_median_cpu_ratio_per_seed": 3.0,
+    "mean_pg_fraction_range": [
+      0.07,
+      0.13
+    ],
+    "gate": "for each seed, median CPU ratio <= 3; mean count movement >= local; PG fraction in range",
+    "interpretation": "cost/movement diagnostic only; original wall-time gate remains failed"
+  },
+  "runs": {
+    "310": {
+      "baseline": {
+        "association_sha256": "8dbfe98e5306996f154338ee7675d6c406be9c568828b44d21a025f5606640d1",
+        "runtime_seconds": 157.6262459589998,
+        "tempering_stages": 19
+      },
+      "0": {
+        "local": {
+          "cpu_seconds": 1.9016276719999965,
+          "wall_seconds": 6.212261111999396,
+          "state_change_rate": 0.2646484375,
+          "count_signature_change_rate": 0.2080078125,
+          "actual_pg_fraction": 0.0,
+          "pg_count_signature_change_rate": 0.0
+        },
+        "sparse_pg": {
+          "cpu_seconds": 5.038800779999995,
+          "wall_seconds": 15.248870065002848,
+          "state_change_rate": 0.3125,
+          "count_signature_change_rate": 0.24609375,
+          "actual_pg_fraction": 0.1123046875,
+          "pg_count_signature_change_rate": 0.6869565217391305
+        }
+      },
+      "1": {
+        "sparse_pg": {
+          "cpu_seconds": 4.289209196999991,
+          "wall_seconds": 7.198375117000978,
+          "state_change_rate": 0.2958984375,
+          "count_signature_change_rate": 0.2216796875,
+          "actual_pg_fraction": 0.103515625,
+          "pg_count_signature_change_rate": 0.6509433962264151
+        },
+        "local": {
+          "cpu_seconds": 1.9564287709999917,
+          "wall_seconds": 2.11734915100169,
+          "state_change_rate": 0.2470703125,
+          "count_signature_change_rate": 0.17578125,
+          "actual_pg_fraction": 0.0,
+          "pg_count_signature_change_rate": 0.0
+        }
+      },
+      "2": {
+        "local": {
+          "cpu_seconds": 2.8563618049999917,
+          "wall_seconds": 2.8617020710007637,
+          "state_change_rate": 0.28515625,
+          "count_signature_change_rate": 0.201171875,
+          "actual_pg_fraction": 0.0,
+          "pg_count_signature_change_rate": 0.0
+        },
+        "sparse_pg": {
+          "cpu_seconds": 4.705979785000011,
+          "wall_seconds": 12.091106096999283,
+          "state_change_rate": 0.3330078125,
+          "count_signature_change_rate": 0.2578125,
+          "actual_pg_fraction": 0.09375,
+          "pg_count_signature_change_rate": 0.6979166666666666
+        }
+      },
+      "3": {
+        "sparse_pg": {
+          "cpu_seconds": 4.199030281000006,
+          "wall_seconds": 14.423589913996693,
+          "state_change_rate": 0.30078125,
+          "count_signature_change_rate": 0.23046875,
+          "actual_pg_fraction": 0.083984375,
+          "pg_count_signature_change_rate": 0.6976744186046512
+        },
+        "local": {
+          "cpu_seconds": 1.8014040009999945,
+          "wall_seconds": 5.608086655000079,
+          "state_change_rate": 0.2578125,
+          "count_signature_change_rate": 0.1875,
+          "actual_pg_fraction": 0.0,
+          "pg_count_signature_change_rate": 0.0
+        }
+      }
+    },
+    "311": {
+      "baseline": {
+        "association_sha256": "5361dd1ba25217758c9e32880a919f8d03a7c0397938b1d6b9b43d7cf39bf1e7",
+        "runtime_seconds": 171.9011342449994,
+        "tempering_stages": 20
+      },
+      "0": {
+        "local": {
+          "cpu_seconds": 1.6572107730000027,
+          "wall_seconds": 3.5061289020013646,
+          "state_change_rate": 0.26171875,
+          "count_signature_change_rate": 0.1875,
+          "actual_pg_fraction": 0.0,
+          "pg_count_signature_change_rate": 0.0
+        },
+        "sparse_pg": {
+          "cpu_seconds": 4.3098040669999875,
+          "wall_seconds": 12.549448858000687,
+          "state_change_rate": 0.3125,
+          "count_signature_change_rate": 0.244140625,
+          "actual_pg_fraction": 0.1025390625,
+          "pg_count_signature_change_rate": 0.7333333333333333
+        }
+      },
+      "1": {
+        "sparse_pg": {
+          "cpu_seconds": 8.461500153999992,
+          "wall_seconds": 24.803097429001355,
+          "state_change_rate": 0.2890625,
+          "count_signature_change_rate": 0.2275390625,
+          "actual_pg_fraction": 0.0947265625,
+          "pg_count_signature_change_rate": 0.6597938144329897
+        },
+        "local": {
+          "cpu_seconds": 1.6787473130000024,
+          "wall_seconds": 2.4073053510001046,
+          "state_change_rate": 0.271484375,
+          "count_signature_change_rate": 0.2119140625,
+          "actual_pg_fraction": 0.0,
+          "pg_count_signature_change_rate": 0.0
+        }
+      },
+      "2": {
+        "local": {
+          "cpu_seconds": 1.5301726430000144,
+          "wall_seconds": 2.2330761390003318,
+          "state_change_rate": 0.2529296875,
+          "count_signature_change_rate": 0.1884765625,
+          "actual_pg_fraction": 0.0,
+          "pg_count_signature_change_rate": 0.0
+        },
+        "sparse_pg": {
+          "cpu_seconds": 3.766478921000015,
+          "wall_seconds": 5.465091580997978,
+          "state_change_rate": 0.3115234375,
+          "count_signature_change_rate": 0.255859375,
+          "actual_pg_fraction": 0.083984375,
+          "pg_count_signature_change_rate": 0.6627906976744186
+        }
+      },
+      "3": {
+        "sparse_pg": {
+          "cpu_seconds": 4.394620718999988,
+          "wall_seconds": 11.045009674002358,
+          "state_change_rate": 0.3154296875,
+          "count_signature_change_rate": 0.251953125,
+          "actual_pg_fraction": 0.103515625,
+          "pg_count_signature_change_rate": 0.6698113207547169
+        },
+        "local": {
+          "cpu_seconds": 1.6793266599999868,
+          "wall_seconds": 2.971809263999603,
+          "state_change_rate": 0.248046875,
+          "count_signature_change_rate": 0.181640625,
+          "actual_pg_fraction": 0.0,
+          "pg_count_signature_change_rate": 0.0
+        }
+      }
+    }
+  },
+  "status": "controlled_cost_screen_passed",
+  "comparisons": {
+    "310": {
+      "cpu_ratios": [
+        2.649730467321473,
+        2.1923666532503723,
+        1.6475433107816762,
+        2.3309764376392206
+      ],
+      "wall_ratios": [
+        2.4546408771435315,
+        3.3997109610361242,
+        4.2251449651329045,
+        2.5719270762581483
+      ],
+      "median_cpu_ratio": 2.2616715454447966,
+      "median_wall_ratio": 2.9858190186471365,
+      "mean_local_count_change_rate": 0.193115234375,
+      "mean_sparse_count_change_rate": 0.239013671875,
+      "mean_pg_fraction": 0.098388671875,
+      "gate_passed": true
+    },
+    "311": {
+      "cpu_ratios": [
+        2.6006372497796817,
+        5.04036556810857,
+        2.4614731796639364,
+        2.6168945111608144
+      ],
+      "wall_ratios": [
+        3.579289070301216,
+        10.30326186858556,
+        2.4473377712255275,
+        3.716594401868664
+      ],
+      "median_cpu_ratio": 2.608765880470248,
+      "median_wall_ratio": 3.64794173608494,
+      "mean_local_count_change_rate": 0.1923828125,
+      "mean_sparse_count_change_rate": 0.244873046875,
+      "mean_pg_fraction": 0.09619140625,
+      "gate_passed": true
+    }
+  }
+}

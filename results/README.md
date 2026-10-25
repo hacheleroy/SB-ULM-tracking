@@ -164,3 +164,15 @@ It records observed PG selection, actual state/count changes, per-frame
 count and clutter summaries, and paired runtime ratios. Count movement
 increases but one seed exceeds the 3× cost ceiling, giving
 `stopped_before_holdout`. See `../docs/wp11e_selective_pg_development.md`.
+
+`wp11f_interleaved_cost.json` stores the frozen, four-repeat, single-threaded
+CPU/wall-time comparison on the exposed WP11e data, including the two
+reproduced baseline hashes, alternating arm order, movement and both
+timing ratios. `wp11f_path_count_oracle.json` records the exact 269-state
+four-versus-eight-path pilot and its finite-sample envelope.
+`wp11f_four_path_development.json` records a *new* frozen synthetic
+development observation, two baseline hashes and same-start interleaved
+four-path sparse-PG comparisons, count histograms and CPU cost. All three
+predeclared operational screens pass; none is a reserved holdout or
+exact eight-frame calibration. See
+`../docs/wp11f_cost_path_count_development.md`.

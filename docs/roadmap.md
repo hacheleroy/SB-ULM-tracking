@@ -342,6 +342,26 @@ second seed. Two-seed count agreement barely changes and remains far
 from a calibrated eight-frame claim. The development result is preserved
 as `stopped_before_holdout`. See `wp11e_selective_pg_development.md`.
 
+## WP11f — Cost-controlled four-path selective PG
+
+- [x] Reproduce the exposed WP11e baseline hashes and compare local versus
+  sparse PG in four interleaved CPU-time repeats per seed
+- [x] Pass a frozen four-versus-eight internal-path exact-oracle screen
+- [x] Freeze a new eight-frame development observation before inference
+- [x] Pass its two-seed same-start count-movement and median-CPU-cost gate
+- [ ] Test independent high-particle stability on an already exposed hard
+  observation before contemplating a truly untouched holdout
+
+**Observed boundary:** median eight-path sparse/local CPU ratios are 2.262
+and 2.609 on the previously exposed WP11e data, despite variable wall
+ratios. Four-path PG preserves the small exact count histogram and gives
+0.275 count-mode changes at 0.632 of the eight-path CPU cost. The new
+development case passes a two-seed, 10%-PG operational gate at 1.567×
+and 1.868× median CPU cost. Assigned-count and clutter cross-run
+discrepancies improve but alive-count TV worsens to 0.223 from 0.208;
+no eight-frame posterior-calibration or stability claim follows.
+See `wp11f_cost_path_count_development.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
