@@ -138,3 +138,11 @@ seeds yield a mean accepted count-signature change rate of 0.0020, below
 the predeclared 0.01 gate. The artifact includes the unchanged local-pair
 control and records `stopped_before_fresh_holdout`; no new eight-frame
 validation data were opened. See `../docs/wp11c_full_history_pilot.md`.
+
+`wp11d_conditional_pair_pilot.json` contains the frozen exact-posterior
+three-seed comparison of the opt-in likelihood-guided conditional particle-
+Gibbs pair kernel with the unchanged local paired move. The mean actual
+count-signature change rate is 0.4118; all exact-count histogram TV values
+are below the predeclared 0.0877 finite-sample envelope. The artifact
+preserves per-seed runtime and the small-case-only pass status. It contains
+no fresh eight-frame result. See `../docs/wp11d_conditional_pair_pilot.md`.

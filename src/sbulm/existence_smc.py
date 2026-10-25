@@ -8,6 +8,7 @@ import numpy as np
 from numpy.typing import ArrayLike, NDArray
 from scipy.special import logsumexp
 
+from .conditional_pair_pg import conditional_pair_pg_move
 from .conditional_tracklet_moves import propose_conditional_gp_tracklets
 from .data import DetectionSequence
 from .paired_moves import local_pair_multiple_try_move, multiple_try_paired_move
@@ -40,6 +41,7 @@ class BirthDeathSMCConfig:
     paired_slot_move_probability: float = 0.0
     paired_slot_candidates: int = 2
     paired_slot_scope: str = "local"
+    paired_slot_path_particles: int = 8
     tracklet_move_probability: float = 0.0
     tracklet_proposal_kind: str = "displacement"
     max_tempering_steps: int = 128
@@ -72,7 +74,9 @@ class BirthDeathSMCConfig:
             raise ValueError("tempering and bisection iteration counts must be positive")
         if self.paired_slot_candidates < 2:
             raise ValueError("paired_slot_candidates must be at least two")
-        if self.paired_slot_scope not in ("local", "full_sequence"):
+        if self.paired_slot_path_particles < 2:
+            raise ValueError("paired_slot_path_particles must be at least two")
+        if self.paired_slot_scope not in ("local", "full_sequence", "conditional_smc"):
             raise ValueError("unknown paired_slot_scope")
         if self.tracklet_proposal_kind not in ("displacement", "conditional_gp_nonself"):
             raise ValueError("unknown tracklet_proposal_kind")
@@ -477,7 +481,7 @@ def _metropolis_birth_death_rejuvenation(
                     n_candidates=config.paired_slot_candidates,
                     rng=rng,
                 )
-            else:
+            elif config.paired_slot_scope == "full_sequence":
                 pair_proposed, pair_marginal, pair_accepted = multiple_try_paired_move(
                     current,
                     current_marginal,
@@ -491,6 +495,21 @@ def _metropolis_birth_death_rejuvenation(
                     pair_proposed, include_poisson_void=False
                 )
                 pair_existence = model.log_existence_prior(pair_proposed)
+            else:
+                pair_proposed = conditional_pair_pg_move(
+                    current, pair_rows, model,
+                    beta=beta,
+                    n_particles=config.paired_slot_path_particles,
+                    rng=rng,
+                )
+                pair_marginal = model.log_marginal_density(pair_proposed)
+                pair_count = model.log_count_density(
+                    pair_proposed, include_poisson_void=False
+                )
+                pair_existence = model.log_existence_prior(pair_proposed)
+                # A conditional particle-Gibbs step always leaves the target
+                # invariant; the state-change diagnostics measure its mixing.
+                pair_accepted = np.ones(pair_rows.size, dtype=bool)
             selected_rows = pair_rows[pair_accepted]
             selected_states = pair_proposed[pair_accepted]
             paired_changes += int(

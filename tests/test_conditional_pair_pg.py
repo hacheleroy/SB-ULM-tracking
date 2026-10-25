@@ -1,0 +1,136 @@
+"""Finite-oracle tests of the likelihood-guided full-history PG kernel."""
+
+import numpy as np
+import pytest
+from scipy.special import logsumexp
+
+from sbulm.conditional_pair_pg import ConditionalPairPath
+from sbulm.data import DetectionSequence
+from sbulm.existence_smc import BirthDeathSMCConfig, _metropolis_birth_death_rejuvenation
+from sbulm.paired_moves import PairConditionalBase
+from sbulm.slot_existence import SlotExistenceMaternModel, enumerate_slot_existence_support
+
+
+def _model(n_frames: int = 2, n_slots: int = 2) -> SlotExistenceMaternModel:
+    frames = [np.asarray([[-0.008, 0.002]])]
+    frames += [np.empty((0, 2)) for _ in range(n_frames - 2)]
+    frames += [np.asarray([[0.008, -0.002]])]
+    return SlotExistenceMaternModel(
+        DetectionSequence(
+            times=np.arange(n_frames, dtype=float) * 0.001, detections=tuple(frames)
+        ),
+        n_slots=n_slots,
+        localization_std=0.005,
+        coordinate_std=(0.02, 0.01),
+        length_scale=0.003,
+        detection_probability=0.7,
+        expected_clutter_per_frame=0.15,
+        roi_lower=(-0.04, -0.04),
+        roi_upper=(0.04, 0.04),
+    )
+
+
+@pytest.mark.parametrize("beta", [0.0, 0.37, 1.0])
+def test_incremental_gp_and_count_weights_equal_exact_target(beta: float) -> None:
+    model = _model(n_frames=3)
+    support, _ = enumerate_slot_existence_support(model)
+    for state in support[::7]:
+        kernel = ConditionalPairPath(model, state, (0, 1))
+        prefix = state.copy()
+        previous = None
+        total = 0.0
+        for time_index in range(model.sequence.n_frames):
+            states, options, weights = kernel.options(prefix, previous, time_index, beta)
+            matches = np.flatnonzero(np.all(options == state[time_index], axis=1))
+            assert len(matches) == 1
+            index = int(matches[0])
+            total += weights[index]
+            previous = int(states[index])
+        expected = (
+            model.log_existence_prior(state[None])[0]
+            + model.log_count_density(state[None], include_poisson_void=False)[0]
+            + beta * model.log_marginal_density(state[None])[0]
+        )
+        assert total == pytest.approx(expected, abs=1e-10)
+
+
+@pytest.mark.parametrize("beta", [0.0, 0.37, 1.0])
+def test_two_particle_two_frame_pg_satisfies_exact_detailed_balance(beta: float) -> None:
+    """Sum every proposal, ancestor and final-selection event (not MC)."""
+
+    model = _model()
+    support, _ = enumerate_slot_existence_support(model)
+    lookup = {state.tobytes(): i for i, state in enumerate(support)}
+    conditional = PairConditionalBase(model, support[0], (0, 1))
+    log_target = conditional.log_probability(support) + beta * model.log_marginal_density(support)
+    target = np.exp(log_target - logsumexp(log_target))
+    transition = np.zeros((len(support), len(support)))
+    for ref_index, reference in enumerate(support):
+        kernel = ConditionalPairPath(model, reference, (0, 1))
+        initial_states, initial_options, first_log = kernel.options(
+            reference, None, 0, beta
+        )
+        first_prob = np.exp(first_log - logsumexp(first_log))
+        ref_first = np.flatnonzero(np.all(initial_options == reference[0], axis=1))
+        assert len(ref_first) == 1
+        ref_state_index = int(initial_states[ref_first[0]])
+        ref_states, _, ref_log = kernel.options(reference, ref_state_index, 1, beta)
+        assert ref_states.size
+        ref_normalizer = float(logsumexp(ref_log))
+        for first_index, (state_index, first_frame, probability) in enumerate(
+            zip(initial_states, initial_options, first_prob, strict=True)
+        ):
+            first_path = reference.copy()
+            first_path[0] = first_frame
+            # At the second frame, a non-reference particle resamples its
+            # ancestor uniformly because the first-stage adapted weights match.
+            for ancestor_path, ancestor_state in (
+                (first_path, int(state_index)), (reference, ref_state_index)
+            ):
+                _, second_options, second_log = kernel.options(
+                    ancestor_path, ancestor_state, 1, beta
+                )
+                second_normalizer = float(logsumexp(second_log))
+                select_nonreference = np.exp(second_normalizer - np.logaddexp(
+                    second_normalizer, ref_normalizer
+                ))
+                for next_frame, conditional_probability in zip(
+                    second_options, np.exp(second_log - second_normalizer), strict=True
+                ):
+                    output = ancestor_path.copy()
+                    output[1] = next_frame
+                    transition[ref_index, lookup[output.tobytes()]] += (
+                        probability * 0.5 * conditional_probability * select_nonreference
+                    )
+        transition[ref_index, ref_index] += 1 - np.sum(transition[ref_index])
+    assert np.allclose(np.sum(transition, axis=1), 1.0, atol=1e-12)
+    assert np.allclose(target[:, None] * transition, target[None, :] * transition.T,
+                       rtol=1e-10, atol=1e-13)
+
+
+def test_pg_rejuvenation_keeps_valid_reference_and_changes_modes() -> None:
+    model = _model(n_frames=3, n_slots=3)
+    rng = np.random.default_rng(92)
+    states = model.sample_base_associations(n_samples=32, rng=rng)
+    controls = BirthDeathSMCConfig(
+        n_particles=len(states), mh_sweeps=1, final_mh_sweeps=0,
+        association_move_probability=0, interval_move_probability=0,
+        slot_swap_probability=0, blocked_slot_move_probability=0,
+        paired_slot_move_probability=1, paired_slot_scope="conditional_smc",
+        paired_slot_path_particles=4,
+    )
+    result = _metropolis_birth_death_rejuvenation(
+        states.copy(), model.log_marginal_density(states),
+        model.log_count_density(states, include_poisson_void=False),
+        model.log_existence_prior(states), model, beta=1.0,
+        n_sweeps=1, config=controls, rng=rng,
+    )
+    model._validate_associations(result[0])
+    assert result[-1][5] == 1.0
+    assert result[-1][6] > 0.0
+
+
+def test_pg_configuration_is_opt_in() -> None:
+    assert BirthDeathSMCConfig().paired_slot_scope == "local"
+    with pytest.raises(ValueError, match="paired_slot_path_particles"):
+        BirthDeathSMCConfig(paired_slot_path_particles=1)

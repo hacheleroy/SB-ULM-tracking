@@ -288,6 +288,17 @@ is too far from the localization-conditioned posterior; the next sampler
 must guide a global path update with measurement information while retaining
 exact posterior invariance. See `docs/wp11c_full_history_pilot.md`.
 
+WP11d introduces an opt-in full-history conditional particle-Gibbs pair
+update. It guides each frame using the exact predictive Gaussian localization
+likelihood while preserving the current path as a reference particle. A fully
+enumerated two-frame kernel passes detailed balance; on the unchanged
+three-frame exact-posterior pilot, the mean label-free count-signature change
+rate rises to 0.4118 and all three count histograms remain within the frozen
+finite-sample envelope. Its cost is roughly an order of magnitude higher
+than the local move in this small pilot. The default sampler is unchanged;
+no fresh eight-frame holdout or large-case calibration is claimed. See
+`docs/wp11d_conditional_pair_pilot.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.

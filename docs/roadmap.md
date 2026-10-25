@@ -294,6 +294,25 @@ No fresh large-case observation was opened. Next, test a likelihood-guided
 sequential or conditional path update on small exact oracles before
 reserving a new synthetic realization. See `wp11c_full_history_pilot.md`.
 
+## WP11d — Conditional particle-Gibbs pair histories
+
+- [x] Construct a likelihood-guided two-slot full-history conditional SMC
+  proposal with an exact GP predictive increment and retained reference path
+- [x] Verify incremental density identity and an enumerated two-frame
+  detailed-balance transition matrix at three temperatures
+- [x] Pass the frozen three-seed, 269-state small-case mixing/stationarity
+  gate without changing the default sampler
+- [ ] Profile and validate operational mixing on the already exposed WP8
+  difficult eight-frame observations before reserving any new holdout
+
+**Observed boundary:** count-signature transitions increase to 0.4118
+per selected update (mean over three exact-posterior pilot seeds), from
+0.1270--0.1572 for the local comparator. Exact-count TV remains within
+the predeclared 0.0877 envelope, but this small-posterior pilot is around
+an order of magnitude slower. This validates the small-kernel target and
+mixing, not full SMC recovery or eight-frame calibration. No fresh holdout
+was opened. See `wp11d_conditional_pair_pilot.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`

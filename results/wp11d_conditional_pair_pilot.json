@@ -1,0 +1,191 @@
+{
+  "experiment": "wp11d_conditional_pair_pg_small_exact_pilot",
+  "protocol": {
+    "case": "unchanged exact WP11c two-slot three-frame observations",
+    "observation_sha256": "c645fab464abe15579b843a35081078e62983d6fdfd014c7692a88a368dace72",
+    "seeds": [
+      74,
+      75,
+      76
+    ],
+    "n_particles": 512,
+    "sweeps": 2,
+    "path_particles": 8,
+    "beta": 1.0,
+    "arms": [
+      "conditional_smc",
+      "local"
+    ],
+    "minimum_mean_count_signature_change_rate": 0.01,
+    "stationarity_threshold": "99% maximum-of-three multinomial count-TV baseline, 1000 replicates",
+    "gate": "both mixing and stationary count-TV checks before any larger development case"
+  },
+  "exact_support_size": 269,
+  "exact_count_tv_max_q99": 0.08768358562093195,
+  "runs": {
+    "conditional_smc": {
+      "74": {
+        "config": {
+          "n_particles": 512,
+          "target_ess_fraction": 0.8,
+          "mh_sweeps": 2,
+          "final_mh_sweeps": 0,
+          "association_move_probability": 0,
+          "interval_move_probability": 0,
+          "slot_swap_probability": 0,
+          "blocked_slot_move_probability": 0,
+          "paired_slot_move_probability": 1,
+          "paired_slot_candidates": 2,
+          "paired_slot_scope": "conditional_smc",
+          "paired_slot_path_particles": 8,
+          "tracklet_move_probability": 0.0,
+          "tracklet_proposal_kind": "displacement",
+          "max_tempering_steps": 128,
+          "bisection_iterations": 48,
+          "seed": 0
+        },
+        "state_change_rate": 0.6318359375,
+        "count_signature_change_rate": 0.4072265625,
+        "count_tv_against_exact": 0.05390090570031308,
+        "within_exact_count_tv_q99": true,
+        "runtime_seconds": 15.597139539000636
+      },
+      "75": {
+        "config": {
+          "n_particles": 512,
+          "target_ess_fraction": 0.8,
+          "mh_sweeps": 2,
+          "final_mh_sweeps": 0,
+          "association_move_probability": 0,
+          "interval_move_probability": 0,
+          "slot_swap_probability": 0,
+          "blocked_slot_move_probability": 0,
+          "paired_slot_move_probability": 1,
+          "paired_slot_candidates": 2,
+          "paired_slot_scope": "conditional_smc",
+          "paired_slot_path_particles": 8,
+          "tracklet_move_probability": 0.0,
+          "tracklet_proposal_kind": "displacement",
+          "max_tempering_steps": 128,
+          "bisection_iterations": 48,
+          "seed": 0
+        },
+        "state_change_rate": 0.6533203125,
+        "count_signature_change_rate": 0.4248046875,
+        "count_tv_against_exact": 0.03018673427263394,
+        "within_exact_count_tv_q99": true,
+        "runtime_seconds": 17.79062126200006
+      },
+      "76": {
+        "config": {
+          "n_particles": 512,
+          "target_ess_fraction": 0.8,
+          "mh_sweeps": 2,
+          "final_mh_sweeps": 0,
+          "association_move_probability": 0,
+          "interval_move_probability": 0,
+          "slot_swap_probability": 0,
+          "blocked_slot_move_probability": 0,
+          "paired_slot_move_probability": 1,
+          "paired_slot_candidates": 2,
+          "paired_slot_scope": "conditional_smc",
+          "paired_slot_path_particles": 8,
+          "tracklet_move_probability": 0.0,
+          "tracklet_proposal_kind": "displacement",
+          "max_tempering_steps": 128,
+          "bisection_iterations": 48,
+          "seed": 0
+        },
+        "state_change_rate": 0.638671875,
+        "count_signature_change_rate": 0.4033203125,
+        "count_tv_against_exact": 0.05610246309633489,
+        "within_exact_count_tv_q99": true,
+        "runtime_seconds": 19.175772059999872
+      }
+    },
+    "local": {
+      "74": {
+        "config": {
+          "n_particles": 512,
+          "target_ess_fraction": 0.8,
+          "mh_sweeps": 2,
+          "final_mh_sweeps": 0,
+          "association_move_probability": 0,
+          "interval_move_probability": 0,
+          "slot_swap_probability": 0,
+          "blocked_slot_move_probability": 0,
+          "paired_slot_move_probability": 1,
+          "paired_slot_candidates": 2,
+          "paired_slot_scope": "local",
+          "paired_slot_path_particles": 8,
+          "tracklet_move_probability": 0.0,
+          "tracklet_proposal_kind": "displacement",
+          "max_tempering_steps": 128,
+          "bisection_iterations": 48,
+          "seed": 0
+        },
+        "state_change_rate": 0.1923828125,
+        "count_signature_change_rate": 0.126953125,
+        "count_tv_against_exact": 0.06346929816073496,
+        "within_exact_count_tv_q99": true,
+        "runtime_seconds": 1.2846915320005792
+      },
+      "75": {
+        "config": {
+          "n_particles": 512,
+          "target_ess_fraction": 0.8,
+          "mh_sweeps": 2,
+          "final_mh_sweeps": 0,
+          "association_move_probability": 0,
+          "interval_move_probability": 0,
+          "slot_swap_probability": 0,
+          "blocked_slot_move_probability": 0,
+          "paired_slot_move_probability": 1,
+          "paired_slot_candidates": 2,
+          "paired_slot_scope": "local",
+          "paired_slot_path_particles": 8,
+          "tracklet_move_probability": 0.0,
+          "tracklet_proposal_kind": "displacement",
+          "max_tempering_steps": 128,
+          "bisection_iterations": 48,
+          "seed": 0
+        },
+        "state_change_rate": 0.2099609375,
+        "count_signature_change_rate": 0.146484375,
+        "count_tv_against_exact": 0.04336399126925978,
+        "within_exact_count_tv_q99": true,
+        "runtime_seconds": 1.0956212480014074
+      },
+      "76": {
+        "config": {
+          "n_particles": 512,
+          "target_ess_fraction": 0.8,
+          "mh_sweeps": 2,
+          "final_mh_sweeps": 0,
+          "association_move_probability": 0,
+          "interval_move_probability": 0,
+          "slot_swap_probability": 0,
+          "blocked_slot_move_probability": 0,
+          "paired_slot_move_probability": 1,
+          "paired_slot_candidates": 2,
+          "paired_slot_scope": "local",
+          "paired_slot_path_particles": 8,
+          "tracklet_move_probability": 0.0,
+          "tracklet_proposal_kind": "displacement",
+          "max_tempering_steps": 128,
+          "bisection_iterations": 48,
+          "seed": 0
+        },
+        "state_change_rate": 0.2255859375,
+        "count_signature_change_rate": 0.1572265625,
+        "count_tv_against_exact": 0.04018031027052903,
+        "within_exact_count_tv_q99": true,
+        "runtime_seconds": 0.7462468490011815
+      }
+    }
+  },
+  "status": "small_case_gate_passed",
+  "mean_pg_count_change_rate": 0.4117838541666667,
+  "mixing_gate_passed": true,
+  "stationarity_gate_passed": true
+}
