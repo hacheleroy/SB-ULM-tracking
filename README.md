@@ -299,6 +299,15 @@ than the local move in this small pilot. The default sampler is unchanged;
 no fresh eight-frame holdout or large-case calibration is claimed. See
 `docs/wp11d_conditional_pair_pilot.md`.
 
+The subsequent WP11d operational screen uses the already exposed difficult
+WP8 observation. Removing redundant HMM construction and caching predictive
+scores makes the global move about 3× faster in a small profile. At 512
+particles and two posterior-initialized sweeps, it changes counts much more
+often and improves two-seed count agreement relative to the local move,
+but remains 15.7--18.9× more expensive per pair-update arm, exceeding its
+frozen 10× budget. It therefore stops before an 8,192-particle comparison
+or a fresh holdout. See `docs/wp11d_wp8_development.md`.
+
 ## Data strategy
 
 The project does not vendor third-party ULM code or data.

@@ -302,16 +302,27 @@ reserving a new synthetic realization. See `wp11c_full_history_pilot.md`.
   detailed-balance transition matrix at three temperatures
 - [x] Pass the frozen three-seed, 269-state small-case mixing/stationarity
   gate without changing the default sampler
-- [ ] Profile and validate operational mixing on the already exposed WP8
+- [x] Profile and screen operational mixing/cost on the already exposed WP8
   difficult eight-frame observations before reserving any new holdout
+- [ ] Reduce global-update cost and pass a new development protocol before
+  attempting a large 8,192-particle validation
 
-**Observed boundary:** count-signature transitions increase to 0.4118
+**Observed small-case boundary:** count-signature transitions increase to 0.4118
 per selected update (mean over three exact-posterior pilot seeds), from
 0.1270--0.1572 for the local comparator. Exact-count TV remains within
 the predeclared 0.0877 envelope, but this small-posterior pilot is around
 an order of magnitude slower. This validates the small-kernel target and
 mixing, not full SMC recovery or eight-frame calibration. No fresh holdout
 was opened. See `wp11d_conditional_pair_pilot.md`.
+
+**Unchanged-WP8 development result:** caching and removing unnecessary HMM
+construction accelerate the pair-PG kernel by about 3× in a 32-row profile.
+On two 512-particle, eight-frame approximate-posterior starts, count changes
+rise to 0.708/0.661 versus 0.199/0.165 for the local control. The between-
+seed alive-count TV drops to 0.1719 from 0.4180, yet the pair-update runtime
+costs 15.7×/18.9× more, failing the predeclared 10× operational gate.
+Stopped before large inference and any new holdout. See
+`wp11d_wp8_development.md`.
 
 ## WP12 — Open in-vivo trajectories
 

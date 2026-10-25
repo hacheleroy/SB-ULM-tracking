@@ -42,15 +42,8 @@ def _pair_markov_model(prior: BirthDeathPrior) -> tuple[IntArray, FloatArray, Fl
         )
 
 
-class PairConditionalBase:
-    """Normalized two-slot base law conditional on all unselected slots.
-
-    The two selected slots are drawn jointly, including both existence
-    intervals and all their frame assignments.  The remaining slots and their
-    claimed detections are fixed.  A nine-state HMM gives an exact draw without
-    enumerating interval products or possible full association histories.
-    """
-
+class PairFrameSupport:
+    """Two-slot frame support conditional on all unselected slots (no HMM)."""
     def __init__(
         self,
         model: SlotExistenceMaternModel,
@@ -68,10 +61,9 @@ class PairConditionalBase:
         other[list(slots)] = False
         self.available_by_frame: list[IntArray] = []
         self._frame_cache: dict[tuple[bool, bool, int], tuple[IntArray, FloatArray]] = {}
-        states, initial, transitions = _pair_markov_model(model.birth_death_prior)
-        self.states = states
-        self.transitions = transitions
-        emissions = np.empty((model.sequence.n_frames, states.shape[0]), dtype=float)
+        self.states, self.initial, self.transitions = _pair_markov_model(
+            model.birth_death_prior
+        )
         for time_index, cardinality in enumerate(model.sequence.cardinalities):
             claimed = current[time_index, other]
             claimed = claimed[claimed >= 0]
@@ -79,17 +71,6 @@ class PairConditionalBase:
                 np.arange(cardinality, dtype=np.int64), claimed, assume_unique=True
             )
             self.available_by_frame.append(available)
-            for index, state in enumerate(states):
-                _, weights = self._frame_options(tuple(state == 1), available.size)
-                emissions[time_index, index] = float(logsumexp(weights))
-        forward = np.empty_like(emissions)
-        forward[0] = initial + emissions[0]
-        for time_index in range(1, model.sequence.n_frames):
-            forward[time_index] = emissions[time_index] + logsumexp(
-                forward[time_index - 1, :, None] + transitions, axis=0
-            )
-        self.forward = forward
-        self.log_normalizer = float(logsumexp(forward[-1]))
 
     def _frame_options(
         self, mask: tuple[bool, bool], cardinality: int
@@ -109,6 +90,36 @@ class PairConditionalBase:
             cached = states, np.asarray(weights, dtype=float)
             self._frame_cache[key] = cached
         return cached
+
+
+class PairConditionalBase(PairFrameSupport):
+    """Normalized two-slot base law conditional on all unselected slots.
+
+    The two selected slots are drawn jointly, including both existence
+    intervals and all their frame assignments. A nine-state HMM gives an
+    exact draw without enumerating full association histories.
+    """
+
+    def __init__(
+        self,
+        model: SlotExistenceMaternModel,
+        current: IntArray,
+        slots: tuple[int, int],
+    ) -> None:
+        super().__init__(model, current, slots)
+        emissions = np.empty((model.sequence.n_frames, self.states.shape[0]), dtype=float)
+        for time_index, available in enumerate(self.available_by_frame):
+            for index, state in enumerate(self.states):
+                _, weights = self._frame_options(tuple(state == 1), available.size)
+                emissions[time_index, index] = float(logsumexp(weights))
+        forward = np.empty_like(emissions)
+        forward[0] = self.initial + emissions[0]
+        for time_index in range(1, model.sequence.n_frames):
+            forward[time_index] = emissions[time_index] + logsumexp(
+                forward[time_index - 1, :, None] + self.transitions, axis=0
+            )
+        self.forward = forward
+        self.log_normalizer = float(logsumexp(forward[-1]))
 
     def sample(self, n_samples: int, rng: np.random.Generator) -> IntArray:
         if n_samples < 1:

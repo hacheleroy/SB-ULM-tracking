@@ -68,6 +68,11 @@ attempting an 8,192-particle comparison. Only after an operational large-
 case proposal and exact-oracle retention should an untouched synthetic
 holdout be reserved and judged by the inherited seven-metric 0.10 gate.
 
+That development screen has now been run. The optimized kernel and its
+predeclared protocol, results, and early stop are documented in
+[`wp11d_wp8_development.md`](wp11d_wp8_development.md). The exact small-case
+pilot above remains unchanged.
+
 ```bash
 python -m sbulm.wp11d_conditional_pair_pilot
 pytest tests/test_conditional_pair_pg.py tests/test_wp11d_conditional_pair_pilot.py

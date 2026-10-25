@@ -146,3 +146,13 @@ count-signature change rate is 0.4118; all exact-count histogram TV values
 are below the predeclared 0.0877 finite-sample envelope. The artifact
 preserves per-seed runtime and the small-case-only pass status. It contains
 no fresh eight-frame result. See `../docs/wp11d_conditional_pair_pilot.md`.
+
+`wp11d_wp8_development.json` records a two-seed, 512-particle operational
+screen on the unchanged WP8 difficult observation. It includes the frozen
+observation hash, baseline association hashes, stage counts, same-start
+conditional-PG versus local pair updates, label-invariant count histograms,
+per-frame expected clutter, runtime and the predeclared 10× cost gate.
+Despite stronger count movement, the global kernel exceeds the cost limit
+on both seeds; the artifact records `stopped_before_large_inference`. No new
+holdout or exact eight-frame posterior inference is claimed. See
+`../docs/wp11d_wp8_development.md`.

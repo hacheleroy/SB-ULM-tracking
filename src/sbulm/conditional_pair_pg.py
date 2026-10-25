@@ -14,7 +14,7 @@ from numpy.typing import NDArray
 from scipy.linalg import cho_solve
 from scipy.special import logsumexp
 
-from .paired_moves import PairConditionalBase, _pair_markov_model
+from .paired_moves import PairFrameSupport
 from .slot_existence import SlotExistenceMaternModel
 
 FloatArray = NDArray[np.float64]
@@ -27,10 +27,16 @@ class ConditionalPairPath:
     def __init__(
         self, model: SlotExistenceMaternModel, current: IntArray, slots: tuple[int, int]
     ) -> None:
-        self.base = PairConditionalBase(model, current, slots)
+        self.base = PairFrameSupport(model, current, slots)
         self.model = model
         self.slots = slots
-        _, self.initial, self.transitions = _pair_markov_model(model.birth_death_prior)
+        self.initial = self.base.initial
+        self.transitions = self.base.transitions
+        self._predictive_cache: dict[tuple[int, int, tuple[int, ...]], FloatArray] = {}
+        self._options_cache: dict[
+            tuple[int, int | None, float, tuple[int, ...]],
+            tuple[IntArray, IntArray, FloatArray],
+        ] = {}
 
     def _predictive_log_density(
         self, prefix: IntArray, slot: int, time_index: int, available: IntArray
@@ -39,6 +45,10 @@ class ConditionalPairPath:
 
         if available.size == 0:
             return np.empty(0, dtype=float)
+        key = (slot, time_index, tuple(int(v) for v in prefix[:time_index, slot]))
+        cached = self._predictive_cache.get(key)
+        if cached is not None:
+            return cached
         gp = self.model._gp_model
         previous = tuple(int(t) for t in np.flatnonzero(prefix[:time_index, slot] >= 0))
         candidates = self.model.sequence.detections[time_index][available]
@@ -62,6 +72,7 @@ class ConditionalPairPath:
                 raise FloatingPointError("non-positive GP predictive variance")
             residual = candidates[:, dimension] - mean
             scores -= 0.5 * (np.log(2.0 * np.pi * variance) + residual**2 / variance)
+        self._predictive_cache[key] = scores
         return scores
 
     def options(
@@ -73,6 +84,13 @@ class ConditionalPairPath:
             raise ValueError("invalid frame or tempering parameter")
         if (time_index == 0) != (previous_state is None):
             raise ValueError("previous_state is required exactly after the first frame")
+        key = (
+            time_index, previous_state, float(beta),
+            tuple(int(v) for v in prefix[:time_index, list(self.slots)].ravel()),
+        )
+        cached = self._options_cache.get(key)
+        if cached is not None:
+            return cached
         available = self.base.available_by_frame[time_index]
         predictive = (
             self._predictive_log_density(prefix, self.slots[0], time_index, available),
@@ -102,11 +120,13 @@ class ConditionalPairPath:
                 states.append(state_index)
                 assignments.append(assignment)
                 log_weights.append(float(transition[state_index] + count_weight + beta * increment))
-        return (
+        result = (
             np.asarray(states, dtype=np.int64),
             np.stack(assignments),
             np.asarray(log_weights, dtype=float),
         )
+        self._options_cache[key] = result
+        return result
 
     def sample(
         self,
