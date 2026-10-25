@@ -6,10 +6,13 @@ from pathlib import Path
 import numpy as np
 
 from sbulm.existence_smc import sample_slot_existence_posterior
+from sbulm.slot_existence import ABSENT
 from sbulm.wp11g_exposed_wp8_high_particle import _candidate_controls, _frozen_inputs
 from sbulm.wp11h_joint_mode_diagnostic import (
     FRAME_INDEX,
     JointModeObserver,
+    _decode_signatures,
+    _encode_signatures,
     _joint,
     _protocol,
     _reference,
@@ -40,7 +43,9 @@ def test_frozen_reference_and_read_only_observer() -> None:
         "config": controls,
     }
     original = sample_slot_existence_posterior(case.model.sequence, **kwargs)
-    observer = JointModeObserver(case.model.sequence.cardinalities[FRAME_INDEX])
+    observer = JointModeObserver(
+        case.model.sequence.cardinalities[FRAME_INDEX], case.model.sequence.n_frames
+    )
     traced = sample_slot_existence_posterior(case.model.sequence, **kwargs, observer=observer)
     np.testing.assert_array_equal(original.associations, traced.associations)
     np.testing.assert_array_equal(original.latent_paths, traced.latent_paths)
@@ -54,4 +59,10 @@ def test_frozen_reference_and_read_only_observer() -> None:
     assert np.array_equal(
         np.asarray(observer.stages[-1]["joint_alive_total_by_frame_six_clutter"]),
         _joint(traced.associations, case.model.sequence.cardinalities[FRAME_INDEX]),
+    )
+    signatures = _decode_signatures(_encode_signatures(traced.associations))
+    assert signatures.shape == (controls.n_particles, 2 * case.model.sequence.n_frames)
+    np.testing.assert_array_equal(
+        signatures[:, :case.model.sequence.n_frames],
+        np.count_nonzero(traced.associations != ABSENT, axis=2),
     )
