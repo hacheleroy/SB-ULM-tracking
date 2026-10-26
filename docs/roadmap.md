@@ -548,6 +548,20 @@ five-frame/six-detection cases do not replicate the WP11n joint tail, but
 they cannot establish calibration on WP11k's eight-frame/19-detection
 primary geometry. No new move was selected and the holdout remains closed.
 
+## WP11p — Exact four-slot/eight-frame late-mode bridge
+
+- [x] Freeze the eight-frame observation, canonical exact reference method,
+  difficulty validation, 99-cell comparisons, seeds, diagnostic flags and
+  resource caps before posterior evaluation
+- [ ] Validate the symmetry-weighted exact posterior and late competing
+  modes before any sampler run
+- [ ] Compare twelve unchanged sampler runs with the independent reference
+
+This restores eight-frame temporal geometry at four slots while retaining
+tractable exact evidence through slot-label symmetry. It has six detections,
+not WP11k's 19, and is a diagnostic bridge. See
+`wp11p_eight_frame_exact_reference.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
