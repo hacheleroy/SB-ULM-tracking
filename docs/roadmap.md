@@ -596,6 +596,34 @@ settle the 19-detection WP11k primary or select a new move. The next
 reference should increase observation density while retaining independent
 absolute validation.
 
+## WP11r — Exact eight-frame density ladder
+
+- [x] Freeze nested eight- and nine-detection observations, exact support
+  counts, three-dimensional joint comparison, validity checks, and
+  persistence rules before posterior evaluation
+- [x] Validate and commit both exact references before sampler inference
+- [x] Compare 24 unchanged sampler runs against absolute
+  references under the frozen density-persistence rule
+
+This increases observation density while retaining exact four-slot,
+eight-frame evidence. The cases are nested, so concordance is diagnostic
+rather than independent population replication. See
+`wp11r_eight_frame_density_ladder.md`.
+
+The exact passes succeeded in 343.7 and 640.9 CPU seconds. Their selected
+rates 0.35 and 0.75 gave A/B masses 0.1756/0.1768 and 0.2072/0.2294;
+beta-0.5 B masses were 0.001874 and 0.000193. Both references passed
+the frozen difficulty criterion and were checkpointed before sampling.
+
+At 2,048 particles, the eight-case 3D joint TV had 0/6 values above
+its exact IID q95; the nine-case had 2/6, while its collapsed 2D joint
+had 1/6. No familywise six-run mean 3D cell was flagged in either case,
+and all three predeclared density-persistence flags were false. This
+late-clutter warning is specific to the denser nested case. A future
+absolute reference should raise middle-frame density toward WP11k's
+19 detections or validate an approximation with a measured error budget
+before selecting a move. The untouched holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
