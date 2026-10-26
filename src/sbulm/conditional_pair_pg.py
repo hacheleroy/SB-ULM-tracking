@@ -15,7 +15,7 @@ from scipy.linalg import cho_solve
 from scipy.special import logsumexp
 
 from .paired_moves import PairFrameSupport
-from .slot_existence import SlotExistenceMaternModel
+from .slot_existence import ABSENT, SlotExistenceMaternModel
 
 FloatArray = NDArray[np.float64]
 IntArray = NDArray[np.int64]
@@ -128,12 +128,67 @@ class ConditionalPairPath:
         self._options_cache[key] = result
         return result
 
+    def _previous_state(self, prefix: IntArray, time_index: int) -> int:
+        """Recover the pair's unborn/alive/dead state at the end of a prefix."""
+
+        states = []
+        for slot in self.slots:
+            if prefix[time_index - 1, slot] != ABSENT:
+                states.append(1)
+            elif np.any(prefix[:time_index, slot] != ABSENT):
+                states.append(2)
+            else:
+                states.append(0)
+        return 3 * states[0] + states[1]
+
+    def _reference_suffix_score(
+        self, prefix: IntArray, reference: IntArray, time_index: int, beta: float
+    ) -> float:
+        """Exact log gamma_T(spliced)/gamma_(t-1)(prefix), up to fixed terms."""
+
+        spliced = reference.copy()
+        spliced[:time_index] = prefix[:time_index]
+        previous = self._previous_state(spliced, time_index)
+        score = 0.0
+        for frame in range(time_index, self.model.sequence.n_frames):
+            states, options, log_scores = self.options(spliced, previous, frame, beta)
+            matching = np.flatnonzero(np.all(
+                options == reference[frame, list(self.slots)], axis=1
+            ))
+            if matching.size != 1:
+                return -np.inf
+            selected = int(matching[0])
+            score += float(log_scores[selected])
+            previous = int(states[selected])
+        return score
+
+    def _ancestor_mh(
+        self, particles: IntArray, reference: IntArray, time_index: int,
+        beta: float, log_weights: FloatArray, rng: np.random.Generator,
+    ) -> int:
+        """One forced-move MH step targeting the exact PGAS ancestor law."""
+
+        fixed = particles.shape[0] - 1
+        proposed = int(rng.integers(fixed))
+        old_score = self._reference_suffix_score(
+            particles[fixed], reference, time_index, beta
+        )
+        if not np.isfinite(old_score):
+            raise ValueError("the retained reference suffix must be supported")
+        new_score = self._reference_suffix_score(
+            particles[proposed], reference, time_index, beta
+        )
+        log_ratio = (log_weights[proposed] + new_score
+                     - log_weights[fixed] - old_score)
+        return proposed if np.log(rng.random()) < log_ratio else fixed
+
     def sample(
         self,
         *,
         beta: float,
         n_particles: int,
         rng: np.random.Generator,
+        ancestor_sampling: bool = False,
     ) -> IntArray:
         """One exact-target conditional SMC/particle-Gibbs transition.
 
@@ -148,11 +203,17 @@ class ConditionalPairPath:
         particles = np.broadcast_to(reference, (n_particles, *reference.shape)).copy()
         state_indices = np.empty(n_particles, dtype=np.int64)
         weights = np.full(n_particles, 1.0 / n_particles)
+        log_weights = np.full(n_particles, -np.log(n_particles))
         fixed = n_particles - 1
         for time_index in range(self.model.sequence.n_frames):
             if time_index:
                 ancestors = rng.choice(n_particles, size=fixed, p=weights)
-                parents = np.concatenate((ancestors, np.asarray([fixed])))
+                retained_parent = (
+                    self._ancestor_mh(
+                        particles, reference, time_index, beta, log_weights, rng
+                    ) if ancestor_sampling else fixed
+                )
+                parents = np.concatenate((ancestors, np.asarray([retained_parent])))
                 particles = particles[parents].copy()
                 state_indices = state_indices[parents]
             incremental = np.empty(n_particles, dtype=float)
@@ -176,7 +237,8 @@ class ConditionalPairPath:
                     ))
                 particles[particle_index, time_index, list(self.slots)] = options[selected]
                 state_indices[particle_index] = states[selected]
-            weights = np.exp(incremental - logsumexp(incremental))
+            log_weights = incremental - logsumexp(incremental)
+            weights = np.exp(log_weights)
         chosen = int(rng.choice(n_particles, p=weights))
         return particles[chosen]
 
@@ -189,6 +251,7 @@ def conditional_pair_pg_move(
     beta: float,
     n_particles: int,
     rng: np.random.Generator,
+    ancestor_sampling: bool = False,
 ) -> IntArray:
     """Update a uniformly selected pair for each selected SMC row."""
 
@@ -199,6 +262,7 @@ def conditional_pair_pg_move(
         pair = rng.choice(model.n_slots, size=2, replace=False)
         conditional = ConditionalPairPath(model, current[row], (int(pair[0]), int(pair[1])))
         proposed[local_index] = conditional.sample(
-            beta=beta, n_particles=n_particles, rng=rng
+            beta=beta, n_particles=n_particles, rng=rng,
+            ancestor_sampling=ancestor_sampling,
         )
     return proposed

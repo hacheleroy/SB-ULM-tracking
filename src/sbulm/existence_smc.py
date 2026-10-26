@@ -62,6 +62,7 @@ class BirthDeathSMCConfig:
     paired_slot_pg_fraction: float = 1.0
     paired_slot_pg_beta_switch: float | None = None
     paired_slot_pg_early_fraction: float | None = None
+    paired_slot_pg_ancestor_sampling: bool = False
     tracklet_move_probability: float = 0.0
     tracklet_proposal_kind: str = "displacement"
     max_tempering_steps: int = 128
@@ -115,6 +116,8 @@ class BirthDeathSMCConfig:
                 0 <= self.paired_slot_pg_early_fraction <= 1
             ):
                 raise ValueError("PG early fraction must lie in [0, 1]")
+        if self.paired_slot_pg_ancestor_sampling and self.paired_slot_scope != "conditional_smc":
+            raise ValueError("PG ancestor sampling requires conditional_smc scope")
         if self.tracklet_proposal_kind not in ("displacement", "conditional_gp_nonself"):
             raise ValueError("unknown tracklet_proposal_kind")
 
@@ -579,7 +582,7 @@ def _metropolis_birth_death_rejuvenation(
                     pg_state = conditional_pair_pg_move(
                         current, pair_rows[pg_positions], model,
                         beta=beta, n_particles=config.paired_slot_path_particles,
-                        rng=rng,
+                        rng=rng, ancestor_sampling=config.paired_slot_pg_ancestor_sampling,
                     )
                     pair_proposed[pg_positions] = pg_state
                     pair_marginal[pg_positions] = model.log_marginal_density(pg_state)

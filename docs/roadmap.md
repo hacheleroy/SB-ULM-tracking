@@ -414,6 +414,25 @@ exceeding its allowed +0.020. The status is
 `stopped_before_high_particle_test`; no new high-particle or holdout
 observation was opened. See `wp11i_late_pg_development.md`.
 
+## WP11j — Exact ancestor sampling inside four-path PG
+
+- [x] Freeze a new observation, exact-oracle gate, cost caps, and all seven
+  development comparisons on a branch before inference
+- [x] Check full-suffix ancestor weights and exact small-case stationarity;
+  pass the three-seed exact-oracle movement gate
+- [x] Complete both arms for two seeds on the independent fresh case
+- [ ] Pass its frozen paired stability guardrails before another exposed
+  8,192-particle test
+
+**Observed boundary:** PGAS increased exact-oracle first-frame association
+movement from 0.296 to 0.488, and all six count TVs passed. On the fresh
+512-particle development case, clutter difference fell from 0.350 to 0.271,
+but alive-count TV rose from 0.225 to 0.318; missed and death differences
+also rose beyond the predeclared +0.020 guardrail. CPU and selection caps
+passed. The status is `stopped_before_high_particle_test`; the default
+sampler is unchanged, and no new high-particle or holdout run was opened.
+See `wp11j_pgas_ancestor_development.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`

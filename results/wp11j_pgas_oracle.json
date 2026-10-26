@@ -1,0 +1,105 @@
+{
+  "experiment": "wp11j_pgas_oracle",
+  "protocol": {
+    "observation_sha256": "c645fab464abe15579b843a35081078e62983d6fdfd014c7692a88a368dace72",
+    "exact_support_size": 269,
+    "seeds": [
+      620,
+      621,
+      622
+    ],
+    "arms": [
+      "pg",
+      "pgas"
+    ],
+    "n_particles": 512,
+    "sweeps": 2,
+    "internal_paths": 4,
+    "beta": 1.0,
+    "pg_fraction": 1.0,
+    "ancestor_proposal": "one forced uniform-excluding-current MH step",
+    "ancestor_weights": "full exact future suffix, never truncated",
+    "finite_sample_count_tv_q99": 0.08892790897077366,
+    "maximum_pgas_pg_cpu_ratio_each_seed": 2.0,
+    "arm_order_by_seed": {
+      "620": [
+        "pg",
+        "pgas"
+      ],
+      "621": [
+        "pgas",
+        "pg"
+      ],
+      "622": [
+        "pg",
+        "pgas"
+      ]
+    },
+    "gate": "all six count TVs <= frozen 99% exact multinomial envelope; PGAS mean first-frame association-change rate > PG; PGAS/PG process CPU ratio <=2 on every seed",
+    "interpretation": "exact posterior pilot and path movement, not eight-frame stability"
+  },
+  "runs": {
+    "pg": {
+      "620": {
+        "cpu_seconds": 3.233810393,
+        "first_frame_state_change_rate": 0.306640625,
+        "first_frame_count_change_rate": 0.16015625,
+        "total_count_change_rate": 0.265625,
+        "count_tv_against_exact": 0.05378388360015133,
+        "within_exact_envelope": true
+      },
+      "621": {
+        "cpu_seconds": 6.5045917320000015,
+        "first_frame_state_change_rate": 0.27734375,
+        "first_frame_count_change_rate": 0.123046875,
+        "total_count_change_rate": 0.2431640625,
+        "count_tv_against_exact": 0.06892619911872552,
+        "within_exact_envelope": true
+      },
+      "622": {
+        "cpu_seconds": 5.469327885000002,
+        "first_frame_state_change_rate": 0.3046875,
+        "first_frame_count_change_rate": 0.150390625,
+        "total_count_change_rate": 0.255859375,
+        "count_tv_against_exact": 0.0334378141583299,
+        "within_exact_envelope": true
+      }
+    },
+    "pgas": {
+      "620": {
+        "cpu_seconds": 3.0209450010000003,
+        "first_frame_state_change_rate": 0.505859375,
+        "first_frame_count_change_rate": 0.26953125,
+        "total_count_change_rate": 0.388671875,
+        "count_tv_against_exact": 0.05255431422136189,
+        "within_exact_envelope": true
+      },
+      "621": {
+        "cpu_seconds": 5.129497669999999,
+        "first_frame_state_change_rate": 0.482421875,
+        "first_frame_count_change_rate": 0.216796875,
+        "total_count_change_rate": 0.365234375,
+        "count_tv_against_exact": 0.035444921292614076,
+        "within_exact_envelope": true
+      },
+      "622": {
+        "cpu_seconds": 3.7449782470000024,
+        "first_frame_state_change_rate": 0.4765625,
+        "first_frame_count_change_rate": 0.267578125,
+        "total_count_change_rate": 0.375,
+        "count_tv_against_exact": 0.041325402089387106,
+        "within_exact_envelope": true
+      }
+    }
+  },
+  "status": "exact_oracle_passed",
+  "mean_first_frame_state_change_rate": {
+    "pg": 0.2962239583333333,
+    "pgas": 0.48828125
+  },
+  "pgas_pg_cpu_ratios": {
+    "620": 0.9341750547710607,
+    "621": 0.7885964071757052,
+    "622": 0.6847236672847602
+  }
+}

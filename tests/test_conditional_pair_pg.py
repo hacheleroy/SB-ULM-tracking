@@ -203,3 +203,68 @@ def test_sparse_pg_mixture_from_exact_posterior_retains_count_modes() -> None:
     exact_modes = np.bincount(inverse, weights=exact)
     sampled_modes = np.bincount(inverse[indices], minlength=len(exact_modes)) / len(indices)
     assert 0.5 * np.sum(np.abs(exact_modes - sampled_modes)) < 0.12
+
+
+@pytest.mark.parametrize("beta", [0.0, 0.37, 1.0])
+def test_two_particle_pgas_exact_transition_is_stationary(beta: float) -> None:
+    """Enumerate both ancestors, all proposals, MH decisions and final draws."""
+
+    model = _model()
+    support, _ = enumerate_slot_existence_support(model)
+    lookup = {state.tobytes(): i for i, state in enumerate(support)}
+    log_target = (model.log_existence_prior(support)
+                  + model.log_count_density(support, include_poisson_void=False)
+                  + beta * model.log_marginal_density(support))
+    target = np.exp(log_target - logsumexp(log_target))
+    transition = np.zeros((len(support), len(support)))
+    for ref_index, reference in enumerate(support):
+        kernel = ConditionalPairPath(model, reference, (0, 1))
+        first_states, first_options, first_log = kernel.options(reference, None, 0, beta)
+        first_prob = np.exp(first_log - logsumexp(first_log))
+        ref_first = np.flatnonzero(np.all(first_options == reference[0], axis=1))
+        ref_state = int(first_states[ref_first[0]])
+        for first_state, first_frame, probability in zip(
+            first_states, first_options, first_prob, strict=True
+        ):
+            candidate = reference.copy()
+            candidate[0] = first_frame
+            old_score = kernel._reference_suffix_score(reference, reference, 1, beta)
+            new_score = kernel._reference_suffix_score(candidate, reference, 1, beta)
+            accept = float(min(1.0, np.exp(new_score - old_score)))
+            # The fully adapted first-frame normalizer gives both particles
+            # the same importance weight; a forced proposal is deterministic.
+            for fixed_prefix, fixed_state, fixed_probability in (
+                (reference, ref_state, 1 - accept),
+                (candidate, int(first_state), accept),
+            ):
+                if fixed_probability == 0:
+                    continue
+                _, _, fixed_log = kernel.options(fixed_prefix, fixed_state, 1, beta)
+                fixed_normalizer = float(logsumexp(fixed_log))
+                fixed_output = fixed_prefix.copy()
+                fixed_output[1] = reference[1]
+                for nonref_prefix, nonref_state in (
+                    (candidate, int(first_state)), (reference, ref_state)
+                ):
+                    _, options, log_scores = kernel.options(
+                        nonref_prefix, nonref_state, 1, beta
+                    )
+                    nonref_normalizer = float(logsumexp(log_scores))
+                    nonref_probability = np.exp(
+                        nonref_normalizer
+                        - np.logaddexp(nonref_normalizer, fixed_normalizer)
+                    )
+                    base = probability * fixed_probability * 0.5
+                    transition[ref_index, lookup[fixed_output.tobytes()]] += (
+                        base * (1 - nonref_probability)
+                    )
+                    for frame, frame_probability in zip(
+                        options, np.exp(log_scores - nonref_normalizer), strict=True
+                    ):
+                        output = nonref_prefix.copy()
+                        output[1] = frame
+                        transition[ref_index, lookup[output.tobytes()]] += (
+                            base * nonref_probability * frame_probability
+                        )
+    assert np.allclose(transition.sum(axis=1), 1, atol=1e-12)
+    assert np.allclose(target @ transition, target, rtol=1e-11, atol=1e-12)
