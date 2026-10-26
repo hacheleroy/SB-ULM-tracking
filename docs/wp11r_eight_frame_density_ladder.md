@@ -118,3 +118,47 @@ are far below half their beta-one masses. Thus the frozen paired
 difficulty rule passes. The full rate grids, beta curves, exact 198/297
 cell distributions, marginals and IID reference values are saved in the
 checkpoint.
+
+## Absolute density comparison
+
+All 24 unchanged sampler runs completed inside their process CPU caps.
+The table gives the six-seed median absolute error, the exact-IID q95 in
+parentheses, and the count exceeding that q95. The separate thresholds
+account for the different 198- and 297-cell supports. Per-seed signed
+mode, joint, cell, clutter and evidence errors are in the checkpoint.
+
+| Case | Particles | Maximum mode error | Full 3D joint TV | Collapsed 2D joint TV | Final clutter-mean error |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Eight | 512 | 0.01465 (0.04385), 0/6 | 0.09390 (0.11808), 0/6 | 0.07847 (0.10373), 0/6 | 0.00879 (0.01621), 1/6 |
+| Eight | 2,048 | 0.00243 (0.02239), 0/6 | 0.04469 (0.06029), 0/6 | 0.03790 (0.05300), 0/6 | 0.00171 (0.00821), 0/6 |
+| Nine | 512 | 0.02283 (0.04791), 1/6 | 0.14721 (0.15424), 0/6 | 0.08854 (0.11151), 0/6 | 0.02854 (0.04373), 2/6 |
+| Nine | 2,048 | 0.02083 (0.02256), 1/6 | 0.07171 (0.07670), **2/6** | 0.04791 (0.05484), 1/6 | 0.01980 (0.02178), 2/6 |
+
+At 2,048 the nine-case 3D joint TVs for seeds 1173 and 1175 were
+0.07727 and 0.08060, above q95 0.07670. Their collapsed 2D TVs were
+0.04864 and 0.05496, with only the latter above its own q95 0.05484.
+This shows that the late clutter dimension retains a discrepancy that a
+frame-six-only table partly hides. The eight-case 2,048 joint-TV range
+was 0.03994–0.05057, entirely below its q95 0.06029. The 2,048
+maximum individual 3D cell error exceeded its IID q95 in 1/6 eight
+and 2/6 nine runs; those are descriptive secondary comparisons.
+
+The largest absolute **six-run mean signed 3D cell** errors were
+**0.00326** for eight versus familywise q95 **0.00739**, and **0.00336**
+for nine versus **0.00608**. Neither case flagged a cell. Mean sampler
+CPU seconds were 34.2 / 134.6 for eight at 512 / 2,048 and 39.6 /
+137.5 for nine. All three predeclared `persistent_mode_tail`,
+`persistent_joint_tail`, and `shared_cell_shift` flags are **false**;
+status is `density_ladder_no_persistent_flag`.
+
+The additional final-frame point makes the nine-detection case harder
+under the full joint diagnostic, but its 2/6 high-particle tail is not
+repeated in the nested eight-detection case and neither case has a
+familywise mean-cell shift. The observations are designed and dependent;
+IID q95 is a finite-sample yardstick rather than a calibrated SMC test.
+No new move was selected, no 8,192-particle run or untouched holdout was
+opened, and neither case certifies WP11k's 19-detection primary. A next
+reference should increase middle-frame density toward that geometry or
+validate an alternative absolute approximation with an explicit error
+budget before attributing the late-clutter discrepancy to a sampler
+transition.

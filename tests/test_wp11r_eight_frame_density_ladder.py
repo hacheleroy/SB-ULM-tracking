@@ -1,5 +1,8 @@
 """Frozen two-density exact reference and three-dimensional joint summaries."""
 
+import json
+from pathlib import Path
+
 import numpy as np
 
 from sbulm.wp11q_seven_detection_exact_reference import _gp_from_table, _gp_table
@@ -18,6 +21,8 @@ from sbulm.wp11r_eight_frame_density_ladder import (
     _protocol,
     _run_order,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_frozen_density_cases_and_run_order() -> None:
@@ -77,3 +82,41 @@ def test_full_joint_retains_both_clutter_frames_and_modes() -> None:
     for a, b in zip(first, second, strict=True):
         np.testing.assert_array_equal(a, b)
     np.testing.assert_array_equal(_mode(np.array([15, 16]), np.array([1, 0])), [0, 1])
+
+
+def test_completed_density_ladder_checkpoint() -> None:
+    result = json.loads((ROOT / "results/wp11r_eight_frame_density_ladder.json").read_text())
+    assert result["protocol"] == _protocol()
+    assert result["cases"] == _metadata()
+    assert result["status"] == "density_ladder_no_persistent_flag"
+    assert not any(result["diagnostic_flags"].values())
+    assert result["shared_signed_cells"] == []
+    for observation in OBSERVATION_ORDER:
+        ref = result["references"][observation]
+        assert ref["canonical_support_size"] == CANONICAL_SUPPORT[observation]
+        assert ref["labelled_support_size"] == LABELLED_SUPPORT[observation]
+        assert ref["difficulty_valid"]
+        assert ref["selected_rate"] == min(
+            ref["reference_grid"],
+            key=lambda row: (-min(row["mode"][:2]), row["clutter_rate"]),
+        )["clutter_rate"]
+        assert min(ref["exact"]["mode"][:2]) >= .10
+        assert ref["tempered_mode_curve"][2]["mode"][1] <= .5 * ref["exact"]["mode"][1]
+        assert ref["cpu_seconds"] < _protocol()["reference_cpu_cap_each"]
+        exact = np.asarray(ref["exact"]["joint_alive_by_sixth_by_last_clutter"])
+        assert exact.shape == (33, 3, CARDINALITIES[observation][-1] + 1)
+        assert np.isclose(exact.sum(), 1)
+        for n in (512, 2048):
+            runs = result["runs"][observation][str(n)]
+            assert tuple(map(int, runs)) == tuple(_protocol()["seeds"][observation])
+            means = np.mean([run["joint_alive_by_sixth_by_last_clutter"]
+                             for run in runs.values()], axis=0)
+            group = result["comparison"][observation][str(n)]
+            np.testing.assert_allclose(group["mean_signed_3d_cell_error"], means - exact)
+            assert not group["familywise_flagged_cells"]
+            for key, baseline in ref["iid_baseline"][str(n)]["per_run"].items():
+                count = sum(abs(run["errors"][key]) > baseline["q95"]
+                            for run in runs.values())
+                assert group["iid_q95_exceedances"][key] == count
+            assert all(run["cpu_seconds"] < _protocol()["run_cpu_caps"][str(n)]
+                       for run in runs.values())
