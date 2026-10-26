@@ -1,0 +1,620 @@
+{
+  "experiment": "wp11n_dense_three_slot_exact_bridge",
+  "protocol": {
+    "purpose": "absolute denser three-slot/eight-frame mode-weight diagnostic",
+    "sampler": "unchanged WP11g 10% four-path PG mixture",
+    "observation_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+    "support_size": 20768284,
+    "cardinalities": [
+      1,
+      1,
+      1,
+      0,
+      1,
+      2,
+      1,
+      0
+    ],
+    "clutter_rate_grid": [
+      0.2,
+      0.35,
+      0.5,
+      0.75,
+      1.0,
+      1.5,
+      2.25,
+      3.0
+    ],
+    "mode_A": "alive slot-frames <= 12 and frame-six clutter >= 1",
+    "mode_B": "alive slot-frames >= 13 and frame-six clutter == 0",
+    "other_mode": "all remaining support",
+    "bridge_selection": "maximize min(exact mass A, exact mass B) over the frozen rate grid; tie goes to smaller rate; require both masses >= 0.10 and exact P(B) at beta 0.75 <= half P(B) at beta one",
+    "result_rule": "if at 2048 particles at least three of six independent seeds exceed the exact-posterior IID q95 for maximum three-mode error, flag mode_error_signal_requires_replication; otherwise report audit_complete_no_move_selected; neither result selects a move",
+    "reference_before_sampler": true,
+    "tempered_beta_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      1.0
+    ],
+    "iid_replicates_per_particle_count": 500,
+    "iid_seed": 32323,
+    "seeds": [
+      940,
+      941,
+      942,
+      943,
+      944,
+      945
+    ],
+    "particles": [
+      512,
+      2048
+    ],
+    "run_order": "reference, 512 seeds 940..945, then 2048 seeds 940..945",
+    "thread_env": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "reference_cpu_cap": 4200,
+    "per_run_cpu_caps": {
+      "512": 450,
+      "2048": 1200
+    },
+    "interpretation": "diagnostic exact calibration on a seven-detection case; not a move-selection gate; no 8192 run or untouched holdout"
+  },
+  "cases": {
+    "observation": {
+      "n_slots": 3,
+      "n_frames": 8,
+      "detection_cardinalities": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        2,
+        1,
+        0
+      ],
+      "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+      "detection_probability": 0.55,
+      "expected_clutter_per_frame": 0.2,
+      "birth_death_prior": {
+        "initial_probability": 0.5,
+        "birth_probability": 0.25,
+        "survival_probability": 0.8
+      }
+    },
+    "models": [
+      {
+        "n_slots": 3,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.2,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 3,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.35,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 3,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.5,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 3,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.75,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 3,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 1.0,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 3,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 1.5,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 3,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 2.25,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 3,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 3.0,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      }
+    ]
+  },
+  "reference_grid": [
+    {
+      "clutter_rate": 0.2,
+      "mode": [
+        0.15493688492785263,
+        0.31181228090209945,
+        0.5332508341700094
+      ],
+      "log_evidence": 38.97590341188893
+    },
+    {
+      "clutter_rate": 0.35,
+      "mode": [
+        0.24521427952622887,
+        0.26973217236075064,
+        0.48505354811261525
+      ],
+      "log_evidence": 37.96662505705084
+    },
+    {
+      "clutter_rate": 0.5,
+      "mode": [
+        0.3198513990794495,
+        0.23546982716884649,
+        0.4446787737522643
+      ],
+      "log_evidence": 36.94797032271501
+    },
+    {
+      "clutter_rate": 0.75,
+      "mode": [
+        0.4193882628977423,
+        0.19075845458479848,
+        0.3898532825171997
+      ],
+      "log_evidence": 35.233824875077794
+    },
+    {
+      "clutter_rate": 1.0,
+      "mode": [
+        0.4971259335899755,
+        0.1568836553212021,
+        0.345990411089329
+      ],
+      "log_evidence": 33.50392852635116
+    },
+    {
+      "clutter_rate": 1.5,
+      "mode": [
+        0.6115499215754558,
+        0.10944031817546661,
+        0.27900976024893265
+      ],
+      "log_evidence": 30.011250251876014
+    },
+    {
+      "clutter_rate": 2.25,
+      "mode": [
+        0.7246078406573919,
+        0.0668425051404393,
+        0.20854965420295485
+      ],
+      "log_evidence": 24.720176438171542
+    },
+    {
+      "clutter_rate": 3.0,
+      "mode": [
+        0.7991070433664026,
+        0.042223170087852036,
+        0.158669786545791
+      ],
+      "log_evidence": 19.389662305866977
+    }
+  ],
+  "selected_rate": 0.35,
+  "reference": {
+    "support_size": 20768284,
+    "exact": {
+      "mode": [
+        0.24521427952622887,
+        0.26973217236075064,
+        0.48505354811261525
+      ],
+      "joint_alive_by_clutter": [
+        [
+          0.0,
+          0.0,
+          8.584059686637876e-10
+        ],
+        [
+          0.0,
+          4.04901203689825e-09,
+          3.512796725138848e-08
+        ],
+        [
+          3.18312768915388e-09,
+          2.1790581656008297e-07,
+          6.778575384542467e-07
+        ],
+        [
+          2.1236359363496985e-07,
+          5.078241390487482e-06,
+          8.74251031533718e-06
+        ],
+        [
+          4.786194695665769e-06,
+          7.784682285570674e-05,
+          3.9097499758129386e-05
+        ],
+        [
+          6.03913374831391e-05,
+          0.0008170450248778294,
+          0.00010146501710045051
+        ],
+        [
+          0.0006377669585670257,
+          0.005176722879712884,
+          0.00020863287343315636
+        ],
+        [
+          0.0050324556381071825,
+          0.018998330453048745,
+          0.00039134402932337724
+        ],
+        [
+          0.02402128433923165,
+          0.041698831330528735,
+          0.0006206131681976153
+        ],
+        [
+          0.06517937062684191,
+          0.05774014246236725,
+          0.000743801988833554
+        ],
+        [
+          0.10877666212911903,
+          0.05389341195951265,
+          0.0006509741565670115
+        ],
+        [
+          0.1289607814361086,
+          0.038829477325458266,
+          0.00044651126464133046
+        ],
+        [
+          0.12202276738298203,
+          0.024497074806708645,
+          0.0002681999130688036
+        ],
+        [
+          0.09628495756979182,
+          0.014105994275828638,
+          0.00014754667349791843
+        ],
+        [
+          0.0701347444301057,
+          0.007775616078477488,
+          7.683329972837892e-05
+        ],
+        [
+          0.04745777644537404,
+          0.0041852079010233295,
+          3.840291597324273e-05
+        ],
+        [
+          0.028893858002737492,
+          0.002222463824378745,
+          1.9235034034825767e-05
+        ],
+        [
+          0.015472540748035063,
+          0.001082300283656818,
+          8.984281298889839e-06
+        ],
+        [
+          0.006716041112734455,
+          0.000428691396335175,
+          3.4357975667436857e-06
+        ],
+        [
+          0.0028734695201899124,
+          0.00016565871486244447,
+          1.2721038488013144e-06
+        ],
+        [
+          0.0011616269928004612,
+          6.0925649070745295e-05,
+          4.504047259191322e-07
+        ],
+        [
+          0.0004657828796050985,
+          2.2316619412091308e-05,
+          1.5834618080359188e-07
+        ],
+        [
+          0.00018811802052022308,
+          7.972719491623357e-06,
+          5.1750753608846166e-08
+        ],
+        [
+          6.278859724396626e-05,
+          2.6588565656607534e-06,
+          1.7245226755004005e-08
+        ],
+        [
+          2.0468041559252372e-05,
+          8.667295137211162e-07,
+          5.621507903247064e-09
+        ]
+      ],
+      "alive": [
+        8.584059686637876e-10,
+        3.9176979288286734e-08,
+        8.989464827034848e-07,
+        1.4033115299459722e-05,
+        0.00012173051730949917,
+        0.0009789013794614407,
+        0.006023122711713299,
+        0.024422130120483977,
+        0.06634072883795923,
+        0.12366331507813123,
+        0.16332104824514432,
+        0.16823677002618684,
+        0.14678804210274066,
+        0.11053849851911879,
+        0.0779871938083303,
+        0.05168138726239626,
+        0.031135556861149192,
+        0.016563825312990544,
+        0.007148168306636619,
+        0.0030404003389015023,
+        0.0012230030465971724,
+        0.0004882578451979642,
+        0.00019614249076546617,
+        6.546469903638118e-05,
+        2.1340392580876718e-05
+      ],
+      "clutter": [
+        0.724428653950625,
+        0.2717948563098921,
+        0.0037764897394958856
+      ]
+    },
+    "log_evidence": 37.96662505705084,
+    "tempered_mode_curve": [
+      {
+        "beta": 0.0,
+        "mode": [
+          0.9995341055537931,
+          2.9196956342382325e-07,
+          0.0004656024740592089
+        ]
+      },
+      {
+        "beta": 0.25,
+        "mode": [
+          0.9987229873493941,
+          1.2075827965200348e-05,
+          0.0012649368239445586
+        ]
+      },
+      {
+        "beta": 0.5,
+        "mode": [
+          0.9782318081329289,
+          0.001509930828964652,
+          0.020258261039192895
+        ]
+      },
+      {
+        "beta": 0.75,
+        "mode": [
+          0.6806978639649263,
+          0.08361542973695574,
+          0.2356867062980555
+        ]
+      },
+      {
+        "beta": 0.9,
+        "mode": [
+          0.3960599249385548,
+          0.20349169767802935,
+          0.4004483773835188
+        ]
+      },
+      {
+        "beta": 1.0,
+        "mode": [
+          0.24521427952622887,
+          0.26973217236075064,
+          0.48505354811261525
+        ]
+      }
+    ],
+    "iid_baseline": {
+      "512": {
+        "maximum_mode_absolute_error": {
+          "median": 0.02275895188738475,
+          "q95": 0.04755354811261525
+        },
+        "three_mode_tv": {
+          "median": 0.022758951887182133,
+          "q95": 0.04755354811281787
+        },
+        "full_joint_tv": {
+          "median": 0.07902589272732335,
+          "q95": 0.10192254751022148
+        },
+        "alive_total_tv": {
+          "median": 0.05678379505400439,
+          "q95": 0.0813470841126855
+        },
+        "clutter_mean_error": {
+          "median": 0.013620914211116143,
+          "q95": 0.03716033578888386
+        }
+      },
+      "2048": {
+        "maximum_mode_absolute_error": {
+          "median": 0.011479937124067696,
+          "q95": 0.024731636348553025
+        },
+        "three_mode_tv": {
+          "median": 0.011479937124067696,
+          "q95": 0.02473163634837067
+        },
+        "full_joint_tv": {
+          "median": 0.03991965514728066,
+          "q95": 0.05168304055688417
+        },
+        "alive_total_tv": {
+          "median": 0.028146029319308104,
+          "q95": 0.03972766084607872
+        },
+        "clutter_mean_error": {
+          "median": 0.006886898288883857,
+          "q95": 0.020461947790004525
+        }
+      }
+    },
+    "cpu_seconds": 2575.4110469449997
+  },
+  "runs": {
+    "512": {},
+    "2048": {}
+  },
+  "comparison": null,
+  "status": "in_progress"
+}
