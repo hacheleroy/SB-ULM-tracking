@@ -1,5 +1,6 @@
 """Frozen WP11n construction and label-invariant passive mode observer."""
 
+import json
 from dataclasses import replace
 from pathlib import Path
 
@@ -121,4 +122,43 @@ def test_observer_does_not_change_sampler_trajectory() -> None:
     assert original.stages == traced.stages
     assert original.log_evidence_estimate == traced.log_evidence_estimate
     assert len(observer.records) == traced.n_tempering_steps
+
+
+def test_completed_dense_bridge_checkpoint() -> None:
+    result = json.loads((ROOT / "results/wp11n_dense_three_slot_bridge.json").read_text())
+    assert result["protocol"] == _protocol()
+    assert result["cases"] == _metadata()
+    assert result["status"] == "dense_three_slot_absolute_audit_complete_no_move_selected"
+    assert result["selected_rate"] == min(
+        result["reference_grid"],
+        key=lambda row: (-min(row["mode"][:2]), row["clutter_rate"]),
+    )["clutter_rate"]
+    exact = result["reference"]["exact"]
+    assert min(exact["mode"][:2]) >= 0.10
+    assert result["reference"]["tempered_mode_curve"][3]["mode"][1] <= 0.5 * exact["mode"][1]
+    assert np.isclose(sum(exact["mode"]), 1)
+    assert np.isclose(np.asarray(exact["joint_alive_by_clutter"]).sum(), 1)
+    assert sum(len(runs) for runs in result["runs"].values()) == len(_run_order()) == 12
+    for n, seed in _run_order():
+        run = result["runs"][str(n)][str(seed)]
+        assert run["cpu_seconds"] < result["protocol"]["per_run_cpu_caps"][str(n)]
+        assert len(run["stage_mode_trace"]) == run["summary"]["n_tempering_steps"]
+        np.testing.assert_allclose(
+            run["stage_mode_trace"][-1]["post_mode"],
+            np.asarray(exact["mode"]) + np.asarray([
+                run["errors"]["mode_A_signed_error"],
+                run["errors"]["mode_B_signed_error"],
+                -run["errors"]["mode_A_signed_error"]
+                - run["errors"]["mode_B_signed_error"],
+            ]), atol=1e-11,
+        )
+    for n in (512, 2048):
+        runs = result["runs"][str(n)].values()
+        for metric, baseline in result["reference"]["iid_baseline"][str(n)].items():
+            observed = sum(abs(run["errors"][metric]) > baseline["q95"]
+                           for run in runs)
+            assert result["comparison"][str(n)]["iid_q95_exceedances"][metric] == observed
+    assert result["comparison"]["2048"]["iid_q95_exceedances"][
+        "maximum_mode_absolute_error"
+    ] < MODE_EXCEEDANCE_ALERT
 

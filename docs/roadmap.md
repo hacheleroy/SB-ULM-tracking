@@ -504,9 +504,9 @@ selected and the holdout remains closed. See `wp11m_three_slot_bridge.md`.
 - [x] Freeze the seven-detection observation, exact support and clutter grid,
   validity rule, reference checks, seeds, CPU caps, and diagnostic flag before
   posterior evaluation
-- [ ] Enumerate all 20,768,284 labelled states and validate the independent
+- [x] Enumerate all 20,768,284 labelled states and validate the independent
   absolute posterior
-- [ ] Compare six seeds at 512 and 2,048 particles against the exact
+- [x] Compare six seeds at 512 and 2,048 particles against the exact
   alive/clutter mode and joint references
 
 The added early detection closes one of WP11m's blank frames. This is a
@@ -514,6 +514,15 @@ budgeted intermediate geometry between its six detections and WP11k's
 four-slot/19-detection observation. The new absolute comparison is described
 in `wp11n_dense_three_slot_bridge.md`; it does not open the high-particle
 test or untouched holdout.
+
+**Observed boundary:** the exact rate rule chose 0.35, with mode A/B masses
+0.2452 and 0.2697 and a late-rising B mode. All six 2,048-particle
+maximum mode errors fell below the exact IID 95th-percentile reference,
+but two full alive/clutter joint TVs exceeded their descriptive reference.
+The frozen mode-error flag did not fire and no new move was selected. This
+suggests further joint-cell scrutiny on a more demanding independently
+referenced geometry, without treating the seven-detection result as proof
+about WP11k's 19-detection case. See `wp11n_dense_three_slot_bridge.md`.
 
 ## WP12 — Open in-vivo trajectories
 
