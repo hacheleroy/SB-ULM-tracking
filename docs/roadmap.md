@@ -567,6 +567,21 @@ rate 0.2 gave P(A)/P(B) = 0.1973/0.0563. P(B) failed the predeclared 0.10
 minimum, so no sampler run was performed. The checkpoint preserves the
 invalid bridge and the next design requires its own frozen protocol.
 
+## WP11q — Seven-detection, four-slot/eight-frame absolute bridge
+
+- [x] Freeze a distinct four-slot posterior, extended clutter grid,
+  exact lookup validation, mode criterion, joint comparison, and seeds
+  before posterior evaluation
+- [ ] Validate and checkpoint the exact 2,460,244,269-labelled-state
+  posterior before sampler inference
+- [ ] If valid, compare twelve unchanged sampler runs with the absolute
+  reference under the frozen diagnostic flags
+
+WP11p failed as designed; this is a separate proposal informed by that
+outcome. It adds one middle-frame detection and reuses WP11n's observation
+with a four-slot latent model. See
+`wp11q_seven_detection_exact_reference.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
