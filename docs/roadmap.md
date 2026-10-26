@@ -574,7 +574,7 @@ invalid bridge and the next design requires its own frozen protocol.
   before posterior evaluation
 - [x] Validate and checkpoint the exact 2,460,244,269-labelled-state
   posterior before sampler inference
-- [ ] If valid, compare twelve unchanged sampler runs with the absolute
+- [x] Compare twelve unchanged sampler runs with the absolute
   reference under the frozen diagnostic flags
 
 WP11p failed as designed; this is a separate proposal informed by that
@@ -586,6 +586,15 @@ The exact weighted pass succeeded in 177.6 CPU seconds. At the selected
 rate 0.35, P(A)/P(B) = 0.1984/0.1354; P(B) was 0.00123 at beta 0.5.
 The frozen difficulty rule passed, and the independent reference was
 checkpointed before any WP11q sampler run.
+
+At 2,048 particles, only one of six maximum mode errors and one of six
+full-joint TVs exceeded their exact-IID q95 values. Maximum six-seed mean
+cell residual was 0.00405 against familywise q95 0.00729. All three
+frozen diagnostic flags were false; 512-particle joint and cell metrics
+showed 2/6 q95 exceedances. This valid seven-detection bridge does not
+settle the 19-detection WP11k primary or select a new move. The next
+reference should increase observation density while retaining independent
+absolute validation.
 
 ## WP12 — Open in-vivo trajectories
 

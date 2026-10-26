@@ -104,3 +104,45 @@ At beta 0.5, exact P(B) is **0.001230**, rising to **0.049947** at beta
 The bridge is therefore valid under the frozen rule. The full eleven-rate
 grid, tempered curve, 99-cell table and IID reference thresholds are saved
 in the checkpoint, committed **before** the sampler phase.
+
+## Absolute sampler comparison
+
+All twelve unchanged sampler runs completed within their frozen CPU caps.
+The table reports six independent seeds per size. `Exceed` counts errors
+strictly above the exact posterior's 1,000-draw IID q95. The ranges are
+absolute errors; these IID thresholds are descriptive for SMC particles.
+
+| Particles | Metric | IID q95 | Sampler median | Absolute range | Exceed |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 512 | Maximum mode error | 0.04308 | 0.02384 | 0.01690–0.04962 | 1/6 |
+| 512 | Full joint TV | 0.10735 | 0.09316 | 0.07223–0.13726 | 2/6 |
+| 512 | Maximum cell error | 0.03521 | 0.03009 | 0.01557–0.04266 | 2/6 |
+| 512 | Alive-total TV | 0.08490 | 0.07560 | 0.04071–0.11340 | 2/6 |
+| 512 | Absolute clutter-mean error | 0.03608 | 0.00977 | 0.00689–0.05767 | 1/6 |
+| 2,048 | Maximum mode error | 0.02088 | 0.01294 | 0.00330–0.03651 | 1/6 |
+| 2,048 | Full joint TV | 0.05330 | 0.04689 | 0.03534–0.05538 | 1/6 |
+| 2,048 | Maximum cell error | 0.01679 | 0.01340 | 0.00665–0.01606 | 0/6 |
+| 2,048 | Alive-total TV | 0.04270 | 0.03276 | 0.02135–0.03727 | 0/6 |
+| 2,048 | Absolute clutter-mean error | 0.01763 | 0.00982 | 0.00347–0.02094 | 1/6 |
+
+The largest absolute six-seed mean cell residual is **0.00581** at 512
+versus familywise q95 **0.01492**, and **0.00405** at 2,048 versus
+**0.00729**. Neither particle count has a flagged cell. At 2,048 the
+predeclared `mode_error_tail`, `joint_tail`, and `cell_shift` flags are all
+**false**; status is `eight_frame_absolute_audit_no_flag`. Individual
+2,048 mode errors range 0.00330–0.03651 and joint TVs 0.03534–0.05538.
+Mean sampler CPU seconds were 31.5 and 121.2. All six 2,048 estimated
+log evidences are below the exact log evidence by 0.048–0.255, an
+additional descriptive finding outside the frozen flags.
+
+The validated reference establishes absolute mode weights in this
+four-slot/eight-frame, seven-detection case. The unchanged sampler has
+no replicated absolute joint-cell signal under the frozen rule; the
+512-particle joint and cell tails and one high-particle mode outlier are
+retained rather than discarded. The case reuses a designed WP11n
+observation, so it is neither an independent population replication nor
+a surrogate for WP11k's 19 detections. No new sampler move was selected,
+and no 8,192-particle run or untouched holdout was opened. A denser
+eight-frame reference with independently validated absolute weights is
+needed before attributing WP11k's four-slot instability to a particular
+transition mechanism.

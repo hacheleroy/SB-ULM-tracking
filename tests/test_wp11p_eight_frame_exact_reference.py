@@ -1,5 +1,8 @@
 """Independent label-symmetry enumerator and frozen WP11p schedule."""
 
+import json
+from pathlib import Path
+
 import numpy as np
 from scipy.special import logsumexp
 
@@ -26,6 +29,8 @@ from sbulm.wp11p_eight_frame_exact_reference import (
     _mode,
     _protocol,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_frozen_eight_frame_geometry_and_schedule() -> None:
@@ -97,3 +102,16 @@ def test_stable_histogram_and_label_invariant_modes() -> None:
     joint[16, 1], joint[17, 0] = .4, .6
     assert _from_joint(joint)["mode"] == [.4, .6, 0.]
     np.testing.assert_array_equal(_mode(np.array([16, 17]), np.array([1, 0])), [0, 1])
+
+
+def test_invalid_bridge_checkpoint_stopped_before_sampler() -> None:
+    result = json.loads((ROOT / "results/wp11p_eight_frame_exact_reference.json").read_text())
+    ref = result["reference"]
+    assert result["protocol"] == _protocol()
+    assert result["cases"] == _metadata()
+    assert ref["canonical_support_size"] == CANONICAL_SUPPORT_SIZE
+    assert ref["labelled_support_size"] == LABELLED_SUPPORT_SIZE
+    assert not ref["difficulty_valid"]
+    assert ref["exact"]["mode"][1] < .10
+    assert result["status"] == "frozen_eight_frame_bridge_invalid_stop"
+    assert all(not runs for runs in result["runs"].values())
