@@ -601,7 +601,7 @@ absolute validation.
 - [x] Freeze nested eight- and nine-detection observations, exact support
   counts, three-dimensional joint comparison, validity checks, and
   persistence rules before posterior evaluation
-- [ ] Validate and commit both exact references before sampler inference
+- [x] Validate and commit both exact references before sampler inference
 - [ ] If both pass, compare 24 unchanged sampler runs against absolute
   references under the frozen density-persistence rule
 
@@ -609,6 +609,11 @@ This increases observation density while retaining exact four-slot,
 eight-frame evidence. The cases are nested, so concordance is diagnostic
 rather than independent population replication. See
 `wp11r_eight_frame_density_ladder.md`.
+
+The exact passes succeeded in 343.7 and 640.9 CPU seconds. Their selected
+rates 0.35 and 0.75 gave A/B masses 0.1756/0.1768 and 0.2072/0.2294;
+beta-0.5 B masses were 0.001874 and 0.000193. Both references passed
+the frozen difficulty criterion and were checkpointed before sampling.
 
 ## WP12 — Open in-vivo trajectories
 

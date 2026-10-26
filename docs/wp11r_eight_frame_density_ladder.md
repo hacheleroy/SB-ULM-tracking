@@ -98,3 +98,23 @@ calibration on WP11k's 19-detection case.
 Runner: `src/sbulm/wp11r_eight_frame_density_ladder.py`. Checkpoint:
 `results/wp11r_eight_frame_density_ladder.json`. The code and full rule
 are committed before exact posterior evaluation or sampler inference.
+
+## Paired exact checkpoint
+
+Both weighted passes completed below their frozen CPU caps. Each passed
+its canonical and labelled support counts, direct GP and endpoint-rate
+checks, and all eleven analytic base normalizers. The eight-detection
+reference took **343.7 CPU seconds**; the nine-detection reference took
+**640.9**. The results were committed in order, with the **paired exact
+checkpoint committed before sampler inference**.
+
+| Case | Selected clutter/frame | Exact P(A) | Exact P(B) | Other | P(B), beta 0.5 | Exact log evidence |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Eight | 0.35 | 0.175605 | 0.176835 | 0.647560 | 0.001874 | 44.768206 |
+| Nine | 0.75 | 0.207177 | 0.229405 | 0.563418 | 0.000193 | 48.154010 |
+
+Both selected modes exceed 0.10 in each case and both beta-0.5 B masses
+are far below half their beta-one masses. Thus the frozen paired
+difficulty rule passes. The full rate grids, beta curves, exact 198/297
+cell distributions, marginals and IID reference values are saved in the
+checkpoint.
