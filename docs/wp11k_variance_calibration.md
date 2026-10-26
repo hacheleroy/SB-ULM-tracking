@@ -53,6 +53,9 @@ Every sampler run uses a separate process with BLAS/OMP thread variables set
 to one. A passive, RNG-free observer records post-stage joint low/mid/high
 alive-total bands by clutter count at frame six (or the last frame for the
 exact case), plus resampling joint TV. Compare final mode masses across seeds.
+For the four-slot/eight-frame cases, low means at most 20 alive slot-frames,
+mid means 21, and high means at least 22. For the three-slot/four-frame exact
+case, the corresponding cutoffs are at most 7, exactly 8, and at least 9.
 The exact-count signature ignores slot labels and preserves both per-frame
 alive and assigned counts. Raw association samples need not be published.
 
@@ -65,3 +68,71 @@ case, 8,192-particle run, or untouched holdout is part of this protocol.
 
 Implementation: `src/sbulm/wp11k_variance_calibration.py`. Checkpoint and
 per-run summaries: `results/wp11k_variance_calibration.json` after completion.
+
+## Measured outcome
+
+Exact enumeration took 3.5 process CPU seconds. All 12 exact-case sampler
+runs completed within their caps. In each row below, the reference column is
+the 95th percentile from 200 independent posterior draws at that particle
+count. The sampler median and range come from six independent seeds; `0/6`
+means no seed exceeded the reference percentile. These are descriptive
+comparisons, not a hypothesis test with an adjusted familywise error rate.
+
+| Particles | Diagnostic | IID 95th percentile | Sampler median | Sampler range | Above IID 95th percentile |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 512 | Alive-total TV | 0.06669 | 0.04426 | 0.02553–0.04928 | 0/6 |
+| 512 | Maximum clutter error | 0.03307 | 0.01256 | 0.00711–0.03138 | 0/6 |
+| 512 | Count-signature TV | 0.16350 | 0.14624 | 0.13174–0.15960 | 0/6 |
+| 2,048 | Alive-total TV | 0.03324 | 0.02363 | 0.00812–0.03032 | 0/6 |
+| 2,048 | Maximum clutter error | 0.01503 | 0.00795 | 0.00426–0.01207 | 0/6 |
+| 2,048 | Count-signature TV | 0.08745 | 0.07606 | 0.06373–0.08073 | 0/6 |
+
+The median maximum event-marginal error fell from 0.04533 to 0.01644 as
+particles increased. The exact log evidence is 21.58021; estimated minus
+exact log evidence ranged from -0.11778 to 0.21962 at 512 and from -0.10550
+to 0.05363 at 2,048. The finite exact case shows no detected systematic
+error beyond its IID baseline on the three selected diagnostics. Six runs do
+not rule out a smaller bias or failures on different exact cases.
+
+The primary eight-frame case produced the following six-pair medians and
+four-seed worst pairs. These are *between-run differences*, not errors against
+an exact posterior.
+
+| Label-free difference | 512 median | 2,048 median | 512 worst | 2,048 worst |
+| --- | ---: | ---: | ---: | ---: |
+| Maximum existence marginal | 0.1660 | 0.1191 | 0.2461 | 0.1597 |
+| Maximum missed marginal | 0.1553 | 0.0679 | 0.2109 | 0.1055 |
+| Maximum clutter marginal | 0.3086 | 0.3098 | 0.5313 | 0.4072 |
+| Maximum birth marginal | 0.1582 | 0.1052 | 0.1914 | 0.1597 |
+| Maximum death marginal | 0.1104 | 0.0659 | 0.1719 | 0.1113 |
+| Alive-count histogram TV | 0.3145 | 0.1738 | 0.4844 | 0.2686 |
+| Assigned-count histogram TV | 0.3008 | 0.1880 | 0.5859 | 0.2813 |
+
+Median pairwise alive-count TV decreased to 55% of its 512-particle value,
+but median clutter difference was 100.4% of its earlier value. Mean process
+CPU time grew from 48.9 to 185.8 seconds per run (3.80×). The final low-alive
+band had masses 0.311–0.795 at 512 and 0.355–0.624 at 2,048; the worst final
+joint-band/clutter TV fell from 0.492 to 0.326 but remained substantial. Near
+beta 0.5, all primary seeds placed approximately all mass in the low band;
+the wide split arose later in the tempering schedule. The maximum single
+resampling joint TV was below 0.02 at 512 and below 0.01 at 2,048. Those
+observations locate the divergence; they do not prove which transition or
+likelihood feature caused it.
+
+The four stress seeds at 512 had median/worst clutter differences of
+0.0898/0.1211 and median/worst alive-count TVs of 0.0938/0.1328. Their
+final low-band masses were 0.949–0.965, with worst joint-band/clutter TV
+0.0176. Thus the primary case's persistent multimode uncertainty is not
+universal across the two fresh observations. The stress case's frame six
+has only one detection, which limits its clutter diagnostic's range; its
+smaller spread should not be called a more demanding calibration result.
+
+**Decision:** `audit_completed_no_candidate_gate`. Increasing particle count
+alone reduced several primary-case differences but did not stabilize the
+clutter marginal across four seeds. The exact reference is well behaved at
+four frames; it cannot certify the eight-frame weights. The next study should
+build an independently frozen, *enumerable or otherwise independently
+calibrated* bridge that preserves the late competing alive/clutter modes,
+then measure absolute mode-weight error and transition behavior there before
+selecting another move or opening a holdout. Do not set a pass threshold from
+the observed WP11k pairs. No 8,192-particle run or untouched holdout was used.

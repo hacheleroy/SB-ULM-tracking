@@ -433,6 +433,29 @@ passed. The status is `stopped_before_high_particle_test`; the default
 sampler is unchanged, and no new high-particle or holdout run was opened.
 See `wp11j_pgas_ancestor_development.md`.
 
+## WP11k — Variance and calibration audit
+
+- [x] Freeze a medium exact reference and two independent eight-frame
+  observations, seeds, particle counts, CPU caps, and read-only joint observer
+  before inference
+- [x] Compare six seeds at 512 and 2,048 particles against the exact
+  posterior and independent-draw finite-sample envelope
+- [x] Measure four-seed seven-metric spread at 512 and 2,048 on the primary
+  eight-frame case and at 512 on a separate stress case
+- [ ] Establish absolute eight-frame mode-weight calibration on an
+  independently frozen bridge before another move-selection gate
+
+**Observed boundary:** all six exact-case seeds at both particle counts were
+within the independent-draw 95th-percentile envelope for alive-total TV,
+count-signature TV, and maximum clutter error. On the primary eight-frame
+observation, median pairwise alive-count TV fell from 0.3145 to 0.1738 at
+2,048 particles, while median clutter difference remained about 0.309 at
+both sizes; the worst clutter pair was still 0.4072 at 2,048. A separate
+512-particle stress observation had smaller spread, but its frame six had
+only one detection. This is an observation-dependent variance diagnosis,
+not an eight-frame calibration claim or a new sampler gate. The default
+sampler and holdout are unchanged. See `wp11k_variance_calibration.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
