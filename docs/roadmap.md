@@ -487,7 +487,7 @@ the default sampler and untouched holdout remain unchanged. See
   the exact count-rate reweighting and base normalizers
 - [x] Compare twelve independent sampler runs with absolute exact mode,
   alive/clutter joint, and evidence references
-- [ ] Extend the absolute reference to a denser observation or a four-slot
+- [x] Extend the absolute reference to a denser observation or a four-slot
   geometry before drawing conclusions about WP11k's primary case
 
 **Observed boundary:** the exact rule chose clutter rate 0.35, with P(A)
@@ -498,6 +498,31 @@ their IID envelope. One sixth-frame clutter-mean error exceeded its
 descriptive envelope. This sparse six-detection bridge has three slots but
 does not explain the four-slot/19-detection instability. No new move was
 selected and the holdout remains closed. See `wp11m_three_slot_bridge.md`.
+
+## WP11n — Denser three-slot exact bridge
+
+- [x] Freeze the seven-detection observation, exact support and clutter grid,
+  validity rule, reference checks, seeds, CPU caps, and diagnostic flag before
+  posterior evaluation
+- [x] Enumerate all 20,768,284 labelled states and validate the independent
+  absolute posterior
+- [x] Compare six seeds at 512 and 2,048 particles against the exact
+  alive/clutter mode and joint references
+
+The added early detection closes one of WP11m's blank frames. This is a
+budgeted intermediate geometry between its six detections and WP11k's
+four-slot/19-detection observation. The new absolute comparison is described
+in `wp11n_dense_three_slot_bridge.md`; it does not open the high-particle
+test or untouched holdout.
+
+**Observed boundary:** the exact rate rule chose 0.35, with mode A/B masses
+0.2452 and 0.2697 and a late-rising B mode. All six 2,048-particle
+maximum mode errors fell below the exact IID 95th-percentile reference,
+but two full alive/clutter joint TVs exceeded their descriptive reference.
+The frozen mode-error flag did not fire and no new move was selected. This
+suggests further joint-cell scrutiny on a more demanding independently
+referenced geometry, without treating the seven-detection result as proof
+about WP11k's 19-detection case. See `wp11n_dense_three_slot_bridge.md`.
 
 ## WP12 — Open in-vivo trajectories
 
