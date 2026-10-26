@@ -2,7 +2,13 @@
 
 import numpy as np
 
-from sbulm.slot_existence import ABSENT
+from sbulm.data import DetectionSequence
+from sbulm.slot_existence import (
+    ABSENT,
+    SlotExistenceMaternModel,
+    enumerate_slot_existence_support,
+)
+from sbulm.wp5_scaling_calibration import DEFAULT_BIRTH_DEATH_PRIOR
 from sbulm.wp11m_three_slot_bridge import (
     CARDINALITIES,
     CLUTTER_RATES,
@@ -14,6 +20,7 @@ from sbulm.wp11m_three_slot_bridge import (
     _ModeObserver,
     _protocol,
     _run_order,
+    _support_blocks,
 )
 
 
@@ -58,3 +65,21 @@ def test_label_invariant_modes_and_passive_trace() -> None:
     assert record["accepted_B_to_A"] == {"pg": 0, "other": 1}
     assert np.isclose(sum(record["post_mode"]), 1)
     np.testing.assert_array_equal(states, original)
+
+
+def test_streamed_support_matches_complete_small_enumeration() -> None:
+    sequence = DetectionSequence(
+        times=np.arange(3) * .001,
+        detections=(np.array([[0.0, 0.0]]), np.empty((0, 2)),
+                    np.array([[.002, 0.0]])),
+    )
+    model = SlotExistenceMaternModel(
+        sequence, n_slots=2, localization_std=.005,
+        coordinate_std=(.02, .01), length_scale=.003,
+        detection_probability=.55, expected_clutter_per_frame=1.0,
+        roi_lower=(-.04, -.04), roi_upper=(.04, .04),
+        birth_death_prior=DEFAULT_BIRTH_DEATH_PRIOR,
+    )
+    exact, _ = enumerate_slot_existence_support(model)
+    streamed = np.concatenate(list(_support_blocks(model)))
+    np.testing.assert_array_equal(streamed, exact)

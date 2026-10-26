@@ -8,6 +8,7 @@ import os
 import resource
 import time
 from dataclasses import replace
+from math import prod
 from pathlib import Path
 from statistics import median
 from typing import Any
@@ -20,7 +21,6 @@ from .existence_smc import sample_slot_existence_posterior
 from .slot_existence import (
     ABSENT,
     SlotExistenceMaternModel,
-    enumerate_slot_existence_support,
     slot_existence_support_size,
 )
 from .wp5_scaling_calibration import DEFAULT_BIRTH_DEATH_PRIOR, _ScalingCase
@@ -201,6 +201,24 @@ def _reference_at_beta(
     return _distributions(alive, sixth_clutter, np.exp(scores - normalizer)), normalizer
 
 
+def _support_blocks(model: SlotExistenceMaternModel):
+    """Yield exact labelled support in bounded batches and enumeration order."""
+    for mask in model.mask_combinations():
+        states = tuple(
+            model.frame_states(mask[t], cardinality)
+            for t, cardinality in enumerate(model.sequence.cardinalities)
+        )
+        sizes = tuple(len(frame) for frame in states)
+        total = prod(sizes)
+        for start in range(0, total, BATCH_SIZE):
+            indices = np.unravel_index(
+                np.arange(start, min(start + BATCH_SIZE, total)), sizes
+            )
+            yield np.stack(
+                [frame[indices[t]] for t, frame in enumerate(states)], axis=1
+            )
+
+
 def run_reference(output: Path) -> dict[str, Any]:
     result = _load(output)
     if result["reference_grid"] is not None:
@@ -209,20 +227,19 @@ def run_reference(output: Path) -> dict[str, Any]:
     _set_cpu_limit(REFERENCE_CPU_CAP)
     started = time.process_time()
     case = _case(1.0)
-    support, masks = enumerate_slot_existence_support(
-        case.model, max_hypotheses=SUPPORT_SIZE
-    )
-    del masks
-    n = len(support)
+    n = SUPPORT_SIZE
     log_marginal = np.empty(n)
     log_base = np.empty(n)
     clutter_total = np.empty(n, dtype=np.uint8)
     alive = np.empty(n, dtype=np.uint8)
     sixth_clutter = np.empty(n, dtype=np.uint8)
     other_models = [_case(rate).model for rate in (CLUTTER_RATES[0], CLUTTER_RATES[-1])]
-    for lo in range(0, n, BATCH_SIZE):
-        hi = min(lo + BATCH_SIZE, n)
-        block = support[lo:hi]
+    lo = 0
+    next_report = 1_000_000
+    for block in _support_blocks(case.model):
+        hi = lo + len(block)
+        if hi > n:
+            raise ValueError("enumeration exceeded frozen support size")
         log_marginal[lo:hi] = case.model.log_marginal_density(block)
         log_base[lo:hi] = (
             case.model.log_existence_prior(block)
@@ -242,6 +259,12 @@ def run_reference(output: Path) -> dict[str, Any]:
                     model.expected_clutter_per_frame
                 )
                 np.testing.assert_allclose(direct, expected, atol=1e-10, rtol=0)
+        lo = hi
+        if lo >= next_report:
+            print(f"exact support: {lo:,}/{n:,}", flush=True)
+            next_report += 1_000_000
+    if lo != n:
+        raise ValueError("enumeration did not cover frozen support size")
     grid = []
     for rate in CLUTTER_RATES:
         model = _case(rate).model
