@@ -596,6 +596,20 @@ settle the 19-detection WP11k primary or select a new move. The next
 reference should increase observation density while retaining independent
 absolute validation.
 
+## WP11r — Exact eight-frame density ladder
+
+- [x] Freeze nested eight- and nine-detection observations, exact support
+  counts, three-dimensional joint comparison, validity checks, and
+  persistence rules before posterior evaluation
+- [ ] Validate and commit both exact references before sampler inference
+- [ ] If both pass, compare 24 unchanged sampler runs against absolute
+  references under the frozen density-persistence rule
+
+This increases observation density while retaining exact four-slot,
+eight-frame evidence. The cases are nested, so concordance is diagnostic
+rather than independent population replication. See
+`wp11r_eight_frame_density_ladder.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
