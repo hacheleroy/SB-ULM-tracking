@@ -624,6 +624,33 @@ absolute reference should raise middle-frame density toward WP11k's
 19 detections or validate an approximation with a measured error budget
 before selecting a move. The untouched holdout remains closed.
 
+## WP11s — Ten-detection middle-frame absolute audit
+
+- [x] Freeze two designed ten-detection middle-frame augmentations, exact
+  support counts, four-way joint comparison, difficulty checks, and paired
+  descriptive flags before posterior evaluation
+- [x] Validate and commit both exact references before sampler inference
+- [x] With both difficulty gates passed, compare 24 unchanged sampler runs
+  against their independently checked absolute references
+
+The early-middle case adds a point at frame 2 and the middle case adds
+one at frame 4. Both retain WP11r's nine detections, so they are dependent
+designed cases. Full observations and predeclared stopping and comparison
+rules are in `wp11s_middle_frame_density_audit.md`.
+
+Both exact passes validated in 1,088.5 and 1,214.6 CPU seconds; selected
+rate 1.5 gives early-middle A/B masses 0.3405/0.2563 and middle
+0.2259/0.2689. The paired exact checkpoint predates all sampler runs.
+At 2,048 particles, early-middle and middle have 1/6 and 0/6 full
+4D joint-TV values beyond their separate exact-IID q95 thresholds;
+both have 1/6 maximum-mode exceedances. Neither has a familywise
+mean signed 4D or collapsed 3D cell flag. All frozen paired flags are
+false. Last-frame clutter-mean tails occur in 2/6 in both cases,
+without a coherent signed shift. The ten-detection bridge remains
+short of WP11k's 19-detection geometry; next validate an alternative
+absolute approximation against these exact references with a stated
+error budget before testing another move. The holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
