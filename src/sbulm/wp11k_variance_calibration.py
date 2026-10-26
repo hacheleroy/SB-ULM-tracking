@@ -148,7 +148,8 @@ def _metadata_for_cases() -> dict[str, Any]:
                 != BANK_CARDINALITIES[regime.name]):
             raise ValueError("eight-frame observation changed")
         bank[regime.name] = info
-    return {"exact": exact_info, "bank": bank}
+    # Use the same JSON representation on both sides of checkpoint validation.
+    return json.loads(json.dumps({"exact": exact_info, "bank": bank}))
 
 
 def _load(output: Path) -> dict[str, Any]:
