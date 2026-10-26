@@ -1,0 +1,788 @@
+{
+  "experiment": "wp11o_four_slot_joint_reference",
+  "protocol": {
+    "purpose": "paired four-slot absolute joint-cell diagnostic",
+    "sampler": "unchanged WP11g 10% four-path PG mixture",
+    "observation_hashes": {
+      "primary": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+      "replica": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f"
+    },
+    "cardinalities": [
+      1,
+      1,
+      1,
+      1,
+      2
+    ],
+    "support_size_each": 24193016,
+    "clutter_rate_grid": [
+      0.2,
+      0.35,
+      0.5,
+      0.75,
+      1.0,
+      1.5,
+      2.25,
+      3.0
+    ],
+    "mode_A": "alive slot-frames <= 9 and final-frame clutter >= 1",
+    "mode_B": "alive slot-frames >= 10 and final-frame clutter == 0",
+    "mode_other": "all remaining states",
+    "rate_selection": "maximize min(exact P(A), exact P(B)) independently per observation; tie to smaller clutter rate; do not exclude a weakly balanced case",
+    "joint_cells": "all 21 alive totals (0..20) by 3 final-frame clutter counts (0..2)",
+    "per_run_comparison": "full joint TV and maximum absolute signed cell error against 1000 exact multinomial IID draws at each particle count; also report mode, alive, clutter and evidence errors",
+    "cell_group_comparison": "mean signed error per cell across six 2048-particle seeds; familywise q95 of the maximum absolute cell mean from 1000 independent six-draw exact-posterior groups",
+    "replication_rule": "replicated_joint_tail if both observations have >=2/6 2048-particle full-joint-TV errors above their own IID q95; replicated_cell_shift if at least one same (alive, clutter) cell exceeds its observation's familywise group q95 in both observations with the same signed error; report both flags, neither selects a sampler move",
+    "reference_before_sampler": true,
+    "tempered_beta_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      1.0
+    ],
+    "iid_replicates": 1000,
+    "iid_seeds": {
+      "primary": 33331,
+      "replica": 33337
+    },
+    "observation_order": [
+      "primary",
+      "replica"
+    ],
+    "seeds": {
+      "primary": [
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1005
+      ],
+      "replica": [
+        1010,
+        1011,
+        1012,
+        1013,
+        1014,
+        1015
+      ]
+    },
+    "particles": [
+      512,
+      2048
+    ],
+    "run_order": "primary reference, replica reference; then primary 512/2048 seeds 1000..1005 and replica 512/2048 seeds 1010..1015",
+    "thread_env": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "reference_cpu_cap_each": 6000,
+    "per_run_cpu_caps": {
+      "512": 600,
+      "2048": 1600
+    },
+    "interpretation": "absolute diagnostic on two four-slot/five-frame cases, not the four-slot/eight-frame primary case; no 8192 or untouched holdout"
+  },
+  "cases": {
+    "primary": {
+      "observation": {
+        "n_slots": 4,
+        "n_frames": 5,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          1,
+          2
+        ],
+        "detections_sha256": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.2,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      "models": [
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 0.2,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 0.35,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 0.5,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 0.75,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 1.0,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 1.5,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 2.25,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "1fae28c9d57ea22d6d0a6a3457dec90d6acddae910541f583f9497d1effbd5c1",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 3.0,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        }
+      ]
+    },
+    "replica": {
+      "observation": {
+        "n_slots": 4,
+        "n_frames": 5,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          1,
+          2
+        ],
+        "detections_sha256": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.2,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      "models": [
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 0.2,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 0.35,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 0.5,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 0.75,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 1.0,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 1.5,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 2.25,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        },
+        {
+          "n_slots": 4,
+          "n_frames": 5,
+          "detection_cardinalities": [
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "detections_sha256": "ccc188850719d35edbd3fcfe018eab63f6ad5f5b34c2daabe17e267ec65f6d4f",
+          "detection_probability": 0.55,
+          "expected_clutter_per_frame": 3.0,
+          "birth_death_prior": {
+            "initial_probability": 0.5,
+            "birth_probability": 0.25,
+            "survival_probability": 0.8
+          }
+        }
+      ]
+    }
+  },
+  "references": {
+    "primary": {
+      "support_size": 24193016,
+      "reference_grid": [
+        {
+          "clutter_rate": 0.2,
+          "mode": [
+            0.06454640655701008,
+            0.42497139413902496,
+            0.5104821993040818
+          ],
+          "log_evidence": 35.78189854607165
+        },
+        {
+          "clutter_rate": 0.35,
+          "mode": [
+            0.10754903655605287,
+            0.3950289495516839,
+            0.4974220138923001
+          ],
+          "log_evidence": 35.13447175019504
+        },
+        {
+          "clutter_rate": 0.5,
+          "mode": [
+            0.1466888461614885,
+            0.36810683495158236,
+            0.48520431888688653
+          ],
+          "log_evidence": 34.484447020307094
+        },
+        {
+          "clutter_rate": 0.75,
+          "mode": [
+            0.20478984535570935,
+            0.32882676324718746,
+            0.4663833913971798
+          ],
+          "log_evidence": 33.39600159521951
+        },
+        {
+          "clutter_rate": 1.0,
+          "mode": [
+            0.2556299266155312,
+            0.2952542033051513,
+            0.4491158700792707
+          ],
+          "log_evidence": 32.302069485620635
+        },
+        {
+          "clutter_rate": 1.5,
+          "mode": [
+            0.3409551141149001,
+            0.24101493957599893,
+            0.41802994630909895
+          ],
+          "log_evidence": 30.100772270942926
+        },
+        {
+          "clutter_rate": 2.25,
+          "mode": [
+            0.4408205380307578,
+            0.1819119403810784,
+            0.37726752158816
+          ],
+          "log_evidence": 26.77312837553145
+        },
+        {
+          "clutter_rate": 3.0,
+          "mode": [
+            0.5188145976930325,
+            0.1400215911960743,
+            0.34116381111097005
+          ],
+          "log_evidence": 23.42278751912464
+        }
+      ],
+      "selected_rate": 1.0,
+      "exact": {
+        "mode": [
+          0.2556299266155312,
+          0.2952542033051513,
+          0.4491158700792707
+        ],
+        "joint_alive_by_clutter": [
+          [
+            0.0,
+            0.0,
+            5.750391937722744e-07
+          ],
+          [
+            0.0,
+            3.4648223967881093e-06,
+            5.570864160772165e-06
+          ],
+          [
+            3.905575700332382e-06,
+            4.690352900583411e-05,
+            3.6769499863220795e-05
+          ],
+          [
+            6.796079043096358e-05,
+            0.00041665888646919295,
+            0.00019833827910900994
+          ],
+          [
+            0.0006225274322021314,
+            0.0029612683954520673,
+            0.0008582455023181871
+          ],
+          [
+            0.004527222102652988,
+            0.02541753124092326,
+            0.0022332368282647987
+          ],
+          [
+            0.04570656181195053,
+            0.051034647426139335,
+            0.0032009754983443345
+          ],
+          [
+            0.09191453881379355,
+            0.06099810592887585,
+            0.0032304828275539583
+          ],
+          [
+            0.1140909551591155,
+            0.05615231193008827,
+            0.002647994255940223
+          ],
+          [
+            0.11152572102661082,
+            0.044279366170540825,
+            0.0019074796908915227
+          ],
+          [
+            0.10255845827065696,
+            0.03295121118618972,
+            0.0012757780357788417
+          ],
+          [
+            0.08089676708130702,
+            0.021542956645100236,
+            0.0007559695249406634
+          ],
+          [
+            0.05264930272792639,
+            0.012184481731073771,
+            0.0003954978355737749
+          ],
+          [
+            0.030088646942424947,
+            0.006213596672266163,
+            0.00018835756177336424
+          ],
+          [
+            0.01577139773914506,
+            0.002935297657694044,
+            8.337921907164089e-05
+          ],
+          [
+            0.008122487443170878,
+            0.001335601093181229,
+            3.4889440338647216e-05
+          ],
+          [
+            0.0034005646348158505,
+            0.0005054686611399162,
+            1.2357320895957449e-05
+          ],
+          [
+            0.0012011029977103574,
+            0.00016629586684068764,
+            3.86664649142723e-06
+          ],
+          [
+            0.0004021027590194349,
+            5.150427736706207e-05,
+            1.1297804721914742e-06
+          ],
+          [
+            0.00012470866480360476,
+            1.460684386358536e-05,
+            2.9926741853463344e-07
+          ],
+          [
+            3.8664044170756355e-05,
+            3.8630926719875385e-06,
+            6.90066703304892e-08
+          ]
+        ],
+        "alive": [
+          5.750391937722744e-07,
+          9.035686557560275e-06,
+          8.757860456938728e-05,
+          0.0006829579560091665,
+          0.004442041329972385,
+          0.032177990171841045,
+          0.0999421847364342,
+          0.15614312757022336,
+          0.17289126134514402,
+          0.15771256688804317,
+          0.1367854474926255,
+          0.10319569325134793,
+          0.06522928229457393,
+          0.03649060117646447,
+          0.018790074615910746,
+          0.009492977976690754,
+          0.003918390616851724,
+          0.0013712655110424722,
+          0.00045473681685868846,
+          0.00013961477608572475,
+          4.259614351307438e-05
+        ],
+        "clutter": [
+          0.6637135960176082,
+          0.3192151420572798,
+          0.017071261925065175
+        ]
+      },
+      "log_evidence": 32.302069485620635,
+      "tempered_mode_curve": [
+        {
+          "beta": 0.0,
+          "mode": [
+            0.9926325138174172,
+            9.98608053755776e-07,
+            0.007366487574519235
+          ]
+        },
+        {
+          "beta": 0.25,
+          "mode": [
+            0.9901058682228823,
+            2.934553460467574e-05,
+            0.009864786242517496
+          ]
+        },
+        {
+          "beta": 0.5,
+          "mode": [
+            0.9638453362403467,
+            0.0013858298768692076,
+            0.034768833882777836
+          ]
+        },
+        {
+          "beta": 0.75,
+          "mode": [
+            0.6862156088368502,
+            0.06646264798041344,
+            0.24732174318268718
+          ]
+        },
+        {
+          "beta": 0.9,
+          "mode": [
+            0.4018397773693496,
+            0.2060873930685055,
+            0.39207282956211825
+          ]
+        },
+        {
+          "beta": 1.0,
+          "mode": [
+            0.2556299266155312,
+            0.2952542033051513,
+            0.4491158700792707
+          ]
+        }
+      ],
+      "iid_baseline": {
+        "512": {
+          "per_run": {
+            "maximum_mode_absolute_error": {
+              "median": 0.023334620079270674,
+              "q95": 0.046542671694848714
+            },
+            "full_joint_tv": {
+              "median": 0.08199265724171598,
+              "q95": 0.10704653934776813
+            },
+            "maximum_cell_absolute_error": {
+              "median": 0.021736288813810282,
+              "q95": 0.0343771502975097
+            },
+            "alive_total_tv": {
+              "median": 0.05432895297596581,
+              "q95": 0.07944620321378094
+            },
+            "clutter_mean_error": {
+              "median": 0.015782959092589838,
+              "q95": 0.044779711816669135
+            }
+          },
+          "group_max_cell_mean": {
+            "median": 0.00886840214579787,
+            "q95": 0.014115572696777151
+          }
+        },
+        "2048": {
+          "per_run": {
+            "maximum_mode_absolute_error": {
+              "median": 0.011615870079270674,
+              "q95": 0.023540379920729326
+            },
+            "full_joint_tv": {
+              "median": 0.041051316520800823,
+              "q95": 0.05364389115850131
+            },
+            "maximum_cell_absolute_error": {
+              "median": 0.01072279172934304,
+              "q95": 0.017382065907675496
+            },
+            "alive_total_tv": {
+              "median": 0.027184645730416013,
+              "q95": 0.038989028901967926
+            },
+            "clutter_mean_error": {
+              "median": 0.008142822157410162,
+              "q95": 0.02378361806666913
+            }
+          },
+          "group_max_cell_mean": {
+            "median": 0.004511471066040287,
+            "q95": 0.007180854103995091
+          }
+        }
+      },
+      "mode_competition_at_least_0_10": true,
+      "cpu_seconds": 3861.9082119100003
+    },
+    "replica": null
+  },
+  "runs": {
+    "primary": {
+      "512": {},
+      "2048": {}
+    },
+    "replica": {
+      "512": {},
+      "2048": {}
+    }
+  },
+  "comparison": null,
+  "status": "in_progress"
+}
