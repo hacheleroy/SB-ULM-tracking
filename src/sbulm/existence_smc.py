@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from typing import Protocol
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
@@ -26,6 +27,22 @@ IntArray = NDArray[np.int64]
 BoolArray = NDArray[np.bool_]
 
 
+class BirthDeathSMCObserver(Protocol):
+    """Optional read-only diagnostics; callbacks must not consume sampler RNG."""
+
+    def begin_stage(self, step: int, beta: float) -> None: ...
+
+    def record_resampling(
+        self, associations: IntArray, weights: FloatArray, ancestors: IntArray
+    ) -> None: ...
+
+    def record_pair(
+        self, before: IntArray, proposed: IntArray, accepted: BoolArray, pg_selected: BoolArray
+    ) -> None: ...
+
+    def end_stage(self, associations: IntArray) -> None: ...
+
+
 @dataclass(frozen=True)
 class BirthDeathSMCConfig:
     """Numerical controls and reversible-move mixture."""
@@ -43,6 +60,8 @@ class BirthDeathSMCConfig:
     paired_slot_scope: str = "local"
     paired_slot_path_particles: int = 8
     paired_slot_pg_fraction: float = 1.0
+    paired_slot_pg_beta_switch: float | None = None
+    paired_slot_pg_early_fraction: float | None = None
     tracklet_move_probability: float = 0.0
     tracklet_proposal_kind: str = "displacement"
     max_tempering_steps: int = 128
@@ -83,6 +102,19 @@ class BirthDeathSMCConfig:
             raise ValueError("paired_slot_pg_fraction must lie in [0, 1]")
         if self.paired_slot_scope != "conditional_smc" and self.paired_slot_pg_fraction != 1:
             raise ValueError("paired_slot_pg_fraction requires conditional_smc scope")
+        if (self.paired_slot_pg_beta_switch is None) != (self.paired_slot_pg_early_fraction is None):
+            raise ValueError("PG beta switch and early fraction must be set together")
+        if self.paired_slot_pg_beta_switch is not None:
+            if self.paired_slot_scope != "conditional_smc":
+                raise ValueError("PG beta schedule requires conditional_smc scope")
+            if not np.isfinite(self.paired_slot_pg_beta_switch) or not (
+                0 < self.paired_slot_pg_beta_switch <= 1
+            ):
+                raise ValueError("PG beta switch must lie in (0, 1]")
+            if not np.isfinite(self.paired_slot_pg_early_fraction) or not (
+                0 <= self.paired_slot_pg_early_fraction <= 1
+            ):
+                raise ValueError("PG early fraction must lie in [0, 1]")
         if self.tracklet_proposal_kind not in ("displacement", "conditional_gp_nonself"):
             raise ValueError("unknown tracklet_proposal_kind")
 
@@ -401,6 +433,16 @@ def _propose_birth_death_moves(
     return proposed, log_hastings, move_types
 
 
+def _paired_pg_fraction(config: BirthDeathSMCConfig, beta: float) -> float:
+    """Fixed-in-advance, state-independent PG selection at this temperature."""
+
+    if (config.paired_slot_pg_beta_switch is not None
+            and beta < config.paired_slot_pg_beta_switch):
+        assert config.paired_slot_pg_early_fraction is not None
+        return config.paired_slot_pg_early_fraction
+    return config.paired_slot_pg_fraction
+
+
 def _metropolis_birth_death_rejuvenation(
     associations: IntArray,
     log_marginal_densities: FloatArray,
@@ -412,6 +454,7 @@ def _metropolis_birth_death_rejuvenation(
     n_sweeps: int,
     config: BirthDeathSMCConfig,
     rng: np.random.Generator,
+    observer: BirthDeathSMCObserver | None = None,
 ) -> tuple[
     IntArray,
     FloatArray,
@@ -506,7 +549,7 @@ def _metropolis_birth_death_rejuvenation(
                 )
                 pair_existence = model.log_existence_prior(pair_proposed)
             else:
-                fraction = config.paired_slot_pg_fraction
+                fraction = _paired_pg_fraction(config, beta)
                 if fraction == 1:
                     pg_mask[:] = True
                 elif fraction > 0:
@@ -548,6 +591,8 @@ def _metropolis_birth_death_rejuvenation(
                     # its actual state/count changes measure mixing.
                     pair_accepted[pg_positions] = True
                 paired_pg_selected += pg_positions.size
+            if observer is not None:
+                observer.record_pair(current[pair_rows], pair_proposed, pair_accepted, pg_mask)
             selected_rows = pair_rows[pair_accepted]
             selected_states = pair_proposed[pair_accepted]
             paired_changes += int(
@@ -658,6 +703,7 @@ def sample_slot_existence_posterior(
     nu: float = 1.5,
     relative_jitter: float = 1e-10,
     config: BirthDeathSMCConfig | None = None,
+    observer: BirthDeathSMCObserver | None = None,
 ) -> BirthDeathSMCResult:
     r"""Sample the posterior over explicit birth/death slots.
 
@@ -715,6 +761,9 @@ def sample_slot_existence_posterior(
         log_evidence += log_weight_sum - np.log(controls.n_particles)
 
         ancestors = systematic_resample(weights, rng)
+        if observer is not None:
+            observer.begin_stage(step, next_beta)
+            observer.record_resampling(associations, weights, ancestors)
         associations = associations[ancestors].copy()
         log_marginal = log_marginal[ancestors].copy()
         log_count = log_count[ancestors].copy()
@@ -738,6 +787,7 @@ def sample_slot_existence_posterior(
             n_sweeps=stage_sweeps,
             config=controls,
             rng=rng,
+            observer=observer,
         )
         unique_states = np.unique(
             associations.reshape(controls.n_particles, -1), axis=0
@@ -765,6 +815,8 @@ def sample_slot_existence_posterior(
                 paired_slot_pg_count_signature_change_rate=acceptance[11],
             )
         )
+        if observer is not None:
+            observer.end_stage(associations)
         beta = next_beta
         if beta == 1.0:
             break

@@ -380,6 +380,40 @@ current wall times are not a controlled speed comparison. The status is
 `failed_early_before_new_holdout`, not a larger-case stability pass. See
 `wp11g_exposed_wp8_high_particle.md`.
 
+## WP11h — Passive joint-mode diagnosis of WP11g
+
+- [x] Reproduce both exposed WP11g seeds with an RNG-free observer and the
+  original 1,800-process-CPU-second cap
+- [x] Preserve full synthetic associations, label-invariant count signatures,
+  stage joint distributions, and local/PG mode transitions
+- [x] Decompose the remaining frame-six clutter and alive-count disagreements
+  without changing the original stability verdict or opening a holdout
+
+**Observed mechanism:** 0.0783 of the 0.1335 clutter gap comes from different
+weights on low- and high-alive hypotheses; 0.0553 persists within those
+bands, with differing detection-subset assignments. The discrepancy grows
+mostly after beta about 0.75, despite appreciable PG mode transitions.
+The next method test is a fixed-budget, beta-dependent allocation of the
+existing PG update, first on the exact oracle and new development data. See
+`wp11h_joint_mode_diagnostic.md`.
+
+## WP11i — Late-stage allocation of four-path PG
+
+- [x] Add an opt-in, beta-only PG selection schedule while preserving the
+  default constant mixture and exact tempered-target invariance
+- [x] Pass the frozen 269-state exact-oracle movement and count-TV screen
+- [x] Run both arms on two seeds of a fresh, hash-frozen development case
+- [ ] Pass all frozen development guardrails before another exposed-case
+  8,192-particle test
+
+**Observed boundary:** the late allocation reduced the fresh-case
+cross-seed clutter difference from 0.1348 to 0.0645 and alive-count TV
+from 0.1973 to 0.1523, while staying within the CPU and PG-selection
+budget gates. Maximum death-marginal disagreement increased by 0.02148,
+exceeding its allowed +0.020. The status is
+`stopped_before_high_particle_test`; no new high-particle or holdout
+observation was opened. See `wp11i_late_pg_development.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
