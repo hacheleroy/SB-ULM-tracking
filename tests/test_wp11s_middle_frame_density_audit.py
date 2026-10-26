@@ -145,6 +145,13 @@ def test_completed_middle_density_checkpoint() -> None:
     if result["status"] == "middle_density_invalid_stop":
         assert not all(ref["difficulty_valid"] for ref in result["references"].values())
         return
+    assert result["status"] == "middle_density_no_persistent_flag"
+    assert result["diagnostic_flags"] == {
+        "persistent_mode_tail": False,
+        "persistent_joint_tail": False,
+        "shared_cell_shift": False,
+    }
+    assert result["shared_signed_cells"] == []
     assert all(ref["difficulty_valid"] for ref in result["references"].values())
     for observation in OBSERVATION_ORDER:
         ref = result["references"][observation]
