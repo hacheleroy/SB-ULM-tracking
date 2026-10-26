@@ -442,8 +442,8 @@ See `wp11j_pgas_ancestor_development.md`.
   posterior and independent-draw finite-sample envelope
 - [x] Measure four-seed seven-metric spread at 512 and 2,048 on the primary
   eight-frame case and at 512 on a separate stress case
-- [ ] Establish absolute eight-frame mode-weight calibration on an
-  independently frozen bridge before another move-selection gate
+- [x] Establish absolute eight-frame mode-weight calibration on an
+  independently frozen two-slot bridge before another move-selection gate
 
 **Observed boundary:** all six exact-case seeds at both particle counts were
 within the independent-draw 95th-percentile envelope for alive-total TV,
@@ -455,6 +455,29 @@ both sizes; the worst clutter pair was still 0.4072 at 2,048. A separate
 only one detection. This is an observation-dependent variance diagnosis,
 not an eight-frame calibration claim or a new sampler gate. The default
 sampler and holdout are unchanged. See `wp11k_variance_calibration.md`.
+
+## WP11l — Exact eight-frame mode-weight bridge
+
+- [x] Freeze a two-slot/eight-frame observation, eight-model clutter grid,
+  exact mode definitions, selection rule, independent-draw baseline, seeds,
+  and CPU caps before inference
+- [x] Enumerate all 667,989 states and verify a selected bridge with both
+  competing alive/clutter modes above 0.10 exact posterior mass
+- [x] Measure absolute mode weights and full joint distributions across six
+  seeds at 512 and 2,048 particles with the unchanged WP11g sampler
+- [ ] Extend independent absolute calibration toward the harder four-slot
+  eight-frame geometry before selecting a new sampler move
+
+**Observed boundary:** the frozen exact selection chose clutter rate 1.50,
+with mode masses 0.3825 and 0.3386; the second mode rises sharply after
+beta 0.75. At 2,048 particles all six maximum mode errors were at most
+0.0192 versus a 0.0260 IID 95th-percentile reference, and all full-joint
+TVs were below their IID envelope. One of six 512-particle mode errors and
+one marginal 2,048-particle clutter-mean error exceeded their respective
+descriptive envelopes. This validates mode weights on the reduced exact
+bridge, not on WP11k's four-slot primary case. No new move was selected;
+the default sampler and untouched holdout remain unchanged. See
+`wp11l_exact_bridge.md`.
 
 ## WP12 — Open in-vivo trajectories
 

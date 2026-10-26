@@ -402,6 +402,9 @@ def _finish(result: dict[str, Any]) -> None:
         baseline = result["reference"]["iid_baseline"][str(n)]
         comparison[str(n)] = {
             "median_errors": {key: float(median(e[key] for e in errors)) for key in errors[0]},
+            "median_absolute_errors": {
+                key: float(median(abs(e[key]) for e in errors)) for key in errors[0]
+            },
             "error_ranges": {key: [min(e[key] for e in errors), max(e[key] for e in errors)]
                              for key in errors[0]},
             "iid_q95_exceedances": {
