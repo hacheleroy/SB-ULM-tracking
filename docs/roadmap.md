@@ -524,6 +524,20 @@ suggests further joint-cell scrutiny on a more demanding independently
 referenced geometry, without treating the seven-detection result as proof
 about WP11k's 19-detection case. See `wp11n_dense_three_slot_bridge.md`.
 
+## WP11o — Paired four-slot absolute joint-cell references
+
+- [x] Freeze two distinct five-frame/four-slot observations, their exact
+  support and rate grid, 63-cell comparison, familywise cell threshold,
+  replication rules, seeds and CPU caps before inference
+- [ ] Enumerate each 24,193,016-state support and validate both independent
+  absolute references before any sampler run
+- [ ] Compare six seeds at 512 and 2,048 particles on each observation,
+  report joint-tail and same-signed-cell replication flags
+
+This raises the slot count to four while keeping exact enumeration feasible.
+The five-frame/six-detection cases remain distinct from WP11k's eight-frame,
+19-detection primary case. See `wp11o_four_slot_joint_reference.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
