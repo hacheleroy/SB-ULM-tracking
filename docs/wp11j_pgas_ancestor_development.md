@@ -54,8 +54,39 @@ minus prefix increments at beta 0, 0.41, and 1 before inference.
    decrease; each of the other five inherited differences may rise by at
    most 0.020. A failure stops before another 8,192-particle test.
 
-These are exploratory method screens, not posterior calibration. The prior
-WP11i observation is not used for this new decision. The untouched holdout
-remains closed. The exact-oracle and development results will be saved in
-`results/wp11j_pgas_oracle.json` and
-`results/wp11j_pgas_development.json`, including failed gates.
+## Results and decision
+
+The exact-oracle gate **passed**. All six count TVs were between 0.0334 and
+0.0689, below the 0.08893 envelope. Across seeds, the first-frame
+association-change rate rose from 0.2962 under PG to 0.4883 under PGAS.
+The per-seed PGAS/PG CPU ratios were 0.934, 0.789, and 0.685 on this tiny
+case. An additional exhaustive two-frame, two-particle transition check
+enumerates all proposals, resampling and ancestor events at beta 0, 0.37,
+and 1, and verifies the exact posterior is stationary. The measured
+movement is still not an independent-posterior calibration result.
+
+The **new** development screen failed, with status
+`stopped_before_high_particle_test`. Both per-seed CPU ratios (1.431 and
+1.390) and PG-selection ratios (0.994 and 1.008) passed. One target
+discrepancy improved, while the other became larger; missed and death
+marginals also exceeded the fixed +0.020 guardrail.
+
+| Cross-seed discrepancy | PG | PGAS | Change |
+| --- | ---: | ---: | ---: |
+| Maximum expected-clutter marginal | 0.349609 | 0.271484 | -0.078125 |
+| Alive-count histogram TV | 0.224609 | 0.318359 | **+0.093750** |
+| Maximum existence marginal | 0.130859 | 0.148438 | +0.017578 |
+| Maximum missed marginal | 0.080078 | 0.150391 | **+0.070312** |
+| Maximum birth marginal | 0.130859 | 0.115234 | -0.015625 |
+| Maximum death marginal | 0.064453 | 0.148438 | **+0.083984** |
+| Assigned-count histogram TV | 0.154297 | 0.074219 | -0.080078 |
+
+Full protocols and per-run summaries are in
+[`results/wp11j_pgas_oracle.json`](../results/wp11j_pgas_oracle.json) and
+[`results/wp11j_pgas_development.json`](../results/wp11j_pgas_development.json).
+PGAS used 21 and 20 tempering stages versus 19 in both PG controls, so
+the CPU ratios include that schedule difference. A small exact-target
+movement improvement did not yield stable eight-frame mode weights on
+this fresh case. The fixed development criteria are not revised from this
+outcome. No 8,192-particle test was run and the untouched holdout remains
+closed. This is a recorded experimental option, not a recommended default.
