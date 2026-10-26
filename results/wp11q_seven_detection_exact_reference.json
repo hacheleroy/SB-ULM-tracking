@@ -1,0 +1,785 @@
+{
+  "experiment": "wp11q_seven_detection_exact_reference",
+  "protocol": {
+    "purpose": "independent exact seven-detection/four-slot/eight-frame late-mode reference",
+    "observation_hash": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+    "cardinalities": [
+      1,
+      1,
+      1,
+      0,
+      1,
+      2,
+      1,
+      0
+    ],
+    "canonical_support_size": 126031206,
+    "labelled_support_size": 2460244269,
+    "mask_multisets": 91390,
+    "exact_method": "enumerate nondecreasing slot-interval masks, retain all frame assignments, weight by 4! divided by factorials of repeated interval-mask counts",
+    "clutter_rates": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.35,
+      0.5,
+      0.75,
+      1.0,
+      1.5,
+      2.25,
+      3.0
+    ],
+    "rate_selection": "maximize min(exact P(A), exact P(B)); tie to smaller rate",
+    "mode_A": "alive slot-frames <= 15 and frame-six clutter >= 1",
+    "mode_B": "alive slot-frames >= 16 and frame-six clutter == 0",
+    "mode_other": "all remaining states",
+    "difficulty_validation": "selected exact P(A) and P(B) each >= 0.10 and beta=0.5 exact P(B) <= half beta=1 P(B); fail and stop sampler without modifying case",
+    "joint_cells": "all 33 alive totals (0..32) by frame-six clutter (0..2)",
+    "reference_checks": "canonical weighted versus full labelled small-case sum; canonical and labelled support counts; eleven analytic base normalizers; direct endpoint Poisson-rate reweighting and GP lookup checks on deterministic blocks",
+    "comparison": "six independent unchanged WP11g 10% four-path PG seeds at 512 then 2048; per-run full joint TV, maximum cell and maximum mode error versus 1000 exact multinomial IID q95; six-run mean maximum signed cell versus familywise q95 from 1000 six-draw exact groups",
+    "diagnostic_flags": "at 2048, mode_error_tail or joint_tail if >=3/6 runs exceed their corresponding IID q95; cell_shift if maximum absolute six-run mean cell residual exceeds the familywise six-draw q95 and its sign agrees in both ordered three-seed halves; no move selection",
+    "reference_before_sampler": true,
+    "beta_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      1.0
+    ],
+    "seeds": [
+      1120,
+      1121,
+      1122,
+      1123,
+      1124,
+      1125
+    ],
+    "particles": [
+      512,
+      2048
+    ],
+    "run_order": "exact reference checkpoint, 512 seeds 1120..1125, 2048 seeds 1120..1125",
+    "iid_seed": 34351,
+    "iid_replicates": 1000,
+    "thread_env": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "reference_cpu_cap": 12000,
+    "run_cpu_caps": {
+      "512": 600,
+      "2048": 1600
+    },
+    "interpretation": "eight-frame seven-detection exact bridge, not WP11k's 19-detection primary; descriptive IID comparisons, no 8192 or holdout"
+  },
+  "cases": {
+    "observation": {
+      "n_slots": 4,
+      "n_frames": 8,
+      "detection_cardinalities": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        2,
+        1,
+        0
+      ],
+      "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+      "detection_probability": 0.55,
+      "expected_clutter_per_frame": 0.05,
+      "birth_death_prior": {
+        "initial_probability": 0.5,
+        "birth_probability": 0.25,
+        "survival_probability": 0.8
+      }
+    },
+    "models": [
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.05,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.1,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.15,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.2,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.35,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.5,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 0.75,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 1.0,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 1.5,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 2.25,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      },
+      {
+        "n_slots": 4,
+        "n_frames": 8,
+        "detection_cardinalities": [
+          1,
+          1,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "detections_sha256": "11a2f6f7c529f080ed0fdbb3eaf3da39c2b9170ce660e95f0b119de5d241734b",
+        "detection_probability": 0.55,
+        "expected_clutter_per_frame": 3.0,
+        "birth_death_prior": {
+          "initial_probability": 0.5,
+          "birth_probability": 0.25,
+          "survival_probability": 0.8
+        }
+      }
+    ]
+  },
+  "reference": {
+    "canonical_support_size": 126031206,
+    "labelled_support_size": 2460244269,
+    "mask_multiset_count": 91390,
+    "reference_grid": [
+      {
+        "clutter_rate": 0.05,
+        "mode": [
+          0.03285241491444871,
+          0.17164814950998716,
+          0.7954994355755641
+        ],
+        "log_evidence": 39.56931041677183
+      },
+      {
+        "clutter_rate": 0.1,
+        "mode": [
+          0.06401278210560375,
+          0.16476181702523546,
+          0.771225400869161
+        ],
+        "log_evidence": 39.22399451349039
+      },
+      {
+        "clutter_rate": 0.15,
+        "mode": [
+          0.09360603437847409,
+          0.1582510188014374,
+          0.7481429468200884
+        ],
+        "log_evidence": 38.87802581442759
+      },
+      {
+        "clutter_rate": 0.2,
+        "mode": [
+          0.12174540832556892,
+          0.15208806350541085,
+          0.7261665281690203
+        ],
+        "log_evidence": 38.53143623464551
+      },
+      {
+        "clutter_rate": 0.35,
+        "mode": [
+          0.1984233951604751,
+          0.13544634479425044,
+          0.6661302600452744
+        ],
+        "log_evidence": 37.48823259321675
+      },
+      {
+        "clutter_rate": 0.5,
+        "mode": [
+          0.2652136013343859,
+          0.12115613050326862,
+          0.6136302681623458
+        ],
+        "log_evidence": 36.44041607841661
+      },
+      {
+        "clutter_rate": 0.75,
+        "mode": [
+          0.3592081746531341,
+          0.10143668622354036,
+          0.5393551391233254
+        ],
+        "log_evidence": 34.685382005709144
+      },
+      {
+        "clutter_rate": 1.0,
+        "mode": [
+          0.43650477256782133,
+          0.08564181468866977,
+          0.47785341274350873
+        ],
+        "log_evidence": 32.92135617516736
+      },
+      {
+        "clutter_rate": 1.5,
+        "mode": [
+          0.5559833630655482,
+          0.062216723113023564,
+          0.381799913821428
+        ],
+        "log_evidence": 29.372542283684552
+      },
+      {
+        "clutter_rate": 2.25,
+        "mode": [
+          0.6792524616542676,
+          0.03981836784094928,
+          0.28092917050478305
+        ],
+        "log_evidence": 24.01192794243663
+      },
+      {
+        "clutter_rate": 3.0,
+        "mode": [
+          0.7622763771762027,
+          0.026193379073088264,
+          0.21153024375070906
+        ],
+        "log_evidence": 18.618757159635322
+      }
+    ],
+    "selected_rate": 0.35,
+    "exact": {
+      "mode": [
+        0.1984233951604751,
+        0.13544634479425044,
+        0.6661302600452744
+      ],
+      "joint_alive_by_clutter": [
+        [
+          0.0,
+          0.0,
+          9.24389032281666e-11
+        ],
+        [
+          0.0,
+          5.81366308424195e-10,
+          5.043753008704352e-09
+        ],
+        [
+          6.855610122996256e-10,
+          3.921769694433509e-08,
+          1.2157493457419646e-07
+        ],
+        [
+          5.5089051123046164e-08,
+          1.1552895373547766e-06,
+          1.7948397041770945e-06
+        ],
+        [
+          1.6756127523450166e-06,
+          2.1151141027444894e-05,
+          1.093555485757477e-05
+        ],
+        [
+          2.9637117883656258e-05,
+          0.00024915532222368776,
+          3.7175057374906024e-05
+        ],
+        [
+          0.000372176207726873,
+          0.0017196994836637823,
+          9.136121024173865e-05
+        ],
+        [
+          0.003038994016034372,
+          0.006844611125827422,
+          0.00018546367268790543
+        ],
+        [
+          0.01362289432246622,
+          0.017038148717242494,
+          0.00031465865352823765
+        ],
+        [
+          0.03807678323934679,
+          0.028946034932554213,
+          0.0004328717093598725
+        ],
+        [
+          0.07385695649857248,
+          0.03589416300805857,
+          0.00047707896569623573
+        ],
+        [
+          0.10674787846738373,
+          0.03478449293644618,
+          0.00042927245606600307
+        ],
+        [
+          0.1229971443606542,
+          0.028267266446306095,
+          0.0003289866773916485
+        ],
+        [
+          0.1188358857315903,
+          0.02030477543833356,
+          0.0002242196334997391
+        ],
+        [
+          0.10057013204243433,
+          0.013347235552824802,
+          0.00014011167488636668
+        ],
+        [
+          0.07739154156286421,
+          0.008249351665959614,
+          8.205748498574727e-05
+        ],
+        [
+          0.054862701463615,
+          0.0048800214379795,
+          4.5856770179650324e-05
+        ],
+        [
+          0.03584708481173275,
+          0.0027718368094665213,
+          2.4683270118644612e-05
+        ],
+        [
+          0.021434912508532532,
+          0.0014833207176178007,
+          1.2603401952278556e-05
+        ],
+        [
+          0.011761378098219461,
+          0.0007388849867885065,
+          6.018531941871701e-06
+        ],
+        [
+          0.006071630852744745,
+          0.00034839538274054123,
+          2.724581796497327e-06
+        ],
+        [
+          0.0029759518363931254,
+          0.00015686161336211102,
+          1.1796897971956367e-06
+        ],
+        [
+          0.001404804157767737,
+          6.818865189754435e-05,
+          4.922911778513166e-07
+        ],
+        [
+          0.0006388015852799484,
+          2.8693870056171892e-05,
+          1.9830767231909968e-07
+        ],
+        [
+          0.00027594652822455297,
+          1.1665762882679548e-05,
+          7.772545251647167e-08
+        ],
+        [
+          0.00011138252284343319,
+          4.469866717630626e-06,
+          2.8864962547207092e-08
+        ],
+        [
+          4.0414932347517844e-05,
+          1.5383881677617343e-06,
+          9.636597396810702e-09
+        ],
+        [
+          1.427609741202542e-05,
+          5.140148273307587e-07,
+          3.1141425231131805e-09
+        ],
+        [
+          4.826426198782427e-06,
+          1.6480545481475462e-07,
+          9.675013539824013e-10
+        ],
+        [
+          1.5790903506761288e-06,
+          5.123189905012691e-08,
+          2.9082407442266913e-10
+        ],
+        [
+          4.927266422733229e-07,
+          1.5071202205595723e-08,
+          8.145270864578563e-11
+        ],
+        [
+          1.308394252685324e-07,
+          4.000711706362603e-09,
+          2.1615163921046973e-11
+        ],
+        [
+          3.031652061724681e-08,
+          9.26988108794519e-10,
+          5.008324453859097e-12
+        ]
+      ],
+      "alive": [
+        9.24389032281666e-11,
+        5.625119317128547e-09,
+        1.6147819253083117e-07,
+        3.0052182926549173e-06,
+        3.376230863736468e-05,
+        0.00031596749748225,
+        0.002183236901632394,
+        0.010069068814549699,
+        0.030975701693236952,
+        0.06745568988126088,
+        0.11022819847232729,
+        0.1419616438598959,
+        0.15159339748435194,
+        0.1393648808034236,
+        0.11405747927014549,
+        0.08572295071380956,
+        0.05978857967177415,
+        0.03864360489131792,
+        0.02293083662810261,
+        0.012506281616949841,
+        0.0064227508172817836,
+        0.003133993139552432,
+        0.0014734851008431325,
+        0.0006676937630084393,
+        0.000287690016559749,
+        0.00011588125452361102,
+        4.196295711267639e-05,
+        1.4793226381879292e-05,
+        4.992199154951163e-06,
+        1.6306130738006784e-06,
+        5.078792971875644e-07,
+        1.3486175213881605e-07,
+        3.124851705049519e-08
+      ],
+      "clutter": [
+        0.7909880997485723,
+        0.20616190839782841,
+        0.002849991853599556
+      ]
+    },
+    "log_evidence": 37.48823259321675,
+    "tempered_mode_curve": [
+      {
+        "beta": 0.0,
+        "mode": [
+          0.9997693698110546,
+          2.1885245043830178e-07,
+          0.00023041133649492112
+        ]
+      },
+      {
+        "beta": 0.25,
+        "mode": [
+          0.9988244408075794,
+          9.656693040333455e-06,
+          0.0011659024993802853
+        ]
+      },
+      {
+        "beta": 0.5,
+        "mode": [
+          0.9712180222160837,
+          0.0012299070321614067,
+          0.027552070751754903
+        ]
+      },
+      {
+        "beta": 0.75,
+        "mode": [
+          0.6312756556149057,
+          0.04994680203730128,
+          0.31877754234779293
+        ]
+      },
+      {
+        "beta": 0.9,
+        "mode": [
+          0.33745864713175383,
+          0.10822586442314584,
+          0.5543154884451004
+        ]
+      },
+      {
+        "beta": 1.0,
+        "mode": [
+          0.1984233951604751,
+          0.13544634479425044,
+          0.6661302600452744
+        ]
+      }
+    ],
+    "difficulty_valid": true,
+    "iid_baseline": {
+      "512": {
+        "per_run": {
+          "maximum_mode_absolute_error": {
+            "median": 0.019645885045274425,
+            "q95": 0.043083385045274425
+          },
+          "full_joint_tv": {
+            "median": 0.08366052757069947,
+            "q95": 0.10734842872762614
+          },
+          "maximum_cell_absolute_error": {
+            "median": 0.021724345366012348,
+            "q95": 0.035205980639345796
+          },
+          "alive_total_tv": {
+            "median": 0.060926017541647,
+            "q95": 0.08490293481915821
+          },
+          "clutter_mean_error": {
+            "median": 0.012643142105027566,
+            "q95": 0.03608064210502757
+          }
+        },
+        "group_max_cell_mean": {
+          "median": 0.008809844064923633,
+          "q95": 0.014924227693987532
+        }
+      },
+      "2048": {
+        "per_run": {
+          "maximum_mode_absolute_error": {
+            "median": 0.009946832660475108,
+            "q95": 0.020881458704725575
+          },
+          "full_joint_tv": {
+            "median": 0.04206340957828621,
+            "q95": 0.05330341108337122
+          },
+          "maximum_cell_absolute_error": {
+            "median": 0.010893032106093738,
+            "q95": 0.016787277782616267
+          },
+          "alive_total_tv": {
+            "median": 0.03041523232978067,
+            "q95": 0.04270085453803396
+          },
+          "clutter_mean_error": {
+            "median": 0.00634765625,
+            "q95": 0.01763029539497243
+          }
+        },
+        "group_max_cell_mean": {
+          "median": 0.004447427056783339,
+          "q95": 0.007288611972013035
+        }
+      }
+    },
+    "cpu_seconds": 177.559300407
+  },
+  "runs": {
+    "512": {},
+    "2048": {}
+  },
+  "comparison": null,
+  "status": "in_progress"
+}

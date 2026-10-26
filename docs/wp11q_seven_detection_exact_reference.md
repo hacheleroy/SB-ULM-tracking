@@ -88,3 +88,19 @@ establish calibration on that case.
 Runner: `src/sbulm/wp11q_seven_detection_exact_reference.py`. Checkpoint:
 `results/wp11q_seven_detection_exact_reference.json`. This protocol and
 runner are committed before evaluating the four-slot posterior.
+
+## Exact reference checkpoint
+
+The independent weighted pass covered all **126,031,206** canonical states
+and **2,460,244,269** represented labelled states in **177.6 CPU seconds**.
+The direct GP lookup checks, endpoint Poisson rate reweighting, weighted
+count and all eleven analytic base-normalizer checks passed. The frozen
+balance rule selected rate **0.35**. Exact P(A), P(B), and other are
+**0.198423, 0.135446, 0.666130**; log evidence is **37.488233**.
+
+At beta 0.5, exact P(B) is **0.001230**, rising to **0.049947** at beta
+0.75 and **0.135446** at beta one. Both masses exceed the predeclared
+0.10 minimum, and the beta-0.5 mass is less than half its final mass.
+The bridge is therefore valid under the frozen rule. The full eleven-rate
+grid, tempered curve, 99-cell table and IID reference thresholds are saved
+in the checkpoint, committed **before** the sampler phase.
