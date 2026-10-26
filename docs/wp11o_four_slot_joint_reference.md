@@ -98,4 +98,79 @@ Runner: `src/sbulm/wp11o_four_slot_joint_reference.py`. Checkpoint:
 
 ## Exact references and measured outcome
 
-Pending the frozen exact and sampler runs.
+Both bounded exact passes scored all **24,193,016** labelled states and
+passed the endpoint Poisson rate-reweighting checks and all eight analytic
+base-normalizer comparisons. Primary took 3,861.9 process CPU seconds;
+replica took 3,538.3, both below the frozen 6,000-second cap. The
+predeclared rate rule selected **1.0 for each**. The entire grid is:
+
+| Clutter/frame | Primary P(A) | Primary P(B) | Replica P(A) | Replica P(B) |
+| ---: | ---: | ---: | ---: | ---: |
+| 0.20 | 0.0645 | 0.4250 | 0.0683 | 0.4261 |
+| 0.35 | 0.1075 | 0.3950 | 0.1134 | 0.3944 |
+| 0.50 | 0.1467 | 0.3681 | 0.1543 | 0.3662 |
+| 0.75 | 0.2048 | 0.3288 | 0.2147 | 0.3252 |
+| **1.00** | **0.2556** | **0.2953** | **0.2672** | **0.2904** |
+| 1.50 | 0.3410 | 0.2410 | 0.3547 | 0.2347 |
+| 2.25 | 0.4408 | 0.1819 | 0.4561 | 0.1749 |
+| 3.00 | 0.5188 | 0.1400 | 0.5346 | 0.1331 |
+
+Both selected cases have A and B above 0.10; other mass is 0.4491 and
+0.4424. Exact P(B) rises from 0.06646 / 0.06245 at beta 0.75 to
+0.29525 / 0.29039 at beta one. Exact log evidence is 32.30207 / 32.15707.
+The top primary exact joint cells are `(alive, clutter)=(8,0):0.11409`,
+`(9,0):0.11153`, and `(10,0):0.10256`; replica has the same top cell
+coordinates with masses 0.11028, 0.10851, and 0.10022. The two-reference
+checkpoint was committed before sampling.
+
+The table summarizes six independent seeds per row. Ranges are absolute
+errors; `exceed` counts per-run errors above that case's 1,000-draw exact
+IID q95. These q95 comparisons are descriptive rather than a joint
+multiple-testing gate.
+
+| Case | Particles | Metric | IID q95 | Sampler median | Sampler range | Exceed |
+| --- | ---: | --- | ---: | ---: | ---: | ---: |
+| Primary | 512 | Joint TV | 0.10705 | 0.08028 | 0.06776–0.08852 | 0/6 |
+| Primary | 512 | Maximum cell error | 0.03438 | 0.02372 | 0.01574–0.02942 | 0/6 |
+| Primary | 512 | Maximum mode error | 0.04654 | 0.01735 | 0.01334–0.03310 | 0/6 |
+| Primary | 512 | Alive-total TV | 0.07945 | 0.05524 | 0.03627–0.07209 | 0/6 |
+| Primary | 512 | Absolute clutter-mean error | 0.04478 | 0.01953 | 0.01578–0.03304 | 0/6 |
+| Primary | 2,048 | Joint TV | 0.05364 | 0.04715 | 0.04306–0.04787 | 0/6 |
+| Primary | 2,048 | Maximum cell error | 0.01738 | 0.01043 | 0.00957–0.01648 | 0/6 |
+| Primary | 2,048 | Maximum mode error | 0.02354 | 0.01224 | 0.00473–0.01963 | 0/6 |
+| Primary | 2,048 | Alive-total TV | 0.03899 | 0.03104 | 0.02053–0.04373 | 1/6 |
+| Primary | 2,048 | Absolute clutter-mean error | 0.02378 | 0.00497 | 0.00114–0.01676 | 0/6 |
+| Replica | 512 | Joint TV | 0.10684 | 0.08146 | 0.06896–0.08607 | 0/6 |
+| Replica | 512 | Maximum cell error | 0.03388 | 0.01964 | 0.01595–0.02283 | 0/6 |
+| Replica | 512 | Maximum mode error | 0.04922 | 0.02423 | 0.01657–0.02697 | 0/6 |
+| Replica | 512 | Alive-total TV | 0.07920 | 0.05548 | 0.03618–0.06587 | 0/6 |
+| Replica | 512 | Absolute clutter-mean error | 0.04566 | 0.01734 | 0.00855–0.02660 | 0/6 |
+| Replica | 2,048 | Joint TV | 0.05394 | 0.03963 | 0.02930–0.04960 | 0/6 |
+| Replica | 2,048 | Maximum cell error | 0.01716 | 0.01139 | 0.00831–0.01672 | 0/6 |
+| Replica | 2,048 | Maximum mode error | 0.02383 | 0.01070 | 0.00388–0.02330 | 0/6 |
+| Replica | 2,048 | Alive-total TV | 0.03990 | 0.02850 | 0.01864–0.03395 | 0/6 |
+| Replica | 2,048 | Absolute clutter-mean error | 0.02270 | 0.00951 | 0.00367–0.02123 | 0/6 |
+
+At 2,048, the largest absolute six-seed mean cell error is **0.00476**
+for primary at `(7,1)` and **0.00541** for replica at `(10,0)`. Their
+familywise six-draw q95 values are **0.00718** and **0.00684**. Neither
+case has a flagged cell, let alone the same signed cell in both. The
+predeclared `replicated_joint_tail` and `replicated_cell_shift` flags are
+both **false**; status is
+`four_slot_joint_audit_complete_no_replicated_signal`. Mean sampler CPU
+seconds were 26.3 / 97.3 (primary 512 / 2,048) and 25.3 / 89.9
+(replica 512 / 2,048). The single primary 2,048 alive-total TV
+exceedance is retained in the table. Replica 512 log-evidence errors
+were all negative (-0.5374 to -0.0655), a descriptive feature outside
+the predeclared joint-cell flags.
+
+**Interpretation:** these two designed four-slot/five-frame cases do not
+replicate WP11n's single-case joint-TV tail, and their coarse modes and
+cell means show no flagged absolute error under the frozen reference.
+This does not resolve the four-slot/eight-frame, 19-detection WP11k
+instability: the present observations contain only six detections and
+shorter temporal histories. No new sampler move was selected; no
+8,192-particle run or untouched holdout was opened. A further move
+would need a separately frozen development geometry that preserves
+the eight-frame mode difficulty, with a credible independent absolute
+reference or validated approximation where full enumeration is too large.
