@@ -93,16 +93,32 @@ def test_completed_primary_checkpoint_when_available() -> None:
     if not result["reference"]["valid"]:
         assert result["status"] == "primary_numerical_validation_failed_stop"
         return
+    for validation in result["validations"].values():
+        assert validation["log_evidence_absolute_error"] <= 1e-9
+        assert validation["joint_tv"] <= 1e-9
+        assert validation["maximum_cell_absolute_error"] <= 1e-10
+    numerical = result["reference"]["numerical"]
+    assert numerical["direct_vs_paired_log_evidence_absolute_error"] <= 1e-8
+    assert numerical["direct_vs_paired_joint_tv"] <= 1e-7
+    assert numerical["direct_vs_paired_max_cell_absolute_error"] <= 1e-8
     joint = np.asarray(result["reference"]["joint_alive_by_sixth_by_last_clutter"])
     assert joint.shape == (33, 3, 2)
     assert np.isclose(joint.sum(), 1, atol=1e-8)
     assert set(result["validations"]) == {"early", "middle"}
     if result["status"] == "validated_reference_before_sampler":
         return
+    assert result["status"] == "absolute_primary_diagnostic_signal"
+    assert result["diagnostic_flags"] == {
+        "mode_tail": True, "joint_tail": True, "cell_shift": True,
+    }
     assert set(result["runs"]) == {str(seed) for seed in SEEDS}
     mean = np.mean([r["joint_alive_by_sixth_by_last_clutter"]
                     for r in result["runs"].values()], axis=0)
     np.testing.assert_allclose(result["comparison"]["mean_signed_3d_cell_error"],
                                mean - joint)
+    for key, baseline in result["reference"]["iid_baseline"]["2048"]["per_run"].items():
+        count = sum(abs(run["errors"][key]) > baseline["q95"]
+                    for run in result["runs"].values())
+        assert result["comparison"]["iid_q95_exceedances"][key] == count
     assert all(r["cpu_seconds"] < _protocol()["run_cpu_cap"]
                for r in result["runs"].values())

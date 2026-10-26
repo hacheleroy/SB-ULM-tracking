@@ -94,3 +94,82 @@ No 8,192-particle run or untouched holdout belongs to this step.
 Runner: `src/sbulm/wp11t_subset_exact_primary.py`. Result checkpoint:
 `results/wp11t_subset_exact_primary.json`. The WP11s and WP11k source
 checkpoints are pinned by SHA-256 in the runner.
+
+## Checked exact result
+
+The formal computation passed every frozen numerical check. Independent
+WP11s validations reproduced the early-middle and middle exact log
+evidences to `0` and `7.1e-15`, with full 4D joint TVs `7.0e-16` and
+`5.7e-16`. The primary one-slot lookup agreed with direct collapsed GP
+scores. Direct fourth power and paired subset convolutions gave primary
+normalized joint TV `9.82e-12`, maximum cell difference `8.83e-13`,
+and log-evidence difference `5.23e-12`. The largest roundoff clipping
+correction was TV `1.67e-12`; the most negative raw cell was
+`-4.44e-13`. Both computations finished under the 1,200 CPU-second
+reference cap (170.1 and 233.9 CPU seconds). These are cross-checks,
+not a formal interval proof, but comfortably meet the frozen envelope.
+The validated reference was committed **before** the six fresh WP11g
+sampler runs.
+
+| Absolute quantity | Exact value |
+| --- | ---: |
+| Log evidence | 105.2099672551 |
+| Low alive band (≤20) | 0.411160 |
+| Mid alive band (=21) | 0.139522 |
+| High alive band (≥22) | 0.449318 |
+| Frame-six clutter 0 / 1 / 2 | 0.055831 / 0.496129 / 0.448040 |
+| Final-frame clutter 0 / 1 | 0.345129 / 0.654871 |
+
+The full 198-cell joint, alive histogram, exact IID baselines and
+numerical diagnostics are saved in the checkpoint.
+
+## Retrospective and fresh absolute comparison
+
+The archived WP11k seeds 800–803 were previously compared only with
+one another. Against the new exact reference, **4/4** at 512 and
+**4/4** at 2,048 exceed their exact-IID q95 for maximum band-mass
+error and alive-total TV. At 2,048, the four-seed median band-by-clutter
+TV is 0.19770, median maximum band error 0.16843, and median
+alive-total TV 0.17776. These are retrospective diagnostics; the archive
+does not contain the full final 198-cell tables.
+
+All six **new**, unchanged WP11g runs completed within their 750
+CPU-second caps (mean 198.7 CPU seconds). The table reports six-seed
+median absolute error, exact-IID q95 in parentheses and exceedances.
+
+| Diagnostic at 2,048 particles | Median (IID q95) | Above q95 |
+| --- | ---: | ---: |
+| Full alive × frame-six clutter × last clutter TV | 0.21032 (0.07099) | **6/6** |
+| Low/mid/high × frame-six clutter TV | 0.17862 (0.03303) | **6/6** |
+| Maximum low/mid/high mass error | 0.17582 (0.02383) | **6/6** |
+| Alive-total TV | 0.17814 (0.04185) | **6/6** |
+| Maximum 3D cell error | 0.03640 (0.01491) | **6/6** |
+| Frame-six clutter-mean error | 0.09302 (0.02604) | **6/6** |
+| Final clutter-mean error | 0.05908 (0.02157) | **5/6** |
+
+Full 3D TVs range from 0.10108 to 0.30577. The exact low/high band
+masses are 0.411/0.449, whereas the fresh runs range from 0.380–0.709
+low and 0.182–0.465 high. Every fresh log-evidence estimate is below
+the exact value by 1.155–2.970 nats. The largest absolute six-run mean
+signed 3D cell residual is **0.02597**, versus the frozen familywise
+exact-IID q95 **0.00621**, at alive total 17, frame-six clutter 2,
+final clutter 1. Seventeen cells exceed that familywise threshold;
+sixteen have the same sign in both ordered three-seed halves. The
+corresponding per-seed signed tables and passive mode traces are saved.
+
+The frozen `mode_tail`, `joint_tail` and `cell_shift` diagnostic flags
+are all **true**; status is `absolute_primary_diagnostic_signal`.
+This establishes a substantial absolute discrepancy on this exposed
+19-detection synthetic case under the independently checked model,
+including a recurrent count/clutter shift. The numerical validation
+error is many orders smaller than the observed sampler errors. The
+exact-IID q95 remains a descriptive yardstick for correlated SMC
+particles, so the exceedance counts are not a calibrated frequentist
+p-value. This single observation does not establish how often the
+failure occurs across acquisitions or which sampler transition causes
+it. No new move, 8,192 run or untouched holdout was selected.
+
+The next proposal should target late count/clutter mode movement, freeze
+its cost and absolute-error criteria against this exposed exact case
+before new inference, and retain independent replication and the
+untouched holdout for later validation.

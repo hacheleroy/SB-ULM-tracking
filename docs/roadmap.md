@@ -656,8 +656,8 @@ error budget before testing another move. The holdout remains closed.
 - [x] Freeze a squarefree subset-convolution reference, independent ten-case
   validation, two numerical evaluation paths, error envelope and six fresh
   sampler seeds before the formal checked reference
-- [ ] Validate the full 198-cell primary joint and commit it before sampling
-- [ ] Compare the archived four seeds retrospectively and six new unchanged
+- [x] Validate the full 198-cell primary joint and commit it before sampling
+- [x] Compare the archived four seeds retrospectively and six new unchanged
   high-particle runs to the absolute reference
 
 A feasibility calculation already evaluated provisional evidence and modes
@@ -666,6 +666,19 @@ reference will use two extended-precision algebraic paths and stop fresh
 sampler inference if the frozen numerical validation fails. This exact
 combinatorial route is stronger than an extrapolated ten-detection
 approximation. See `wp11t_subset_exact_primary.md`.
+
+The independent ten-case checks matched exact joint tables to about
+`1e-15` TV. Two extended-precision computations of the exposed 19-point
+primary agree to `9.82e-12` TV and `5.23e-12` in log evidence; exact
+low/mid/high band masses are 0.4112/0.1395/0.4493. Four archived
+2,048-particle seeds all exceed exact-IID q95 for band-mass and alive
+errors. Six new unchanged 2,048-particle runs have median full 3D
+joint TV 0.2103 versus exact-IID q95 0.0710, with 6/6 above q95;
+all three frozen descriptive flags fire, including a same-sign
+familywise mean-cell shift. This is an absolute exposed-case sampler
+failure, not a calibrated across-observation rate or a move-selection
+gate. Next design an independently frozen targeted count/clutter move
+against this reference, keeping the untouched holdout closed.
 
 ## WP12 — Open in-vivo trajectories
 
