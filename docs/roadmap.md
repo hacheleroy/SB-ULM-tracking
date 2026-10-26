@@ -651,6 +651,22 @@ short of WP11k's 19-detection geometry; next validate an alternative
 absolute approximation against these exact references with a stated
 error budget before testing another move. The holdout remains closed.
 
+## WP11t — Absolute subset reference on WP11k's exposed 19 detections
+
+- [x] Freeze a squarefree subset-convolution reference, independent ten-case
+  validation, two numerical evaluation paths, error envelope and six fresh
+  sampler seeds before the formal checked reference
+- [ ] Validate the full 198-cell primary joint and commit it before sampling
+- [ ] Compare the archived four seeds retrospectively and six new unchanged
+  high-particle runs to the absolute reference
+
+A feasibility calculation already evaluated provisional evidence and modes
+on the exposed primary, so this is not a blinded posterior. The checked
+reference will use two extended-precision algebraic paths and stop fresh
+sampler inference if the frozen numerical validation fails. This exact
+combinatorial route is stronger than an extrapolated ten-detection
+approximation. See `wp11t_subset_exact_primary.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
