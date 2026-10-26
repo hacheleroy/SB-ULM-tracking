@@ -283,6 +283,16 @@ def _iid_baseline(exact: dict[str, Any], observation: str) -> dict[str, Any]:
     return baseline
 
 
+def _reweight_clutter(
+    accumulation: _Accumulation, rate: float, n_total: int, shape: tuple[int, ...],
+) -> tuple[np.ndarray, float]:
+    """Recover an exact rate grid from clutter-count coefficients at rate one."""
+    coefficients = accumulation.hist.reshape(n_total + 1, *shape)
+    weighted = np.tensordot(rate ** np.arange(n_total + 1), coefficients, axes=(0, 0))
+    total = float(weighted.sum())
+    return weighted / total, float(accumulation.maximum + log(total))
+
+
 def run_reference(output: Path, observation: str) -> dict[str, Any]:
     result = _load(output)
     if result["references"][observation] is not None:
@@ -297,10 +307,10 @@ def run_reference(output: Path, observation: str) -> dict[str, Any]:
     mask_log = model.interval_log_probabilities()
     n_total = sum(CARDINALITIES[observation])
     shape = (N_ALIVE, 3, 3, 3)
-    grid = {rate: _Accumulation(int(np.prod(shape))) for rate in CLUTTER_RATES}
-    bases = {rate: _Accumulation(1) for rate in CLUTTER_RATES}
-    tempered = {(rate, beta): _Accumulation(3) for rate in CLUTTER_RATES
-                for beta in BETAS[:-1]}
+    n_cells = int(np.prod(shape))
+    grid = _Accumulation((n_total + 1) * n_cells)
+    bases = _Accumulation(n_total + 1)
+    tempered = {beta: _Accumulation((n_total + 1) * 3) for beta in BETAS[:-1]}
     endpoints = [_case(observation, rate).model
                  for rate in (CLUTTER_RATES[0], CLUTTER_RATES[-1])]
     canonical_count = labelled_count = 0
@@ -335,12 +345,11 @@ def run_reference(output: Path, observation: str) -> dict[str, Any]:
                 )
         cells = 27 * alive + 9 * middle + 3 * sixth + last
         modes = _mode(alive, sixth)
-        for rate in CLUTTER_RATES:
-            base_rate = log_base + clutter_total * log(rate)
-            bases[rate].update(base_rate, np.zeros(n, dtype=np.int8))
-            grid[rate].update(base_rate + log_marginal, cells)
-            for beta in BETAS[:-1]:
-                tempered[rate, beta].update(base_rate + beta * log_marginal, modes)
+        bases.update(log_base, clutter_total)
+        grid.update(log_base + log_marginal, n_cells * clutter_total + cells)
+        for beta in BETAS[:-1]:
+            tempered[beta].update(log_base + beta * log_marginal,
+                                  3 * clutter_total + modes)
         if canonical_count // 50_000_000 > (canonical_count - n) // 50_000_000:
             print(f"{observation} canonical support: {canonical_count:,}/"
                   f"{CANONICAL_SUPPORT[observation]:,}", flush=True)
@@ -350,16 +359,19 @@ def run_reference(output: Path, observation: str) -> dict[str, Any]:
     rows = []
     for rate in CLUTTER_RATES:
         analytic = _case(observation, rate).model.base_log_normalizer
-        enumerated = bases[rate].log_total() - N_FRAMES * rate
+        _, base_log_total = _reweight_clutter(bases, rate, n_total, (1,))
+        enumerated = base_log_total - N_FRAMES * rate
         if not np.isclose(enumerated, analytic, atol=1e-8, rtol=0):
             raise ValueError(f"analytic base normalizer mismatch at rate {rate}")
-        joint = grid[rate].normalized().reshape(shape)
+        joint, grid_log_total = _reweight_clutter(grid, rate, n_total, shape)
         rows.append({"clutter_rate": rate, "mode": _from_joint(joint)["mode"],
-                     "log_evidence": grid[rate].log_total() - N_FRAMES * rate})
+                     "log_evidence": grid_log_total - N_FRAMES * rate})
     selected = min(rows, key=lambda row: (-min(row["mode"][:2]), row["clutter_rate"]))
     rate = selected["clutter_rate"]
-    exact = _from_joint(grid[rate].normalized().reshape(shape))
-    curve = [{"beta": beta, "mode": tempered[rate, beta].normalized().tolist()}
+    selected_joint, _ = _reweight_clutter(grid, rate, n_total, shape)
+    exact = _from_joint(selected_joint)
+    curve = [{"beta": beta, "mode": _reweight_clutter(tempered[beta], rate, n_total,
+                                                       (3,))[0].tolist()}
              for beta in BETAS[:-1]]
     curve.append({"beta": 1.0, "mode": exact["mode"]})
     valid = (min(exact["mode"][:2]) >= MIN_MODE_MASS

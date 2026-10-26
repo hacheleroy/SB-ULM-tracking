@@ -54,6 +54,10 @@ Sum the posterior over every compatible assignment for each
 nondecreasing four-slot interval-mask tuple, weighted by slot-permutation
 multiplicity. Cache the one-slot GP likelihood patterns and compare
 factorized scores against the direct collapsed likelihood on fixed blocks.
+Group contributions by their integer clutter count and recover each rate
+by the exact finite polynomial in that rate; an independent small-array
+test compares this reweighting against direct log-score sums at both grid
+endpoints.
 The inherited small-case test checks the quotient against full labelled
 enumeration. Check the frozen support sizes, direct Poisson endpoint-rate
 reweighting and **all eleven** analytic HMM base normalizers per case.

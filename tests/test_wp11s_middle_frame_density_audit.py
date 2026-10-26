@@ -6,8 +6,9 @@ from math import comb, factorial, prod
 from pathlib import Path
 
 import numpy as np
+from scipy.special import logsumexp
 
-from sbulm.wp11q_seven_detection_exact_reference import _gp_from_table, _gp_table
+from sbulm.wp11q_seven_detection_exact_reference import _Accumulation, _gp_from_table, _gp_table
 from sbulm.wp11s_middle_frame_density_audit import (
     CANONICAL_SUPPORT,
     CARDINALITIES,
@@ -21,6 +22,7 @@ from sbulm.wp11s_middle_frame_density_audit import (
     _metadata,
     _mode,
     _protocol,
+    _reweight_clutter,
     _run_order,
 )
 
@@ -73,6 +75,23 @@ def test_gp_factorization_for_both_middle_augmentations() -> None:
         np.testing.assert_allclose(
             _gp_from_table(states, table, strides),
             model.log_marginal_density(states), atol=1e-11, rtol=0,
+        )
+
+
+def test_rate_reweight_matches_direct_log_sum_at_both_endpoints() -> None:
+    scores = np.array([-13., -6., -9., -3., -18., -5.])
+    clutter = np.array([0, 2, 1, 2, 0, 1])
+    cells = np.array([0, 1, 0, 2, 2, 1])
+    acc = _Accumulation(9)
+    acc.update(scores[:3], 3 * clutter[:3] + cells[:3])
+    acc.update(scores[3:], 3 * clutter[3:] + cells[3:])
+    for rate in (.05, 3.):
+        probs, log_total = _reweight_clutter(acc, rate, 2, (3,))
+        direct = scores + clutter * np.log(rate)
+        np.testing.assert_allclose(log_total, logsumexp(direct), atol=1e-13)
+        np.testing.assert_allclose(
+            probs, np.bincount(cells, weights=np.exp(direct - log_total), minlength=3),
+            atol=1e-14,
         )
 
 
