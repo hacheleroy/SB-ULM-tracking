@@ -465,8 +465,8 @@ sampler and holdout are unchanged. See `wp11k_variance_calibration.md`.
   competing alive/clutter modes above 0.10 exact posterior mass
 - [x] Measure absolute mode weights and full joint distributions across six
   seeds at 512 and 2,048 particles with the unchanged WP11g sampler
-- [ ] Extend independent absolute calibration toward the harder four-slot
-  eight-frame geometry before selecting a new sampler move
+- [x] Extend independent absolute calibration to a three-slot/eight-frame
+  bridge before selecting a new sampler move
 
 **Observed boundary:** the frozen exact selection chose clutter rate 1.50,
 with mode masses 0.3825 and 0.3386; the second mode rises sharply after
@@ -478,6 +478,26 @@ descriptive envelopes. This validates mode weights on the reduced exact
 bridge, not on WP11k's four-slot primary case. No new move was selected;
 the default sampler and untouched holdout remain unchanged. See
 `wp11l_exact_bridge.md`.
+
+## WP11m — Three-slot exact eight-frame bridge
+
+- [x] Freeze a three-slot observation with sixth-frame clutter competition,
+  exact-rate grid, mode and late-emergence validity criteria, seeds, and caps
+- [x] Score all 8,375,839 labelled states in bounded batches and validate
+  the exact count-rate reweighting and base normalizers
+- [x] Compare twelve independent sampler runs with absolute exact mode,
+  alive/clutter joint, and evidence references
+- [ ] Extend the absolute reference to a denser observation or a four-slot
+  geometry before drawing conclusions about WP11k's primary case
+
+**Observed boundary:** the exact rule chose clutter rate 0.35, with P(A)
+0.2675 and P(B) 0.2147; B grows from 0.0538 at beta 0.75. At 2,048
+particles, the largest three-mode error was 0.024002, just below the
+0.024224 simulated IID 95th percentile; all six full-joint TVs were below
+their IID envelope. One sixth-frame clutter-mean error exceeded its
+descriptive envelope. This sparse six-detection bridge has three slots but
+does not explain the four-slot/19-detection instability. No new move was
+selected and the holdout remains closed. See `wp11m_three_slot_bridge.md`.
 
 ## WP12 — Open in-vivo trajectories
 
