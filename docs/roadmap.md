@@ -524,6 +524,30 @@ suggests further joint-cell scrutiny on a more demanding independently
 referenced geometry, without treating the seven-detection result as proof
 about WP11k's 19-detection case. See `wp11n_dense_three_slot_bridge.md`.
 
+## WP11o — Paired four-slot absolute joint-cell references
+
+- [x] Freeze two distinct five-frame/four-slot observations, their exact
+  support and rate grid, 63-cell comparison, familywise cell threshold,
+  replication rules, seeds and CPU caps before inference
+- [x] Enumerate each 24,193,016-state support and validate both independent
+  absolute references before any sampler run
+- [x] Compare six seeds at 512 and 2,048 particles on each observation,
+  report joint-tail and same-signed-cell replication flags
+
+This raises the slot count to four while keeping exact enumeration feasible.
+The five-frame/six-detection cases remain distinct from WP11k's eight-frame,
+19-detection primary case. See `wp11o_four_slot_joint_reference.md`.
+
+**Observed boundary:** both exact references selected clutter rate 1.0,
+with A/B masses 0.2556/0.2953 and 0.2672/0.2904. In the twelve
+2,048-particle runs, no full-joint TV or maximum-cell error exceeded its
+case-specific exact IID 95th percentile. Neither six-run mean had a cell
+beyond its familywise exact threshold; both frozen replication flags were
+false. One primary alive-total TV exceeded its descriptive q95. These
+five-frame/six-detection cases do not replicate the WP11n joint tail, but
+they cannot establish calibration on WP11k's eight-frame/19-detection
+primary geometry. No new move was selected and the holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
