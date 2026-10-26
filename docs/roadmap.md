@@ -624,6 +624,20 @@ absolute reference should raise middle-frame density toward WP11k's
 19 detections or validate an approximation with a measured error budget
 before selecting a move. The untouched holdout remains closed.
 
+## WP11s — Ten-detection middle-frame absolute audit
+
+- [x] Freeze two designed ten-detection middle-frame augmentations, exact
+  support counts, four-way joint comparison, difficulty checks, and paired
+  descriptive flags before posterior evaluation
+- [ ] Validate and commit both exact references before sampler inference
+- [ ] If both difficulty gates pass, compare 24 unchanged sampler runs
+  against their independently checked absolute references
+
+The early-middle case adds a point at frame 2 and the middle case adds
+one at frame 4. Both retain WP11r's nine detections, so they are dependent
+designed cases. Full observations and predeclared stopping and comparison
+rules are in `wp11s_middle_frame_density_audit.md`.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
