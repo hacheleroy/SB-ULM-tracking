@@ -553,14 +553,19 @@ primary geometry. No new move was selected and the holdout remains closed.
 - [x] Freeze the eight-frame observation, canonical exact reference method,
   difficulty validation, 99-cell comparisons, seeds, diagnostic flags and
   resource caps before posterior evaluation
-- [ ] Validate the symmetry-weighted exact posterior and late competing
-  modes before any sampler run
-- [ ] Compare twelve unchanged sampler runs with the independent reference
+- [x] Validate the symmetry-weighted exact posterior and check the frozen
+  late competing mode criterion before any sampler run
+- [x] Stop sampler inference when the bridge fails that criterion
 
 This restores eight-frame temporal geometry at four slots while retaining
 tractable exact evidence through slot-label symmetry. It has six detections,
 not WP11k's 19, and is a diagnostic bridge. See
 `wp11p_eight_frame_exact_reference.md`.
+
+The exact reference passed its count and analytic checks, but the selected
+rate 0.2 gave P(A)/P(B) = 0.1973/0.0563. P(B) failed the predeclared 0.10
+minimum, so no sampler run was performed. The checkpoint preserves the
+invalid bridge and the next design requires its own frozen protocol.
 
 ## WP12 — Open in-vivo trajectories
 

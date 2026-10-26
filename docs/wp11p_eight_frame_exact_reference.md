@@ -91,3 +91,18 @@ four-slot mode geometry but cannot certify that original case.
 Runner: `src/sbulm/wp11p_eight_frame_exact_reference.py`. Checkpoint:
 `results/wp11p_eight_frame_exact_reference.json`. This protocol and runner
 are committed before exact posterior evaluation or sampler inference.
+
+## Frozen outcome
+
+The weighted exact pass scored **33,074,574** canonical states representing
+**654,814,613** labelled states in 1,474.7 CPU seconds. The count and all
+eight analytic base-normalizer checks passed, as did the direct endpoint
+clutter-rate checks. The frozen balance rule chose rate **0.2**. Its exact
+P(A), P(B), and other masses were **0.19729, 0.05631, and 0.74639**.
+P(B) at beta 0.75 was **0.02455**, below half its beta-one mass; the
+predeclared **P(B) ≥ 0.10** check failed. The full rate grid, 99-cell
+distribution, tempered curve, evidence and IID baselines are saved in the
+checkpoint. This geometry is an exact eight-frame reference but **does not
+retain sufficiently balanced late modes** under its frozen definitions.
+Status: `frozen_eight_frame_bridge_invalid_stop`. No sampler was run, and
+the observation or threshold was not revised after seeing this result.

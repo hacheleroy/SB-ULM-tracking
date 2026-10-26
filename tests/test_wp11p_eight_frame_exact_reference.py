@@ -58,13 +58,23 @@ def test_weighted_mask_multisets_match_complete_labelled_sum() -> None:
     )
     complete, _ = enumerate_slot_existence_support(model)
     scores = model.log_joint_density(complete)
-    count, canonical_logs = 0, []
+    count, canonical_logs, canonical_alive = 0, [], []
     for block, multiplicity, _ in _canonical_blocks(model):
         count += len(block) * multiplicity
         canonical_logs.append(model.log_joint_density(block) + np.log(multiplicity))
+        canonical_alive.append(np.count_nonzero(block != -2, axis=(1, 2)))
     assert count == len(complete)
-    assert np.isclose(logsumexp(np.concatenate(canonical_logs)), logsumexp(scores),
-                      atol=1e-12)
+    weighted = np.concatenate(canonical_logs)
+    assert np.isclose(logsumexp(weighted), logsumexp(scores), atol=1e-12)
+    canonical_hist = np.bincount(
+        np.concatenate(canonical_alive), weights=np.exp(weighted - logsumexp(weighted)),
+        minlength=7,
+    )
+    labelled_hist = np.bincount(
+        np.count_nonzero(complete != -2, axis=(1, 2)),
+        weights=np.exp(scores - logsumexp(scores)), minlength=7,
+    )
+    np.testing.assert_allclose(canonical_hist, labelled_hist, atol=1e-12)
 
 
 def test_stable_histogram_and_label_invariant_modes() -> None:
