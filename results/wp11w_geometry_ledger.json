@@ -1,0 +1,260 @@
+{
+  "experiment": "wp11w_geometry_ledger",
+  "protocol": {
+    "pairs": [
+      [
+        181,
+        191
+      ],
+      [
+        193,
+        197
+      ],
+      [
+        199,
+        211
+      ],
+      [
+        223,
+        227
+      ],
+      [
+        229,
+        233
+      ],
+      [
+        239,
+        241
+      ],
+      [
+        251,
+        257
+      ],
+      [
+        263,
+        269
+      ]
+    ],
+    "regime": {
+      "detection_probability": 0.68,
+      "expected_clutter_per_frame": 0.28,
+      "central_separation": 0.007,
+      "max_clutter_per_frame": 2,
+      "truth_mask": [
+        [
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          false,
+          true,
+          true
+        ]
+      ]
+    },
+    "eligibility": "17..19 detections; sixth and last >=1; frames 3..5 >=7",
+    "generator_error": "record as ineligible, never replace seed",
+    "acceptance": {
+      "low_min": 0.18,
+      "high_min": 0.18,
+      "middle_min": 0.05,
+      "two_sixth_min": 0.15,
+      "two_last_min": 0.15
+    },
+    "numerical_envelope": {
+      "minimum_raw_cell": -1e-10,
+      "maximum_relative_imaginary_residual": 1e-08,
+      "raw_mass_error": 1e-08,
+      "direct_paired_logz": 1e-08,
+      "direct_paired_tv": 1e-07,
+      "direct_paired_max_cell": 1e-08
+    },
+    "screen_cpu_cap": 450,
+    "validation_cpu_cap": 1200,
+    "no_sampler_or_holdout": true
+  },
+  "candidates": [
+    {
+      "index": 0,
+      "pair": [
+        181,
+        191
+      ],
+      "cardinalities": [
+        0,
+        2,
+        3,
+        4,
+        3,
+        2,
+        2,
+        2
+      ],
+      "detection_sha256": "f1d54c6d3a69b4a0101c64c9aa2f2d088a041886b73f8f80786fa5ca9fdc3c52",
+      "eligible": true
+    },
+    {
+      "index": 1,
+      "pair": [
+        193,
+        197
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        5,
+        2,
+        1,
+        4,
+        0
+      ],
+      "detection_sha256": "df433451fcff2837c2edbbf4f9397f37fd8bc2c4932f566fa7d2ced9cacef7f8",
+      "eligible": false
+    },
+    {
+      "index": 2,
+      "pair": [
+        199,
+        211
+      ],
+      "cardinalities": [
+        2,
+        1,
+        4,
+        4,
+        3,
+        2,
+        2,
+        1
+      ],
+      "detection_sha256": "633ba05b853013513601cf3499d7802413cd022fa474e88a0d73f4e47f949e16",
+      "eligible": true
+    },
+    {
+      "index": 3,
+      "pair": [
+        223,
+        227
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        4,
+        3,
+        2,
+        2,
+        2
+      ],
+      "detection_sha256": "69cd9be59f3133923cba60b92a0caeeb580461046f561432347826a967d1f951",
+      "eligible": false
+    },
+    {
+      "index": 4,
+      "pair": [
+        229,
+        233
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        4,
+        2,
+        2,
+        2,
+        1
+      ],
+      "detection_sha256": "e0c3283c8689d084642906f0ae10fc7b888451418fe7d765d2314e44713d0785",
+      "eligible": true
+    },
+    {
+      "index": 5,
+      "pair": [
+        239,
+        241
+      ],
+      "cardinalities": [
+        2,
+        3,
+        5,
+        3,
+        1,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "6e4db50fed7c5dc3bb5c13f511aff0ecee534ad99e7af2574bee8aba3dbebbf8",
+      "eligible": false
+    },
+    {
+      "index": 6,
+      "pair": [
+        251,
+        257
+      ],
+      "cardinalities": [
+        0,
+        2,
+        3,
+        4,
+        3,
+        2,
+        0,
+        2
+      ],
+      "detection_sha256": "ac410117b8b27c43e31d3e1045a3f70a03d48a0d392ef4a2c15508aaf8d374e7",
+      "eligible": false
+    },
+    {
+      "index": 7,
+      "pair": [
+        263,
+        269
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    }
+  ],
+  "status": "geometry_only_before_posterior"
+}
