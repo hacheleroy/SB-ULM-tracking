@@ -780,6 +780,17 @@ describes only the selected 17-detection case. The earlier WP11k
 19-detection case is still uncalibrated, and the untouched holdout
 remains closed.
 
+## WP11z — Frozen stage attribution on the balanced reference
+
+- [x] Freeze the four WP11y replay seeds, passive observer, exact-beta
+  numerical checks and stage-specific count/clutter onset markers
+- [ ] Replay the sampler and score every adaptive stage against the
+  corresponding exact target
+
+See `wp11z_balanced_stage_audit.md`. This is a diagnostic on the
+already exposed 17-detection observation, without a new sampler move,
+19-detection calibration claim or holdout access.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
