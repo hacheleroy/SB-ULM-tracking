@@ -1,0 +1,1221 @@
+{
+  "experiment": "wp11ai_balanced_crowded_frozen_run",
+  "protocol": {
+    "observation": "first predeclared balanced WP11ah screen, index 27",
+    "geometry_sha256": "a5978ee5e8e98ed537159ecc98888dd19e04e5745e7afb8a79f3ec064822d2d3",
+    "screen_sha256": "866c9649949c7609349b80e54dcc04184ae3ddecb0f5573caba4f02141a582e2",
+    "exact_reference_sha256": "d0bb9e6496ed33cb784c05f8fd110a7a7b23b9b5ec2e84b98f1c15d91c03a6c2",
+    "prior_wp11ag_result_sha256": "727c207b3e9868034cf7bd227fb4a92ca0718d2ee05c242f30183c3a8c423bb4",
+    "seeds": [
+      1700,
+      1701,
+      1702,
+      1703
+    ],
+    "n_particles": 2048,
+    "control_configuration_seed_1700": {
+      "n_particles": 2048,
+      "target_ess_fraction": 0.8,
+      "mh_sweeps": 8,
+      "final_mh_sweeps": 8,
+      "association_move_probability": 0.2,
+      "interval_move_probability": 0.35,
+      "slot_swap_probability": 0.05,
+      "blocked_slot_move_probability": 0.15,
+      "paired_slot_move_probability": 0.25,
+      "paired_slot_candidates": 2,
+      "paired_slot_scope": "conditional_smc",
+      "paired_slot_path_particles": 4,
+      "paired_slot_pg_fraction": 0.1,
+      "paired_slot_pg_beta_switch": null,
+      "paired_slot_pg_early_fraction": null,
+      "paired_slot_pg_ancestor_sampling": false,
+      "paired_slot_suffix_pg_final_fraction": 0.0,
+      "paired_slot_suffix_pg_start_frame": 5,
+      "tracklet_move_probability": 0.0,
+      "tracklet_proposal_kind": "displacement",
+      "max_tempering_steps": 128,
+      "bisection_iterations": 48,
+      "seed": 1700
+    },
+    "candidate_configuration_seed_1700": {
+      "n_particles": 2048,
+      "target_ess_fraction": 0.8,
+      "mh_sweeps": 8,
+      "final_mh_sweeps": 8,
+      "association_move_probability": 0.2,
+      "interval_move_probability": 0.35,
+      "slot_swap_probability": 0.05,
+      "blocked_slot_move_probability": 0.15,
+      "paired_slot_move_probability": 0.25,
+      "paired_slot_candidates": 2,
+      "paired_slot_scope": "conditional_smc",
+      "paired_slot_path_particles": 4,
+      "paired_slot_pg_fraction": 0.1,
+      "paired_slot_pg_beta_switch": null,
+      "paired_slot_pg_early_fraction": null,
+      "paired_slot_pg_ancestor_sampling": false,
+      "paired_slot_suffix_pg_final_fraction": 0.0,
+      "paired_slot_suffix_pg_start_frame": 5,
+      "tracklet_move_probability": 0.0,
+      "tracklet_proposal_kind": "displacement",
+      "max_tempering_steps": 128,
+      "bisection_iterations": 48,
+      "seed": 1700,
+      "paired_slot_whole_slot_beta_switch": 0.65,
+      "paired_slot_whole_slot_fraction": 0.2
+    },
+    "move": "unchanged WP11ag exact whole-slot conditional Gibbs: 20% of paired proposals at beta >=.65; controls matched on fresh seeds",
+    "accuracy_and_replication": {
+      "max_per_seed_cpu_ratio": 1.5,
+      "minimum_paired_full_joint_tv_wins": 3,
+      "median_full_joint_tv_at_most": 0.12,
+      "median_band_by_sixth_tv_at_most": 0.1,
+      "median_maximum_alive_band_error_at_most": 0.08,
+      "median_maximum_cell_error_at_most": 0.04,
+      "candidate_control_median_full_joint_tv_ratio_at_most": 0.9,
+      "minimum_runs_meeting_mode_limits": 3,
+      "per_run_mode_limits": {
+        "band_by_sixth_tv": 0.1,
+        "maximum_alive_band_error": 0.08,
+        "absolute_sixth_clutter_one_error": 0.06,
+        "absolute_last_clutter_one_error": 0.06
+      },
+      "maximum_median_regression_on_each_other_metric": 0.02
+    },
+    "cost": {
+      "each_candidate_over_control_at_most": 1.5,
+      "candidate_median_over_control_median_at_most": 1.25,
+      "per_run_process_cpu_cap": 750
+    },
+    "thread_env": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "decision": "complete all four matched control/candidate pairs even if a partial result is poor; any cap or input mismatch stops comparison",
+    "interpretation": "independent balanced 17-detection crowded development case; high-alive margin only .0006983; exposed 19-detection sentinel passed in pinned WP11ag result, no broad calibration claim",
+    "holdout": "closed; no untouched WP8 inference"
+  },
+  "arm": "control",
+  "seed": 1700,
+  "config": {
+    "n_particles": 2048,
+    "target_ess_fraction": 0.8,
+    "mh_sweeps": 8,
+    "final_mh_sweeps": 8,
+    "association_move_probability": 0.2,
+    "interval_move_probability": 0.35,
+    "slot_swap_probability": 0.05,
+    "blocked_slot_move_probability": 0.15,
+    "paired_slot_move_probability": 0.25,
+    "paired_slot_candidates": 2,
+    "paired_slot_scope": "conditional_smc",
+    "paired_slot_path_particles": 4,
+    "paired_slot_pg_fraction": 0.1,
+    "paired_slot_pg_beta_switch": null,
+    "paired_slot_pg_early_fraction": null,
+    "paired_slot_pg_ancestor_sampling": false,
+    "paired_slot_suffix_pg_final_fraction": 0.0,
+    "paired_slot_suffix_pg_start_frame": 5,
+    "tracklet_move_probability": 0.0,
+    "tracklet_proposal_kind": "displacement",
+    "max_tempering_steps": 128,
+    "bisection_iterations": 48,
+    "seed": 1700
+  },
+  "cpu_seconds": 256.69809927600005,
+  "wall_seconds": 427.2330649869982,
+  "n_tempering_steps": 20,
+  "log_evidence_error": -0.038103421649310576,
+  "joint_alive_by_sixth_by_last_clutter": [
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.00048828125
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.00146484375,
+        0.0
+      ],
+      [
+        0.0,
+        0.00341796875,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0009765625,
+        0.0
+      ],
+      [
+        0.00244140625,
+        0.0029296875,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.00537109375,
+        0.00537109375,
+        0.0009765625
+      ],
+      [
+        0.0048828125,
+        0.00830078125,
+        0.0
+      ],
+      [
+        0.00146484375,
+        0.0009765625,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.015625,
+        0.01318359375,
+        0.0
+      ],
+      [
+        0.0107421875,
+        0.00537109375,
+        0.0
+      ],
+      [
+        0.00244140625,
+        0.0009765625,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.02734375,
+        0.01220703125,
+        0.00048828125
+      ],
+      [
+        0.025390625,
+        0.00732421875,
+        0.0
+      ],
+      [
+        0.00146484375,
+        0.0009765625,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.04052734375,
+        0.02587890625,
+        0.0
+      ],
+      [
+        0.03076171875,
+        0.01025390625,
+        0.0
+      ],
+      [
+        0.001953125,
+        0.001953125,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.04345703125,
+        0.02685546875,
+        0.00048828125
+      ],
+      [
+        0.029296875,
+        0.0078125,
+        0.00048828125
+      ],
+      [
+        0.00244140625,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.05126953125,
+        0.01708984375,
+        0.0
+      ],
+      [
+        0.02978515625,
+        0.0107421875,
+        0.00048828125
+      ],
+      [
+        0.00146484375,
+        0.00146484375,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.04541015625,
+        0.02001953125,
+        0.0009765625
+      ],
+      [
+        0.0244140625,
+        0.0078125,
+        0.0
+      ],
+      [
+        0.00146484375,
+        0.00048828125,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0576171875,
+        0.0185546875,
+        0.0
+      ],
+      [
+        0.0244140625,
+        0.00634765625,
+        0.0
+      ],
+      [
+        0.00048828125,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0849609375,
+        0.01513671875,
+        0.0009765625
+      ],
+      [
+        0.01806640625,
+        0.00390625,
+        0.0
+      ],
+      [
+        0.0,
+        0.00048828125,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0888671875,
+        0.01416015625,
+        0.00048828125
+      ],
+      [
+        0.0087890625,
+        0.001953125,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0263671875,
+        0.0068359375,
+        0.0
+      ],
+      [
+        0.00439453125,
+        0.0009765625,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.00927734375,
+        0.00341796875,
+        0.0
+      ],
+      [
+        0.0009765625,
+        0.0009765625,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.001953125,
+        0.00048828125,
+        0.0
+      ],
+      [
+        0.00048828125,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.00048828125,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.00048828125,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ]
+  ],
+  "errors": {
+    "full_joint_tv": 0.23778725420289157,
+    "band_by_sixth_tv": 0.22535365575569713,
+    "maximum_alive_band_error": 0.2216454232612241,
+    "alive_total_tv": 0.22222917517500934,
+    "maximum_joint_cell_error": 0.07067545691414452,
+    "alive_band_signed_errors": [
+      -0.2035060352757272,
+      -0.018139387985496948,
+      0.2216454232612241
+    ],
+    "sixth_clutter_signed_errors": [
+      0.021131683155231354,
+      -0.022350313301932573,
+      0.0012186301467012157
+    ],
+    "last_clutter_signed_errors": [
+      0.004819430852151112,
+      -0.003969805777792003,
+      -0.0008496250743591336
+    ],
+    "sixth_clutter_mean_absolute_error": 0.019913053008530142,
+    "last_clutter_mean_absolute_error": 0.0056690559265102705
+  },
+  "stages": [
+    {
+      "step": 1,
+      "beta": 0.11511355273431789,
+      "beta_increment": 0.11511355273431789,
+      "effective_sample_size": 1638.4000000000024,
+      "unique_parent_count": 1696,
+      "unique_state_count": 1629,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.507080078125,
+      "association_acceptance_rate": 0.7378288478983973,
+      "interval_acceptance_rate": 0.09342681858019282,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.9360932475884244,
+      "paired_slot_acceptance_rate": 0.5386882829771555,
+      "paired_slot_state_change_rate": 0.13657577990665684,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.12675018422991893,
+      "paired_slot_pg_selected_fraction": 0.10316875460574797,
+      "paired_slot_pg_count_signature_change_rate": 0.35,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 2,
+      "beta": 0.20065100645792608,
+      "beta_increment": 0.08553745372360819,
+      "effective_sample_size": 1638.4000000000053,
+      "unique_parent_count": 1710,
+      "unique_state_count": 1801,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.5079345703125,
+      "association_acceptance_rate": 0.7457729468599034,
+      "interval_acceptance_rate": 0.1184530003468609,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.8597756410256411,
+      "paired_slot_acceptance_rate": 0.555804126273925,
+      "paired_slot_state_change_rate": 0.14988814317673377,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.13497390007457122,
+      "paired_slot_pg_selected_fraction": 0.09569972657220979,
+      "paired_slot_pg_count_signature_change_rate": 0.3090909090909091,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 3,
+      "beta": 0.27357897715026813,
+      "beta_increment": 0.07292797069234205,
+      "effective_sample_size": 1638.4000000000274,
+      "unique_parent_count": 1714,
+      "unique_state_count": 1905,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.521484375,
+      "association_acceptance_rate": 0.7652011225444341,
+      "interval_acceptance_rate": 0.15693746752121948,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.7637732857709076,
+      "paired_slot_acceptance_rate": 0.6050583657587548,
+      "paired_slot_state_change_rate": 0.186284046692607,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.17023346303501946,
+      "paired_slot_pg_selected_fraction": 0.10214007782101167,
+      "paired_slot_pg_count_signature_change_rate": 0.30952380952380953,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 4,
+      "beta": 0.33170538154429097,
+      "beta_increment": 0.058126404394022835,
+      "effective_sample_size": 1638.4000000000385,
+      "unique_parent_count": 1705,
+      "unique_state_count": 1977,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.5347900390625,
+      "association_acceptance_rate": 0.7699142156862745,
+      "interval_acceptance_rate": 0.19698033707865167,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.6752411575562701,
+      "paired_slot_acceptance_rate": 0.6373599610326351,
+      "paired_slot_state_change_rate": 0.2072576716999513,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.1885046273745738,
+      "paired_slot_pg_selected_fraction": 0.09985387238188018,
+      "paired_slot_pg_count_signature_change_rate": 0.348780487804878,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 5,
+      "beta": 0.3821205961036465,
+      "beta_increment": 0.05041521455935555,
+      "effective_sample_size": 1638.4000000000055,
+      "unique_parent_count": 1682,
+      "unique_state_count": 2021,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.5545654296875,
+      "association_acceptance_rate": 0.8070015220700152,
+      "interval_acceptance_rate": 0.24262877442273534,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.5904761904761905,
+      "paired_slot_acceptance_rate": 0.6663414634146342,
+      "paired_slot_state_change_rate": 0.23853658536585365,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.21658536585365853,
+      "paired_slot_pg_selected_fraction": 0.10146341463414635,
+      "paired_slot_pg_count_signature_change_rate": 0.3605769230769231,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 6,
+      "beta": 0.4253151782177206,
+      "beta_increment": 0.043194582114074065,
+      "effective_sample_size": 1638.4000000000149,
+      "unique_parent_count": 1666,
+      "unique_state_count": 2040,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.54766845703125,
+      "association_acceptance_rate": 0.8054786088027085,
+      "interval_acceptance_rate": 0.2766249356885611,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.5111834078893859,
+      "paired_slot_acceptance_rate": 0.665023416317476,
+      "paired_slot_state_change_rate": 0.25684002957850627,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.23367019965491742,
+      "paired_slot_pg_selected_fraction": 0.10155287157998522,
+      "paired_slot_pg_count_signature_change_rate": 0.3883495145631068,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 7,
+      "beta": 0.46481561299138446,
+      "beta_increment": 0.039500434773663884,
+      "effective_sample_size": 1638.400000000016,
+      "unique_parent_count": 1657,
+      "unique_state_count": 2045,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.55291748046875,
+      "association_acceptance_rate": 0.7897325545650169,
+      "interval_acceptance_rate": 0.3001760563380282,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.44707250872431176,
+      "paired_slot_acceptance_rate": 0.6935244686109738,
+      "paired_slot_state_change_rate": 0.3025210084033613,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.2728620860108749,
+      "paired_slot_pg_selected_fraction": 0.09738012852199704,
+      "paired_slot_pg_count_signature_change_rate": 0.40609137055837563,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 8,
+      "beta": 0.5004760451543809,
+      "beta_increment": 0.03566043216299647,
+      "effective_sample_size": 1638.4000000000037,
+      "unique_parent_count": 1684,
+      "unique_state_count": 2047,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.536865234375,
+      "association_acceptance_rate": 0.7301197420939515,
+      "interval_acceptance_rate": 0.29852320675105487,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.367587327376117,
+      "paired_slot_acceptance_rate": 0.7178926924010682,
+      "paired_slot_state_change_rate": 0.33818888079630977,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.29983005583879585,
+      "paired_slot_pg_selected_fraction": 0.09881039087157077,
+      "paired_slot_pg_count_signature_change_rate": 0.43734643734643736,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 9,
+      "beta": 0.5348870097347953,
+      "beta_increment": 0.03441096458041437,
+      "effective_sample_size": 1638.4,
+      "unique_parent_count": 1683,
+      "unique_state_count": 2046,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.50933837890625,
+      "association_acceptance_rate": 0.6640938561284347,
+      "interval_acceptance_rate": 0.2930200414651002,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.30763147489126136,
+      "paired_slot_acceptance_rate": 0.7248572138068041,
+      "paired_slot_state_change_rate": 0.35088154954060097,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.3081698534889496,
+      "paired_slot_pg_selected_fraction": 0.10355103054382915,
+      "paired_slot_pg_count_signature_change_rate": 0.4196642685851319,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 10,
+      "beta": 0.569512060304182,
+      "beta_increment": 0.034625050569386695,
+      "effective_sample_size": 1638.4000000000285,
+      "unique_parent_count": 1666,
+      "unique_state_count": 2046,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.47509765625,
+      "association_acceptance_rate": 0.5972095844707309,
+      "interval_acceptance_rate": 0.24372511684265188,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.2837675350701403,
+      "paired_slot_acceptance_rate": 0.7242401779095626,
+      "paired_slot_state_change_rate": 0.3602668643439585,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.3143068939955523,
+      "paired_slot_pg_selected_fraction": 0.09661477637756363,
+      "paired_slot_pg_count_signature_change_rate": 0.41687979539641945,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 11,
+      "beta": 0.6044317462880566,
+      "beta_increment": 0.034919685983874627,
+      "effective_sample_size": 1638.4000000000117,
+      "unique_parent_count": 1652,
+      "unique_state_count": 2045,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.4390869140625,
+      "association_acceptance_rate": 0.5285757484124585,
+      "interval_acceptance_rate": 0.20006934812760055,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.2217607973421927,
+      "paired_slot_acceptance_rate": 0.7181257706535141,
+      "paired_slot_state_change_rate": 0.36744759556103573,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.31491985203452527,
+      "paired_slot_pg_selected_fraction": 0.10678175092478422,
+      "paired_slot_pg_count_signature_change_rate": 0.4942263279445728,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 12,
+      "beta": 0.6406192829032833,
+      "beta_increment": 0.03618753661522667,
+      "effective_sample_size": 1638.400000000007,
+      "unique_parent_count": 1643,
+      "unique_state_count": 2041,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.4012451171875,
+      "association_acceptance_rate": 0.4449204406364749,
+      "interval_acceptance_rate": 0.1631661169935775,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.1895910780669145,
+      "paired_slot_acceptance_rate": 0.7062242673770889,
+      "paired_slot_state_change_rate": 0.369581012351659,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.32598692177282634,
+      "paired_slot_pg_selected_fraction": 0.11019617340760475,
+      "paired_slot_pg_count_signature_change_rate": 0.4901098901098901,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 13,
+      "beta": 0.6788349999007024,
+      "beta_increment": 0.0382157169974191,
+      "effective_sample_size": 1638.400000000019,
+      "unique_parent_count": 1665,
+      "unique_state_count": 2035,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.355712890625,
+      "association_acceptance_rate": 0.3615503875968992,
+      "interval_acceptance_rate": 0.12249481686247408,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.1579581993569132,
+      "paired_slot_acceptance_rate": 0.6736556487419832,
+      "paired_slot_state_change_rate": 0.34139121854958066,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.2964972866304884,
+      "paired_slot_pg_selected_fraction": 0.10976813024173655,
+      "paired_slot_pg_count_signature_change_rate": 0.5078651685393258,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 14,
+      "beta": 0.7188691647185639,
+      "beta_increment": 0.040034164817861484,
+      "effective_sample_size": 1638.4000000000042,
+      "unique_parent_count": 1660,
+      "unique_state_count": 2034,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.3271484375,
+      "association_acceptance_rate": 0.3164400494437577,
+      "interval_acceptance_rate": 0.09185235584283041,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.1473429951690821,
+      "paired_slot_acceptance_rate": 0.6596332579753831,
+      "paired_slot_state_change_rate": 0.3501632755589048,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.29691032403918616,
+      "paired_slot_pg_selected_fraction": 0.10273800552624969,
+      "paired_slot_pg_count_signature_change_rate": 0.4841075794621027,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 15,
+      "beta": 0.7614912386444092,
+      "beta_increment": 0.04262207392584527,
+      "effective_sample_size": 1638.400000000018,
+      "unique_parent_count": 1650,
+      "unique_state_count": 2028,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.3046875,
+      "association_acceptance_rate": 0.26845844918134076,
+      "interval_acceptance_rate": 0.07536893886156008,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.1291089108910891,
+      "paired_slot_acceptance_rate": 0.621057738961669,
+      "paired_slot_state_change_rate": 0.31368267831149926,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.26031052886948086,
+      "paired_slot_pg_selected_fraction": 0.0975254730713246,
+      "paired_slot_pg_count_signature_change_rate": 0.4552238805970149,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 16,
+      "beta": 0.8079941491815432,
+      "beta_increment": 0.04650291053713407,
+      "effective_sample_size": 1638.4000000000005,
+      "unique_parent_count": 1652,
+      "unique_state_count": 2010,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.28094482421875,
+      "association_acceptance_rate": 0.21842900302114804,
+      "interval_acceptance_rate": 0.04772004241781548,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.1132,
+      "paired_slot_acceptance_rate": 0.6149745577901623,
+      "paired_slot_state_change_rate": 0.28277198933850256,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.24472982796220014,
+      "paired_slot_pg_selected_fraction": 0.0986188514659559,
+      "paired_slot_pg_count_signature_change_rate": 0.4914004914004914,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 17,
+      "beta": 0.8582419249899673,
+      "beta_increment": 0.0502477758084241,
+      "effective_sample_size": 1638.400000000006,
+      "unique_parent_count": 1638,
+      "unique_state_count": 1995,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.257568359375,
+      "association_acceptance_rate": 0.18608964451313756,
+      "interval_acceptance_rate": 0.037442599788060756,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.0890302066772655,
+      "paired_slot_acceptance_rate": 0.5688117618703302,
+      "paired_slot_state_change_rate": 0.2578934683056158,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.22439141961918535,
+      "paired_slot_pg_selected_fraction": 0.10267534345625452,
+      "paired_slot_pg_count_signature_change_rate": 0.4765258215962441,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 18,
+      "beta": 0.9159584610859426,
+      "beta_increment": 0.05771653609597527,
+      "effective_sample_size": 1638.4000000000065,
+      "unique_parent_count": 1641,
+      "unique_state_count": 1985,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.2423095703125,
+      "association_acceptance_rate": 0.1681442983797004,
+      "interval_acceptance_rate": 0.0276707530647986,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.06842737094837935,
+      "paired_slot_acceptance_rate": 0.5559637521430321,
+      "paired_slot_state_change_rate": 0.23732549595885377,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.20230222875336762,
+      "paired_slot_pg_selected_fraction": 0.09502816556453587,
+      "paired_slot_pg_count_signature_change_rate": 0.47680412371134023,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 19,
+      "beta": 0.9845083934905985,
+      "beta_increment": 0.0685499324046559,
+      "effective_sample_size": 1638.4000000000053,
+      "unique_parent_count": 1631,
+      "unique_state_count": 1957,
+      "mh_sweeps": 8,
+      "mh_acceptance_rate": 0.22418212890625,
+      "association_acceptance_rate": 0.12384187770228536,
+      "interval_acceptance_rate": 0.023095484315753187,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.04876130554463232,
+      "paired_slot_acceptance_rate": 0.5499874087131705,
+      "paired_slot_state_change_rate": 0.22185847393603628,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.18484009065726517,
+      "paired_slot_pg_selected_fraction": 0.11130697557290355,
+      "paired_slot_pg_count_signature_change_rate": 0.4072398190045249,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    },
+    {
+      "step": 20,
+      "beta": 1.0,
+      "beta_increment": 0.015491606509401512,
+      "effective_sample_size": 2027.677947917805,
+      "unique_parent_count": 1964,
+      "unique_state_count": 2031,
+      "mh_sweeps": 16,
+      "mh_acceptance_rate": 0.22381591796875,
+      "association_acceptance_rate": 0.11960236098167133,
+      "interval_acceptance_rate": 0.022993455046503616,
+      "slot_swap_acceptance_rate": 1.0,
+      "blocked_slot_acceptance_rate": 0.05335767904240211,
+      "paired_slot_acceptance_rate": 0.5417937766931056,
+      "paired_slot_state_change_rate": 0.2085417937766931,
+      "tracklet_acceptance_rate": 0.0,
+      "tracklet_state_change_rate": 0.0,
+      "paired_slot_count_signature_change_rate": 0.17693715680292862,
+      "paired_slot_pg_selected_fraction": 0.10067114093959731,
+      "paired_slot_pg_count_signature_change_rate": 0.4193939393939394,
+      "paired_slot_suffix_pg_selected_fraction": 0.0,
+      "paired_slot_suffix_pg_count_signature_change_rate": 0.0,
+      "paired_slot_whole_slot_selected_fraction": 0.0,
+      "paired_slot_whole_slot_count_signature_change_rate": 0.0
+    }
+  ]
+}

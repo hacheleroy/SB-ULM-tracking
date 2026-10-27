@@ -53,4 +53,39 @@ and runner are frozen **before inference on WP11ah**.
 
 ## Outcome
 
-Sampler comparison pending the next test step.
+All eight frozen jobs completed under the 750 process CPU-second cap;
+the aggregate is `results/wp11ai_balanced_crowded_comparison.json`
+(SHA-256 `1e4f97b6270a2350fc4213c6179d2c435bcb745b66ba1132b82b94692977479b`).
+All eight full run records, including the 3D joints and tempering stages,
+are in `results/wp11ai_balanced_crowded_runs/`. The frozen aggregate
+validated their protocols, configurations, final beta, particle joints
+and metrics against the pinned absolute reference.
+
+| Seed | Control joint TV | Candidate joint TV | Control CPU s | Candidate CPU s | Candidate replicated mode limits |
+| --- | ---: | ---: | ---: | ---: | :---: |
+| 1700 | 0.23779 | 0.09989 | 256.7 | 251.1 | pass |
+| 1701 | 0.19734 | 0.07575 | 253.1 | 245.8 | pass |
+| 1702 | 0.09841 | 0.07079 | 257.7 | 242.5 | pass |
+| 1703 | 0.10329 | 0.07989 | 252.2 | 250.6 | pass |
+
+The candidate won **4/4** matched full-joint comparisons and met all
+four simultaneous mode limits (**4/4**, against a 3/4 requirement).
+Median full-joint TV fell from 0.15031 to 0.07782 (candidate/control
+ratio 0.518, below the 0.90 limit and 0.12 absolute cap). Median
+band-by-sixth TV was 0.03073 (cap 0.10), median maximum alive-band
+error 0.02421 (cap 0.08), and median maximum cell error 0.01293
+(cap 0.04). All four secondary metric regressions were <=0.020;
+the final clutter mean absolute error increased from 0.00952 to
+0.01538, a 0.00586 regression within the frozen limit. Every paired
+CPU ratio was <=0.994 (cap 1.50); the candidate/control median CPU
+ratio was 0.974 (cap 1.25). All eight component gates passed.
+
+The status is `independent_balanced_crowded_gate_passed_holdout_closed`.
+This supports WP11ag on this independently frozen balanced 17-detection
+development geometry as well as the previously exposed 19-detection
+and independent transfer cases. The high-alive mass passed its geometry
+screen by only 0.00070, and one case does not establish calibration
+across crowded geometries. The WP8 holdout remains unopened. The next
+study should predeclare a broader set of crowded absolute observations,
+including a balanced case closer to 19 detections, and its complete
+replication rule before sampler inference.

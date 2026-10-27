@@ -837,11 +837,19 @@ result before a new sampler comparison.
 - [x] Bind the first WP11ah exact joint and prior WP11ag pass by hashes
 - [x] Freeze four matched control/candidate seeds, absolute and replicated
   joint/mode error thresholds, cost caps and the eight-run schedule
-- [ ] Run all eight fixed jobs and judge the complete gate
+- [x] Run all eight fixed jobs and judge the complete gate
 
 See `wp11ai_balanced_crowded_gate.md`. The WP11aa decoy accuracy and
 replication limits are reused unchanged, with the WP11ag cost limits.
-The WP8 holdout remains closed.
+All eight jobs completed. WP11ag won 4/4 matched full-joint comparisons
+on this independent balanced 17-detection case, met 4/4 simultaneous
+mode limits, and passed every frozen accuracy and CPU gate. Median
+full-joint TV was 0.15031 for controls and 0.07782 for the candidate;
+median CPU was 254.9 and 248.2 seconds, respectively. See the gate
+document and `results/wp11ai_balanced_crowded_comparison.json` for the
+full metrics and run records. Next, freeze a broader crowded absolute
+observation set and replication rule, especially toward balanced
+19-detection geometry. The WP8 holdout remains closed.
 
 ## WP12 — Open in-vivo trajectories
 
