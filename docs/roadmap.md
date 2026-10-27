@@ -742,6 +742,26 @@ holdout run followed. See `wp11w_balanced_exact_reference.md`. A new
 protocol should target frame-six clutter ambiguity explicitly, with
 its acceptance criteria fixed before examining another posterior.
 
+## WP11x — Frozen frame-six decoy exact reference
+
+- [x] Freeze a synthetic decoy intervention, seed and offset order, and
+  unchanged exact alive/clutter balance thresholds before posterior work
+- [x] Preserve the zero-eligible strict geometry feasibility result,
+  then pin a revised geometry-only ledger before exact screening
+- [x] Select the first passing variant in order and validate its exact
+  reference independently before any sampler design
+
+The revised ledger had nine variants. The first failed high-alive mass
+at 0.17945; the second, using a 0.016 mm frame-six decoy, passed all
+criteria with low/middle/high 0.71098/0.10885/0.18017, frame-six
+clutter 0/1 masses 0.71847/0.27011 and final clutter 0/1 masses
+0.56225/0.42095. Its high-alive pass margin is only 0.00017. Toy
+enumeration, direct-versus-paired exact calculations at three betas,
+and the base-normalizer check passed. The checkpoint is pinned in
+`wp11x_frame_six_decoy_reference.md`. This is an independent absolute
+reference for a later **separately frozen** comparison; no sampler
+move or holdout was tested here.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
