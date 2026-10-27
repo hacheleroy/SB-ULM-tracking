@@ -762,6 +762,16 @@ and the base-normalizer check passed. The checkpoint is pinned in
 reference for a later **separately frozen** comparison; no sampler
 move or holdout was tested here.
 
+## WP11y — Independent absolute baseline comparison
+
+- [x] Freeze the 17-detection reference hash, unchanged sampler controls,
+  four fixed seeds, joint-cell metrics and replication limits before inference
+- [ ] Run all four seeds and compare absolute final modes with WP11x
+
+See `wp11y_independent_absolute_sampler.md`. Its result describes only
+this selected 17-detection observation. The earlier WP11k 19-detection
+case is still uncalibrated, and the untouched holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
