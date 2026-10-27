@@ -399,17 +399,249 @@ def run_reference(output: Path) -> dict[str, Any]:
     return result
 
 
+def _validated_reference(path: Path) -> dict[str, Any]:
+    if REFERENCE_SHA256 is None or hashlib.sha256(path.read_bytes()).hexdigest() != (
+        REFERENCE_SHA256
+    ):
+        raise ValueError("validated exact reference checkpoint hash changed")
+    result = json.loads(path.read_text(encoding="utf-8"))
+    _, metadata = _case()
+    if (result["case"] != metadata or result["protocol"] != _reference_protocol()
+            or result["status"] != "validated_reference_before_sampler"):
+        raise ValueError("frozen exact reference is not validated")
+    return result
+
+
+class _StageObserver:
+    """Record label-free distributions without drawing from the sampler RNG."""
+
+    def __init__(self, cards: tuple[int, ...]):
+        self.cards = cards
+        self.shape = (33, cards[5] + 1, cards[7] + 1)
+        self.records: list[dict[str, Any]] = []
+
+    def _joint(self, states: np.ndarray, weights: np.ndarray) -> list[Any]:
+        alive = np.count_nonzero(states != ABSENT, axis=(1, 2))
+        sixth = self.cards[5] - np.count_nonzero(states[:, 5] >= 0, axis=1)
+        last = self.cards[7] - np.count_nonzero(states[:, 7] >= 0, axis=1)
+        index = np.ravel_multi_index((alive, sixth, last), self.shape)
+        return np.bincount(index, weights=weights, minlength=int(np.prod(self.shape)))\
+            .reshape(self.shape).tolist()
+
+    def begin_stage(self, step: int, beta: float) -> None:
+        self.records.append({"step": step, "beta": float(beta)})
+
+    def record_resampling(
+        self, associations: np.ndarray, weights: np.ndarray, ancestors: np.ndarray
+    ) -> None:
+        uniform = np.full(len(associations), 1 / len(associations))
+        current = self.records[-1]
+        current["prior_unweighted"] = self._joint(associations, uniform)
+        current["likelihood_weighted"] = self._joint(associations, weights)
+        current["resampled"] = self._joint(associations[ancestors], uniform)
+
+    def record_pair(
+        self, before: np.ndarray, proposed: np.ndarray,
+        accepted: np.ndarray, pg_selected: np.ndarray,
+    ) -> None:
+        return
+
+    def end_stage(self, associations: np.ndarray) -> None:
+        self.records[-1]["rejuvenated"] = self._joint(
+            associations, np.full(len(associations), 1 / len(associations))
+        )
+
+
+def run_seed(run_dir: Path, reference_path: Path, seed: int) -> dict[str, Any]:
+    if seed not in SEEDS:
+        raise ValueError("seed outside frozen diagnostic")
+    if any(os.environ.get(name) != "1" for name in THREAD_ENV):
+        raise RuntimeError("set all four BLAS/OMP thread variables to one")
+    _validated_reference(reference_path)
+    case, metadata = _case()
+    path = run_dir / f"{seed}.json"
+    if path.exists():
+        saved = json.loads(path.read_text(encoding="utf-8"))
+        if saved["protocol"] != _protocol() or saved["case"] != metadata:
+            raise ValueError("sampler run checkpoint differs from frozen protocol")
+        return saved
+    _, hard = resource.getrlimit(resource.RLIMIT_CPU)
+    if hard != resource.RLIM_INFINITY and hard < RUN_CPU_CAP + 5:
+        raise RuntimeError("system hard CPU limit below frozen cap")
+    resource.setrlimit(resource.RLIMIT_CPU, (RUN_CPU_CAP, RUN_CPU_CAP + 5))
+    controls = replace(_candidate_controls(seed), n_particles=N_PARTICLES)
+    observer = _StageObserver(CASE_CARDINALITIES)
+    started_cpu, started_wall = time.process_time(), time.perf_counter()
+    sampled = sample_slot_existence_posterior(
+        case.model.sequence, n_slots=case.model.n_slots,
+        localization_std=case.localization_std, coordinate_std=case.coordinate_std,
+        length_scale=case.length_scale,
+        detection_probability=case.model.detection_probability,
+        expected_clutter_per_frame=case.model.expected_clutter_per_frame,
+        roi_lower=case.model.roi_lower, roi_upper=case.model.roi_upper,
+        birth_death_prior=case.model.birth_death_prior,
+        config=controls, observer=observer,
+    )
+    record = {
+        "protocol": _protocol(), "case": metadata, "seed": seed,
+        "cpu_seconds": time.process_time() - started_cpu,
+        "wall_seconds": time.perf_counter() - started_wall,
+        "log_evidence_estimate": sampled.log_evidence_estimate,
+        "stages": [stage.to_dict() for stage in sampled.stages],
+        "joint_trace": observer.records,
+    }
+    _save(path, record)
+    print(f"seed {seed}: {record['cpu_seconds']:.1f}s CPU, "
+          f"{len(observer.records)} stages", flush=True)
+    return record
+
+
+def _iid_q95(joint: np.ndarray, ordinal: int) -> float:
+    rng = np.random.default_rng(IID_SEED + ordinal)
+    counts = rng.multinomial(N_PARTICLES, joint.ravel(), size=IID_REPLICATES)
+    draws = counts.reshape((IID_REPLICATES,) + joint.shape) / N_PARTICLES
+    collapsed = draws.sum(axis=3)
+    bands = np.stack((collapsed[:, :21].sum(axis=1), collapsed[:, 21],
+                      collapsed[:, 22:].sum(axis=1)), axis=1)
+    return float(np.quantile(np.abs(bands - _bands(joint)).sum(axis=(1, 2)) / 2, .95))
+
+
+def aggregate(run_dir: Path, reference_path: Path, output: Path) -> dict[str, Any]:
+    reference = _validated_reference(reference_path)
+    case, metadata = _case()
+    runs: dict[str, dict[str, Any]] = {}
+    for seed in SEEDS:
+        record = json.loads((run_dir / f"{seed}.json").read_text(encoding="utf-8"))
+        if (record["protocol"] != _protocol() or record["case"] != metadata
+                or record["seed"] != seed or len(record["joint_trace"]) != len(record["stages"])):
+            raise ValueError("run trace differs from frozen protocol")
+        runs[str(seed)] = record
+    betas = sorted({0.0, *(
+        stage["beta"] for run in runs.values() for stage in run["joint_trace"]
+    )})
+    computer = _ExactComputer(case.model, (5, 7))
+    exact_by_beta: dict[float, np.ndarray] = {}
+    q95_by_beta: dict[float, float] = {}
+    numerical = []
+    for ordinal, beta in enumerate(betas):
+        exact = computer.compute(beta)
+        if not _numeric_ok(exact):
+            raise ValueError(f"tempered exact calculation failed at beta {beta}")
+        joint = np.asarray(exact["joint"])
+        exact_by_beta[beta] = joint
+        q95_by_beta[beta] = _iid_q95(joint, ordinal)
+        numerical.append({
+            "beta": beta, "minimum_raw_cell": exact["minimum_raw_cell"],
+            "maximum_relative_imaginary_residual": exact[
+                "maximum_relative_imaginary_residual"
+            ], "raw_mass_error": exact["raw_mass_error"],
+            "clipping_tv": exact["clipping_tv"], "cpu_seconds": exact["cpu_seconds"],
+        })
+    for beta in (0.0, 0.5, 1.0):
+        if beta in exact_by_beta:
+            reference_joint = np.asarray(reference["selected_checks"][str(beta)]["direct"][
+                "joint"
+            ])
+            if np.abs(exact_by_beta[beta] - reference_joint).sum() / 2 > NUMERIC_TV_TOL:
+                raise ValueError("selected exact checkpoint differs after sampler")
+    per_seed = {}
+    for seed in SEEDS:
+        record = runs[str(seed)]
+        stages = []
+        previous_beta = 0.0
+        for trace, diagnostic in zip(record["joint_trace"], record["stages"], strict=True):
+            beta = trace["beta"]
+            if beta != diagnostic["beta"]:
+                raise ValueError("stage diagnostic beta differs from passive observer")
+            exact = exact_by_beta[beta]
+            previous = exact_by_beta[previous_beta]
+            errors = {
+                "prior_unweighted": _errors(np.asarray(trace["prior_unweighted"]), previous),
+                **{name: _errors(np.asarray(trace[name]), exact) for name in (
+                    "likelihood_weighted", "resampled", "rejuvenated"
+                )},
+            }
+            limit = max(.05, 2 * q95_by_beta[beta])
+            previous_limit = max(.05, 2 * q95_by_beta[previous_beta])
+            operation = next((name for name in (
+                "likelihood_weighted", "resampled", "rejuvenated"
+            ) if errors[name]["band_by_sixth_tv"] > limit), None)
+            if errors["prior_unweighted"]["band_by_sixth_tv"] > previous_limit:
+                operation = "carried_from_previous_stage"
+            tv = {name: value["full_joint_tv"] for name, value in errors.items()}
+            stages.append({
+                "step": trace["step"], "beta": beta, "previous_beta": previous_beta,
+                "errors": errors, "band_by_sixth_iid_q95": q95_by_beta[beta],
+                "descriptive_onset_threshold": limit,
+                "rejuvenated_above_threshold": errors["rejuvenated"][
+                    "band_by_sixth_tv"
+                ] > limit,
+                "first_above_operation": operation,
+                "tv_change": {
+                    "weighting": tv["likelihood_weighted"] - tv["prior_unweighted"],
+                    "resampling": tv["resampled"] - tv["likelihood_weighted"],
+                    "rejuvenation": tv["rejuvenated"] - tv["resampled"],
+                },
+                "effective_sample_size": diagnostic["effective_sample_size"],
+                "unique_parent_count": diagnostic["unique_parent_count"],
+                "unique_state_count": diagnostic["unique_state_count"],
+            })
+            previous_beta = beta
+        onset = next((
+            {"step": stages[i]["step"], "beta": stages[i]["beta"],
+             "first_above_operation": stages[i]["first_above_operation"]}
+            for i in range(len(stages) - 1)
+            if stages[i]["rejuvenated_above_threshold"]
+            and stages[i + 1]["rejuvenated_above_threshold"]
+        ), None)
+        per_seed[str(seed)] = {
+            "onset": onset,
+            "final_errors": stages[-1]["errors"]["rejuvenated"],
+            "stage_comparisons": stages,
+        }
+    operation_medians = {
+        key: float(median(stage["tv_change"][key] for row in per_seed.values()
+                          for stage in row["stage_comparisons"]))
+        for key in ("weighting", "resampling", "rejuvenation")
+    }
+    result = {
+        "experiment": "wp11v_tempering_mode_audit", "protocol": _protocol(),
+        "case": metadata, "reference_sha256": REFERENCE_SHA256,
+        "reference_selected_checks": reference["selected_checks"],
+        "runs": runs, "exact_beta_numerical": numerical,
+        "per_seed": per_seed, "median_signed_tv_change_by_operation": operation_medians,
+        "status": "independent_tempering_diagnostic_completed_no_move_gate",
+    }
+    _save(output, result)
+    return result
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--case", choices=("geometry",), required=True)
+    parser.add_argument("--case", choices=("geometry", "reference", "sampler", "aggregate"),
+                        required=True)
+    parser.add_argument("--seed", type=int)
+    parser.add_argument("--reference", type=Path,
+                        default=Path("results/wp11v_tempering_reference.json"))
+    parser.add_argument("--run-dir", type=Path, default=Path("results/wp11v_runs"))
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    _, metadata = _case()
-    result = {"protocol": _protocol(), "case": metadata}
-    if args.output:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(result, indent=2))
+    if args.case == "geometry":
+        _, metadata = _case()
+        result = {"protocol": _protocol(), "case": metadata}
+        if args.output:
+            _save(args.output, result)
+        print(json.dumps(result, indent=2))
+    elif args.case == "reference":
+        print(run_reference(args.output or args.reference)["status"])
+    elif args.case == "sampler":
+        if args.seed is None:
+            parser.error("--seed is required for sampler")
+        run_seed(args.run_dir, args.reference, args.seed)
+    else:
+        result = aggregate(args.run_dir, args.reference,
+                           args.output or Path("results/wp11v_tempering_mode_audit.json"))
+        print(result["status"])
 
 
 if __name__ == "__main__":
