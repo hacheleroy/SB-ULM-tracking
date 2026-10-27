@@ -83,4 +83,37 @@ frozen in this commit **before candidate inference**.
 
 ## Outcome
 
-Candidate and new-control inference pending the next test step.
+All 14 frozen jobs completed under the 750 process-CPU-second cap. The
+unmodified aggregator returned
+`exposed_and_independent_transfer_gates_passed_needs_new_crowded_reference`.
+The complete joints, stage diagnostics, per-seed metrics and CPU times
+are in `results/wp11ag_global_slot_runs/`; the protocol-validated
+aggregate is `results/wp11ag_global_slot_comparison.json` (SHA-256
+`727c207b3e9868034cf7bd227fb4a92ca0718d2ee05c242f30183c3a8c423bb4`).
+
+| Case | Paired full-joint TV wins | Median full-joint TV, control → candidate | Median band-by-sixth TV, control → candidate | Median maximum band-mass error, control → candidate | Median CPU, control → candidate |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Exposed 19 detections | 6/6 | 0.19676 → 0.07378 | 0.16060 → 0.04572 | 0.10234 → 0.02246 | 238.75 → 258.98 s |
+| Independent transfer, 17 detections | 4/4 | 0.07923 → 0.06200 | 0.03302 → 0.01946 | 0.02921 → 0.01634 | 241.01 → 236.34 s |
+
+Every individual gate passed. The largest per-seed candidate/control
+CPU ratio was 1.205 on the primary and 0.987 on transfer; median ratios
+were 1.085 and 0.981. All four transfer candidate runs met the joint
+alive/clutter mode limits. Primary seed 1305 improved full-joint TV
+(0.11678 → 0.10188) but worsened band-by-sixth TV
+(0.06686 → 0.08538), an individual exception to the median improvement.
+The whole-slot selection fraction averaged about 20% of paired proposals
+at beta >=0.65 and zero earlier. Its count-signature change rate was
+about 90% on the primary and 93% on transfer. This records changes to
+the count/clutter signature, not a direct measurement of between-band
+crossings or a proof of why the sampler improved. Log-evidence errors
+were -1.43 to -0.33 on the primary and -0.23 to +0.44 on transfer;
+evidence accuracy was recorded, not a criterion of this posterior gate.
+
+This is a pass on the exposed 19-detection sentinel and an independently
+selected absolute transfer case. The transfer exact posterior is heavily
+weighted toward one frame-six clutter state and has unbalanced alive
+bands; it is **not** an independent crowded-mode validation. Before any
+calibration or generalization claim, freeze and validate a fresh
+balanced crowded absolute reference and its comparison without looking
+at the untouched WP8 holdout.

@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 11496)
-Total output lines: 839
-
 # Scientific roadmap and decision gates
 
 ## WP0 — Reproducible controlled benchmark
@@ -793,13 +790,13 @@ frozen tests (SHA-256
 `cd6f20f821a2689cda5a1a0aceb19fa9db7c6232af0e8e05b6262e312469f87b`).
 The holdout remains closed.
 
-## WP11ag — Whole-slot Gibbs gate frozen
+## WP11ag — Whole-slot Gibbs comparison completed
 
 - [x] Implement and check an exact full-trajectory, one-slot
   conditional Gibbs update on toy and independent eight-frame support
 - [x] Pin the two-case absolute, replication and cost comparison
   before any candidate or new-control inference
-- [ ] Run the 14 fixed control/candidate jobs and apply both gates
+- [x] Run the 14 fixed control/candidate jobs and apply both gates
 
 The move replaces 20% of paired proposals at beta >=0.65, retains 10%
 full-path PG and 70% local paired, and is bitwise control-equivalent
@@ -807,6 +804,15 @@ earlier. The exposed 19-detection primary and independently selected
 17-detection transfer case must **both** pass. See
 `wp11ag_global_slot_gate.md` for the fixed limits and interpretation.
 The untouched holdout stays closed.
+
+All 14 scheduled runs completed within the frozen CPU cap, and both
+full case gates passed without changing their limits: 6/6 primary and
+4/4 independent-transfer paired full-joint TV wins. Median joint TV
+fell from 0.19676 to 0.07378 on the exposed primary and from 0.07923
+to 0.06200 on transfer. The new reference does not have balanced
+crowded modes, so the next step is a separately frozen, independently
+validated balanced crowded absolute case before a calibration claim.
+See `results/wp11ag_global_slot_comparison.json` and the per-run JSONs.
 
 ## WP12 — Open in-vivo trajectories
 
