@@ -260,8 +260,56 @@ def _first_sustained(stages: list[dict[str, Any]], metric: str) -> dict[str, Any
     return None
 
 
+STAGE_COLUMNS = ("step", "beta", "full_joint_tv", "alive_band",
+                 "sixth_clutter_one_signed", "last_clutter_one_signed",
+                 "band_by_sixth", "band_by_last", "effective_sample_size",
+                 "unique_parent_count", "unique_state_count",
+                 "alive_band_limit", "sixth_clutter_one_limit",
+                 "last_clutter_one_limit", "band_by_sixth_limit", "band_by_last_limit")
+
+
+def _compact(result: dict[str, Any]) -> dict[str, Any]:
+    per_seed = {}
+    for seed, record in result["per_seed"].items():
+        onset_values = {}
+        for metric, onset in record["onset"].items():
+            if onset is None:
+                continue
+            stage = record["stages"][onset["step"] - 1]
+            onset_values[metric] = {
+                "limit": stage["limits"][metric],
+                "by_operation": {name: stage["errors"][name][metric] for name in (
+                    "prior_unweighted", "likelihood_weighted", "resampled", "rejuvenated"
+                )},
+            }
+        curves = []
+        for stage in record["stages"]:
+            final = stage["errors"]["rejuvenated"]
+            curves.append([
+                stage["step"], stage["beta"], final["full_joint_tv"],
+                final["alive_band"], final["sixth_clutter_one_signed"],
+                final["last_clutter_one_signed"], final["band_by_sixth"],
+                final["band_by_last"], stage["effective_sample_size"],
+                stage["unique_parent_count"], stage["unique_state_count"],
+                *(stage["limits"][key] for key in METRICS),
+            ])
+        per_seed[seed] = {
+            **{key: record[key] for key in (
+                "sampler_cpu_seconds", "n_stages", "onset", "peak_rejuvenated",
+                "transient_weighted_exceedances", "median_signed_full_tv_change",
+                "final_errors"
+            )},
+            "onset_operation_values": onset_values,
+            "stage_curve_columns": list(STAGE_COLUMNS), "stage_curves": curves,
+        }
+    return {key: result[key] for key in (
+        "experiment", "protocol", "exact_numerical", "status"
+    )} | {"per_seed": per_seed}
+
+
 def aggregate(exact_dir: Path, run_dir: Path, reference_path: Path,
-              ledger_path: Path, wp11y_path: Path, output: Path) -> dict[str, Any]:
+              ledger_path: Path, wp11y_path: Path, output: Path,
+              detail_output: Path | None = None) -> dict[str, Any]:
     previous = _wp11y(wp11y_path)
     _inputs(reference_path, ledger_path)
     per_seed = {}
@@ -350,8 +398,11 @@ def aggregate(exact_dir: Path, run_dir: Path, reference_path: Path,
         "exact_numerical": exact_numerical, "per_seed": per_seed,
         "status": "balanced_stage_diagnostic_completed_no_move_gate",
     }
-    _save(output, result)
-    return result
+    if detail_output is not None:
+        _save(detail_output, result)
+    summary = _compact(result)
+    _save(output, summary)
+    return summary
 
 
 def main() -> None:
@@ -369,6 +420,8 @@ def main() -> None:
     parser.add_argument("--exact-dir", type=Path, default=Path("results/wp11z_exact"))
     parser.add_argument("--output", type=Path,
                         default=Path("results/wp11z_balanced_stage_summary.json"))
+    parser.add_argument("--detail-output", type=Path,
+                        default=Path("results/wp11z_balanced_stage_detail.json"))
     args = parser.parse_args()
     if args.case == "protocol":
         _inputs(args.reference, args.ledger)
@@ -379,7 +432,7 @@ def main() -> None:
         if args.seed is not None:
             parser.error("aggregate takes no seed")
         print(aggregate(args.exact_dir, args.run_dir, args.reference, args.ledger,
-                        args.wp11y, args.output)["status"])
+                        args.wp11y, args.output, args.detail_output)["status"])
         return
     if args.seed is None:
         parser.error("sampler and exact require --seed")

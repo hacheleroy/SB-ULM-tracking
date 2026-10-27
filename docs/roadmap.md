@@ -784,12 +784,21 @@ remains closed.
 
 - [x] Freeze the four WP11y replay seeds, passive observer, exact-beta
   numerical checks and stage-specific count/clutter onset markers
-- [ ] Replay the sampler and score every adaptive stage against the
+- [x] Replay the sampler and score every adaptive stage against the
   corresponding exact target
 
-See `wp11z_balanced_stage_audit.md`. This is a diagnostic on the
-already exposed 17-detection observation, without a new sampler move,
-19-detection calibration claim or holdout access.
+All four passive replays exactly matched WP11y final joints, and all
+81 beta-zero/stage exact calculations passed their frozen numerical
+checks within cap. Sustained mode discrepancies first appear late:
+sixth clutter at beta 0.840 in seed 1500, final clutter at 0.886 in
+1501, and alive-band/band × sixth at 0.828 in 1503. Seed 1502 has no
+sustained marker. Weighting is the first crossing in 1500 and 1503;
+1501 first crosses after rejuvenation. The target moves at weighting,
+so this is operation attribution of observed errors, not causal proof.
+See `wp11z_balanced_stage_audit.md` and the committed stage curves.
+The next proposal must freeze its move and comparison on the exposed
+19-detection case and this independent 17-detection reference before
+testing it; the untouched holdout remains closed.
 
 ## WP12 — Open in-vivo trajectories
 

@@ -78,9 +78,51 @@ Runner: `python -m sbulm.wp11z_balanced_stage_audit --case sampler --seed
 and finally `--case aggregate`. Detailed replay and exact checkpoints
 remain locally reproducible in `results/wp11z_runs/` and
 `results/wp11z_exact/`; the concise scored stage summary goes to
-`results/wp11z_balanced_stage_summary.json`. The untouched holdout,
+`results/wp11z_balanced_stage_summary.json`. Full operation-by-operation
+scores are regenerated at `results/wp11z_balanced_stage_detail.json`.
+The untouched holdout,
 high-particle run and earlier 19-detection case remain closed.
 
 ## Outcome
 
-Pending frozen replay and exact stage calculation.
+The protocol was committed at `25b52fecdbdecc08867fdf60b6f528ba3230f0a1`
+before any WP11z replay. All four passive replays completed in
+258.5–269.4 CPU seconds and exactly reproduced their WP11y final
+empirical joints, stage counts and log-evidence estimates. The exact
+workers evaluated 20, 20, 21 and 20 targets respectively in
+733.8–768.2 CPU seconds, below the 1,000-second cap. At every beta,
+the numerical envelope passed: worst minimum raw cell `−2.86e−12`,
+maximum relative imaginary residual `2.83e−19`, raw mass error zero
+at reported precision and maximum clipping TV `1.93e−11`. The beta-zero
+and beta-one checks matched the pinned WP11x checkpoint. All five
+descriptive onset limits were their predeclared floors at every stage.
+
+| Seed | Sustained onset at first stage of a pair | First crossing operation | Final relevant error |
+| ---: | --- | --- | ---: |
+| 1500 | Sixth clutter-one and band × sixth at stage 16, β=0.84007 | Likelihood weighting | +0.07071 sixth clutter-one mass |
+| 1501 | Final clutter-one at stage 17, β=0.88551 | Rejuvenation | +0.06293 final clutter-one mass |
+| 1502 | None | — | 0.04337 sixth clutter-one mass |
+| 1503 | Alive band and band × sixth at stage 16, β=0.82758; band × final at stage 17, β=0.88486 | Likelihood weighting for each | 0.11813 maximum alive-band error |
+
+For seed 1500 at the first sustained sixth-clutter crossing, absolute
+error changes from 0.05017 before weighting (at the previous beta) to
+0.07273 weighted, 0.06942 resampled and 0.07332 after rejuvenation,
+above the 0.06 marker. For seed 1501's final-clutter crossing, the
+corresponding errors are 0.03446, 0.05571, 0.05337 and 0.06216:
+the first exceedance occurs after rejuvenation. For seed 1503's
+alive-band crossing they are 0.03966, 0.06540, 0.06477 and 0.06184,
+also above 0.06 after rejuvenation. The seed-level onset table and all
+post-rejuvenation stage curves are in the committed summary, SHA-256
+`805ba60c16bdb768d1236cba6d6cb48491639555874b79033bb4eba987640ab9`.
+
+The onset is **late**, around beta 0.83–0.89, in three seeds. It is not
+uniformly caused by one operation: first crossing is observed at
+weighting in two seeds and after rejuvenation in one. Because the
+target itself moves between betas, a crossing at weighting is not
+proof that weighting alone caused mode loss. Median full-joint TV
+changes across stages are positive for weighting and resampling and
+negative for rejuvenation in all four seeds, but the specific mode
+errors persist through the final stages in the three failing seeds.
+The IID scale is descriptive, and the exact high-alive mass in this
+case only marginally met its selection threshold. This diagnostic
+neither selects a move nor establishes 19-detection calibration.
