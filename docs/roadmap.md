@@ -734,6 +734,23 @@ move or open the holdout. Next diagnose count-band transfer in the
 crowded primary geometry before freezing another move and independent
 absolute comparison.
 
+## WP11ac — Crowded count bands and independent reference
+
+- [x] Decompose the WP11ab final joint errors into alive-band and clutter
+  marginals against the pinned exact 19-detection reference
+- [x] Freeze a new cardinality-only observation ladder and absolute
+  validation before inspecting its posterior
+- [ ] Screen and validate the independently selected exact joint
+- [ ] Freeze the whole-slot conditional Gibbs move and two-case accuracy,
+  replication and cost rules before candidate inference
+
+Three of six crowded WP11ab seeds have alive-band TV >=0.10; in those
+runs the band marginal alone lower-bounds 64–95% of full-joint TV.
+This supports testing a whole-slot interval redraw while preserving
+separate clutter checks. See `wp11ac_global_count_reference.md` for the
+retrospective decomposition and prospective independent reference rule.
+The holdout stays closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
