@@ -1,0 +1,345 @@
+{
+  "experiment": "wp11af_geometry_transfer_ledger",
+  "protocol": {
+    "pairs": [
+      [
+        2203,
+        2207
+      ],
+      [
+        2213,
+        2221
+      ],
+      [
+        2237,
+        2239
+      ],
+      [
+        2243,
+        2251
+      ],
+      [
+        2267,
+        2269
+      ],
+      [
+        2273,
+        2281
+      ],
+      [
+        2287,
+        2293
+      ],
+      [
+        2297,
+        2309
+      ],
+      [
+        2311,
+        2333
+      ],
+      [
+        2339,
+        2341
+      ],
+      [
+        2347,
+        2351
+      ],
+      [
+        2357,
+        2371
+      ]
+    ],
+    "regime": {
+      "detection_probability": 0.6,
+      "expected_clutter_per_frame": 0.35,
+      "central_separation": 0.007,
+      "max_clutter_per_frame": 2,
+      "truth_mask": [
+        [
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          false,
+          true,
+          true
+        ]
+      ]
+    },
+    "selection": "first generated case with 16..17 detections, frame six >=2, last >=1, frames 3..5 >=7; generator errors skip; no posterior-balance selection or replacement after numerical failure",
+    "numeric": {
+      "minimum_raw_cell": -1e-10,
+      "max_imaginary_residual": 1e-08,
+      "raw_mass_error": 1e-08,
+      "direct_paired_logz": 1e-08,
+      "direct_paired_joint_tv": 1e-07,
+      "direct_paired_max_cell": 1e-08,
+      "base_logz": 1e-08
+    },
+    "exact_cpu_cap": 1000,
+    "no_sampler_or_holdout": true
+  },
+  "candidates": [
+    {
+      "index": 0,
+      "pair": [
+        2203,
+        2207
+      ],
+      "cardinalities": [
+        0,
+        3,
+        4,
+        6,
+        3,
+        2,
+        2,
+        1
+      ],
+      "detection_sha256": "195c052c8b0b13e83cdd19cc0425d444bacc5833c9caf38fae8064da381479a9",
+      "eligible": false
+    },
+    {
+      "index": 1,
+      "pair": [
+        2213,
+        2221
+      ],
+      "cardinalities": [
+        3,
+        2,
+        4,
+        3,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "2275e887a642353dbe0cd91c04e3c5a0760420ed5fcdb4929adfb29b04224a36",
+      "eligible": false
+    },
+    {
+      "index": 2,
+      "pair": [
+        2237,
+        2239
+      ],
+      "cardinalities": [
+        0,
+        2,
+        2,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "5f39bf93ad920361ce7f59da6ecbbb50784d1faabb83c8b3ac89acf9845be1ec",
+      "eligible": false
+    },
+    {
+      "index": 3,
+      "pair": [
+        2243,
+        2251
+      ],
+      "cardinalities": [
+        0,
+        2,
+        3,
+        3,
+        1,
+        3,
+        2,
+        3
+      ],
+      "detection_sha256": "08e0124095b50b588b00a72d06a02a7cd59a0d82772abcbdea474fa2279be09a",
+      "eligible": true
+    },
+    {
+      "index": 4,
+      "pair": [
+        2267,
+        2269
+      ],
+      "cardinalities": [
+        1,
+        1,
+        3,
+        2,
+        1,
+        2,
+        3,
+        1
+      ],
+      "detection_sha256": "bbd49f0391f6a0368786ac21d1476609975d41d20cb700923711fc4d9720b50b",
+      "eligible": false
+    },
+    {
+      "index": 5,
+      "pair": [
+        2273,
+        2281
+      ],
+      "cardinalities": [
+        2,
+        0,
+        2,
+        4,
+        2,
+        3,
+        2,
+        0
+      ],
+      "detection_sha256": "5d33b2b583e576b59e783ea9f255e287d3695c27285d591ab7e7373a47d9d0ab",
+      "eligible": false
+    },
+    {
+      "index": 6,
+      "pair": [
+        2287,
+        2293
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        3,
+        1
+      ],
+      "detection_sha256": "58215fc916a594ea14ad1a1b4c0e99b37e2aa4013670abf5d79b61b30974ce73",
+      "eligible": false
+    },
+    {
+      "index": 7,
+      "pair": [
+        2297,
+        2309
+      ],
+      "cardinalities": [
+        0,
+        1,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "detection_sha256": "ed7c6001f3b4870148a0784e61c0d9d913b19c237977a162e09a596809239bc6",
+      "eligible": false
+    },
+    {
+      "index": 8,
+      "pair": [
+        2311,
+        2333
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        2,
+        3,
+        1,
+        3,
+        1
+      ],
+      "detection_sha256": "41f6af8479721ddc78adb08110590849ce2b0b2fc24cd06867ddb2e711a79f09",
+      "eligible": false
+    },
+    {
+      "index": 9,
+      "pair": [
+        2339,
+        2341
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "index": 10,
+      "pair": [
+        2347,
+        2351
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        1,
+        1
+      ],
+      "detection_sha256": "7311e7e365021bbe5b71e381a6cfd63947414c069d771a791a75495a6d4bf9a6",
+      "eligible": false
+    },
+    {
+      "index": 11,
+      "pair": [
+        2357,
+        2371
+      ],
+      "cardinalities": [
+        1,
+        4,
+        4,
+        5,
+        3,
+        1,
+        1,
+        1
+      ],
+      "detection_sha256": "3cffa86a821c2abba2e0eaffa2b5fd8482b146bb4751cdd5932e7a3a6fc8b908",
+      "eligible": false
+    }
+  ],
+  "selected_index": 3,
+  "status": "geometry_only_before_posterior"
+}

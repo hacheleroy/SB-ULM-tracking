@@ -1,0 +1,446 @@
+{
+  "experiment": "wp11ac_geometry_ledger",
+  "protocol": {
+    "pairs": [
+      [
+        601,
+        607
+      ],
+      [
+        613,
+        617
+      ],
+      [
+        619,
+        631
+      ],
+      [
+        641,
+        643
+      ],
+      [
+        647,
+        653
+      ],
+      [
+        659,
+        661
+      ],
+      [
+        673,
+        677
+      ],
+      [
+        683,
+        691
+      ],
+      [
+        701,
+        709
+      ],
+      [
+        719,
+        727
+      ],
+      [
+        733,
+        739
+      ],
+      [
+        743,
+        751
+      ],
+      [
+        757,
+        761
+      ],
+      [
+        769,
+        773
+      ],
+      [
+        787,
+        797
+      ],
+      [
+        809,
+        811
+      ]
+    ],
+    "regime": {
+      "detection_probability": 0.68,
+      "expected_clutter_per_frame": 0.28,
+      "central_separation": 0.007,
+      "max_clutter_per_frame": 2,
+      "truth_mask": [
+        [
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          false,
+          true,
+          true
+        ]
+      ]
+    },
+    "eligibility": "18..19 detections; frame six >=2, last >=1; frames 3..5 >=8",
+    "selection": "screen the first five eligible observations in seed order; accept first balanced",
+    "generator_error": "record as ineligible, never replace seed",
+    "acceptance": {
+      "low_min": 0.18,
+      "high_min": 0.18,
+      "middle_min": 0.05,
+      "two_sixth_min": 0.15,
+      "two_last_min": 0.15
+    },
+    "numerical_envelope": {
+      "minimum_raw_cell": -1e-10,
+      "maximum_relative_imaginary_residual": 1e-08,
+      "raw_mass_error": 1e-08,
+      "direct_paired_logz": 1e-08,
+      "direct_paired_tv": 1e-07,
+      "direct_paired_max_cell": 1e-08
+    },
+    "maximum_screens": 5,
+    "screen_cpu_cap": 450,
+    "validation_cpu_cap": 1800,
+    "no_sampler_or_holdout": true
+  },
+  "candidates": [
+    {
+      "index": 0,
+      "pair": [
+        601,
+        607
+      ],
+      "cardinalities": [
+        3,
+        2,
+        3,
+        4,
+        4,
+        2,
+        2,
+        2
+      ],
+      "detection_sha256": "825d995d80583c9219c4692830b94930794078cfb4b6917fd7b5fc748f014039",
+      "eligible": false
+    },
+    {
+      "index": 1,
+      "pair": [
+        613,
+        617
+      ],
+      "cardinalities": [
+        2,
+        1,
+        4,
+        2,
+        2,
+        2,
+        2,
+        3
+      ],
+      "detection_sha256": "004d71c2148aa49283b8890f168a7c66f6878d1c4b606c9c775cf132fdb81876",
+      "eligible": true
+    },
+    {
+      "index": 2,
+      "pair": [
+        619,
+        631
+      ],
+      "cardinalities": [
+        1,
+        1,
+        4,
+        4,
+        4,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "6950adf8027473d6d9103062a77444ca7ed986fbba1b8d62492d76a6769df06a",
+      "eligible": true
+    },
+    {
+      "index": 3,
+      "pair": [
+        641,
+        643
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "detection_sha256": "81102799f46aa2c4c5a6b0f94043c0d50cdf76b3da49f276fd133e1caff5938b",
+      "eligible": true
+    },
+    {
+      "index": 4,
+      "pair": [
+        647,
+        653
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        0,
+        3,
+        3,
+        3,
+        0
+      ],
+      "detection_sha256": "f5993396ee4889862fe3263e47417db7d529d46ca346e8c2c0cc719bb20f05b7",
+      "eligible": false
+    },
+    {
+      "index": 5,
+      "pair": [
+        659,
+        661
+      ],
+      "cardinalities": [
+        2,
+        1,
+        2,
+        3,
+        2,
+        2,
+        2,
+        1
+      ],
+      "detection_sha256": "59eefa7aaa5b31882be3fed48d9c21cc8ffd1c32d5a96106056126ec7e2bfded",
+      "eligible": false
+    },
+    {
+      "index": 6,
+      "pair": [
+        673,
+        677
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        4,
+        2,
+        3,
+        1,
+        2
+      ],
+      "detection_sha256": "33b3d2458946b8818073df213e81b419953230bc757e73e84809099f311b3317",
+      "eligible": true
+    },
+    {
+      "index": 7,
+      "pair": [
+        683,
+        691
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "index": 8,
+      "pair": [
+        701,
+        709
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        1,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "0869d4883cb9eccb922b868b25fab1588f3e5d5e5ec093fa6e0976ae1f1d77a5",
+      "eligible": true
+    },
+    {
+      "index": 9,
+      "pair": [
+        719,
+        727
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        5,
+        4,
+        1,
+        3,
+        2
+      ],
+      "detection_sha256": "8e8478f4f2f9881f86aca2d1de92a672b700c6660126d5a21a3dc6f30bb1eecd",
+      "eligible": false
+    },
+    {
+      "index": 10,
+      "pair": [
+        733,
+        739
+      ],
+      "cardinalities": [
+        0,
+        1,
+        3,
+        0,
+        3,
+        1,
+        4,
+        0
+      ],
+      "detection_sha256": "0e2bcb34ee1e20463e6514b8083e9f316645a559f037212d6fe652c80b4c44d5",
+      "eligible": false
+    },
+    {
+      "index": 11,
+      "pair": [
+        743,
+        751
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        1,
+        3,
+        3,
+        1,
+        3
+      ],
+      "detection_sha256": "457cb3eb2b87341147eeabfb4dfe2f51cd02784fa0673c92c456e8a09f47a3b5",
+      "eligible": false
+    },
+    {
+      "index": 12,
+      "pair": [
+        757,
+        761
+      ],
+      "cardinalities": [
+        2,
+        4,
+        4,
+        3,
+        3,
+        3,
+        3,
+        0
+      ],
+      "detection_sha256": "a152f8ba3a75d8e4e591317cdf1f1b0f353098f9f6ac30c9069b5487bc799745",
+      "eligible": false
+    },
+    {
+      "index": 13,
+      "pair": [
+        769,
+        773
+      ],
+      "cardinalities": [
+        1,
+        4,
+        4,
+        4,
+        4,
+        4,
+        2,
+        0
+      ],
+      "detection_sha256": "1aba343d3048f5a4a9b45e4b9d59060be034e26def33157ea6d721c6f02a9af8",
+      "eligible": false
+    },
+    {
+      "index": 14,
+      "pair": [
+        787,
+        797
+      ],
+      "cardinalities": [
+        3,
+        1,
+        3,
+        3,
+        3,
+        1,
+        3,
+        3
+      ],
+      "detection_sha256": "5a19087ce877fc335e385115cc7ed258084da64ca55c2f91430241391140ac0a",
+      "eligible": false
+    },
+    {
+      "index": 15,
+      "pair": [
+        809,
+        811
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        2,
+        2,
+        4,
+        2,
+        2
+      ],
+      "detection_sha256": "51c79a6207888a57de62bb53f610754fa0885ea645e32e18715da7dbaf0bada0",
+      "eligible": true
+    }
+  ],
+  "status": "geometry_only_before_posterior"
+}

@@ -1,0 +1,817 @@
+{
+  "experiment": "wp11ae_frame_six_geometry",
+  "protocol": {
+    "pairs": [
+      [
+        1409,
+        1423
+      ],
+      [
+        1427,
+        1429
+      ],
+      [
+        1433,
+        1439
+      ],
+      [
+        1447,
+        1451
+      ],
+      [
+        1453,
+        1459
+      ],
+      [
+        1471,
+        1481
+      ],
+      [
+        1483,
+        1487
+      ],
+      [
+        1489,
+        1493
+      ],
+      [
+        1499,
+        1511
+      ],
+      [
+        1523,
+        1531
+      ],
+      [
+        1543,
+        1549
+      ],
+      [
+        1553,
+        1559
+      ],
+      [
+        1567,
+        1571
+      ],
+      [
+        1579,
+        1583
+      ],
+      [
+        1597,
+        1601
+      ],
+      [
+        1607,
+        1609
+      ],
+      [
+        1613,
+        1619
+      ],
+      [
+        1621,
+        1627
+      ],
+      [
+        1637,
+        1657
+      ],
+      [
+        1663,
+        1667
+      ]
+    ],
+    "offsets_mm": [
+      0.01,
+      0.016,
+      0.022
+    ],
+    "regime": {
+      "detection_probability": 0.68,
+      "expected_clutter_per_frame": 0.28,
+      "central_separation": 0.007,
+      "max_clutter_per_frame": 2,
+      "truth_mask": [
+        [
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          false,
+          true,
+          true
+        ]
+      ]
+    },
+    "eligibility": "16..17 total; frame six 2 or 3 true and zero clutter; last >=1; frames 3..5 >=6",
+    "decoy": "highest frame-six reference ID becomes clutter; y moves toward zero by offset",
+    "independence": "third fresh seed ladder committed after WP11ad numeric stop, before any WP11ae posterior or sampler run",
+    "errors": "record generator or ROI failure and skip; no replacement",
+    "order": "base seed then ascending offset",
+    "max_screens": 9,
+    "acceptance": "low and high >=.18; middle >=.05; two sixth and two last clutter >=.15",
+    "numeric": {
+      "minimum_raw_cell": -1e-10,
+      "imaginary_residual": 1e-08,
+      "mass_error": 1e-08,
+      "direct_paired_logz": 1e-08,
+      "direct_paired_tv": 1e-07,
+      "direct_paired_max_cell": 1e-08
+    },
+    "screen_cpu_cap": 450,
+    "validation_cpu_cap": 1800,
+    "no_sampler_or_holdout": true
+  },
+  "bases": [
+    {
+      "base_index": 0,
+      "pair": [
+        1409,
+        1423
+      ],
+      "cardinalities": [
+        2,
+        4,
+        2,
+        2,
+        4,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "f94fa0139b7c1ae72a7c315154ce6d36a69a2bfd3a81459e0e7efe43066cdefa",
+      "frame_six_reference_ids": [
+        1,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 1,
+      "pair": [
+        1427,
+        1429
+      ],
+      "cardinalities": [
+        1,
+        4,
+        2,
+        2,
+        3,
+        1,
+        3,
+        2
+      ],
+      "base_detection_sha256": "c04b7307db67dbad775ffd2ce4d2ad998dbe10024a146bd6ed715071dc5f3196",
+      "frame_six_reference_ids": [
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 2,
+      "pair": [
+        1433,
+        1439
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        3,
+        3,
+        3,
+        3,
+        1
+      ],
+      "base_detection_sha256": "345c89120789c85a959c31870058b979525606905032e1c7947ae838d27ffe37",
+      "frame_six_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 3,
+      "pair": [
+        1447,
+        1451
+      ],
+      "cardinalities": [
+        0,
+        3,
+        4,
+        3,
+        3,
+        2,
+        3,
+        3
+      ],
+      "base_detection_sha256": "92f8e15b3382028b1a3735e6fccad0cdc82a5791029b5890e476cd36b6012fc9",
+      "frame_six_reference_ids": [
+        1,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 4,
+      "pair": [
+        1453,
+        1459
+      ],
+      "cardinalities": [
+        2,
+        1,
+        2,
+        2,
+        3,
+        1,
+        2,
+        2
+      ],
+      "base_detection_sha256": "e226cdc0a06cb55ecd310a7f0bc4ee01301a0133b656e2a2459199ae98905c06",
+      "frame_six_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 5,
+      "pair": [
+        1471,
+        1481
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 6,
+      "pair": [
+        1483,
+        1487
+      ],
+      "cardinalities": [
+        0,
+        2,
+        3,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "base_detection_sha256": "f425a10441e21dd537d426d5f901827d19a49c034d1b125ebcd6f56741e5ae32",
+      "frame_six_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 7,
+      "pair": [
+        1489,
+        1493
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        4,
+        2,
+        2,
+        1
+      ],
+      "base_detection_sha256": "23e478263981e19dbcee1ed6757d0de0dd8815ea519c689357206ec3bb6d9f79",
+      "frame_six_reference_ids": [
+        2,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 8,
+      "pair": [
+        1499,
+        1511
+      ],
+      "cardinalities": [
+        2,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "63dc4c5b7b5c5691fd26845dbdd4d8eeacb0b34d805f06ca08796bcaaef19fcd",
+      "frame_six_reference_ids": [
+        1,
+        2
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 9,
+      "pair": [
+        1523,
+        1531
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        2,
+        2,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "7ea9aef691f1d390512111ae1bb9fb5e84178d6db2f1561428a8374924fc4f32",
+      "frame_six_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 10,
+      "pair": [
+        1543,
+        1549
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 11,
+      "pair": [
+        1553,
+        1559
+      ],
+      "cardinalities": [
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "base_detection_sha256": "ae97510292905a81d53269fb79729b469bd5febd999d423e6fdd05ae8a700abe",
+      "frame_six_reference_ids": [
+        2,
+        1
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 12,
+      "pair": [
+        1567,
+        1571
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        4,
+        3,
+        2,
+        4,
+        0
+      ],
+      "base_detection_sha256": "d3259dce6c2f3a615c05561c5bb12839b6801317c73897138a408d160d93d2e6",
+      "frame_six_reference_ids": [
+        2,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 13,
+      "pair": [
+        1579,
+        1583
+      ],
+      "cardinalities": [
+        4,
+        3,
+        1,
+        4,
+        2,
+        1,
+        3,
+        2
+      ],
+      "base_detection_sha256": "37df04fb3df698c9d88fe70517744160a7ef7d2922d9d4aca89d26f159f7b401",
+      "frame_six_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 14,
+      "pair": [
+        1597,
+        1601
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 15,
+      "pair": [
+        1607,
+        1609
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        4,
+        1,
+        3,
+        2,
+        0
+      ],
+      "base_detection_sha256": "7109f3dc48530ab61f2def392d9419206d0fccf9f6b5318341f9f43c42717d10",
+      "frame_six_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 16,
+      "pair": [
+        1613,
+        1619
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        4,
+        3,
+        3,
+        3,
+        1
+      ],
+      "base_detection_sha256": "3c86b4932c837b011f763dc5dc180c83371a6567f0a5f043876884b771f0eb38",
+      "frame_six_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 17,
+      "pair": [
+        1621,
+        1627
+      ],
+      "cardinalities": [
+        2,
+        4,
+        5,
+        2,
+        3,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "6318fa969300412ae2cb3bd26b19a2c6994e0b921bb6a427611bb6e95095dbd1",
+      "frame_six_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 18,
+      "pair": [
+        1637,
+        1657
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        2,
+        4,
+        1,
+        3,
+        3
+      ],
+      "base_detection_sha256": "6b6dbedbfdd8acfe194ff3c5e03597d48dd7dba6bf4bbeb060bf46c049801af9",
+      "frame_six_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 19,
+      "pair": [
+        1663,
+        1667
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        2,
+        3,
+        3,
+        3,
+        1
+      ],
+      "base_detection_sha256": "7e77ac71c3b2dccebd5abb600386f13876a278d5584309dfdeb69e3ea49bbcaa",
+      "frame_six_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "eligible": false
+    }
+  ],
+  "variants": [
+    {
+      "variant_index": 0,
+      "base_index": 6,
+      "pair": [
+        1483,
+        1487
+      ],
+      "offset_mm": 0.01,
+      "eligible": true,
+      "cardinalities": [
+        0,
+        2,
+        3,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "detection_sha256": "c5d1e48c291fdeb6f4bb19e040cb5455550fee4507c428fde56cd94dc9aa2e5c",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 3,
+      "original_y": 0.0171756035646559,
+      "decoy_y": 0.007175603564655899
+    },
+    {
+      "variant_index": 1,
+      "base_index": 6,
+      "pair": [
+        1483,
+        1487
+      ],
+      "offset_mm": 0.016,
+      "eligible": true,
+      "cardinalities": [
+        0,
+        2,
+        3,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "detection_sha256": "5eee3f00db05993be4dae1d72699456f073d27ea8403189a0ef117e4e1663871",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 3,
+      "original_y": 0.0171756035646559,
+      "decoy_y": 0.0011756035646558992
+    },
+    {
+      "variant_index": 2,
+      "base_index": 6,
+      "pair": [
+        1483,
+        1487
+      ],
+      "offset_mm": 0.022,
+      "eligible": true,
+      "cardinalities": [
+        0,
+        2,
+        3,
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "detection_sha256": "6eecc888d0e015c064f885c1b4c375be0334cea716979ad771f048ae09dbb8b7",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 3,
+      "original_y": 0.0171756035646559,
+      "decoy_y": -0.004824396435344099
+    },
+    {
+      "variant_index": 3,
+      "base_index": 8,
+      "pair": [
+        1499,
+        1511
+      ],
+      "offset_mm": 0.01,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "d0364fe2b758159f70eb2b68cdf788bdb847e8105a6eeac37871e11e13220ce0",
+      "replaced_frame_six_index": 1,
+      "replaced_reference_id": 2,
+      "original_y": 0.01755242511149649,
+      "decoy_y": 0.007552425111496489
+    },
+    {
+      "variant_index": 4,
+      "base_index": 8,
+      "pair": [
+        1499,
+        1511
+      ],
+      "offset_mm": 0.016,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "7d5c430f8a7c6066fffcccb5e9bac7fc9b501adbcd9a2fa7d0eff9005295a8f2",
+      "replaced_frame_six_index": 1,
+      "replaced_reference_id": 2,
+      "original_y": 0.01755242511149649,
+      "decoy_y": 0.0015524251114964888
+    },
+    {
+      "variant_index": 5,
+      "base_index": 8,
+      "pair": [
+        1499,
+        1511
+      ],
+      "offset_mm": 0.022,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "471e6acbdfdc51cb4b7f76a4f18325c987dd94d638788448941e4b813bd0fd4d",
+      "replaced_frame_six_index": 1,
+      "replaced_reference_id": 2,
+      "original_y": 0.01755242511149649,
+      "decoy_y": -0.00444757488850351
+    },
+    {
+      "variant_index": 6,
+      "base_index": 11,
+      "pair": [
+        1553,
+        1559
+      ],
+      "offset_mm": 0.01,
+      "eligible": true,
+      "cardinalities": [
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "detection_sha256": "b1b8cd62bf9c338e268c7192f7ca62279740983d0261ff0b4f3ee9cb0396b6c3",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 2,
+      "original_y": 0.013014719110451186,
+      "decoy_y": 0.0030147191104511854
+    },
+    {
+      "variant_index": 7,
+      "base_index": 11,
+      "pair": [
+        1553,
+        1559
+      ],
+      "offset_mm": 0.016,
+      "eligible": true,
+      "cardinalities": [
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "detection_sha256": "7b041eefd318e3dc70be937c354d2c347947ed34e58a5832c2162c445390edb7",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 2,
+      "original_y": 0.013014719110451186,
+      "decoy_y": -0.0029852808895488147
+    },
+    {
+      "variant_index": 8,
+      "base_index": 11,
+      "pair": [
+        1553,
+        1559
+      ],
+      "offset_mm": 0.022,
+      "eligible": true,
+      "cardinalities": [
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "detection_sha256": "13dc1ed1838e7a9eb8894c368dc592f539f917e2edc52899a67f788266ebfae8",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 2,
+      "original_y": 0.013014719110451186,
+      "decoy_y": -0.008985280889548813
+    }
+  ],
+  "status": "geometry_only_before_posterior"
+}

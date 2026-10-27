@@ -734,6 +734,80 @@ move or open the holdout. Next diagnose count-band transfer in the
 crowded primary geometry before freezing another move and independent
 absolute comparison.
 
+## WP11ac — Crowded count bands and independent reference
+
+- [x] Decompose the WP11ab final joint errors into alive-band and clutter
+  marginals against the pinned exact 19-detection reference
+- [x] Freeze a new cardinality-only observation ladder and absolute
+  validation before inspecting its posterior
+- [x] Screen until the frozen numerical stop; do not select an invalid joint
+- [x] Freeze the whole-slot conditional Gibbs move and two-case accuracy,
+  replication and cost rules before candidate inference (WP11ag)
+
+Three of six crowded WP11ab seeds have alive-band TV >=0.10; in those
+runs the band marginal alone lower-bounds 64–95% of full-joint TV.
+This supports testing a whole-slot interval redraw while preserving
+separate clutter checks. See `wp11ac_global_count_reference.md` for the
+retrospective decomposition and prospective independent reference rule.
+Indices 1 and 2 failed frame-six clutter balance. Index 3 failed the
+raw-cell numerical tolerance (-4.66e-10 versus -1e-10), stopping this
+ladder before indices 6 and 8. No WP11ac reference was selected.
+The holdout stays closed.
+
+## WP11ad — Fresh frame-six decoy reference
+
+- [x] Freeze fresh seed pairs, an observation-only decoy construction,
+  screening order, balance and numerical rules before posterior inspection
+- [x] Stop at the first numerical failure, before a sampler comparison
+
+See `wp11ad_fresh_decoy_reference.md`. This is a separate prospective
+reference after the WP11ac numerical stop, with no threshold revision
+or reuse of rejected cases. Variant 0's raw minimum cell -2.32e-8
+failed the -1e-10 gate; no WP11ad reference was selected.
+
+## WP11ae — Lower-density fresh decoy reference
+
+- [x] Freeze a third, fresh-seed geometry-only ladder and strict
+  numerical/balance selection before any WP11ae posterior inspection
+- [x] Screen all nine variants and stop on frozen balance exhaustion
+
+See `wp11ae_stable_decoy_reference.md`. The 16–17 detection rule
+reduces the subset computation burden, while the 19-detection exposed
+primary remains a required sentinel for any future sampler move.
+All nine variants passed numerical checks but none passed the two-frame
+clutter and alive-band balance rule. No WP11ae reference was selected.
+
+## WP11af — Independent geometry-only transfer reference
+
+- [x] Freeze fresh seed pairs and select a 17-detection observation
+  from cardinalities alone before posterior inspection
+- [x] Validate the absolute joint with independent numerical paths
+  before freezing the sampler comparison
+
+See `wp11af_geometry_transfer_reference.md`. This reference tests
+transfer; only the exposed 19-detection sentinel can probe the
+count-band failure directly. The selected index-3 observation has 17
+detections; direct and paired beta-one joint TV differs by 3.27e-11,
+minimum raw cell is -4.65e-12, and the exact checkpoint passed all
+frozen tests (SHA-256
+`cd6f20f821a2689cda5a1a0aceb19fa9db7c6232af0e8e05b6262e312469f87b`).
+The holdout remains closed.
+
+## WP11ag — Whole-slot Gibbs gate frozen
+
+- [x] Implement and check an exact full-trajectory, one-slot
+  conditional Gibbs update on toy and independent eight-frame support
+- [x] Pin the two-case absolute, replication and cost comparison
+  before any candidate or new-control inference
+- [ ] Run the 14 fixed control/candidate jobs and apply both gates
+
+The move replaces 20% of paired proposals at beta >=0.65, retains 10%
+full-path PG and 70% local paired, and is bitwise control-equivalent
+earlier. The exposed 19-detection primary and independently selected
+17-detection transfer case must **both** pass. See
+`wp11ag_global_slot_gate.md` for the fixed limits and interpretation.
+The untouched holdout stays closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`

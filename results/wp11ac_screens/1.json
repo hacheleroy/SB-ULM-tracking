@@ -1,0 +1,47 @@
+{
+  "experiment": "wp11ac_balance_screen",
+  "ledger_sha256": "8a9dd92829f62b6094913682950f8eb39eaaf7dfe48365e46890a0794d9f0623",
+  "index": 1,
+  "pair": [
+    613,
+    617
+  ],
+  "cardinalities": [
+    2,
+    1,
+    4,
+    2,
+    2,
+    2,
+    2,
+    3
+  ],
+  "detection_sha256": "004d71c2148aa49283b8890f168a7c66f6878d1c4b606c9c775cf132fdb81876",
+  "masses": {
+    "alive_bands": [
+      0.2608282044282616,
+      0.14633788740067083,
+      0.5928339081710677
+    ],
+    "sixth_clutter": [
+      0.9485570348557267,
+      0.05079004272427861,
+      0.0006529224199947327
+    ],
+    "last_clutter": [
+      0.0017899920619435516,
+      0.664337026342113,
+      0.3241909639723422,
+      0.009682017623601278
+    ]
+  },
+  "numerical": {
+    "minimum_raw_cell": -7.36375862539579e-13,
+    "maximum_relative_imaginary_residual": 2.998913100950703e-19,
+    "raw_mass_error": 0.0,
+    "clipping_tv": 1.707413336773198e-12,
+    "log_partition": 102.76311659127313
+  },
+  "cpu_seconds": 85.774931631,
+  "status": "balance_failed_continue"
+}

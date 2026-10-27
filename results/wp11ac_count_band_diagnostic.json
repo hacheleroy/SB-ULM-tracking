@@ -1,0 +1,202 @@
+{
+  "experiment": "wp11ac_retrospective_count_band_diagnostic",
+  "inputs_sha256": {
+    "wp11ab": "ab05dec063aa142e0504cf4a6c23a3abfb0db58730d569556f1e288251355c4c",
+    "primary_exact": "52f13725b9f7dd8851b44ee97025afebf98f042791b111cf508dcbd5c0c0c14c"
+  },
+  "exact_alive_band_mass": [
+    0.41116037531159605,
+    0.13952189809225318,
+    0.4493177265961509
+  ],
+  "bands": "low <=20, middle 21, high >=22 alive slot-frames",
+  "seeds": {
+    "1300": {
+      "arms": {
+        "control": {
+          "signed_alive_band_errors": [
+            0.188448999688404,
+            0.0030562269077468243,
+            -0.19150522659615085
+          ],
+          "alive_band_tv_lower_bound": 0.19150522659615082,
+          "full_joint_tv": 0.2120075282599248,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.903294463965271,
+          "sixth_clutter_one_signed_error": -0.12161761428146037,
+          "last_clutter_one_signed_error": 0.12491440383238893
+        },
+        "candidate": {
+          "signed_alive_band_errors": [
+            0.150363062188404,
+            0.00012653940774682388,
+            -0.15048960159615085
+          ],
+          "alive_band_tv_lower_bound": 0.15048960159615082,
+          "full_joint_tv": 0.17471419008214806,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.8613473326087183,
+          "sixth_clutter_one_signed_error": -0.10013323928146037,
+          "last_clutter_one_signed_error": 0.11417221633238889
+        }
+      },
+      "late_stage_count_signature_change_rate_mean": 0.19568023412895053,
+      "late_stage_count_signature_change_rate_last": 0.19072292129286947
+    },
+    "1301": {
+      "arms": {
+        "control": {
+          "signed_alive_band_errors": [
+            0.214327905938404,
+            0.012333570657746824,
+            -0.22666147659615085
+          ],
+          "alive_band_tv_lower_bound": 0.22666147659615082,
+          "full_joint_tv": 0.24269379908458724,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.9339401231143586,
+          "sixth_clutter_one_signed_error": -0.08792620803146038,
+          "last_clutter_one_signed_error": 0.07608627883238891
+        },
+        "candidate": {
+          "signed_alive_band_errors": [
+            0.247042749688404,
+            -0.027705491842253176,
+            -0.21933725784615085
+          ],
+          "alive_band_tv_lower_bound": 0.247042749688404,
+          "full_joint_tv": 0.26042856737593223,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.9486008089573154,
+          "sixth_clutter_one_signed_error": -0.09134417678146038,
+          "last_clutter_one_signed_error": 0.07266831008238891
+        }
+      },
+      "late_stage_count_signature_change_rate_mean": 0.19263815053990696,
+      "late_stage_count_signature_change_rate_last": 0.1779588857803187
+    },
+    "1302": {
+      "arms": {
+        "control": {
+          "signed_alive_band_errors": [
+            -0.016140844061596,
+            0.004032789407746824,
+            0.012108054653849162
+          ],
+          "alive_band_tv_lower_bound": 0.016140844061595994,
+          "full_joint_tv": 0.18152044888887794,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.08892025201787042,
+          "sixth_clutter_one_signed_error": -0.09280902053146038,
+          "last_clutter_one_signed_error": 0.11221909133238889
+        },
+        "candidate": {
+          "signed_alive_band_errors": [
+            0.0077849371884039995,
+            -0.004267991842253176,
+            -0.0035169453461508238
+          ],
+          "alive_band_tv_lower_bound": 0.0077849371884039995,
+          "full_joint_tv": 0.12873042862323011,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.06047472436520082,
+          "sixth_clutter_one_signed_error": -0.049351989281460354,
+          "last_clutter_one_signed_error": 0.08585190383238891
+        }
+      },
+      "late_stage_count_signature_change_rate_mean": 0.2084607752640336,
+      "late_stage_count_signature_change_rate_last": 0.19995126111855732
+    },
+    "1303": {
+      "arms": {
+        "control": {
+          "signed_alive_band_errors": [
+            -0.011258031561595999,
+            0.025517164407746824,
+            -0.014259132846150817
+          ],
+          "alive_band_tv_lower_bound": 0.02551716440774682,
+          "full_joint_tv": 0.1624602670475045,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.15706710860130144,
+          "sixth_clutter_one_signed_error": -0.10599261428146038,
+          "last_clutter_one_signed_error": 0.09073471633238889
+        },
+        "candidate": {
+          "signed_alive_band_errors": [
+            -0.042019750311596,
+            0.021610914407746824,
+            0.020408835903849176
+          ],
+          "alive_band_tv_lower_bound": 0.042019750311596,
+          "full_joint_tv": 0.18628049636559046,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.2255724626647379,
+          "sixth_clutter_one_signed_error": -0.09329730178146038,
+          "last_clutter_one_signed_error": 0.08926987258238889
+        }
+      },
+      "late_stage_count_signature_change_rate_mean": 0.20144270922142896,
+      "late_stage_count_signature_change_rate_last": 0.1950920245398773
+    },
+    "1304": {
+      "arms": {
+        "control": {
+          "signed_alive_band_errors": [
+            0.179171655938404,
+            -0.007685960592253176,
+            -0.1714856953461508
+          ],
+          "alive_band_tv_lower_bound": 0.179171655938404,
+          "full_joint_tv": 0.23007721542053441,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.7787457598133506,
+          "sixth_clutter_one_signed_error": -0.1777699580314604,
+          "last_clutter_one_signed_error": 0.16837143508238886
+        },
+        "candidate": {
+          "signed_alive_band_errors": [
+            0.120089624688404,
+            0.014774976907746824,
+            -0.13486460159615085
+          ],
+          "alive_band_tv_lower_bound": 0.13486460159615082,
+          "full_joint_tv": 0.21076698760434884,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.6398753577544044,
+          "sixth_clutter_one_signed_error": -0.1621449580314604,
+          "last_clutter_one_signed_error": 0.15860581008238891
+        }
+      },
+      "late_stage_count_signature_change_rate_mean": 0.19627800681820606,
+      "late_stage_count_signature_change_rate_last": 0.18387449835826342
+    },
+    "1305": {
+      "arms": {
+        "control": {
+          "signed_alive_band_errors": [
+            0.007784937188404001,
+            0.005985914407746824,
+            -0.01377085159615081
+          ],
+          "alive_band_tv_lower_bound": 0.013770851596150817,
+          "full_joint_tv": 0.11677766885902871,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.11792367265675315,
+          "sixth_clutter_one_signed_error": 0.06685894821853962,
+          "last_clutter_one_signed_error": -0.03280043991761112
+        },
+        "candidate": {
+          "signed_alive_band_errors": [
+            0.022921655938404,
+            -0.005732835592253176,
+            -0.01718882034615082
+          ],
+          "alive_band_tv_lower_bound": 0.022921655938404,
+          "full_joint_tv": 0.14859294411665616,
+          "fraction_of_full_tv_lower_bounded_by_alive_band_tv": 0.15425803745034386,
+          "sixth_clutter_one_signed_error": 0.07808941696853962,
+          "last_clutter_one_signed_error": -0.044519189917611106
+        }
+      },
+      "late_stage_count_signature_change_rate_mean": 0.19484302694952196,
+      "late_stage_count_signature_change_rate_last": 0.18441683753467616
+    }
+  },
+  "candidate_seeds_with_band_tv_at_least_point_10": [
+    "1300",
+    "1301",
+    "1304"
+  ],
+  "interpretation": "marginal TV is a rigorous lower bound on full-joint TV; stage count-signature changes do not establish between-band flow",
+  "status": "retrospective_exposed_diagnostic_only"
+}

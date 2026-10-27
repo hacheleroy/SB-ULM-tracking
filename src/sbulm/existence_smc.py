@@ -21,6 +21,7 @@ from .slot_existence import (
 )
 from .smc import _next_beta, _normalized_weights, systematic_resample
 from .tracklet_moves import propose_guided_tracklets
+from .whole_slot_gibbs import WholeSlotGibbs
 
 FloatArray = NDArray[np.float64]
 IntArray = NDArray[np.int64]
@@ -160,6 +161,8 @@ class BirthDeathSMCStageDiagnostics:
     paired_slot_pg_count_signature_change_rate: float = 0.0
     paired_slot_suffix_pg_selected_fraction: float = 0.0
     paired_slot_suffix_pg_count_signature_change_rate: float = 0.0
+    paired_slot_whole_slot_selected_fraction: float = 0.0
+    paired_slot_whole_slot_count_signature_change_rate: float = 0.0
 
     def to_dict(self) -> dict[str, float | int]:
         return asdict(self)
@@ -488,6 +491,14 @@ def _late_pair_window_weights(
     return weights
 
 
+def _whole_slot_fraction(config: BirthDeathSMCConfig, beta: float) -> float:
+    """Opt-in, beta-only selection of a whole-slot exact conditional move."""
+
+    switch = getattr(config, "paired_slot_whole_slot_beta_switch", None)
+    return (getattr(config, "paired_slot_whole_slot_fraction", 0.0)
+            if switch is not None and beta >= switch else 0.0)
+
+
 def _metropolis_birth_death_rejuvenation(
     associations: IntArray,
     log_marginal_densities: FloatArray,
@@ -500,6 +511,7 @@ def _metropolis_birth_death_rejuvenation(
     config: BirthDeathSMCConfig,
     rng: np.random.Generator,
     observer: BirthDeathSMCObserver | None = None,
+    whole_slot_kernel: WholeSlotGibbs | None = None,
 ) -> tuple[
     IntArray,
     FloatArray,
@@ -513,7 +525,7 @@ def _metropolis_birth_death_rejuvenation(
             log_marginal_densities,
             log_count_densities,
             log_existence_priors,
-            (0.0,) * 14,
+            (0.0,) * 16,
         )
 
     accepted_total = 0
@@ -526,6 +538,8 @@ def _metropolis_birth_death_rejuvenation(
     paired_pg_count_changes = 0
     suffix_pg_selected = 0
     suffix_pg_count_changes = 0
+    whole_slot_selected = 0
+    whole_slot_count_changes = 0
     tracklet_changes = 0
     current = associations
     current_marginal = log_marginal_densities
@@ -564,6 +578,7 @@ def _metropolis_birth_death_rejuvenation(
         if pair_rows.size:
             pg_mask = np.zeros(pair_rows.size, dtype=bool)
             suffix_mask = np.zeros(pair_rows.size, dtype=bool)
+            whole_mask = np.zeros(pair_rows.size, dtype=bool)
             if config.paired_slot_scope == "local":
                 (
                     pair_proposed,
@@ -599,11 +614,17 @@ def _metropolis_birth_death_rejuvenation(
             else:
                 fraction = _paired_pg_fraction(config, beta)
                 suffix_fraction = _paired_suffix_pg_fraction(config, beta)
-                if suffix_fraction:
+                whole_fraction = _whole_slot_fraction(config, beta)
+                if fraction + suffix_fraction + whole_fraction > 1 + 1e-12:
+                    raise ValueError("paired conditional fractions exceed one")
+                if suffix_fraction or whole_fraction:
                     selection = rng.random(pair_rows.size)
                     pg_mask = selection < fraction
                     suffix_mask = (selection >= fraction) & (
                         selection < fraction + suffix_fraction
+                    )
+                    whole_mask = (selection >= fraction + suffix_fraction) & (
+                        selection < fraction + suffix_fraction + whole_fraction
                     )
                 elif fraction == 1:
                     pg_mask[:] = True
@@ -614,7 +635,7 @@ def _metropolis_birth_death_rejuvenation(
                 pair_count = current_count[pair_rows].copy()
                 pair_existence = current_existence[pair_rows].copy()
                 pair_accepted = np.zeros(pair_rows.size, dtype=bool)
-                local_positions = np.flatnonzero(~(pg_mask | suffix_mask))
+                local_positions = np.flatnonzero(~(pg_mask | suffix_mask | whole_mask))
                 if local_positions.size:
                     local_rows = pair_rows[local_positions]
                     local_state, local_marginal, local_count, local_existence, local_accept = (
@@ -662,6 +683,21 @@ def _metropolis_birth_death_rejuvenation(
                     )
                     pair_existence[suffix_positions] = model.log_existence_prior(suffix_state)
                     pair_accepted[suffix_positions] = True
+                whole_positions = np.flatnonzero(whole_mask)
+                if whole_positions.size:
+                    if whole_slot_kernel is None:
+                        whole_slot_kernel = WholeSlotGibbs(model)
+                    whole_state = whole_slot_kernel.sample(
+                        current, pair_rows[whole_positions], beta, rng
+                    )
+                    pair_proposed[whole_positions] = whole_state
+                    pair_marginal[whole_positions] = model.log_marginal_density(whole_state)
+                    pair_count[whole_positions] = model.log_count_density(
+                        whole_state, include_poisson_void=False
+                    )
+                    pair_existence[whole_positions] = model.log_existence_prior(whole_state)
+                    pair_accepted[whole_positions] = True
+                    whole_slot_selected += whole_positions.size
                 paired_pg_selected += pg_positions.size + suffix_positions.size
                 suffix_pg_selected += suffix_positions.size
             if observer is not None:
@@ -696,6 +732,16 @@ def _metropolis_birth_death_rejuvenation(
                 )
                 paired_pg_count_changes += int(np.count_nonzero(changed))
                 suffix_pg_count_changes += int(np.count_nonzero(changed[suffix_mask[selected_pg]]))
+            if np.any(whole_mask):
+                whole_rows = pair_rows[whole_mask]
+                whole_states = pair_proposed[whole_mask]
+                whole_slot_count_changes += int(np.count_nonzero(np.any(
+                    (np.count_nonzero(current[whole_rows] != ABSENT, axis=2)
+                     != np.count_nonzero(whole_states != ABSENT, axis=2))
+                    | (np.count_nonzero(current[whole_rows] >= 0, axis=2)
+                       != np.count_nonzero(whole_states >= 0, axis=2)),
+                    axis=1,
+                )))
             current[selected_rows] = selected_states
             current_marginal[selected_rows] = pair_marginal[pair_accepted]
             current_count[selected_rows] = pair_count[pair_accepted]
@@ -764,6 +810,8 @@ def _metropolis_birth_death_rejuvenation(
             paired_pg_count_changes / paired_pg_selected if paired_pg_selected else 0.0,
             suffix_pg_selected / proposed_by_move[4] if proposed_by_move[4] else 0.0,
             suffix_pg_count_changes / suffix_pg_selected if suffix_pg_selected else 0.0,
+            whole_slot_selected / proposed_by_move[4] if proposed_by_move[4] else 0.0,
+            whole_slot_count_changes / whole_slot_selected if whole_slot_selected else 0.0,
         ),
     )
 
@@ -829,6 +877,7 @@ def sample_slot_existence_posterior(
     log_evidence = model.base_log_normalizer
     stages: list[BirthDeathSMCStageDiagnostics] = []
     target_ess = controls.target_ess_fraction * controls.n_particles
+    whole_slot_kernel: WholeSlotGibbs | None = None
 
     for step in range(1, controls.max_tempering_steps + 1):
         next_beta = _next_beta(
@@ -854,6 +903,8 @@ def sample_slot_existence_posterior(
         stage_sweeps = controls.mh_sweeps + (
             controls.final_mh_sweeps if next_beta == 1.0 else 0
         )
+        if _whole_slot_fraction(controls, next_beta) and whole_slot_kernel is None:
+            whole_slot_kernel = WholeSlotGibbs(model)
         (
             associations,
             log_marginal,
@@ -871,6 +922,7 @@ def sample_slot_existence_posterior(
             config=controls,
             rng=rng,
             observer=observer,
+            whole_slot_kernel=whole_slot_kernel,
         )
         unique_states = np.unique(
             associations.reshape(controls.n_particles, -1), axis=0
@@ -898,6 +950,8 @@ def sample_slot_existence_posterior(
                 paired_slot_pg_count_signature_change_rate=acceptance[11],
                 paired_slot_suffix_pg_selected_fraction=acceptance[12],
                 paired_slot_suffix_pg_count_signature_change_rate=acceptance[13],
+                paired_slot_whole_slot_selected_fraction=acceptance[14],
+                paired_slot_whole_slot_count_signature_change_rate=acceptance[15],
             )
         )
         if observer is not None:
