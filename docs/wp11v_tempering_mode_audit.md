@@ -89,4 +89,43 @@ unchanged rather than selecting another after seeing its posterior.
 
 ## Outcome
 
-Pending the frozen observation and stage audit.
+All four fixed runs completed within the 750 CPU-second cap. They had
+16–17 stages and consumed 196.7–205.3 CPU seconds each. The exact joint
+was evaluated at all 65 distinct observed betas. Across those evaluations,
+the largest relative imaginary residual was `2.8e-19`, raw mass error
+was zero at the reported precision, and largest clipping TV was
+`4.0e-15`; no numerical envelope failed. Every recorded joint was
+normalized, and each beta sequence increased to one.
+
+| Seed | Stages | First sustained onset | Peak post-rejuvenation band × sixth TV | Final full TV | Final band × sixth TV | Final maximum alive-band error |
+| --- | ---: | --- | ---: | ---: | ---: | ---: |
+| 1400 | 17 | None | 0.0401 | 0.0917 | 0.0401 | 0.0393 |
+| 1401 | 17 | None | 0.0273 | 0.0694 | 0.0088 | 0.0066 |
+| 1402 | 16 | None | 0.0415 | 0.0764 | 0.0145 | 0.0124 |
+| 1403 | 17 | None | 0.0303 | 0.0673 | 0.0087 | 0.0042 |
+
+The descriptive onset limit was `0.05` at every observed beta. No
+post-rejuvenation stage exceeded it. Seed 1402 had a transient weighted
+joint above the limit at stage nine (`beta≈0.651`); resampling brought it
+below the limit, and it did not meet the two-stage onset rule. Median
+signed changes in full-joint TV across all 67 stages were `+0.01350`
+for weighting, `+0.00291` for resampling, and `−0.01370` for
+rejuvenation. Weighting compares the prior-beta sample with the
+current-beta target, so this signed change also includes movement of
+the target. Final full-joint TVs remain `0.0673–0.0917`, and the largest
+final frame-eight clutter-mean error is `0.0275` detections.
+
+This independent case does not show sustained count/clutter band loss
+under the predeclared marker. Its beta-one low/high alive masses are
+strongly unbalanced, so it cannot settle the WP11t competing-mode
+problem. The four seeds are descriptive runs, not an independent
+replication of WP11t or a reason to choose an earlier-stage move. A next
+development gate needs an independently validated, more balanced
+eight-frame mode reference and a comparison frozen before inference.
+The untouched holdout remains closed.
+
+The committed concise outcome is `results/wp11v_tempering_summary.json`.
+The runner reproduces the detailed stage traces in `results/wp11v_runs/`
+and exact stage comparisons in `results/wp11v_tempering_mode_audit.json`
+using the pinned reference and seeds. Those larger generated traces were
+kept out of this PR.

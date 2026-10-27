@@ -707,6 +707,25 @@ full-joint TVs above the descriptive exact-IID q95. Next audit the timing
 of count/clutter mode loss under an independently frozen protocol before
 another earlier-stage move; the untouched holdout remains closed.
 
+## WP11v — Independent tempering-stage count/clutter audit
+
+- [x] Freeze a new eight-frame observation using only detection cardinalities
+- [x] Validate and pin the four-slot exact tempered reference before inference
+- [x] Record unchanged WP11g stage distributions for four fixed seeds
+- [x] Compare each stage with its exact beta target using the frozen rule
+
+All four runs completed. None had two consecutive post-rejuvenation
+band-by-sixth-clutter TVs above the predeclared 0.05 limit. The final
+full-joint TV range was 0.0673–0.0917; median signed full-joint TV
+changes were +0.01350 at weighting, +0.00291 at resampling and
+−0.01370 at rejuvenation. One transient weighted discrepancy in seed
+1402 cleared at resampling. The independently selected observation has
+unbalanced beta-one alive bands (low 0.8957, high 0.0620), limiting
+inference about the competing high-alive mode. See
+`wp11v_tempering_mode_audit.md`. Freeze and validate a more balanced
+independent eight-frame reference before developing another move. The
+untouched holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
