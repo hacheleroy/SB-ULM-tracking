@@ -36,6 +36,7 @@ PAIRS = ((271, 277), (281, 283), (293, 307), (311, 313),
 OFFSETS = (.010, .016, .022)
 MAX_SCREENS = 9
 LEDGER_SHA256 = "d1eabae457ac7b4145828d4ee59566ca0811403ac616c4877b0b5f6858e35679"
+REFERENCE_SHA256 = "d1834acda7022ba9d50d97a15115975909c6c938409969b8415e913dda62977c"
 SCREEN_CPU_CAP = 450
 VALIDATION_CPU_CAP = 1_800
 
@@ -172,6 +173,21 @@ def _ledger(path: Path) -> dict[str, Any]:
 
 def _screen_order(ledger: dict[str, Any]) -> list[dict[str, Any]]:
     return [item for item in ledger["variants"] if item["eligible"]][:MAX_SCREENS]
+
+
+def validated_reference(path: Path) -> dict[str, Any]:
+    if hashlib.sha256(path.read_bytes()).hexdigest() != REFERENCE_SHA256:
+        raise ValueError("validated WP11x reference checkpoint hash changed")
+    saved = json.loads(path.read_text(encoding="utf-8"))
+    ledger = _ledger(Path("results/wp11x_geometry_ledger.json"))
+    entries = _screen_order(ledger)
+    selected = entries[1]
+    if (saved["status"] != "validated_reference_no_sampler"
+            or saved["ledger_sha256"] != LEDGER_SHA256
+            or saved["variant_index"] != selected["variant_index"]
+            or saved["selected_detection_sha256"] != selected["detection_sha256"]):
+        raise ValueError("WP11x exact reference differs from frozen selection")
+    return saved
 
 
 def _checked_case(entry: dict[str, Any]) -> Any:
