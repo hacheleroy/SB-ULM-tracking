@@ -1,0 +1,741 @@
+{
+  "experiment": "wp11x_frame_six_geometry",
+  "protocol": {
+    "pairs": [
+      [
+        271,
+        277
+      ],
+      [
+        281,
+        283
+      ],
+      [
+        293,
+        307
+      ],
+      [
+        311,
+        313
+      ],
+      [
+        317,
+        331
+      ],
+      [
+        337,
+        347
+      ],
+      [
+        349,
+        353
+      ],
+      [
+        359,
+        367
+      ],
+      [
+        373,
+        379
+      ],
+      [
+        383,
+        389
+      ],
+      [
+        397,
+        401
+      ],
+      [
+        409,
+        419
+      ],
+      [
+        421,
+        431
+      ],
+      [
+        433,
+        439
+      ],
+      [
+        443,
+        449
+      ],
+      [
+        457,
+        461
+      ],
+      [
+        463,
+        467
+      ],
+      [
+        479,
+        487
+      ],
+      [
+        491,
+        499
+      ],
+      [
+        503,
+        509
+      ],
+      [
+        521,
+        523
+      ],
+      [
+        541,
+        547
+      ],
+      [
+        557,
+        563
+      ],
+      [
+        569,
+        571
+      ]
+    ],
+    "offsets_mm": [
+      0.01,
+      0.016,
+      0.022
+    ],
+    "regime": {
+      "detection_probability": 0.68,
+      "expected_clutter_per_frame": 0.28,
+      "central_separation": 0.007,
+      "max_clutter_per_frame": 2,
+      "truth_mask": [
+        [
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          false,
+          true,
+          true
+        ]
+      ]
+    },
+    "eligibility": "17..19 total; frame six 2 or 3 true and zero clutter; last 2; frames 3..5 >=7",
+    "decoy": "highest frame-six reference ID becomes clutter; y moves toward zero by offset",
+    "errors": "record generator or ROI failure and skip; no replacement",
+    "order": "base seed then ascending offset",
+    "max_screens": 9,
+    "acceptance": "low and high >=.18; middle >=.05; two sixth and two last clutter >=.15",
+    "numeric": {
+      "minimum_raw_cell": -1e-10,
+      "imaginary_residual": 1e-08,
+      "mass_error": 1e-08,
+      "direct_paired_logz": 1e-08,
+      "direct_paired_tv": 1e-07,
+      "direct_paired_max_cell": 1e-08
+    },
+    "screen_cpu_cap": 450,
+    "validation_cpu_cap": 1800,
+    "no_sampler_or_holdout": true
+  },
+  "bases": [
+    {
+      "base_index": 0,
+      "pair": [
+        271,
+        277
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        2,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "5840fa649cdde4dc213968d3138260146bee757f3b8f9abdf07a7de5547d8e29",
+      "frame_six_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 1,
+      "pair": [
+        281,
+        283
+      ],
+      "cardinalities": [
+        1,
+        4,
+        4,
+        4,
+        1,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "ad3f0f21cd16671dc264973d65b139f3b0b9575cc38d62139880d483bae32c5a",
+      "frame_six_reference_ids": [
+        1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 2,
+      "pair": [
+        293,
+        307
+      ],
+      "cardinalities": [
+        2,
+        4,
+        2,
+        2,
+        3,
+        5,
+        1,
+        2
+      ],
+      "base_detection_sha256": "25bd565ee42d4059a82f37ae6dd461ea1170d408707c6017363694df18f99d51",
+      "frame_six_reference_ids": [
+        -1,
+        -1,
+        1,
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 3,
+      "pair": [
+        311,
+        313
+      ],
+      "cardinalities": [
+        3,
+        3,
+        2,
+        4,
+        5,
+        3,
+        3,
+        1
+      ],
+      "base_detection_sha256": "7c59bd3cff2067335a3b48f35271b760bdfe73aa16722259f659a848aa5ece63",
+      "frame_six_reference_ids": [
+        -1,
+        1,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 4,
+      "pair": [
+        317,
+        331
+      ],
+      "cardinalities": [
+        2,
+        1,
+        4,
+        3,
+        3,
+        2,
+        4,
+        2
+      ],
+      "base_detection_sha256": "ef9be9e0dfd21a462758c56f76b2da0247a73452e3e84e0376abf6098b5958ee",
+      "frame_six_reference_ids": [
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 5,
+      "pair": [
+        337,
+        347
+      ],
+      "cardinalities": [
+        2,
+        1,
+        4,
+        5,
+        3,
+        4,
+        2,
+        2
+      ],
+      "base_detection_sha256": "f4210403b9fd136e20ed964dc528fefead06ee04cf34d1bec06020ad1b43f7bd",
+      "frame_six_reference_ids": [
+        3,
+        -1,
+        1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 6,
+      "pair": [
+        349,
+        353
+      ],
+      "cardinalities": [
+        1,
+        1,
+        3,
+        3,
+        3,
+        4,
+        2,
+        2
+      ],
+      "base_detection_sha256": "fdf90213174eaa5d0514af2814dac70f3748ed6c3c6a24f49473e0751b667137",
+      "frame_six_reference_ids": [
+        1,
+        -1,
+        3,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 7,
+      "pair": [
+        359,
+        367
+      ],
+      "cardinalities": [
+        1,
+        4,
+        3,
+        1,
+        2,
+        1,
+        4,
+        0
+      ],
+      "base_detection_sha256": "a7590b6362894c4ce9dd47b1bd4435a673e0fa9bb6230d86fdbb03a535becfba",
+      "frame_six_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 8,
+      "pair": [
+        373,
+        379
+      ],
+      "cardinalities": [
+        2,
+        3,
+        1,
+        2,
+        3,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "4b90394326f3fa4d342221b7e0c7f0a0528fd1689daed067de88318f693ecb4b",
+      "frame_six_reference_ids": [
+        -1,
+        1,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 9,
+      "pair": [
+        383,
+        389
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        0,
+        4,
+        3,
+        4,
+        1
+      ],
+      "base_detection_sha256": "b0fa31d31dd6c8616b512bc093fdef4cefcc32ad1fdaa1b54052630980161f92",
+      "frame_six_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 10,
+      "pair": [
+        397,
+        401
+      ],
+      "cardinalities": [
+        1,
+        2,
+        2,
+        4,
+        5,
+        4,
+        3,
+        3
+      ],
+      "base_detection_sha256": "36270efa43217a41435a6ba05d9cef75c9bb44901f11b224d5a395a43d56c530",
+      "frame_six_reference_ids": [
+        1,
+        -1,
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 11,
+      "pair": [
+        409,
+        419
+      ],
+      "cardinalities": [
+        0,
+        4,
+        5,
+        3,
+        5,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "9ee712f44cdee38a4e6a9a597848286f7d2ebe1763dea85a19f2849142708e51",
+      "frame_six_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 12,
+      "pair": [
+        421,
+        431
+      ],
+      "cardinalities": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "9968e205b838434d55a27ef9e9ef95b76e3bf454365b913eeed1a2b70ddb3e90",
+      "frame_six_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 13,
+      "pair": [
+        433,
+        439
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        3,
+        3,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "b402136aa4bdd72c76c7d7e5cd0094b8111010d7f6063c932a8eadb019031532",
+      "frame_six_reference_ids": [
+        2,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 14,
+      "pair": [
+        443,
+        449
+      ],
+      "cardinalities": [
+        2,
+        3,
+        5,
+        1,
+        2,
+        2,
+        0,
+        1
+      ],
+      "base_detection_sha256": "ab6653a6bfe841277f3ac7a3e797287d9e1d4182153cd828ca66815cd91f488d",
+      "frame_six_reference_ids": [
+        1,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 15,
+      "pair": [
+        457,
+        461
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        2,
+        3,
+        3,
+        2,
+        0
+      ],
+      "base_detection_sha256": "0652385ce212d15bba917f0f2192073c0c93d717339b47b983b346fbe9ad7029",
+      "frame_six_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 16,
+      "pair": [
+        463,
+        467
+      ],
+      "cardinalities": [
+        3,
+        4,
+        4,
+        4,
+        2,
+        3,
+        2,
+        1
+      ],
+      "base_detection_sha256": "0bbec425a9c0fee051ff2cca55ebf97dca6e21cbc38b9cea41c8404bb9624d12",
+      "frame_six_reference_ids": [
+        1,
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 17,
+      "pair": [
+        479,
+        487
+      ],
+      "cardinalities": [
+        3,
+        1,
+        3,
+        3,
+        4,
+        1,
+        3,
+        1
+      ],
+      "base_detection_sha256": "42b8300a21fdf7a15af93989725cdccb4b4a9c51e10c85e6f6e7a47d7449c79e",
+      "frame_six_reference_ids": [
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 18,
+      "pair": [
+        491,
+        499
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        3,
+        2,
+        3,
+        4,
+        1
+      ],
+      "base_detection_sha256": "92f8297897f4dcbf6d3fd105b8c760efd48f3005377433cab46b2b2b86634ba2",
+      "frame_six_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 19,
+      "pair": [
+        503,
+        509
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        3,
+        5,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "ed626e760ab029223a01f18ef311de4375fe86d96a595ec07f86deaee49be6e3",
+      "frame_six_reference_ids": [
+        2,
+        1,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 20,
+      "pair": [
+        521,
+        523
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        3,
+        4,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "ac9e6314e0b66845398c3104a00105adf397a78e57f52019077ff8c5a003ae81",
+      "frame_six_reference_ids": [
+        1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 21,
+      "pair": [
+        541,
+        547
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 22,
+      "pair": [
+        557,
+        563
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        5,
+        4,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "a26c612467881116bd9efbf499ffdb866e9895dc9ff35d418af5b592b716698c",
+      "frame_six_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 23,
+      "pair": [
+        569,
+        571
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "be650849db384d1bfe08896e36f95576780ae305d0db9d9f76723a8118b481cf",
+      "frame_six_reference_ids": [
+        -1,
+        2
+      ],
+      "eligible": false
+    }
+  ],
+  "variants": [],
+  "status": "geometry_only_before_posterior"
+}

@@ -21,9 +21,17 @@ following trajectory/corruption seeds in order:
 
 Base eligibility uses only simulated labels and detection geometry:
 17–19 total detections; frame six has two or three retained true
-detections and no baseline clutter; frame eight has exactly two
-detections; and frames three through five contain at least seven.
+detections and no baseline clutter; frame eight has at least one
+detection; and frames three through five contain at least six.
 Record generator failures as ineligible and do not replace seeds.
+
+The first, stricter geometry-only rule required exactly two last-frame
+detections and at least seven across frames three through five. It
+produced zero eligible bases in the fixed ladder. Before evaluating any
+posterior, we preserved that failed feasibility ledger and broadened
+those two **geometry** conditions as stated above. The seed list,
+decoy transformation, offsets, exact balance criteria and numerical
+limits did not change. This revision is committed before screening.
 
 For each eligible base, find the frame-six detection with the largest
 nonnegative reference ID. Replace its **y** coordinate with
@@ -71,4 +79,13 @@ validated reference before designing any later sampler test.
 
 ## Outcome
 
-Pending geometry ledger and exact screens.
+The first geometry-only ledger, with zero eligible bases, is retained
+at SHA-256 `09a023d6c00e6578c65eff3e1a9437756da45855d287f7a116576b31c56b0190`.
+The revised ledger is pinned at SHA-256
+`d1eabae457ac7b4145828d4ee59566ca0811403ac616c4877b0b5f6858e35679`.
+It has three eligible bases (seed pairs `(421,431)`, `(433,439)`,
+`(491,499)`) and nine ordered decoy variants. One other base had a
+generator ROI error; it was not replaced. No WP11x posterior has been
+evaluated at this point.
+
+Pending exact screens.

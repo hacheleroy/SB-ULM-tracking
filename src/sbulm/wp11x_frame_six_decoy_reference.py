@@ -35,7 +35,7 @@ PAIRS = ((271, 277), (281, 283), (293, 307), (311, 313),
          (521, 523), (541, 547), (557, 563), (569, 571))
 OFFSETS = (.010, .016, .022)
 MAX_SCREENS = 9
-LEDGER_SHA256: str | None = None  # Pin geometry before any exact screen.
+LEDGER_SHA256 = "d1eabae457ac7b4145828d4ee59566ca0811403ac616c4877b0b5f6858e35679"
 SCREEN_CPU_CAP = 450
 VALIDATION_CPU_CAP = 1_800
 
@@ -57,7 +57,7 @@ def _protocol() -> dict[str, Any]:
                    "central_separation": .007, "max_clutter_per_frame": 2,
                    "truth_mask": [list(row) for row in STAGGERED_TRUTH_MASK]},
         "eligibility": "17..19 total; frame six 2 or 3 true and zero clutter; "
-                       "last 2; frames 3..5 >=7",
+                       "last >=1; frames 3..5 >=6",
         "decoy": "highest frame-six reference ID becomes clutter; y moves toward zero by offset",
         "errors": "record generator or ROI failure and skip; no replacement",
         "order": "base seed then ascending offset", "max_screens": MAX_SCREENS,
@@ -76,7 +76,7 @@ def _base_eligible(case: Any) -> bool:
     cards = sequence.cardinalities
     ids = sequence.reference_ids[5]
     return (17 <= sum(cards) <= 19 and len(ids) in (2, 3)
-            and np.all(ids >= 0) and cards[7] == 2 and sum(cards[2:5]) >= 7)
+            and np.all(ids >= 0) and cards[7] >= 1 and sum(cards[2:5]) >= 6)
 
 
 def _decoy_case(base: Any, offset: float) -> tuple[Any, dict[str, Any]]:
