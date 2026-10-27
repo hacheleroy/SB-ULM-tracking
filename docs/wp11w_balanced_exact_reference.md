@@ -20,7 +20,11 @@ Use only cardinalities to mark eligible cases: 17–19 total detections,
 at least one in both frame six and frame eight, and at least seven across
 frames three through five. Before evaluating any new posterior, record
 the full ladder's cardinalities and detection hashes in a committed
-checkpoint. Evaluate **eligible** cases in seed order and stop at the
+checkpoint. If the generator raises an error for a pair, record the
+error and mark that pair ineligible; do not replace it. This handling
+was fixed after a geometry-only generator error at the last pair and
+before any posterior computation. Evaluate **eligible** cases in seed
+order and stop at the
 first that satisfies every target-balance condition below. If none
 qualifies, stop and report that this frozen ladder failed. Ineligible
 cases never receive posterior evaluation.
@@ -55,7 +59,8 @@ direct fourth power and paired square convolutions at beta 0, 0.5
 and 1; require log partition difference ≤1e-8, joint TV ≤1e-7 and
 maximum cell difference ≤1e-8, plus the raw-cell/imaginary/mass
 envelope at every beta. Require the beta-zero partition to agree with
-the model base normalizer within 1e-8. These are numerical cross-checks,
+the model base normalizer within 1e-8 and the recomputed beta-one
+alive-band masses to match the original screen within 1e-7. These are numerical cross-checks,
 not a formal interval guarantee. Cap validation at 1,200 CPU seconds.
 Pin the selected detection hash and validated reference checkpoint
 before any later sampler protocol is designed or tested.
@@ -65,4 +70,8 @@ candidate selection. No sampler or holdout run belongs to WP11w.
 
 ## Outcome
 
-Pending the prespecified geometry ledger and exact reference search.
+The geometry-only ledger was pinned before posterior computation at
+SHA-256 `ba3d8aa8fb728d24b55cb966e6de0e53f8d0be0c3c2a17bdc2db1d82e12c15c4`.
+Candidates 0, 2 and 4 are cardinality eligible. Candidate 7 raised the
+ROI generator error and remains ineligible without replacement. The
+exact balance screen is pending.
