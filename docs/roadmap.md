@@ -865,6 +865,18 @@ negative cell `-1.265e-10` below the frozen `-1e-10` numerical limit.
 No later WP11aj case may be selected. See
 `wp11aj_crowded_cohort_reference.md`. The WP8 holdout remains closed.
 
+## WP11ak — Fresh paired-primary crowded cohort
+
+- [x] Freeze independent unused geometry and a paired-primary numerical
+  budget before screening any WP11ak posterior
+- [ ] Select and validate one 18- and two distinct 19-detection absolute
+  references, or obey the frozen stop
+- [ ] Pin the cohort and freeze an absolute sampler replication rule
+
+WP11aj remains stopped. The new geometry ledger has 12 eligible
+18-detection and seven eligible 19-detection bases. See
+`wp11ak_crowded_cohort_reference.md`. The WP8 holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
