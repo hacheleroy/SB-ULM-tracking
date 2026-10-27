@@ -6,7 +6,8 @@ one cost limit on each case. This new **single move** retains the existing
 local two-slot multiple-try kernel and spends its late-stage proposals
 on the two frames with the predeclared clutter comparisons. Its design
 uses those known development results; neither observation is a fresh
-holdout. Commit this implementation and gate before candidate inference.
+holdout. The implementation and gate were frozen at commit `3201c324`
+before candidate inference.
 
 ## Fixed target-preserving move
 
@@ -77,4 +78,32 @@ written under `results/wp11ab_runs/`; the joint comparison goes to
 
 ## Outcome
 
-Pending candidate inference. The move and gate are committed first.
+All ten fixed seeds finished within the 500-second CPU cap. The frozen
+**combined gate failed**: the 17-detection case passed every criterion,
+but the 19-detection case missed accuracy, paired replication and both
+cost conditions. The move is not selected. The generated full comparison
+is `results/wp11ab_late_pair_window.json` (SHA-256
+`ab05dec063aa142e0504cf4a6c23a3abfb0db58730d569556f1e288251355c4c`),
+with the ten per-seed stage and joint checkpoints under
+`results/wp11ab_runs/`.
+
+| Case | Paired full-joint wins | Control → candidate median full-joint TV | Median band × sixth TV | Median max alive-band error | Mode replication | Median candidate / WP11aa CPU | Maximum candidate / control CPU | Gate |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 19 detections | 3/6 (needs 4/6) | 0.19676 → 0.18050 (needs ≤0.12 and ≤0.80 of control) | 0.13707 (needs ≤0.10) | 0.08844 (needs ≤0.08) | — | 0.8334 (needs ≤0.80) | 1.3494 (needs ≤1.25) | Fail |
+| 17 detections | 3/4 | 0.11072 → 0.09693 | 0.04942 | 0.03224 | 3/4 simultaneous modes | 0.7600 | 1.1872 | Pass |
+
+The primary's three other guardrails passed, but its full-joint,
+band × sixth and alive-band median ratios to control were about 0.917,
+0.854 and 0.864, all above the required 0.80. The decoy passed its
+absolute cell and secondary guardrails as well as its replicated mode
+limits. Its fourth seed had full-joint TV 0.17787, so the 3/4 result
+does not imply every replication was accurate.
+
+Focusing short local windows helped some modes in the less crowded
+geometry, but did not reliably transfer probability between the
+19-detection alive-count bands. This is development evidence about this
+specific move, not a calibrated sampler or a new independent case.
+Keep the holdout closed. A next proposal should first separate the
+primary's late count-band errors from its clutter errors and freeze a
+move capable of changing the long-range count pattern; it needs a new
+independently chosen absolute comparison before any calibration claim.
