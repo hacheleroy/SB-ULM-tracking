@@ -1,5 +1,6 @@
 """Exact finite-target validation of conditional suffix particle Gibbs."""
 
+import json
 from pathlib import Path
 
 import numpy as np
@@ -14,6 +15,7 @@ from sbulm.wp11u_late_suffix_pg import (
     MAX_MEDIAN_TV,
     SEEDS,
     _controls,
+    _decision,
     _errors,
     _protocol,
     _reference,
@@ -123,4 +125,21 @@ def test_frozen_primary_reference_and_opt_in_controls():
     assert candidate.final_mh_sweeps == 24
     assert _protocol()["selection_gate"]["maximum_candidate_median_full_joint_tv"] == (
         MAX_MEDIAN_TV
+    )
+
+
+def test_completed_exposed_screen_when_available():
+    path = ROOT / "results/wp11u_late_suffix_pg.json"
+    if not path.exists():
+        return
+    result = json.loads(path.read_text(encoding="utf-8"))
+    assert result["protocol"] == _protocol()
+    assert set(result["runs"]) == set(map(str, SEEDS))
+    for seed in SEEDS:
+        assert set(result["runs"][str(seed)]) == {"control", "candidate"}
+    decision = _decision(result["runs"])
+    assert decision == result["comparison"]
+    assert result["status"] == (
+        "exposed_development_gate_passed_needs_replication" if decision["passed"]
+        else "exposed_development_gate_failed_stop"
     )

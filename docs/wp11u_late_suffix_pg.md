@@ -73,4 +73,53 @@ Runner: `src/sbulm/wp11u_late_suffix_pg.py`; final checkpoint:
 
 ## Outcome
 
-Pending the frozen six-pair screen.
+All twelve arms completed within the 750 CPU-second caps. The exhaustive
+small-case transition checks passed at beta 0, 0.37 and 1. The candidate
+selected the suffix PG on 39.9–41.0% of final-stage paired proposals; its
+suffix updates changed a per-frame alive/assigned count signature on
+40.3–43.1% of selections.
+
+| Seed | Control full-joint TV | Candidate full-joint TV | Candidate/control CPU |
+| ---: | ---: | ---: | ---: |
+| 1300 | 0.21201 | 0.17772 | 1.010 |
+| 1301 | 0.24269 | 0.22393 | 1.376 |
+| 1302 | 0.18152 | 0.10493 | 1.015 |
+| 1303 | 0.16246 | 0.16741 | 1.184 |
+| 1304 | 0.23008 | 0.17181 | 1.197 |
+| 1305 | 0.11678 | 0.09392 | 1.164 |
+
+| Frozen criterion | Result | Pass? |
+| --- | ---: | :---: |
+| Per-seed CPU ratio ≤1.50 | Maximum 1.376 | Yes |
+| Paired full-joint TV wins ≥4/6 | 5/6 | Yes |
+| Candidate median full-joint TV ≤0.12 | **0.16961** | **No** |
+| Candidate median band × sixth-clutter TV ≤0.10 | **0.13502** | **No** |
+| Candidate median maximum band-mass error ≤0.08 | **0.09992** | **No** |
+| Candidate/control median ratio ≤0.80 on all three | 0.862 / 0.841 / 0.976 | **No** |
+| No other median regression >0.020 | All four improved | Yes |
+
+Control medians for those three targets were 0.19676, 0.16060 and
+0.10234. Thus the suffix proposal reduced median full-joint TV by about
+14% and median band-by-clutter TV by about 16%, but missed the frozen
+absolute and relative error requirements. It is **not selected**. The
+status is `exposed_development_gate_failed_stop`; the criteria were not
+revised from this outcome.
+
+For descriptive scale, the exact-IID q95 for full-joint TV at 2,048 is
+0.07099: all six candidate arms still exceed it. Their largest pooled
+mean signed cell error is 0.01515 at alive 17, frame-six clutter 2 and
+last clutter 1, versus the preexisting exact-IID familywise q95 0.00621.
+These IID comparisons are not calibrated significance tests for correlated
+SMC. Because the candidate changes only beta-one rejuvenation, each
+matched pair has **identical** evidence estimate; its errors remain
+0.831–2.643 nats below the exact log evidence. A final-stage kernel can
+improve the displayed posterior sample while leaving earlier evidence
+loss untouched. This exposed observation cannot identify the unique
+cause of the residual mode error.
+
+The full 198-cell tables, all per-seed signed errors, stage diagnostics,
+costs and exact gate calculation are retained in the checkpoint. No
+8,192-particle run or untouched holdout was opened. A next proposal
+should examine *when* the count/clutter modes are lost during tempering
+and freeze its protocol on an independent observation before testing
+another earlier-stage move.
