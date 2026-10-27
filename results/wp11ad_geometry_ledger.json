@@ -1,0 +1,744 @@
+{
+  "experiment": "wp11ad_frame_six_geometry",
+  "protocol": {
+    "pairs": [
+      [
+        1009,
+        1013
+      ],
+      [
+        1019,
+        1021
+      ],
+      [
+        1031,
+        1033
+      ],
+      [
+        1039,
+        1049
+      ],
+      [
+        1051,
+        1061
+      ],
+      [
+        1063,
+        1069
+      ],
+      [
+        1087,
+        1091
+      ],
+      [
+        1093,
+        1097
+      ],
+      [
+        1103,
+        1109
+      ],
+      [
+        1117,
+        1123
+      ],
+      [
+        1129,
+        1151
+      ],
+      [
+        1153,
+        1163
+      ],
+      [
+        1171,
+        1181
+      ],
+      [
+        1187,
+        1193
+      ],
+      [
+        1201,
+        1213
+      ],
+      [
+        1217,
+        1223
+      ]
+    ],
+    "offsets_mm": [
+      0.01,
+      0.016,
+      0.022
+    ],
+    "regime": {
+      "detection_probability": 0.68,
+      "expected_clutter_per_frame": 0.28,
+      "central_separation": 0.007,
+      "max_clutter_per_frame": 2,
+      "truth_mask": [
+        [
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          false,
+          true,
+          true
+        ]
+      ]
+    },
+    "eligibility": "17..18 total; frame six 2 or 3 true and zero clutter; last >=1; frames 3..5 >=8",
+    "decoy": "highest frame-six reference ID becomes clutter; y moves toward zero by offset",
+    "independence": "fresh seed pairs and offset order committed after WP11ac numeric stop, before any WP11ad posterior or sampler run",
+    "errors": "record generator or ROI failure and skip; no replacement",
+    "order": "base seed then ascending offset",
+    "max_screens": 9,
+    "acceptance": "low and high >=.18; middle >=.05; two sixth and two last clutter >=.15",
+    "numeric": {
+      "minimum_raw_cell": -1e-10,
+      "imaginary_residual": 1e-08,
+      "mass_error": 1e-08,
+      "direct_paired_logz": 1e-08,
+      "direct_paired_tv": 1e-07,
+      "direct_paired_max_cell": 1e-08
+    },
+    "screen_cpu_cap": 450,
+    "validation_cpu_cap": 1800,
+    "no_sampler_or_holdout": true
+  },
+  "bases": [
+    {
+      "base_index": 0,
+      "pair": [
+        1009,
+        1013
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        2,
+        2,
+        2,
+        4,
+        1
+      ],
+      "base_detection_sha256": "3368a4d698577e53d06c4c27aab72da4b7eeb00bfd0d570c2cae8844a02465ed",
+      "frame_six_reference_ids": [
+        2,
+        1
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 1,
+      "pair": [
+        1019,
+        1021
+      ],
+      "cardinalities": [
+        3,
+        3,
+        2,
+        2,
+        4,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "d1c8da211047556791c2c6854254650d8b1a1c2ad870c4be0fe2c6ff932bed3d",
+      "frame_six_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 2,
+      "pair": [
+        1031,
+        1033
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "base_detection_sha256": "9bac83a771d87acff5812f75b7365081fa57ed8a404dbbb3f8aea9464e29549e",
+      "frame_six_reference_ids": [
+        3,
+        1
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 3,
+      "pair": [
+        1039,
+        1049
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 4,
+      "pair": [
+        1051,
+        1061
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        4,
+        2,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "a7f23faf7b5a151d35ce9cd7e9766ecc297f9ea6c13b66c8ca9cfc30ff5604bc",
+      "frame_six_reference_ids": [
+        2,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 5,
+      "pair": [
+        1063,
+        1069
+      ],
+      "cardinalities": [
+        0,
+        3,
+        4,
+        3,
+        5,
+        2,
+        2,
+        1
+      ],
+      "base_detection_sha256": "d5d1f7664d9328d7eb572e714f146eda852684cad6f180c7b6ba526cf14dfa9b",
+      "frame_six_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 6,
+      "pair": [
+        1087,
+        1091
+      ],
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        2,
+        4,
+        3,
+        1
+      ],
+      "base_detection_sha256": "53ec52ebb2705489cc98b6a25be0ee5541010d7c3379d3d250fae113126683b3",
+      "frame_six_reference_ids": [
+        3,
+        -1,
+        -1,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 7,
+      "pair": [
+        1093,
+        1097
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        2,
+        2,
+        2,
+        1
+      ],
+      "base_detection_sha256": "1ade7d19778c7b772bbf02ca4c88e06b393cdbb5d4d122627543024c64178263",
+      "frame_six_reference_ids": [
+        2,
+        1
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 8,
+      "pair": [
+        1103,
+        1109
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        4,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "82308b5571e4912686efc2d5a8424efaa78f9756bf56f31e33ea4f20c2b33c35",
+      "frame_six_reference_ids": [
+        3,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 9,
+      "pair": [
+        1117,
+        1123
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        4,
+        4,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "6fb51863baf6ec48a826364aa87fb8cbba6cab2e9ee1202a10e499a1c9ec4a10",
+      "frame_six_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 10,
+      "pair": [
+        1129,
+        1151
+      ],
+      "cardinalities": [
+        1,
+        2,
+        2,
+        4,
+        3,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "1b2ace3e72b71131c043bb0b6ec3252f363749bc1c598845f569d2185dfce88f",
+      "frame_six_reference_ids": [
+        3,
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 11,
+      "pair": [
+        1153,
+        1163
+      ],
+      "cardinalities": [
+        1,
+        1,
+        2,
+        3,
+        3,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "0e3bdb562da46be454366ca0b6113bb04695c653f7f7bec6b413b31dec233e26",
+      "frame_six_reference_ids": [
+        2,
+        3,
+        1,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 12,
+      "pair": [
+        1171,
+        1181
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        3,
+        2,
+        3,
+        0,
+        2
+      ],
+      "base_detection_sha256": "45650b73535abd97589ac0f09f4d281db8df0af13c4506f980a402b1724a1748",
+      "frame_six_reference_ids": [
+        1,
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 13,
+      "pair": [
+        1187,
+        1193
+      ],
+      "cardinalities": [
+        2,
+        3,
+        0,
+        4,
+        3,
+        3,
+        2,
+        1
+      ],
+      "base_detection_sha256": "6c780d6e26d1da3b8790b28df36b685bb6be3fc0d6768741b6ee7486ed55f3a6",
+      "frame_six_reference_ids": [
+        2,
+        1,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 14,
+      "pair": [
+        1201,
+        1213
+      ],
+      "cardinalities": [
+        2,
+        4,
+        3,
+        3,
+        2,
+        4,
+        1,
+        1
+      ],
+      "base_detection_sha256": "1ac397bbea9a119dc9b93cfdc1bb639c79c527a21f98ad7ee87d18de23efbfb8",
+      "frame_six_reference_ids": [
+        -1,
+        1,
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 15,
+      "pair": [
+        1217,
+        1223
+      ],
+      "cardinalities": [
+        1,
+        1,
+        4,
+        1,
+        1,
+        2,
+        4,
+        0
+      ],
+      "base_detection_sha256": "e374e4cfbe7add90ee90b65034fc09334278d50dae8464a42e83e95a7ec7ab5d",
+      "frame_six_reference_ids": [
+        1,
+        3
+      ],
+      "eligible": false
+    }
+  ],
+  "variants": [
+    {
+      "variant_index": 0,
+      "base_index": 0,
+      "pair": [
+        1009,
+        1013
+      ],
+      "offset_mm": 0.01,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        4,
+        2,
+        2,
+        2,
+        4,
+        1
+      ],
+      "detection_sha256": "a654dca845a3c795a3e4324a5a22cb2888a32386d3f2a045e502f19f0f10d8ed",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 2,
+      "original_y": 0.009833249433921554,
+      "decoy_y": -0.0001667505660784465
+    },
+    {
+      "variant_index": 1,
+      "base_index": 0,
+      "pair": [
+        1009,
+        1013
+      ],
+      "offset_mm": 0.016,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        4,
+        2,
+        2,
+        2,
+        4,
+        1
+      ],
+      "detection_sha256": "6417a8b4cf9fc7cb054feb34248ee1f2099f0f9eb1c60069d7a23fa727fbc2ed",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 2,
+      "original_y": 0.009833249433921554,
+      "decoy_y": -0.006166750566078447
+    },
+    {
+      "variant_index": 2,
+      "base_index": 0,
+      "pair": [
+        1009,
+        1013
+      ],
+      "offset_mm": 0.022,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        4,
+        2,
+        2,
+        2,
+        4,
+        1
+      ],
+      "detection_sha256": "72f055a5020dc8a64260459c13a93c9770c9c32fd6b446367522a4b4850895ef",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 2,
+      "original_y": 0.009833249433921554,
+      "decoy_y": -0.012166750566078445
+    },
+    {
+      "variant_index": 3,
+      "base_index": 2,
+      "pair": [
+        1031,
+        1033
+      ],
+      "offset_mm": 0.01,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "9eb4c44c8ae012fa1e859e51923d295c694729e44f4f6463f15b1e759b4c0985",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 3,
+      "original_y": 0.004726971206498721,
+      "decoy_y": -0.005273028793501279
+    },
+    {
+      "variant_index": 4,
+      "base_index": 2,
+      "pair": [
+        1031,
+        1033
+      ],
+      "offset_mm": 0.016,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "59fcf20dedfbc87601b0f854b1c1c87bd9c02e10cd02b3a8ff1bc6f2cb9b4648",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 3,
+      "original_y": 0.004726971206498721,
+      "decoy_y": -0.01127302879350128
+    },
+    {
+      "variant_index": 5,
+      "base_index": 2,
+      "pair": [
+        1031,
+        1033
+      ],
+      "offset_mm": 0.022,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "2227b6b2440eb4f9229e6b4969562a431eb7e6533ae07a3fe1201d982cc5891f",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 3,
+      "original_y": 0.004726971206498721,
+      "decoy_y": -0.017273028793501278
+    },
+    {
+      "variant_index": 6,
+      "base_index": 7,
+      "pair": [
+        1093,
+        1097
+      ],
+      "offset_mm": 0.01,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        2,
+        2,
+        2,
+        1
+      ],
+      "detection_sha256": "9f8e931e70a54292f3632ed6ff555c9cceafe7fc092804e03c07c168dd9cd292",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 2,
+      "original_y": 0.01932684552385209,
+      "decoy_y": 0.009326845523852089
+    },
+    {
+      "variant_index": 7,
+      "base_index": 7,
+      "pair": [
+        1093,
+        1097
+      ],
+      "offset_mm": 0.016,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        2,
+        2,
+        2,
+        1
+      ],
+      "detection_sha256": "90968b7f1b4ea38753c47626de2177aeeacb08b9bcbd129ba951d3aa9dcdf024",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 2,
+      "original_y": 0.01932684552385209,
+      "decoy_y": 0.0033268455238520886
+    },
+    {
+      "variant_index": 8,
+      "base_index": 7,
+      "pair": [
+        1093,
+        1097
+      ],
+      "offset_mm": 0.022,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        2,
+        2,
+        2,
+        1
+      ],
+      "detection_sha256": "6b049d6355d3bd9f3cd1461f5ea6c58165febddd611dfa9557c7230b2f22678b",
+      "replaced_frame_six_index": 0,
+      "replaced_reference_id": 2,
+      "original_y": 0.01932684552385209,
+      "decoy_y": -0.00267315447614791
+    }
+  ],
+  "status": "geometry_only_before_posterior"
+}

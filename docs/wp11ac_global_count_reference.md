@@ -73,3 +73,18 @@ must be committed after validating the new reference and before any
 candidate inference. Both the prior 19-detection primary and the newly
 selected independent observation will be required; the untouched WP8
 holdout remains closed.
+
+## Outcome of the first independent ladder
+
+The first two eligible observations (indices 1 and 2) passed the
+numerical envelope but failed the sixth-frame clutter-balance rule:
+their posterior probabilities of zero sixth-frame clutter were 0.9486
+and 0.9649. Index 3 then failed the frozen numerical envelope with
+minimum raw cell -4.66e-10 (limit -1e-10), despite a small total
+clipping TV of 2.15e-9. The rule requires a stop on any numerical
+failure. Indices 6 and 8 were therefore **not** screened, and no
+reference or sampler comparison was selected from WP11ac.
+
+This failure prompted a separate WP11ad geometry-only protocol with
+fresh seeds and a predeclared frame-six decoy construction. It does not
+change the WP11ac rule or reuse its rejected posterior.

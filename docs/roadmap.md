@@ -740,7 +740,7 @@ absolute comparison.
   marginals against the pinned exact 19-detection reference
 - [x] Freeze a new cardinality-only observation ladder and absolute
   validation before inspecting its posterior
-- [ ] Screen and validate the independently selected exact joint
+- [x] Screen until the frozen numerical stop; do not select an invalid joint
 - [ ] Freeze the whole-slot conditional Gibbs move and two-case accuracy,
   replication and cost rules before candidate inference
 
@@ -749,7 +749,21 @@ runs the band marginal alone lower-bounds 64–95% of full-joint TV.
 This supports testing a whole-slot interval redraw while preserving
 separate clutter checks. See `wp11ac_global_count_reference.md` for the
 retrospective decomposition and prospective independent reference rule.
+Indices 1 and 2 failed frame-six clutter balance. Index 3 failed the
+raw-cell numerical tolerance (-4.66e-10 versus -1e-10), stopping this
+ladder before indices 6 and 8. No WP11ac reference was selected.
 The holdout stays closed.
+
+## WP11ad — Fresh frame-six decoy reference
+
+- [x] Freeze fresh seed pairs, an observation-only decoy construction,
+  screening order, balance and numerical rules before posterior inspection
+- [ ] Screen at most nine eligible variants and independently validate
+  the first accepted exact joint before a sampler comparison
+
+See `wp11ad_fresh_decoy_reference.md`. This is a separate prospective
+reference after the WP11ac numerical stop, with no threshold revision
+or reuse of rejected cases.
 
 ## WP12 — Open in-vivo trajectories
 
