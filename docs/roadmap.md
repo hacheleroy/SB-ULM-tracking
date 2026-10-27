@@ -820,7 +820,7 @@ See `results/wp11ag_global_slot_comparison.json` and the per-run JSONs.
   limits and an ordered exact balance search before posterior screening
 - [x] Screen the frozen ladder and independently validate the first
   balanced crowded exact joint
-- [ ] Pin its hash and freeze a matched WP11ag comparison before inference
+- [x] Pin its hash and freeze a matched WP11ag comparison before inference
 
 The WP11ag transfer case was independent but unbalanced in frame-six
 clutter. WP11ah targets balanced alive-count and two-frame clutter
@@ -831,6 +831,17 @@ bands 0.70058/0.11873/0.18070 and two clutter alternatives in both
 specified frames. Direct/paired beta-one joint TV differed by 4.77e-11;
 the high-band pass is only 0.00070 above its threshold. Pin the exact
 result before a new sampler comparison.
+
+## WP11ai — Balanced crowded WP11ag comparison frozen
+
+- [x] Bind the first WP11ah exact joint and prior WP11ag pass by hashes
+- [x] Freeze four matched control/candidate seeds, absolute and replicated
+  joint/mode error thresholds, cost caps and the eight-run schedule
+- [ ] Run all eight fixed jobs and judge the complete gate
+
+See `wp11ai_balanced_crowded_gate.md`. The WP11aa decoy accuracy and
+replication limits are reused unchanged, with the WP11ag cost limits.
+The WP8 holdout remains closed.
 
 ## WP12 — Open in-vivo trajectories
 
