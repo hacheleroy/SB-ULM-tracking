@@ -38,4 +38,14 @@ will be pinned by SHA-256 before any sampler inference; failure stops.
 
 ## Outcome
 
-Pending the frozen first eligible screen.
+All nine prespecified variants passed the exact numerical screen but
+failed at least one balance condition. Variants 0–2 had insufficient
+last-frame clutter ambiguity; variants 3–5 had insufficient high
+alive-band and sixth-frame clutter-one mass; variants 6–8 had very
+little high alive-band mass. Their screen checkpoints are archived in
+`results/wp11ae_screens/`. The frozen ladder is exhausted and yields
+**no** selected reference. Its thresholds were not revised.
+
+A separate WP11af geometry-only selection now targets a rigorous
+absolute *transfer check* without claiming balanced count modes.
+The crowded 19-detection exposed case remains the count-mode sentinel.

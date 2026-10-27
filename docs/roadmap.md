@@ -769,12 +769,24 @@ failed the -1e-10 gate; no WP11ad reference was selected.
 
 - [x] Freeze a third, fresh-seed geometry-only ladder and strict
   numerical/balance selection before any WP11ae posterior inspection
-- [ ] Screen at most nine variants and validate the first accepted
-  absolute reference before a sampler comparison
+- [x] Screen all nine variants and stop on frozen balance exhaustion
 
 See `wp11ae_stable_decoy_reference.md`. The 16–17 detection rule
 reduces the subset computation burden, while the 19-detection exposed
 primary remains a required sentinel for any future sampler move.
+All nine variants passed numerical checks but none passed the two-frame
+clutter and alive-band balance rule. No WP11ae reference was selected.
+
+## WP11af — Independent geometry-only transfer reference
+
+- [x] Freeze fresh seed pairs and select a 17-detection observation
+  from cardinalities alone before posterior inspection
+- [ ] Validate the absolute joint with independent numerical paths
+  before freezing the sampler comparison
+
+See `wp11af_geometry_transfer_reference.md`. This reference tests
+transfer; only the exposed 19-detection sentinel can probe the
+count-band failure directly. The holdout remains closed.
 
 ## WP12 — Open in-vivo trajectories
 
