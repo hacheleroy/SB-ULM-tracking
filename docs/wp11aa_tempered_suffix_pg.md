@@ -97,11 +97,10 @@ case/seed; then `--case aggregate`. The candidate checkpoints go to
 ## Outcome
 
 All ten prespecified candidate seeds completed below the 750-second
-process CPU cap. The runner generated their final joints and paired,
-absolute comparison in `results/wp11aa_tempered_suffix_pg.json`. The
-frozen combined gate **failed**; the suffix schedule is not selected.
-The full generated result artifact is not included in this repository
-commit; the table and failure analysis below record its decision.
+process CPU cap. Their final joints and paired, absolute comparison
+are archived in `results/wp11aa_tempered_suffix_pg.json` (SHA-256
+`620b5db1603af7626933000b70b38ba40b5239805ccf1a9ea247e5d55292a1ba`).
+The frozen combined gate **failed**; the suffix schedule is not selected.
 
 | Case | Paired full-joint TV wins | Control → candidate median full-joint TV | Candidate median band × sixth TV | Candidate median maximum alive-band error | CPU ratios above 1.50 | Gate |
 | --- | ---: | ---: | ---: | ---: | --- | --- |
