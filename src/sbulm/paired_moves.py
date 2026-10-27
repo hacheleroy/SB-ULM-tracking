@@ -302,6 +302,7 @@ def local_pair_multiple_try_move(
     beta: float,
     n_candidates: int,
     rng: np.random.Generator,
+    start_weights: FloatArray | None = None,
 ) -> tuple[IntArray, FloatArray, FloatArray, FloatArray, NDArray[np.bool_]]:
     """Reweight reversible local two-slot candidates with the exact likelihood.
 
@@ -314,6 +315,13 @@ def local_pair_multiple_try_move(
 
     if model.n_slots < 2 or n_candidates < 2:
         raise ValueError("paired moves need two slots and at least two tries")
+    if start_weights is not None:
+        start_weights = np.asarray(start_weights, dtype=float)
+        if (start_weights.shape != (model.sequence.n_frames,)
+                or not np.all(np.isfinite(start_weights))
+                or np.any(start_weights < 0)
+                or not np.isclose(start_weights.sum(), 1.0)):
+            raise ValueError("start weights must be a probability over frames")
     if rows.size == 0:
         empty = np.empty(0, dtype=float)
         return current[rows].copy(), empty, empty, empty, np.zeros(0, bool)
@@ -324,7 +332,8 @@ def local_pair_multiple_try_move(
     )
     for local_index, row in enumerate(rows):
         first, second = rng.choice(model.n_slots, size=2, replace=False)
-        start = int(rng.integers(model.sequence.n_frames))
+        start = (int(rng.integers(model.sequence.n_frames)) if start_weights is None
+                 else int(rng.choice(model.sequence.n_frames, p=start_weights)))
         pair = (int(first), int(second))
         # The raw option count depends on fixed other slots only.  In
         # particular, the length decision must not use pair states inside the

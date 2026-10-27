@@ -709,10 +709,30 @@ each case exceeded 1.50. The decoy met its median accuracy limits but
 only 2/4 seeds passed the simultaneous mode limits (3/4 required).
 See `wp11aa_tempered_suffix_pg.md` for the measured gate and
 `results/wp11aa_tempered_suffix_pg.json` for the full joint comparison.
-Next freeze one cheaper, more selective count/late-clutter move with
-independent cost and mode criteria before inference. These exposed
+That next frozen move is WP11ab below. These exposed
 cases cannot establish calibration for the 19-detection setting, and
 the untouched holdout remains closed.
+
+## WP11ab — Late local-pair window development
+
+- [x] Freeze a beta-dependent, geometry-only window schedule for the
+  existing target-preserving local paired move
+- [x] Freeze the exact small-case check, both exposed absolute and
+  replication gates, and stronger per-seed plus prior-move CPU caps
+- [x] Run all ten fixed candidate seeds and apply the combined gate
+
+The combined gate **failed**. The 17-detection decoy passed every
+absolute, replication and cost condition: 3/4 paired full-joint wins,
+3/4 simultaneous mode wins, median full-joint TV 0.09693, and median
+CPU 0.760× WP11aa. The 19-detection primary had 3/6 paired wins,
+median full TV 0.18050 (cap 0.12), median band × sixth TV 0.13707
+(cap 0.10), median maximum alive-band error 0.08844 (cap 0.08), one
+candidate/control CPU ratio 1.349 (cap 1.25), and median CPU 0.833×
+WP11aa (cap 0.80). See `wp11ab_late_pair_window.md` and the full
+`results/wp11ab_late_pair_window.json` comparison. Do not select this
+move or open the holdout. Next diagnose count-band transfer in the
+crowded primary geometry before freezing another move and independent
+absolute comparison.
 
 ## WP12 — Open in-vivo trajectories
 

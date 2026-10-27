@@ -469,6 +469,25 @@ def _paired_suffix_pg_fraction(config: BirthDeathSMCConfig, beta: float) -> floa
     return config.paired_slot_suffix_pg_final_fraction if active else 0.0
 
 
+def _late_pair_window_weights(
+    config: BirthDeathSMCConfig, beta: float, n_frames: int
+) -> FloatArray | None:
+    """Optional, state-independent local-pair window schedule."""
+
+    switch = getattr(config, "paired_slot_late_window_beta_switch", None)
+    if switch is None or beta < switch:
+        return None
+    focus = config.paired_slot_late_window_focus_share
+    sixth = config.paired_slot_late_window_sixth_share
+    first, last = config.paired_slot_late_window_start_frames
+    if not 0 <= first < last < n_frames:
+        raise ValueError("late pair window frames are outside the sequence")
+    weights = np.full(n_frames, (1.0 - focus) / n_frames)
+    weights[first] += focus * sixth
+    weights[last] += focus * (1.0 - sixth)
+    return weights
+
+
 def _metropolis_birth_death_rejuvenation(
     associations: IntArray,
     log_marginal_densities: FloatArray,
@@ -603,6 +622,9 @@ def _metropolis_birth_death_rejuvenation(
                             current, current_marginal, current_count, current_existence,
                             local_rows, model, beta=beta,
                             n_candidates=config.paired_slot_candidates, rng=rng,
+                            start_weights=_late_pair_window_weights(
+                                config, beta, model.sequence.n_frames
+                            ),
                         )
                     )
                     pair_proposed[local_positions] = local_state
