@@ -1,4 +1,4 @@
-Warning: truncated output (original token count: 11497)
+Warning: truncated output (original token count: 11496)
 Total output lines: 839
 
 # Scientific roadmap and decision gates
@@ -362,7 +362,7 @@ ratios. Four-path PG preserves the small exact count histogram and gives
 development case passes a two-seed, 10%-PG operational gate at 1.567×
 and 1.868× median CPU cost. Assigned-count and clutter cross-run
 discrepancies improve but alive-count TV worsens to 0.223 from 0.208;
-no eight-frame poster…1497 tokens truncated…te 1.50,
+no eight-frame poster…1496 tokens truncated…r rate 1.50,
 with mode masses 0.3825 and 0.3386; the second mode rises sharply after
 beta 0.75. At 2,048 particles all six maximum mode errors were at most
 0.0192 versus a 0.0260 IID 95th-percentile reference, and all full-joint
@@ -707,8 +707,8 @@ and 0.11072→0.08959. The primary missed absolute full-joint and
 band × sixth medians plus the latter relative target; one CPU ratio in
 each case exceeded 1.50. The decoy met its median accuracy limits but
 only 2/4 seeds passed the simultaneous mode limits (3/4 required).
-See `wp11aa_tempered_suffix_pg.md` for the measured gate; the full
-generated joint comparison is not included in this repository commit.
+See `wp11aa_tempered_suffix_pg.md` for the measured gate and
+`results/wp11aa_tempered_suffix_pg.json` for the full joint comparison.
 Next freeze one cheaper, more selective count/late-clutter move with
 independent cost and mode criteria before inference. These exposed
 cases cannot establish calibration for the 19-detection setting, and
