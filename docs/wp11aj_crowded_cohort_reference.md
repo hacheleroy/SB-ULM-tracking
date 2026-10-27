@@ -82,3 +82,14 @@ later variant was screened, no selected reference was validated, and
 the WP11aj cohort failed. The WP8 holdout and all WP11aj sampler
 inference remain closed. A future study must freeze an independent
 numerical method and fresh observations before another posterior.
+
+A diagnostic **after** this stop recomputed variant 63 by both subset
+parenthesizations. The paired-square minimum raw cell was `-1.745e-13`
+and clipping TV `1.05e-12`; the direct-fourth calculation reproduced
+its failing `-1.265e-10` minimum. Their normalized joint TV was
+`4.79e-9`, maximum cell difference `6.99e-10`, and log-partition
+difference `8.36e-10`. The diagnostic is
+`results/wp11aj_numeric_diagnostic.json` (SHA-256
+`64480db0ce6a79429817b97f90d7c41066ef246373adebfb9c60b12641d41a18`).
+This is evidence about numerical cancellation, **not** a reopened
+WP11aj screen or validated reference.
