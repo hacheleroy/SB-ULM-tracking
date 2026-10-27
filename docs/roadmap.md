@@ -780,6 +780,26 @@ describes only the selected 17-detection case. The earlier WP11k
 19-detection case is still uncalibrated, and the untouched holdout
 remains closed.
 
+## WP11z — Frozen stage attribution on the balanced reference
+
+- [x] Freeze the four WP11y replay seeds, passive observer, exact-beta
+  numerical checks and stage-specific count/clutter onset markers
+- [x] Replay the sampler and score every adaptive stage against the
+  corresponding exact target
+
+All four passive replays exactly matched WP11y final joints, and all
+81 beta-zero/stage exact calculations passed their frozen numerical
+checks within cap. Sustained mode discrepancies first appear late:
+sixth clutter at beta 0.840 in seed 1500, final clutter at 0.886 in
+1501, and alive-band/band × sixth at 0.828 in 1503. Seed 1502 has no
+sustained marker. Weighting is the first crossing in 1500 and 1503;
+1501 first crosses after rejuvenation. The target moves at weighting,
+so this is operation attribution of observed errors, not causal proof.
+See `wp11z_balanced_stage_audit.md` and the committed stage curves.
+The next proposal must freeze its move and comparison on the exposed
+19-detection case and this independent 17-detection reference before
+testing it; the untouched holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
