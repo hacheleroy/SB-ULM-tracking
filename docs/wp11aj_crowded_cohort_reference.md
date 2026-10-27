@@ -71,4 +71,14 @@ stays closed.
 
 ## Outcome
 
-Geometry-only protocol and ledger frozen. No WP11aj posterior computed.
+The **first** ordered screen, 18-detection variant 63 from base 173,
+returned a minimum raw joint cell of `-1.264757855e-10`, below the
+frozen `-1e-10` limit. Its clipping TV was `3.923e-10` and process CPU
+69.2 seconds. The posterior masses are recorded only as a diagnostic
+in `results/wp11aj_screens/63.json` (SHA-256
+`43bf298774b4eb044e708940089a62a2734205ee9600b3069924e96370bc113b`).
+The exact numerical **stop** applies regardless of those masses. No
+later variant was screened, no selected reference was validated, and
+the WP11aj cohort failed. The WP8 holdout and all WP11aj sampler
+inference remain closed. A future study must freeze an independent
+numerical method and fresh observations before another posterior.

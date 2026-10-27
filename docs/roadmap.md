@@ -855,12 +855,15 @@ observation set and replication rule, especially toward balanced
 
 - [x] Freeze unused geometry, one 18- and two distinct 19-detection
   quotas, numerical limits and ordered balance screens before posterior
-- [ ] Screen and independently validate all three exact references
-- [ ] Pin the cohort and freeze its complete sampler replication rule
+- [x] Apply the frozen screen stop to the first exact observation
+- [ ] Obtain three independently validated references in a new protocol
+- [ ] Pin that cohort and freeze its complete sampler replication rule
 
 The geometry-only ledger has six eligible 18-detection bases and four
-eligible 19-detection bases. See `wp11aj_crowded_cohort_reference.md`.
-The WP8 holdout remains closed.
+eligible 19-detection bases. Its first exact screen stopped on a raw
+negative cell `-1.265e-10` below the frozen `-1e-10` numerical limit.
+No later WP11aj case may be selected. See
+`wp11aj_crowded_cohort_reference.md`. The WP8 holdout remains closed.
 
 ## WP12 — Open in-vivo trajectories
 
