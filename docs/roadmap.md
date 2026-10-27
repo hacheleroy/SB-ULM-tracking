@@ -714,6 +714,18 @@ independent cost and mode criteria before inference. These exposed
 cases cannot establish calibration for the 19-detection setting, and
 the untouched holdout remains closed.
 
+## WP11ab — Late local-pair window development
+
+- [x] Freeze a beta-dependent, geometry-only window schedule for the
+  existing target-preserving local paired move
+- [x] Freeze the exact small-case check, both exposed absolute and
+  replication gates, and stronger per-seed plus prior-move CPU caps
+- [ ] Run all ten fixed candidate seeds and apply the combined gate
+
+See `wp11ab_late_pair_window.md`. This is one prospective, cheaper
+late count/clutter proposal on the exposed 19- and 17-detection
+references. The untouched holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
