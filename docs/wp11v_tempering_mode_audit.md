@@ -74,6 +74,19 @@ change thresholds after seeing traces or choose a move from this audit.
 
 No 8,192-particle run or untouched WP8 holdout is part of WP11v.
 
+The exact checkpoint was validated before sampler inference and pinned by
+SHA-256 `4577d3c6214c4493b5b59b0b8302936f5af04bc37e0ed1c16c0cb8f1b4ce06d6`.
+Toy enumeration agreed at beta 0, 0.5 and 1 to at most `1.1e-15` TV.
+On the selected case, direct and paired subset calculations agreed to
+at most `2.4e-14` TV and `1.5e-14` in log partition. At beta zero the
+computed partition matched the model's base normalizer to `7e-15`.
+The exact beta-one alive bands are 0.89574 / 0.04226 / 0.06200 and
+frame-six clutter 0 / 1 masses are 0.95124 / 0.04876. Thus the
+prespecified geometry did **not** retain balanced low/high alive bands;
+the audit can locate discrepancy on this independent case but does not
+replicate WP11t's competing high-alive mode. This observation is kept
+unchanged rather than selecting another after seeing its posterior.
+
 ## Outcome
 
 Pending the frozen observation and stage audit.
