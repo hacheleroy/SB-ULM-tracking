@@ -800,6 +800,18 @@ The next proposal must freeze its move and comparison on the exposed
 19-detection case and this independent 17-detection reference before
 testing it; the untouched holdout remains closed.
 
+## WP11aa — Tempered suffix PG development
+
+- [x] Freeze one beta≥0.75 conditional suffix PG schedule and its
+  exact-target checks before candidate inference
+- [x] Freeze absolute and paired gates on both exposed exact cases
+- [ ] Run all ten fixed candidates and apply the combined gate
+
+See `wp11aa_tempered_suffix_pg.md`. The 19- and 17-detection references
+and controls were seen before this move was designed, so passing both
+would still require a newly selected independent observation. No
+high-particle or untouched holdout run belongs to this step.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`

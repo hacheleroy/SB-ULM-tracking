@@ -461,6 +461,14 @@ def _paired_pg_fraction(config: BirthDeathSMCConfig, beta: float) -> float:
     return config.paired_slot_pg_fraction
 
 
+def _paired_suffix_pg_fraction(config: BirthDeathSMCConfig, beta: float) -> float:
+    """Keep legacy final-only selection unless an opt-in schedule is supplied."""
+
+    switch = getattr(config, "paired_slot_suffix_pg_beta_switch", None)
+    active = beta == 1.0 if switch is None else beta >= switch
+    return config.paired_slot_suffix_pg_final_fraction if active else 0.0
+
+
 def _metropolis_birth_death_rejuvenation(
     associations: IntArray,
     log_marginal_densities: FloatArray,
@@ -571,9 +579,7 @@ def _metropolis_birth_death_rejuvenation(
                 pair_existence = model.log_existence_prior(pair_proposed)
             else:
                 fraction = _paired_pg_fraction(config, beta)
-                suffix_fraction = (
-                    config.paired_slot_suffix_pg_final_fraction if beta == 1.0 else 0.0
-                )
+                suffix_fraction = _paired_suffix_pg_fraction(config, beta)
                 if suffix_fraction:
                     selection = rng.random(pair_rows.size)
                     pg_mask = selection < fraction
