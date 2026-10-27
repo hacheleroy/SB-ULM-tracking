@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 11497)
+Total output lines: 839
+
 # Scientific roadmap and decision gates
 
 ## WP0 — Reproducible controlled benchmark
@@ -359,116 +362,7 @@ ratios. Four-path PG preserves the small exact count histogram and gives
 development case passes a two-seed, 10%-PG operational gate at 1.567×
 and 1.868× median CPU cost. Assigned-count and clutter cross-run
 discrepancies improve but alive-count TV worsens to 0.223 from 0.208;
-no eight-frame posterior-calibration or stability claim follows.
-See `wp11f_cost_path_count_development.md`.
-
-## WP11g — Frozen 8,192-particle exposed-case diagnostic
-
-- [x] Reuse and verify the original failed WP8 two-seed control checkpoint
-- [x] Run independent seeds 100 and 200 with the frozen 10% four-path PG
-  mixture and a 1,800-process-CPU-second cap per seed
-- [x] Apply the unchanged seven label-free metrics and 0.10 limit; stop on
-  the first failed pair without opening a new observation
-- [ ] Resolve the remaining clutter and alive-count mode disagreements
-  before a new holdout or eight-frame calibration claim
-
-**Observed boundary:** all seven seed-pair discrepancies decrease versus
-the archived control, but the candidate still fails on expected clutter
-(0.1335) and alive-count histogram TV (0.1171). Each candidate seed
-costs about 1,460 process CPU seconds at 8,192 particles; archived and
-current wall times are not a controlled speed comparison. The status is
-`failed_early_before_new_holdout`, not a larger-case stability pass. See
-`wp11g_exposed_wp8_high_particle.md`.
-
-## WP11h — Passive joint-mode diagnosis of WP11g
-
-- [x] Reproduce both exposed WP11g seeds with an RNG-free observer and the
-  original 1,800-process-CPU-second cap
-- [x] Preserve full synthetic associations, label-invariant count signatures,
-  stage joint distributions, and local/PG mode transitions
-- [x] Decompose the remaining frame-six clutter and alive-count disagreements
-  without changing the original stability verdict or opening a holdout
-
-**Observed mechanism:** 0.0783 of the 0.1335 clutter gap comes from different
-weights on low- and high-alive hypotheses; 0.0553 persists within those
-bands, with differing detection-subset assignments. The discrepancy grows
-mostly after beta about 0.75, despite appreciable PG mode transitions.
-The next method test is a fixed-budget, beta-dependent allocation of the
-existing PG update, first on the exact oracle and new development data. See
-`wp11h_joint_mode_diagnostic.md`.
-
-## WP11i — Late-stage allocation of four-path PG
-
-- [x] Add an opt-in, beta-only PG selection schedule while preserving the
-  default constant mixture and exact tempered-target invariance
-- [x] Pass the frozen 269-state exact-oracle movement and count-TV screen
-- [x] Run both arms on two seeds of a fresh, hash-frozen development case
-- [ ] Pass all frozen development guardrails before another exposed-case
-  8,192-particle test
-
-**Observed boundary:** the late allocation reduced the fresh-case
-cross-seed clutter difference from 0.1348 to 0.0645 and alive-count TV
-from 0.1973 to 0.1523, while staying within the CPU and PG-selection
-budget gates. Maximum death-marginal disagreement increased by 0.02148,
-exceeding its allowed +0.020. The status is
-`stopped_before_high_particle_test`; no new high-particle or holdout
-observation was opened. See `wp11i_late_pg_development.md`.
-
-## WP11j — Exact ancestor sampling inside four-path PG
-
-- [x] Freeze a new observation, exact-oracle gate, cost caps, and all seven
-  development comparisons on a branch before inference
-- [x] Check full-suffix ancestor weights and exact small-case stationarity;
-  pass the three-seed exact-oracle movement gate
-- [x] Complete both arms for two seeds on the independent fresh case
-- [ ] Pass its frozen paired stability guardrails before another exposed
-  8,192-particle test
-
-**Observed boundary:** PGAS increased exact-oracle first-frame association
-movement from 0.296 to 0.488, and all six count TVs passed. On the fresh
-512-particle development case, clutter difference fell from 0.350 to 0.271,
-but alive-count TV rose from 0.225 to 0.318; missed and death differences
-also rose beyond the predeclared +0.020 guardrail. CPU and selection caps
-passed. The status is `stopped_before_high_particle_test`; the default
-sampler is unchanged, and no new high-particle or holdout run was opened.
-See `wp11j_pgas_ancestor_development.md`.
-
-## WP11k — Variance and calibration audit
-
-- [x] Freeze a medium exact reference and two independent eight-frame
-  observations, seeds, particle counts, CPU caps, and read-only joint observer
-  before inference
-- [x] Compare six seeds at 512 and 2,048 particles against the exact
-  posterior and independent-draw finite-sample envelope
-- [x] Measure four-seed seven-metric spread at 512 and 2,048 on the primary
-  eight-frame case and at 512 on a separate stress case
-- [x] Establish absolute eight-frame mode-weight calibration on an
-  independently frozen two-slot bridge before another move-selection gate
-
-**Observed boundary:** all six exact-case seeds at both particle counts were
-within the independent-draw 95th-percentile envelope for alive-total TV,
-count-signature TV, and maximum clutter error. On the primary eight-frame
-observation, median pairwise alive-count TV fell from 0.3145 to 0.1738 at
-2,048 particles, while median clutter difference remained about 0.309 at
-both sizes; the worst clutter pair was still 0.4072 at 2,048. A separate
-512-particle stress observation had smaller spread, but its frame six had
-only one detection. This is an observation-dependent variance diagnosis,
-not an eight-frame calibration claim or a new sampler gate. The default
-sampler and holdout are unchanged. See `wp11k_variance_calibration.md`.
-
-## WP11l — Exact eight-frame mode-weight bridge
-
-- [x] Freeze a two-slot/eight-frame observation, eight-model clutter grid,
-  exact mode definitions, selection rule, independent-draw baseline, seeds,
-  and CPU caps before inference
-- [x] Enumerate all 667,989 states and verify a selected bridge with both
-  competing alive/clutter modes above 0.10 exact posterior mass
-- [x] Measure absolute mode weights and full joint distributions across six
-  seeds at 512 and 2,048 particles with the unchanged WP11g sampler
-- [x] Extend independent absolute calibration to a three-slot/eight-frame
-  bridge before selecting a new sampler move
-
-**Observed boundary:** the frozen exact selection chose clutter rate 1.50,
+no eight-frame poster…1497 tokens truncated…te 1.50,
 with mode masses 0.3825 and 0.3386; the second mode rises sharply after
 beta 0.75. At 2,048 particles all six maximum mode errors were at most
 0.0192 versus a 0.0260 IID 95th-percentile reference, and all full-joint
@@ -805,12 +699,20 @@ testing it; the untouched holdout remains closed.
 - [x] Freeze one beta≥0.75 conditional suffix PG schedule and its
   exact-target checks before candidate inference
 - [x] Freeze absolute and paired gates on both exposed exact cases
-- [ ] Run all ten fixed candidates and apply the combined gate
+- [x] Run all ten fixed candidates and apply the combined gate
 
-See `wp11aa_tempered_suffix_pg.md`. The 19- and 17-detection references
-and controls were seen before this move was designed, so passing both
-would still require a newly selected independent observation. No
-high-particle or untouched holdout run belongs to this step.
+The combined gate failed. The candidate improved full-joint TV in 5/6
+primary and 4/4 decoy paired seeds; medians changed 0.19676→0.15087
+and 0.11072→0.08959. The primary missed absolute full-joint and
+band × sixth medians plus the latter relative target; one CPU ratio in
+each case exceeded 1.50. The decoy met its median accuracy limits but
+only 2/4 seeds passed the simultaneous mode limits (3/4 required).
+See `wp11aa_tempered_suffix_pg.md` for the measured gate; the full
+generated joint comparison is not included in this repository commit.
+Next freeze one cheaper, more selective count/late-clutter move with
+independent cost and mode criteria before inference. These exposed
+cases cannot establish calibration for the 19-detection setting, and
+the untouched holdout remains closed.
 
 ## WP12 — Open in-vivo trajectories
 

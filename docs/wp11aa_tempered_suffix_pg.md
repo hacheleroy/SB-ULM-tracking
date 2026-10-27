@@ -96,5 +96,39 @@ case/seed; then `--case aggregate`. The candidate checkpoints go to
 
 ## Outcome
 
-Pending candidate inference. The protocol and implementation are
-committed first.
+All ten prespecified candidate seeds completed below the 750-second
+process CPU cap. The runner generated their final joints and paired,
+absolute comparison in `results/wp11aa_tempered_suffix_pg.json`. The
+frozen combined gate **failed**; the suffix schedule is not selected.
+The full generated result artifact is not included in this repository
+commit; the table and failure analysis below record its decision.
+
+| Case | Paired full-joint TV wins | Control → candidate median full-joint TV | Candidate median band × sixth TV | Candidate median maximum alive-band error | CPU ratios above 1.50 | Gate |
+| --- | ---: | ---: | ---: | ---: | --- | --- |
+| 19 detections | 5/6 | 0.19676 → 0.15087 | 0.13639 | 0.07983 | seed 1301: 1.646 | fail |
+| 17 detections | 4/4 | 0.11072 → 0.08959 | 0.04296 | 0.01418 | seed 1502: 1.526 | fail |
+
+The primary misses the absolute median full-joint TV ≤0.12 and
+band × sixth TV ≤0.10, as well as the latter's relative ≤0.80 rule:
+0.13639 / 0.16060 = 0.849. Its paired-win and secondary-regression
+conditions pass. The decoy meets its median accuracy, paired-win and
+secondary-regression conditions, but only seeds 1501 and 1502 satisfy
+all four per-run mode limits; three were required. Seed 1500 has a
+frame-six clutter-one signed error +0.06339 against ±0.06. Seed 1503
+has maximum alive-band error 0.08395 against 0.08. The suffix was
+selected in about 39–41% of paired proposals at active temperatures,
+with first active β between 0.753 and 0.786, as specified.
+
+For scale only, all six primary full-joint TVs exceed the existing
+2,048-sample exact-IID q95 of 0.07099. Three of four decoy runs exceed
+its existing 1,000-replicate, 2,048-sample exact-IID q95 of 0.07860;
+seed 1502 is 0.07309.
+Correlated SMC outputs do not make those IID percentiles significance
+tests or substitutes for the frozen gate.
+
+The result shows useful movement but insufficient absolute reliability
+and cost on these exposed cases. Do not tune this beta switch, fraction
+or gate to rescue the comparison. A subsequent proposal should freeze
+one cheaper, more selective count/late-clutter move and its replication
+and cost rules independently before another test. The 19-detection
+case remains uncalibrated, and the untouched holdout remains closed.
