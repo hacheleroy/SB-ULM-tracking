@@ -741,8 +741,8 @@ absolute comparison.
 - [x] Freeze a new cardinality-only observation ladder and absolute
   validation before inspecting its posterior
 - [x] Screen until the frozen numerical stop; do not select an invalid joint
-- [ ] Freeze the whole-slot conditional Gibbs move and two-case accuracy,
-  replication and cost rules before candidate inference
+- [x] Freeze the whole-slot conditional Gibbs move and two-case accuracy,
+  replication and cost rules before candidate inference (WP11ag)
 
 Three of six crowded WP11ab seeds have alive-band TV >=0.10; in those
 runs the band marginal alone lower-bounds 64–95% of full-joint TV.
@@ -781,12 +781,32 @@ clutter and alive-band balance rule. No WP11ae reference was selected.
 
 - [x] Freeze fresh seed pairs and select a 17-detection observation
   from cardinalities alone before posterior inspection
-- [ ] Validate the absolute joint with independent numerical paths
+- [x] Validate the absolute joint with independent numerical paths
   before freezing the sampler comparison
 
 See `wp11af_geometry_transfer_reference.md`. This reference tests
 transfer; only the exposed 19-detection sentinel can probe the
-count-band failure directly. The holdout remains closed.
+count-band failure directly. The selected index-3 observation has 17
+detections; direct and paired beta-one joint TV differs by 3.27e-11,
+minimum raw cell is -4.65e-12, and the exact checkpoint passed all
+frozen tests (SHA-256
+`cd6f20f821a2689cda5a1a0aceb19fa9db7c6232af0e8e05b6262e312469f87b`).
+The holdout remains closed.
+
+## WP11ag — Whole-slot Gibbs gate frozen
+
+- [x] Implement and check an exact full-trajectory, one-slot
+  conditional Gibbs update on toy and independent eight-frame support
+- [x] Pin the two-case absolute, replication and cost comparison
+  before any candidate or new-control inference
+- [ ] Run the 14 fixed control/candidate jobs and apply both gates
+
+The move replaces 20% of paired proposals at beta >=0.65, retains 10%
+full-path PG and 70% local paired, and is bitwise control-equivalent
+earlier. The exposed 19-detection primary and independently selected
+17-detection transfer case must **both** pass. See
+`wp11ag_global_slot_gate.md` for the fixed limits and interpretation.
+The untouched holdout stays closed.
 
 ## WP12 — Open in-vivo trajectories
 

@@ -40,4 +40,16 @@ geometry. No untouched holdout is opened.
 
 ## Outcome
 
-Pending independent exact validation.
+The selected observation **passed** the toy, beta-zero analytic, direct
+and paired numerical checks at beta 0, 0.5 and 1.0. Its reference
+checkpoint is `results/wp11af_geometry_transfer_exact.json` (SHA-256
+`cd6f20f821a2689cda5a1a0aceb19fa9db7c6232af0e8e05b6262e312469f87b`).
+Validation took 232.5 process CPU seconds, below the 1,000-second cap.
+At beta one, direct/paired joint TV was 3.27e-11, log-partition
+difference 4.20e-11 and minimum raw cell -4.65e-12.
+
+The exact low/middle/high alive bands are 0.65436/0.11833/0.22731;
+frame-six clutter-one mass is 0.93352. This is a numerically validated
+independent absolute transfer reference, **not** a balanced crowded
+count/clutter-mode reference. WP11ag therefore retains the exposed
+19-detection primary as a mandatory separate sentinel.
