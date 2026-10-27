@@ -74,4 +74,32 @@ a separate sentinel. The untouched WP8 holdout stays closed.
 
 ## Outcome
 
-Exact screening pending the committed prospective freeze.
+The **first** frozen screen, variant 27 from unused pair `(3357,3363)`,
+passed. Its 17-detection cardinalities are `[3,2,2,3,1,2,2,2]` and
+its detection SHA-256 is
+`8789a4b3f859d5b36d6cd776cf73a8cdcf34b97be87efd8a5c1997a2dc22c0e8`.
+The frame-six/final y offsets were 0.010/0.004 mm; no later variant
+was screened. The screen is `results/wp11ah_screens/27.json`.
+
+| Exact beta-one marginal | Masses |
+| --- | --- |
+| Alive low / middle / high | 0.70058 / 0.11873 / 0.18070 |
+| Frame-six clutter 0 / 1 / 2 | 0.66393 / 0.31678 / 0.01929 |
+| Final clutter 0 / 1 / 2 | 0.72174 / 0.27155 / 0.00671 |
+
+The high alive band exceeds its predeclared 0.18 cutoff by only
+0.0006983. This is a **marginal pass** on that dimension, although
+the two clutter alternatives in each specified frame are well above
+0.15. Inference must not present the case as a uniformly balanced or
+representative 19-detection observation.
+
+The toy direct enumeration passed at all three betas (worst joint TV
+`1.09e-15`). Direct and paired four-slot calculations agreed at beta
+one to joint TV `4.77e-11`, log-partition difference `2.36e-11` and
+maximum cell difference `5.86e-12`. The minimum direct raw cell was
+`-8.67e-15`, clipping TV `3.38e-14`, and beta-zero log partition
+matched the analytic base. Validation took 233.8 process CPU seconds
+under the 1,800-second cap. The pinned exact checkpoint is
+`results/wp11ah_crowded_exact_reference.json` (SHA-256
+`d0bb9e6496ed33cb784c05f8fd110a7a7b23b9b5ec2e84b98f1c15d91c03a6c2`).
+No WP11ah sampler or untouched holdout inference was run.

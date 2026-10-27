@@ -818,14 +818,19 @@ See `results/wp11ag_global_slot_comparison.json` and the per-run JSONs.
 
 - [x] Freeze fresh unused seeds, two-frame decoy geometry, numerical
   limits and an ordered exact balance search before posterior screening
-- [ ] Screen the frozen ladder and independently validate the first
-  balanced crowded exact joint, if any
+- [x] Screen the frozen ladder and independently validate the first
+  balanced crowded exact joint
 - [ ] Pin its hash and freeze a matched WP11ag comparison before inference
 
 The WP11ag transfer case was independent but unbalanced in frame-six
 clutter. WP11ah targets balanced alive-count and two-frame clutter
 modes on a new 17–18 detection observation. See
 `wp11ah_balanced_crowded_reference.md`. The WP8 holdout remains closed.
+The first frozen 17-detection screen passed, with low/middle/high alive
+bands 0.70058/0.11873/0.18070 and two clutter alternatives in both
+specified frames. Direct/paired beta-one joint TV differed by 4.77e-11;
+the high-band pass is only 0.00070 above its threshold. Pin the exact
+result before a new sampler comparison.
 
 ## WP12 — Open in-vivo trajectories
 
