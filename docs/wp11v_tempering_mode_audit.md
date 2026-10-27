@@ -19,6 +19,11 @@ five. This rule sees only cardinalities. If none qualifies, stop and report
 that the prespecified ladder failed. Pin the selected detection hash and
 cardinalities before any posterior computation.
 
+The first qualifying case was the third pair `(113,127)`: cardinalities
+`[2,2,2,3,1,1,0,2]`, 13 detections, detection SHA-256
+`400975d533de5fa9ba5833f0ade92e20045dd7397701637cd8db4534c531e1c4`.
+This selection used no posterior or sampler results.
+
 For the selected observation, evaluate the tempered target
 
 \[

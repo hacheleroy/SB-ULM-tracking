@@ -21,8 +21,8 @@ N_PARTICLES = 2_048
 RUN_CPU_CAP = 750
 IID_SEED = 34_621
 IID_REPLICATES = 1_000
-CASE_HASH: str | None = None  # pinned after deterministic cardinality-only selection
-CASE_CARDINALITIES: tuple[int, ...] | None = None
+CASE_HASH = "400975d533de5fa9ba5833f0ade92e20045dd7397701637cd8db4534c531e1c4"
+CASE_CARDINALITIES = (2, 2, 2, 3, 1, 1, 0, 2)
 
 
 def _select_case() -> tuple[int, GeneralizationRegime, Any]:
@@ -47,11 +47,9 @@ def _case() -> tuple[Any, dict[str, Any]]:
     index, regime, case = _select_case()
     metadata = json.loads(json.dumps(_metadata(regime, case)))
     info = metadata["model_and_detections"]
-    if CASE_HASH is not None and info["detections_sha256"] != CASE_HASH:
+    if info["detections_sha256"] != CASE_HASH:
         raise ValueError("selected independent observation hash changed")
-    if CASE_CARDINALITIES is not None and tuple(info["detection_cardinalities"]) != (
-        CASE_CARDINALITIES
-    ):
+    if tuple(info["detection_cardinalities"]) != CASE_CARDINALITIES:
         raise ValueError("selected independent cardinalities changed")
     return case, {"ladder_index": index, **metadata}
 
@@ -64,7 +62,7 @@ def _protocol() -> dict[str, Any]:
                    "central_separation": 0.006, "max_clutter_per_frame": 2,
                    "truth_mask": [list(row) for row in STAGGERED_TRUTH_MASK]},
         "selected_hash": CASE_HASH,
-        "selected_cardinalities": list(CASE_CARDINALITIES) if CASE_CARDINALITIES else None,
+        "selected_cardinalities": list(CASE_CARDINALITIES),
         "seeds": list(SEEDS), "n_particles": N_PARTICLES,
         "per_run_cpu_cap": RUN_CPU_CAP,
         "iid_seed": IID_SEED, "iid_replicates": IID_REPLICATES,
