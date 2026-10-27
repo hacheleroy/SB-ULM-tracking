@@ -726,6 +726,22 @@ inference about the competing high-alive mode. See
 independent eight-frame reference before developing another move. The
 untouched holdout remains closed.
 
+## WP11w — Frozen balanced exact-reference search
+
+- [x] Freeze an independent seed ladder, cardinality rule and exact
+  alive/clutter balance thresholds before posterior screening
+- [x] Pin the geometry-only ledger and screen all eligible cases in order
+- [x] Stop when no case meets all frozen criteria
+
+The three eligible 18–19 detection cases all met the alive-band balance
+conditions, but every one failed the requirement that two frame-six
+clutter counts each have mass at least 0.15. One also failed the final
+clutter condition. The numerical checks passed. The ladder is exhausted
+without a selected exact reference; no validation, sampler move, or
+holdout run followed. See `wp11w_balanced_exact_reference.md`. A new
+protocol should target frame-six clutter ambiguity explicitly, with
+its acceptance criteria fixed before examining another posterior.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`

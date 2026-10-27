@@ -74,4 +74,27 @@ The geometry-only ledger was pinned before posterior computation at
 SHA-256 `ba3d8aa8fb728d24b55cb966e6de0e53f8d0be0c3c2a17bdc2db1d82e12c15c4`.
 Candidates 0, 2 and 4 are cardinality eligible. Candidate 7 raised the
 ROI generator error and remains ineligible without replacement. The
-exact balance screen is pending.
+exact beta-one screens were performed in that order, each in a separate
+one-thread process under its 450 CPU-second cap.
+
+| Candidate (seeds) | Alive low / middle / high | Frame-six clutter masses | Final clutter masses | CPU s | Decision |
+| --- | --- | --- | --- | ---: | --- |
+| 0 (181,191) | 0.58366 / 0.14893 / 0.26741 | 0.97504 / 0.02486 / 0.00011 | 0.46490 / 0.51744 / 0.01766 | 75.0 | Sixth clutter fails |
+| 2 (199,211) | 0.56585 / 0.14503 / 0.28912 | 0.85135 / 0.14657 / 0.00207 | 0.03912 / 0.96088 | 164.5 | Sixth and final clutter fail |
+| 4 (229,233) | 0.38383 / 0.16050 / 0.45568 | 0.88828 / 0.11121 / 0.00051 | 0.75157 / 0.24843 | 79.2 | Sixth clutter fails |
+
+All three passed low/high/middle alive thresholds. Their raw minimum
+cells were between `−1.3e-12` and `−2.1e-14`, imaginary residuals
+at most `4.4e-19`, and raw mass errors zero at reported precision.
+No screen failed its numerical envelope, and none met every frozen
+balance criterion. **The ladder failed; there is no selected WP11w
+reference and no validation or sampler run.** The first candidate's
+frame-six clutter distribution was especially concentrated; the
+second candidate missed the 0.15 threshold by 0.00343 at frame six
+but also lacked a second final-frame clutter mode. Relaxing the
+threshold after these observations would invalidate this gate.
+
+A separate future protocol could deliberately target frame-six
+clutter ambiguity while retaining the independently calibrated alive
+bands. It must freeze its observation and acceptance rule before
+posterior evaluation; the untouched holdout remains closed.
