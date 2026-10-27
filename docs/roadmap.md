@@ -680,6 +680,21 @@ failure, not a calibrated across-observation rate or a move-selection
 gate. Next design an independently frozen targeted count/clutter move
 against this reference, keeping the untouched holdout closed.
 
+## WP11u — Frozen late suffix conditional PG development
+
+- [x] Add an opt-in pair PG kernel conditioned on the first five frames
+- [x] Enumerate its small-case transition at beta 0, 0.37 and 1 and
+  verify exact-target stationarity before inference
+- [x] Freeze six paired control/candidate seeds and absolute joint-error,
+  late clutter, and CPU criteria against the exposed WP11t reference
+- [ ] Complete all six paired runs and report every frozen criterion
+
+The candidate keeps the full-path PG mixture and adds a suffix update
+only at beta one, with additional final-stage sweeps. This is a single
+exposed-case development screen, not independent replication. See
+`wp11u_late_suffix_pg.md`. No high-particle or untouched holdout run is
+authorized by this screen.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
@@ -695,4 +710,5 @@ against this reference, keeping the untouched holdout closed.
 
 Raw-IQ inference is intentionally outside the critical path of the first
 localization-level paper.
+
 
