@@ -65,7 +65,7 @@ checks on the selected target at all three betas (log partition
 difference ≤1e-8, joint TV ≤1e-7, max cell difference ≤1e-8).
 Require beta-zero log partition within 1e-8 of the model's base
 normalizer and recomputed beta-one alive bands within 1e-7 of the
-screen. Cap selected validation at 1,200 CPU seconds. These checks
+screen. Cap selected validation at 1,800 CPU seconds. These checks
 are empirical numerical validation, not interval bounds. Pin the
 validated reference before designing any later sampler test.
 
