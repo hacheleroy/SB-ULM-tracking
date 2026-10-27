@@ -1,0 +1,10112 @@
+{
+  "experiment": "wp11aj_crowded_cohort_geometry",
+  "protocol": {
+    "pairs": [
+      [
+        3611,
+        3617
+      ],
+      [
+        3624,
+        3630
+      ],
+      [
+        3637,
+        3643
+      ],
+      [
+        3650,
+        3656
+      ],
+      [
+        3663,
+        3669
+      ],
+      [
+        3676,
+        3682
+      ],
+      [
+        3689,
+        3695
+      ],
+      [
+        3702,
+        3708
+      ],
+      [
+        3715,
+        3721
+      ],
+      [
+        3728,
+        3734
+      ],
+      [
+        3741,
+        3747
+      ],
+      [
+        3754,
+        3760
+      ],
+      [
+        3767,
+        3773
+      ],
+      [
+        3780,
+        3786
+      ],
+      [
+        3793,
+        3799
+      ],
+      [
+        3806,
+        3812
+      ],
+      [
+        3819,
+        3825
+      ],
+      [
+        3832,
+        3838
+      ],
+      [
+        3845,
+        3851
+      ],
+      [
+        3858,
+        3864
+      ],
+      [
+        3871,
+        3877
+      ],
+      [
+        3884,
+        3890
+      ],
+      [
+        3897,
+        3903
+      ],
+      [
+        3910,
+        3916
+      ],
+      [
+        3923,
+        3929
+      ],
+      [
+        3936,
+        3942
+      ],
+      [
+        3949,
+        3955
+      ],
+      [
+        3962,
+        3968
+      ],
+      [
+        3975,
+        3981
+      ],
+      [
+        3988,
+        3994
+      ],
+      [
+        4001,
+        4007
+      ],
+      [
+        4014,
+        4020
+      ],
+      [
+        4027,
+        4033
+      ],
+      [
+        4040,
+        4046
+      ],
+      [
+        4053,
+        4059
+      ],
+      [
+        4066,
+        4072
+      ],
+      [
+        4079,
+        4085
+      ],
+      [
+        4092,
+        4098
+      ],
+      [
+        4105,
+        4111
+      ],
+      [
+        4118,
+        4124
+      ],
+      [
+        4131,
+        4137
+      ],
+      [
+        4144,
+        4150
+      ],
+      [
+        4157,
+        4163
+      ],
+      [
+        4170,
+        4176
+      ],
+      [
+        4183,
+        4189
+      ],
+      [
+        4196,
+        4202
+      ],
+      [
+        4209,
+        4215
+      ],
+      [
+        4222,
+        4228
+      ],
+      [
+        4235,
+        4241
+      ],
+      [
+        4248,
+        4254
+      ],
+      [
+        4261,
+        4267
+      ],
+      [
+        4274,
+        4280
+      ],
+      [
+        4287,
+        4293
+      ],
+      [
+        4300,
+        4306
+      ],
+      [
+        4313,
+        4319
+      ],
+      [
+        4326,
+        4332
+      ],
+      [
+        4339,
+        4345
+      ],
+      [
+        4352,
+        4358
+      ],
+      [
+        4365,
+        4371
+      ],
+      [
+        4378,
+        4384
+      ],
+      [
+        4391,
+        4397
+      ],
+      [
+        4404,
+        4410
+      ],
+      [
+        4417,
+        4423
+      ],
+      [
+        4430,
+        4436
+      ],
+      [
+        4443,
+        4449
+      ],
+      [
+        4456,
+        4462
+      ],
+      [
+        4469,
+        4475
+      ],
+      [
+        4482,
+        4488
+      ],
+      [
+        4495,
+        4501
+      ],
+      [
+        4508,
+        4514
+      ],
+      [
+        4521,
+        4527
+      ],
+      [
+        4534,
+        4540
+      ],
+      [
+        4547,
+        4553
+      ],
+      [
+        4560,
+        4566
+      ],
+      [
+        4573,
+        4579
+      ],
+      [
+        4586,
+        4592
+      ],
+      [
+        4599,
+        4605
+      ],
+      [
+        4612,
+        4618
+      ],
+      [
+        4625,
+        4631
+      ],
+      [
+        4638,
+        4644
+      ],
+      [
+        4651,
+        4657
+      ],
+      [
+        4664,
+        4670
+      ],
+      [
+        4677,
+        4683
+      ],
+      [
+        4690,
+        4696
+      ],
+      [
+        4703,
+        4709
+      ],
+      [
+        4716,
+        4722
+      ],
+      [
+        4729,
+        4735
+      ],
+      [
+        4742,
+        4748
+      ],
+      [
+        4755,
+        4761
+      ],
+      [
+        4768,
+        4774
+      ],
+      [
+        4781,
+        4787
+      ],
+      [
+        4794,
+        4800
+      ],
+      [
+        4807,
+        4813
+      ],
+      [
+        4820,
+        4826
+      ],
+      [
+        4833,
+        4839
+      ],
+      [
+        4846,
+        4852
+      ],
+      [
+        4859,
+        4865
+      ],
+      [
+        4872,
+        4878
+      ],
+      [
+        4885,
+        4891
+      ],
+      [
+        4898,
+        4904
+      ],
+      [
+        4911,
+        4917
+      ],
+      [
+        4924,
+        4930
+      ],
+      [
+        4937,
+        4943
+      ],
+      [
+        4950,
+        4956
+      ],
+      [
+        4963,
+        4969
+      ],
+      [
+        4976,
+        4982
+      ],
+      [
+        4989,
+        4995
+      ],
+      [
+        5002,
+        5008
+      ],
+      [
+        5015,
+        5021
+      ],
+      [
+        5028,
+        5034
+      ],
+      [
+        5041,
+        5047
+      ],
+      [
+        5054,
+        5060
+      ],
+      [
+        5067,
+        5073
+      ],
+      [
+        5080,
+        5086
+      ],
+      [
+        5093,
+        5099
+      ],
+      [
+        5106,
+        5112
+      ],
+      [
+        5119,
+        5125
+      ],
+      [
+        5132,
+        5138
+      ],
+      [
+        5145,
+        5151
+      ],
+      [
+        5158,
+        5164
+      ],
+      [
+        5171,
+        5177
+      ],
+      [
+        5184,
+        5190
+      ],
+      [
+        5197,
+        5203
+      ],
+      [
+        5210,
+        5216
+      ],
+      [
+        5223,
+        5229
+      ],
+      [
+        5236,
+        5242
+      ],
+      [
+        5249,
+        5255
+      ],
+      [
+        5262,
+        5268
+      ],
+      [
+        5275,
+        5281
+      ],
+      [
+        5288,
+        5294
+      ],
+      [
+        5301,
+        5307
+      ],
+      [
+        5314,
+        5320
+      ],
+      [
+        5327,
+        5333
+      ],
+      [
+        5340,
+        5346
+      ],
+      [
+        5353,
+        5359
+      ],
+      [
+        5366,
+        5372
+      ],
+      [
+        5379,
+        5385
+      ],
+      [
+        5392,
+        5398
+      ],
+      [
+        5405,
+        5411
+      ],
+      [
+        5418,
+        5424
+      ],
+      [
+        5431,
+        5437
+      ],
+      [
+        5444,
+        5450
+      ],
+      [
+        5457,
+        5463
+      ],
+      [
+        5470,
+        5476
+      ],
+      [
+        5483,
+        5489
+      ],
+      [
+        5496,
+        5502
+      ],
+      [
+        5509,
+        5515
+      ],
+      [
+        5522,
+        5528
+      ],
+      [
+        5535,
+        5541
+      ],
+      [
+        5548,
+        5554
+      ],
+      [
+        5561,
+        5567
+      ],
+      [
+        5574,
+        5580
+      ],
+      [
+        5587,
+        5593
+      ],
+      [
+        5600,
+        5606
+      ],
+      [
+        5613,
+        5619
+      ],
+      [
+        5626,
+        5632
+      ],
+      [
+        5639,
+        5645
+      ],
+      [
+        5652,
+        5658
+      ],
+      [
+        5665,
+        5671
+      ],
+      [
+        5678,
+        5684
+      ],
+      [
+        5691,
+        5697
+      ],
+      [
+        5704,
+        5710
+      ],
+      [
+        5717,
+        5723
+      ],
+      [
+        5730,
+        5736
+      ],
+      [
+        5743,
+        5749
+      ],
+      [
+        5756,
+        5762
+      ],
+      [
+        5769,
+        5775
+      ],
+      [
+        5782,
+        5788
+      ],
+      [
+        5795,
+        5801
+      ],
+      [
+        5808,
+        5814
+      ],
+      [
+        5821,
+        5827
+      ],
+      [
+        5834,
+        5840
+      ],
+      [
+        5847,
+        5853
+      ],
+      [
+        5860,
+        5866
+      ],
+      [
+        5873,
+        5879
+      ],
+      [
+        5886,
+        5892
+      ],
+      [
+        5899,
+        5905
+      ],
+      [
+        5912,
+        5918
+      ],
+      [
+        5925,
+        5931
+      ],
+      [
+        5938,
+        5944
+      ],
+      [
+        5951,
+        5957
+      ],
+      [
+        5964,
+        5970
+      ],
+      [
+        5977,
+        5983
+      ],
+      [
+        5990,
+        5996
+      ],
+      [
+        6003,
+        6009
+      ],
+      [
+        6016,
+        6022
+      ],
+      [
+        6029,
+        6035
+      ],
+      [
+        6042,
+        6048
+      ],
+      [
+        6055,
+        6061
+      ],
+      [
+        6068,
+        6074
+      ],
+      [
+        6081,
+        6087
+      ],
+      [
+        6094,
+        6100
+      ],
+      [
+        6107,
+        6113
+      ],
+      [
+        6120,
+        6126
+      ],
+      [
+        6133,
+        6139
+      ],
+      [
+        6146,
+        6152
+      ],
+      [
+        6159,
+        6165
+      ],
+      [
+        6172,
+        6178
+      ],
+      [
+        6185,
+        6191
+      ],
+      [
+        6198,
+        6204
+      ],
+      [
+        6211,
+        6217
+      ],
+      [
+        6224,
+        6230
+      ],
+      [
+        6237,
+        6243
+      ],
+      [
+        6250,
+        6256
+      ],
+      [
+        6263,
+        6269
+      ],
+      [
+        6276,
+        6282
+      ],
+      [
+        6289,
+        6295
+      ],
+      [
+        6302,
+        6308
+      ],
+      [
+        6315,
+        6321
+      ],
+      [
+        6328,
+        6334
+      ],
+      [
+        6341,
+        6347
+      ],
+      [
+        6354,
+        6360
+      ],
+      [
+        6367,
+        6373
+      ],
+      [
+        6380,
+        6386
+      ],
+      [
+        6393,
+        6399
+      ],
+      [
+        6406,
+        6412
+      ],
+      [
+        6419,
+        6425
+      ],
+      [
+        6432,
+        6438
+      ],
+      [
+        6445,
+        6451
+      ],
+      [
+        6458,
+        6464
+      ],
+      [
+        6471,
+        6477
+      ],
+      [
+        6484,
+        6490
+      ],
+      [
+        6497,
+        6503
+      ],
+      [
+        6510,
+        6516
+      ],
+      [
+        6523,
+        6529
+      ],
+      [
+        6536,
+        6542
+      ],
+      [
+        6549,
+        6555
+      ],
+      [
+        6562,
+        6568
+      ],
+      [
+        6575,
+        6581
+      ],
+      [
+        6588,
+        6594
+      ],
+      [
+        6601,
+        6607
+      ],
+      [
+        6614,
+        6620
+      ],
+      [
+        6627,
+        6633
+      ],
+      [
+        6640,
+        6646
+      ],
+      [
+        6653,
+        6659
+      ],
+      [
+        6666,
+        6672
+      ],
+      [
+        6679,
+        6685
+      ],
+      [
+        6692,
+        6698
+      ],
+      [
+        6705,
+        6711
+      ],
+      [
+        6718,
+        6724
+      ]
+    ],
+    "regime": {
+      "detection_probability": 0.7,
+      "expected_clutter_per_frame": 0.28,
+      "central_separation": 0.007,
+      "max_clutter_per_frame": 2,
+      "truth_mask": [
+        [
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          false,
+          true,
+          true
+        ]
+      ]
+    },
+    "eligibility": "18 or 19 detections, frame six 2..3 true and zero clutter, final exactly 2 true and zero clutter, frames 3..5 >=6, seventh >=1, maximum frame count <=4",
+    "sixth_offsets_mm": [
+      0.01,
+      0.016,
+      0.022
+    ],
+    "last_offsets_mm": [
+      0.004,
+      0.008,
+      0.012
+    ],
+    "decoys": "largest nonnegative reference ID in each of frame six and final; y toward zero by frozen offset; labels become -1",
+    "strata_order": [
+      "18",
+      "19"
+    ],
+    "quotas": {
+      "18": 1,
+      "19": 2
+    },
+    "max_screens_by_stratum": {
+      "18": 12,
+      "19": 27
+    },
+    "order": "within each stratum, bases by minimum maximum frame count then seed index, round-robin across bases at each sixth-then-final offset pair",
+    "selection": "first quota numerically sound balanced variants on distinct bases per stratum; low/high alive >=.18, middle >=.05, two clutter categories >=.15 at both specified frames",
+    "stop": "generator/ROI errors ineligible; numerical failure or CPU cap stops entire cohort; no replacement, threshold change or partial cohort inference; exhaustion gives no cohort",
+    "numeric": {
+      "minimum_raw_cell": -1e-10,
+      "max_imaginary_residual": 1e-08,
+      "raw_mass_error": 1e-08,
+      "direct_paired_logz": 1e-08,
+      "direct_paired_tv": 1e-07,
+      "direct_paired_max_cell": 1e-08,
+      "base_logz": 1e-08
+    },
+    "screen_cpu_cap": 600,
+    "validation_cpu_cap": 2400,
+    "no_sampler_or_holdout": true
+  },
+  "bases": [
+    {
+      "base_index": 0,
+      "pair": [
+        3611,
+        3617
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 1,
+      "pair": [
+        3624,
+        3630
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "base_detection_sha256": "cde0cadcbc62967fdcee719c8e903d4c5967bef57a9337c25aa3b621679a7d5f",
+      "sixth_reference_ids": [
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 2,
+      "pair": [
+        3637,
+        3643
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        3,
+        4,
+        2
+      ],
+      "base_detection_sha256": "666634022c7c6548957a8ff8502df74d4683292b30c1a954f10fd444d4d05a67",
+      "sixth_reference_ids": [
+        1,
+        2,
+        -1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 3,
+      "pair": [
+        3650,
+        3656
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        2,
+        4,
+        3,
+        3
+      ],
+      "base_detection_sha256": "f82d041669224ab8eaba8fae40aed2e2057cbadb56eba232b1b6c2da535fe444",
+      "sixth_reference_ids": [
+        2,
+        -1,
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        -1,
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 4,
+      "pair": [
+        3663,
+        3669
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        3,
+        2,
+        0,
+        3,
+        1
+      ],
+      "base_detection_sha256": "e2f24795a1ce9ce5ca2ae1689042e492f708bf2a38e019a87a47add90899ffcd",
+      "sixth_reference_ids": [],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 5,
+      "pair": [
+        3676,
+        3682
+      ],
+      "cardinalities": [
+        4,
+        3,
+        2,
+        3,
+        3,
+        4,
+        2,
+        1
+      ],
+      "base_detection_sha256": "f98c39fcda543e76606cac2660e4a98da64cbc9d923f0ef5a1fe6c4e083d0edd",
+      "sixth_reference_ids": [
+        1,
+        -1,
+        3,
+        -1
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 6,
+      "pair": [
+        3689,
+        3695
+      ],
+      "cardinalities": [
+        1,
+        1,
+        2,
+        1,
+        1,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "594554387d65fb28da8a5ca3ced5599c619c88235d6694185029534bda262911",
+      "sixth_reference_ids": [
+        -1,
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 7,
+      "pair": [
+        3702,
+        3708
+      ],
+      "cardinalities": [
+        2,
+        1,
+        4,
+        2,
+        4,
+        1,
+        1,
+        4
+      ],
+      "base_detection_sha256": "79443dbf85879cdbc37204a2889775f09b599d5c8b95280c302875c5c67ce9c3",
+      "sixth_reference_ids": [
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        -1,
+        -1,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 8,
+      "pair": [
+        3715,
+        3721
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        0
+      ],
+      "base_detection_sha256": "0d19ee8bcefdd97e95740fb9c887db2353f5b6b0201e80ca049bc8e28313984a",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 9,
+      "pair": [
+        3728,
+        3734
+      ],
+      "cardinalities": [
+        1,
+        2,
+        2,
+        4,
+        4,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "9bc246868a056eb655c0f9a55e34253d6ceba589c48117c57f93a2b179aa28b1",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 10,
+      "pair": [
+        3741,
+        3747
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        4,
+        5,
+        1,
+        3,
+        0
+      ],
+      "base_detection_sha256": "9f188161c1da20054e35049a6280447252959679d94d46cb3328ef02f81cd3c1",
+      "sixth_reference_ids": [
+        -1
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 11,
+      "pair": [
+        3754,
+        3760
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        1,
+        4,
+        1,
+        3,
+        1
+      ],
+      "base_detection_sha256": "ce9babc4c416b8a5411fa2c9056f470e04c513cbc293e4fbf7210fcd4cf99836",
+      "sixth_reference_ids": [
+        3
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 12,
+      "pair": [
+        3767,
+        3773
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        4,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "aec0612058e549f23e234184b819e3bfea4bcbdcf2ad0bc8e3597efebf1f591b",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 13,
+      "pair": [
+        3780,
+        3786
+      ],
+      "cardinalities": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "e06483f56e4bc0f019846ad593ed15fa4cacf02f53213617a7b11740a0d705fd",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 14,
+      "pair": [
+        3793,
+        3799
+      ],
+      "cardinalities": [
+        2,
+        2,
+        5,
+        3,
+        3,
+        5,
+        3,
+        1
+      ],
+      "base_detection_sha256": "bb89ab362f575ca6871a63ac2c8b23c70b88713135c2003f8fe7175a0b4becb4",
+      "sixth_reference_ids": [
+        2,
+        3,
+        -1,
+        1,
+        -1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 15,
+      "pair": [
+        3806,
+        3812
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        4,
+        4,
+        3,
+        4,
+        1
+      ],
+      "base_detection_sha256": "d6e920b890bf825524d15a41552a742a2a15a57d5668b73c68a6cd66ca81f964",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 16,
+      "pair": [
+        3819,
+        3825
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        5,
+        2,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "149e5762547ecd566661f8fc9d04c36be441740dac4fd5755fdd1b6e657b443a",
+      "sixth_reference_ids": [
+        1,
+        3,
+        -1
+      ],
+      "last_reference_ids": [
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 17,
+      "pair": [
+        3832,
+        3838
+      ],
+      "cardinalities": [
+        1,
+        4,
+        3,
+        3,
+        3,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "ea36772700fd5153d2d645101e6bf0c1ba5deb583ffb836a52e06b1f324a56f5",
+      "sixth_reference_ids": [
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 18,
+      "pair": [
+        3845,
+        3851
+      ],
+      "cardinalities": [
+        1,
+        2,
+        1,
+        3,
+        4,
+        1,
+        1,
+        2
+      ],
+      "base_detection_sha256": "3a0ef2c28a987667351097f6fc1da6502f049e7ae05f1943eb20e0960283ced0",
+      "sixth_reference_ids": [
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 19,
+      "pair": [
+        3858,
+        3864
+      ],
+      "cardinalities": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        1,
+        0
+      ],
+      "base_detection_sha256": "b8b384b70dfd9dbb1fb22fa74356e378a22ba8c455f1943cd103b12eef867f35",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 20,
+      "pair": [
+        3871,
+        3877
+      ],
+      "cardinalities": [
+        0,
+        4,
+        5,
+        2,
+        3,
+        1,
+        3,
+        2
+      ],
+      "base_detection_sha256": "82e04f66dab6331acd03d26260d3f28d91c5262f0f2524b3cfcb0f50d34b6b56",
+      "sixth_reference_ids": [
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 21,
+      "pair": [
+        3884,
+        3890
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        3,
+        3,
+        1,
+        1
+      ],
+      "base_detection_sha256": "da2360aa3b65531e4fcab68a0e07433911e44776887c2e548e27691b7ea4458e",
+      "sixth_reference_ids": [
+        1,
+        -1,
+        2
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 22,
+      "pair": [
+        3897,
+        3903
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        1,
+        3,
+        1
+      ],
+      "base_detection_sha256": "0b51ca2cc196762541cd1251b5f659b25a7f46a27c5c0ac45f2243bf04ec3eaa",
+      "sixth_reference_ids": [
+        3
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 23,
+      "pair": [
+        3910,
+        3916
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 24,
+      "pair": [
+        3923,
+        3929
+      ],
+      "cardinalities": [
+        3,
+        2,
+        3,
+        2,
+        3,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "2d6864b073c8d1b95a7508ed7b0d5acfa903b89913e7684f0b489f28e0e47b37",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 25,
+      "pair": [
+        3936,
+        3942
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        2,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "da80cb44fbd707a54508b9807d7a016b15ac22851f32f441bdd59e57747a94d1",
+      "sixth_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 26,
+      "pair": [
+        3949,
+        3955
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 27,
+      "pair": [
+        3962,
+        3968
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 28,
+      "pair": [
+        3975,
+        3981
+      ],
+      "cardinalities": [
+        1,
+        2,
+        1,
+        3,
+        5,
+        1,
+        3,
+        0
+      ],
+      "base_detection_sha256": "dc1f8477b95e4fcf791f724270943517049dc9022365897d96a1203212cfeda0",
+      "sixth_reference_ids": [
+        3
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 29,
+      "pair": [
+        3988,
+        3994
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 30,
+      "pair": [
+        4001,
+        4007
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "0dadb5d26bf9574907f2960e3cb628d0437e129bcbbff59e2f8d0e72996838e3",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 31,
+      "pair": [
+        4014,
+        4020
+      ],
+      "cardinalities": [
+        3,
+        3,
+        4,
+        3,
+        2,
+        3,
+        2,
+        0
+      ],
+      "base_detection_sha256": "1ee584d287445f2a7e30f88246c6985070e8de3505ce121322e7fb1c0fc6f760",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 32,
+      "pair": [
+        4027,
+        4033
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "b9915e62da55b96ce403b29059e0ee33d20a09a1de02aecc484c55f376ecd464",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 33,
+      "pair": [
+        4040,
+        4046
+      ],
+      "cardinalities": [
+        4,
+        3,
+        1,
+        3,
+        3,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "c9ebf0bf0453ef7d066f8f0d0a62f48718603144e6e7ab163c293b581d7b419d",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 34,
+      "pair": [
+        4053,
+        4059
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        4,
+        2,
+        4,
+        2,
+        0
+      ],
+      "base_detection_sha256": "6c8a0a311c56ba1d02c2628b2c7d43cf1dd5a609443de05180c6ebff94b1b87f",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1,
+        -1
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 35,
+      "pair": [
+        4066,
+        4072
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "cdd4fc6cfed7e7b83d60d4e65fab04cacf52eca35fb14875beebbe848a945f71",
+      "sixth_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 36,
+      "pair": [
+        4079,
+        4085
+      ],
+      "cardinalities": [
+        3,
+        2,
+        4,
+        3,
+        1,
+        3,
+        2,
+        1
+      ],
+      "base_detection_sha256": "e54363bb5b5701eb5139642b346866e0fae0280b4eddc40775507ba2168abc1b",
+      "sixth_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 37,
+      "pair": [
+        4092,
+        4098
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        1,
+        2,
+        2
+      ],
+      "base_detection_sha256": "cccc7d7ed82d2d94f6a40193115da5b6341e48cd5cc75237adfb81ebb9d71d4c",
+      "sixth_reference_ids": [
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 38,
+      "pair": [
+        4105,
+        4111
+      ],
+      "cardinalities": [
+        3,
+        2,
+        4,
+        3,
+        2,
+        3,
+        1,
+        2
+      ],
+      "base_detection_sha256": "b4e64ea187e8e20177506b1e3c691fa5f6511661a6e2f0deac88661ee5d54adb",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 39,
+      "pair": [
+        4118,
+        4124
+      ],
+      "cardinalities": [
+        3,
+        2,
+        2,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "base_detection_sha256": "8b7b7fc6d01a4eac915b3360fe5804bf7bf5d591cda5b83609827172f180b1b7",
+      "sixth_reference_ids": [
+        -1,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 40,
+      "pair": [
+        4131,
+        4137
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        1,
+        4,
+        2,
+        1,
+        2
+      ],
+      "base_detection_sha256": "42818779c4a4f1a30a36dd7b52e2c91b2b5eec2460c254af3aa90b4c8e08b4be",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 41,
+      "pair": [
+        4144,
+        4150
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        1,
+        3,
+        2,
+        2,
+        3
+      ],
+      "base_detection_sha256": "5dca3097cbad5f7a79bda2d37661b4897fbf37f53cbcb9a3ffe781bee7e0fd9d",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 42,
+      "pair": [
+        4157,
+        4163
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        3,
+        5,
+        1,
+        3,
+        1
+      ],
+      "base_detection_sha256": "6137b5d983baad63d404180f76553ed0000e8e66c42addfee53a967c5462b746",
+      "sixth_reference_ids": [
+        -1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 43,
+      "pair": [
+        4170,
+        4176
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        1,
+        4,
+        3,
+        3,
+        1
+      ],
+      "base_detection_sha256": "7d482d2175cdd0e70a9a9b931d8d127a27943c35d3c5f05d8cbbb96338de98c5",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 44,
+      "pair": [
+        4183,
+        4189
+      ],
+      "cardinalities": [
+        0,
+        2,
+        4,
+        4,
+        3,
+        2,
+        1,
+        1
+      ],
+      "base_detection_sha256": "1a2048bdeedd8950ed81061ac7f223bcc9db275d6502544059533b7f8f80aa1e",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 45,
+      "pair": [
+        4196,
+        4202
+      ],
+      "cardinalities": [
+        2,
+        4,
+        3,
+        2,
+        3,
+        3,
+        4,
+        2
+      ],
+      "base_detection_sha256": "c36aa1a099f18d7b7d0b1f1de73b816645ebb6d77129dad391cea6731967d7b5",
+      "sixth_reference_ids": [
+        1,
+        3,
+        -1
+      ],
+      "last_reference_ids": [
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 46,
+      "pair": [
+        4209,
+        4215
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        4,
+        3,
+        4,
+        4,
+        1
+      ],
+      "base_detection_sha256": "e5e7f37cf3ecf8aa2f4e32381d3e4ba7d922c9fcfa9ae2225dd0c896156a9dd0",
+      "sixth_reference_ids": [
+        2,
+        1,
+        -1,
+        3
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 47,
+      "pair": [
+        4222,
+        4228
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "b62f9bf27df4417a1ec409b4b2781c5c63e13a333ff1d3bd062b77ba1edc58d7",
+      "sixth_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 49,
+      "pair": [
+        4248,
+        4254
+      ],
+      "cardinalities": [
+        2,
+        4,
+        3,
+        3,
+        4,
+        2,
+        1,
+        1
+      ],
+      "base_detection_sha256": "73a869b19adda329fb3df1aa05d58bb020445f542a4f78726c059162a680639b",
+      "sixth_reference_ids": [
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 50,
+      "pair": [
+        4261,
+        4267
+      ],
+      "cardinalities": [
+        2,
+        1,
+        3,
+        0,
+        3,
+        0,
+        2,
+        1
+      ],
+      "base_detection_sha256": "33e5bf7275fa9009dbbc7a20afcad291de16340df119231c644c4a11e5fc6b1c",
+      "sixth_reference_ids": [],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 51,
+      "pair": [
+        4274,
+        4280
+      ],
+      "cardinalities": [
+        3,
+        1,
+        5,
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "base_detection_sha256": "a4c20bf5d8ba00a2f1531603b6fdb7c8cb992c06b6d5340efdd04ac1739bc788",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 52,
+      "pair": [
+        4287,
+        4293
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        4,
+        4,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "b92c1def3370f3d8b9f38e959495ba0ba2d5797153d31ed038057baf194ea4ce",
+      "sixth_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 53,
+      "pair": [
+        4300,
+        4306
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 54,
+      "pair": [
+        4313,
+        4319
+      ],
+      "cardinalities": [
+        2,
+        4,
+        4,
+        2,
+        1,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "8f876704fa5c1558a0a1a5674d2cbd9891137c7a9830885c9eb27d99f30d7c3f",
+      "sixth_reference_ids": [
+        -1,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 55,
+      "pair": [
+        4326,
+        4332
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        4,
+        1,
+        2,
+        1
+      ],
+      "base_detection_sha256": "4a3a671e126b8fd80d891959f202f5d481e518d247287984657d7aeac7c55bcd",
+      "sixth_reference_ids": [
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 56,
+      "pair": [
+        4339,
+        4345
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      "base_detection_sha256": "d8b8185fd408bf86f3182b454debfc22a4e8d4cc2496d7b3edc5e7c6a1d59bed",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 57,
+      "pair": [
+        4352,
+        4358
+      ],
+      "cardinalities": [
+        1,
+        2,
+        5,
+        4,
+        2,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "5715ba2ebf2e9e8d7fd3e962b322bb3d6479542176428f7be3760125044177f0",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1,
+        -1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 58,
+      "pair": [
+        4365,
+        4371
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        4,
+        2,
+        2,
+        3,
+        3
+      ],
+      "base_detection_sha256": "9f502fbab24f5312b939afb918787817bb9282db40d0882f85fe9db9dba8ecd1",
+      "sixth_reference_ids": [
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 59,
+      "pair": [
+        4378,
+        4384
+      ],
+      "cardinalities": [
+        0,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "f492b729b5a20782bf7740a994f0f6512b128d79602b1d89f4687ebc6f767cce",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "032aadb53e0e0c3627dde49844951f863bbcf6108a52347934b17c5a98e8c6db",
+      "sixth_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 61,
+      "pair": [
+        4404,
+        4410
+      ],
+      "cardinalities": [
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "07170246bba8c0d4967f3a55696ab3e96c83ddcb0d094d41d7b69c523f06ee65",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 62,
+      "pair": [
+        4417,
+        4423
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        2,
+        3,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "dbd0f7fe0f42993b04eafb94c46d2e56a9e50f2a35c789573c814c52a977f48e",
+      "sixth_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 63,
+      "pair": [
+        4430,
+        4436
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 64,
+      "pair": [
+        4443,
+        4449
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        3,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "1c6dd20bddfd0f3ea7b1562f538cfb3ae2e547ae455d4a264fabc464dd5bb866",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 65,
+      "pair": [
+        4456,
+        4462
+      ],
+      "cardinalities": [
+        2,
+        1,
+        4,
+        3,
+        4,
+        5,
+        3,
+        2
+      ],
+      "base_detection_sha256": "51e98bfa60422bdad22c6f80f3219d2ac206e898ca5488f15244432c7abb0040",
+      "sixth_reference_ids": [
+        -1,
+        1,
+        -1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 66,
+      "pair": [
+        4469,
+        4475
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 67,
+      "pair": [
+        4482,
+        4488
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        3,
+        1,
+        3,
+        2
+      ],
+      "base_detection_sha256": "c3b2b563a0e977ec8db98ae66e131b819a64d6359cee3a3014be305621f964bb",
+      "sixth_reference_ids": [
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 68,
+      "pair": [
+        4495,
+        4501
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        3,
+        5,
+        2,
+        2,
+        0
+      ],
+      "base_detection_sha256": "20c511d7b43ded41e0f5ee800bd5183a1343cd9be739c84de315cd3cd488f2c8",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 69,
+      "pair": [
+        4508,
+        4514
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 70,
+      "pair": [
+        4521,
+        4527
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        4,
+        4,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "8820fe29bcfcbb8dcebc5b9b08115ffaa32aa00b1cd318635d6f7e7379f7a969",
+      "sixth_reference_ids": [
+        -1,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 71,
+      "pair": [
+        4534,
+        4540
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        4,
+        3,
+        2,
+        1
+      ],
+      "base_detection_sha256": "3534a402a76f18b6d26258a88ae4b4eb956fdd22d17e3693fe2ad9298da19fb9",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 72,
+      "pair": [
+        4547,
+        4553
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 73,
+      "pair": [
+        4560,
+        4566
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        4,
+        2,
+        2,
+        1
+      ],
+      "base_detection_sha256": "056a4879eaa0a92b5575a961cb66c1a6125e8b4cf4119fa88f371a239d0c05bf",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 74,
+      "pair": [
+        4573,
+        4579
+      ],
+      "cardinalities": [
+        1,
+        2,
+        2,
+        3,
+        4,
+        3,
+        3,
+        1
+      ],
+      "base_detection_sha256": "548c191ee23b241f6339f5b77c1fe794da7765865f5c42fb9d12d6d531034e10",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 75,
+      "pair": [
+        4586,
+        4592
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 76,
+      "pair": [
+        4599,
+        4605
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        4,
+        4,
+        3,
+        3,
+        0
+      ],
+      "base_detection_sha256": "e7ac23298aa6f2472be35f69cea84a092b79d591f2eb8442494899c63fb29507",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 77,
+      "pair": [
+        4612,
+        4618
+      ],
+      "cardinalities": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        2,
+        0
+      ],
+      "base_detection_sha256": "5d1188abc504f18a58ba8ae537a2dd3388baf453b73e9ba4d4f73e32bdd800e7",
+      "sixth_reference_ids": [
+        2,
+        1,
+        3
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 78,
+      "pair": [
+        4625,
+        4631
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        1,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "0acb972e9342c0122c792f863d9256616ea9488aaadb53d5332909475ce591e5",
+      "sixth_reference_ids": [
+        1,
+        -1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 79,
+      "pair": [
+        4638,
+        4644
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        3,
+        3,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "7e96f473092452ac5ad53965a3fb25e0e627f0def18fa10c70ea8bdad10a7a2f",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 80,
+      "pair": [
+        4651,
+        4657
+      ],
+      "cardinalities": [
+        2,
+        1,
+        2,
+        3,
+        3,
+        2,
+        4,
+        2
+      ],
+      "base_detection_sha256": "3ff65f975625d5c8d5375afaa59d8f7c14bcff39ece51615934993420b52015b",
+      "sixth_reference_ids": [
+        -1,
+        3
+      ],
+      "last_reference_ids": [
+        -1,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 81,
+      "pair": [
+        4664,
+        4670
+      ],
+      "cardinalities": [
+        1,
+        1,
+        2,
+        3,
+        5,
+        1,
+        3,
+        2
+      ],
+      "base_detection_sha256": "2e6df8d81f2f36b2a25d088d6ce49876d5e81ebd6b14922884db45cec4193959",
+      "sixth_reference_ids": [
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 82,
+      "pair": [
+        4677,
+        4683
+      ],
+      "cardinalities": [
+        2,
+        1,
+        3,
+        2,
+        5,
+        1,
+        0,
+        2
+      ],
+      "base_detection_sha256": "5edfca639660380813260966e2a37d106845f59a848a657a3e0e595685657249",
+      "sixth_reference_ids": [
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 83,
+      "pair": [
+        4690,
+        4696
+      ],
+      "cardinalities": [
+        3,
+        2,
+        3,
+        5,
+        4,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "50118d8705e4041b6b97550f87b49035517971c8bd282ec68234397db45d62bd",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        -1,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 84,
+      "pair": [
+        4703,
+        4709
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        0,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "305de09eee4483b62dbf09da334019610d515791f855c4c3b41e73bf9904ba9c",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 85,
+      "pair": [
+        4716,
+        4722
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        4,
+        3,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "e3e0e3ec80432a9466b439962712afc46148eb6ca92082b58385097ec5aee83c",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 86,
+      "pair": [
+        4729,
+        4735
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 87,
+      "pair": [
+        4742,
+        4748
+      ],
+      "cardinalities": [
+        0,
+        2,
+        4,
+        3,
+        3,
+        3,
+        3,
+        1
+      ],
+      "base_detection_sha256": "74da12163c6d992069e822fd49f8175a609b885ca66402608fbdac2a83ea6791",
+      "sixth_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 88,
+      "pair": [
+        4755,
+        4761
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        2,
+        4,
+        2,
+        2,
+        1
+      ],
+      "base_detection_sha256": "ad95d59c8712f690a97d6d698b26fd22046c034c2c98fc0fba22d2343d53e609",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 89,
+      "pair": [
+        4768,
+        4774
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        2,
+        3,
+        4,
+        3,
+        0
+      ],
+      "base_detection_sha256": "8534292a647bc8433a8aa17b3958aec6ce80b8e9ceaee4ab0d030ee7a20251b8",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1,
+        -1
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 90,
+      "pair": [
+        4781,
+        4787
+      ],
+      "cardinalities": [
+        2,
+        1,
+        4,
+        4,
+        3,
+        1,
+        3,
+        1
+      ],
+      "base_detection_sha256": "c0264c77001aee4cf7726c9cf4cb67a2932f0ecfe614db93e8fffcb468231b73",
+      "sixth_reference_ids": [
+        3
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 91,
+      "pair": [
+        4794,
+        4800
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 92,
+      "pair": [
+        4807,
+        4813
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 93,
+      "pair": [
+        4820,
+        4826
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "base_detection_sha256": "b35674a9f36245cf31aba648e0f784bd2d372a76d1a56941fe7d8200d6a17580",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 95,
+      "pair": [
+        4846,
+        4852
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 96,
+      "pair": [
+        4859,
+        4865
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        5,
+        3,
+        2,
+        2,
+        0
+      ],
+      "base_detection_sha256": "df9cb8dfc12986319332ea5e2b603367cdea1d89b466876e33a540bf28f10ad1",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 97,
+      "pair": [
+        4872,
+        4878
+      ],
+      "cardinalities": [
+        1,
+        3,
+        2,
+        2,
+        4,
+        3,
+        3,
+        3
+      ],
+      "base_detection_sha256": "38d9d0a0c6f9c17aa9ba9980eec3e2a304f64c622b7d0ede613e810f4804d206",
+      "sixth_reference_ids": [
+        2,
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 98,
+      "pair": [
+        4885,
+        4891
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 99,
+      "pair": [
+        4898,
+        4904
+      ],
+      "cardinalities": [
+        3,
+        2,
+        2,
+        5,
+        1,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "348714e6666bfe89308197ac17ca56d45f5f6b8fa17a31d590ebf7a715f8afd7",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 100,
+      "pair": [
+        4911,
+        4917
+      ],
+      "cardinalities": [
+        1,
+        3,
+        2,
+        4,
+        4,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "4000eea0901df545750aadd0707f734bbaa80840db42b3dd5f7a49e1d5b94ce6",
+      "sixth_reference_ids": [
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 101,
+      "pair": [
+        4924,
+        4930
+      ],
+      "cardinalities": [
+        1,
+        1,
+        2,
+        2,
+        5,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "7f7a8e1dcf11191dc5aabe69423e7b304a862117b93b0164d1037969bbec7537",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 102,
+      "pair": [
+        4937,
+        4943
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 103,
+      "pair": [
+        4950,
+        4956
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        5,
+        3,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "3d93370fc1d6c68a1b8273215c9000786a3c779854943d636696d36c7488f743",
+      "sixth_reference_ids": [
+        2,
+        1,
+        3,
+        -1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 104,
+      "pair": [
+        4963,
+        4969
+      ],
+      "cardinalities": [
+        1,
+        3,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "707429436a2e48acd75584089000b40880caa7ce5c6e49026ed19d0f4f88fd7d",
+      "sixth_reference_ids": [
+        -1,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "base_detection_sha256": "7140e1eb2859bde5e33a378aeb91bd9d0cc283ea851b9bc65797a359d13c80c1",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 106,
+      "pair": [
+        4989,
+        4995
+      ],
+      "cardinalities": [
+        1,
+        1,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "base_detection_sha256": "e42801dd1a2cfcd178438229e17de2fc499a5a43a23519a68406b96dd6af4cd6",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 107,
+      "pair": [
+        5002,
+        5008
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 108,
+      "pair": [
+        5015,
+        5021
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        3
+      ],
+      "base_detection_sha256": "c5fc9e0054461ba448b199ed2e4f507e704e784b486dcdc600c19b04b086b002",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 109,
+      "pair": [
+        5028,
+        5034
+      ],
+      "cardinalities": [
+        3,
+        2,
+        3,
+        3,
+        4,
+        2,
+        3,
+        3
+      ],
+      "base_detection_sha256": "23bb451769dc077e07c0ade7a31de8e8390c5a66803021e1effa4c33aecce929",
+      "sixth_reference_ids": [
+        -1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 110,
+      "pair": [
+        5041,
+        5047
+      ],
+      "cardinalities": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        1
+      ],
+      "base_detection_sha256": "3ac4f432b203b096a4221b20a748e3f8316ccc3309c52b0bee27eb786d282608",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 111,
+      "pair": [
+        5054,
+        5060
+      ],
+      "cardinalities": [
+        3,
+        4,
+        4,
+        3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "19e364ab96366b3034d1d4c785c00fe69ebfbbcad3608ef1c7f624c27f7a6786",
+      "sixth_reference_ids": [
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 112,
+      "pair": [
+        5067,
+        5073
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 113,
+      "pair": [
+        5080,
+        5086
+      ],
+      "cardinalities": [
+        2,
+        1,
+        3,
+        3,
+        2,
+        3,
+        2,
+        1
+      ],
+      "base_detection_sha256": "3efb77606c32dff4cb0974a25da90b2628640dd8cfd340b6e4507fbe17455b76",
+      "sixth_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 114,
+      "pair": [
+        5093,
+        5099
+      ],
+      "cardinalities": [
+        2,
+        1,
+        4,
+        4,
+        3,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "4d356681583d67db99a0962f50994b6dc30aa4ae91465c1c44ce03e9029d04dc",
+      "sixth_reference_ids": [
+        1,
+        2,
+        -1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 115,
+      "pair": [
+        5106,
+        5112
+      ],
+      "cardinalities": [
+        1,
+        4,
+        2,
+        2,
+        5,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "bf2dc607e6aa4e467c6b3a8fd9300fc57ab9b727671ef0fda1ca5974a6f249dd",
+      "sixth_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 116,
+      "pair": [
+        5119,
+        5125
+      ],
+      "cardinalities": [
+        2,
+        4,
+        4,
+        4,
+        3,
+        1,
+        1,
+        2
+      ],
+      "base_detection_sha256": "70a907fb7c6c317bc1e3741cbbc9b714a69369ea3771762c877ec0b5fff512a2",
+      "sixth_reference_ids": [
+        3
+      ],
+      "last_reference_ids": [
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 117,
+      "pair": [
+        5132,
+        5138
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        2,
+        4,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "27bbf0c9d8ccc9cd6bed7bdc35812939bb5e02d25e8c74ffe028b02716ac0401",
+      "sixth_reference_ids": [
+        2,
+        3,
+        -1,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 118,
+      "pair": [
+        5145,
+        5151
+      ],
+      "cardinalities": [
+        2,
+        4,
+        5,
+        2,
+        2,
+        3,
+        4,
+        2
+      ],
+      "base_detection_sha256": "be571db3fcb711a38a4f74669ad9e1c710fe5b8a4c38f685f820dbfa527bbee3",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 119,
+      "pair": [
+        5158,
+        5164
+      ],
+      "cardinalities": [
+        0,
+        2,
+        2,
+        4,
+        4,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "0e6bbb98c76e34aed0defdc9fc29cb37e5095e2cb16113821371cd36d3c07c49",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 120,
+      "pair": [
+        5171,
+        5177
+      ],
+      "cardinalities": [
+        3,
+        2,
+        3,
+        2,
+        3,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "3509b641af110b4f9c66d34fe202e3dfe60cadf0fb1b77264602f1cba48f62c2",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 121,
+      "pair": [
+        5184,
+        5190
+      ],
+      "cardinalities": [
+        3,
+        2,
+        2,
+        4,
+        4,
+        3,
+        3,
+        0
+      ],
+      "base_detection_sha256": "494b739574cfd7750d7a0b2ec2337d0efda56d97d7af2f4fb1aef3a66b2c5e2e",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 122,
+      "pair": [
+        5197,
+        5203
+      ],
+      "cardinalities": [
+        2,
+        1,
+        3,
+        2,
+        3,
+        3,
+        2,
+        1
+      ],
+      "base_detection_sha256": "c23708f88da91438092f0e7324efd46d955260499dba836d6b1446b34103435b",
+      "sixth_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 123,
+      "pair": [
+        5210,
+        5216
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        2,
+        3,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "3f0c46000ce058563830724177ebda78394c4085973443899515ae389ee78762",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 124,
+      "pair": [
+        5223,
+        5229
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        2,
+        2,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "dc4ab2e20145aa35602bbef5f68ff18ed19fdad1fe7ad4d62a405ec0ff99cd07",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 125,
+      "pair": [
+        5236,
+        5242
+      ],
+      "cardinalities": [
+        1,
+        1,
+        3,
+        4,
+        4,
+        3,
+        4,
+        3
+      ],
+      "base_detection_sha256": "5ed74f833b5cbfe641b982c2695ef93fa8cee357cb4faf678902b3213eb9a78f",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 126,
+      "pair": [
+        5249,
+        5255
+      ],
+      "cardinalities": [
+        2,
+        1,
+        3,
+        3,
+        3,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "fbd0a42ef529a42622a713c382b4011a91759f192e47721e5822c52b17951cc4",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 127,
+      "pair": [
+        5262,
+        5268
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3
+      ],
+      "base_detection_sha256": "830fb6d55188dec85a3ff62f3e4dc69319de0deb8812cf6a14a90c066bc83198",
+      "sixth_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 128,
+      "pair": [
+        5275,
+        5281
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        2,
+        2,
+        3,
+        1,
+        3
+      ],
+      "base_detection_sha256": "8e05b5b6e743617ed0afaad574ae3ac6869f8a934e6d8d555ce2aa1143572b92",
+      "sixth_reference_ids": [
+        -1,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        -1,
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 129,
+      "pair": [
+        5288,
+        5294
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "base_detection_sha256": "e7a0e6fe7096ef89367789e44a4162c5d574930039acb1807fdd5d41c5eeb4ff",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 131,
+      "pair": [
+        5314,
+        5320
+      ],
+      "cardinalities": [
+        3,
+        3,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3
+      ],
+      "base_detection_sha256": "a71ce032f3582254a3536296d51951b8fec423bf1fc484fd88ff82764a9999b9",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        -1,
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 132,
+      "pair": [
+        5327,
+        5333
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        4,
+        2,
+        2,
+        1,
+        3
+      ],
+      "base_detection_sha256": "c13b91ff24e8d2dae5ef50952c8d8dcb117101239a3ae97b9ce46866c403ca9b",
+      "sixth_reference_ids": [
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 133,
+      "pair": [
+        5340,
+        5346
+      ],
+      "cardinalities": [
+        3,
+        3,
+        3,
+        4,
+        3,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "2546fb42840442b22c920887c36d3f9f20ebd821706492dfbc495e42e9bfe3fb",
+      "sixth_reference_ids": [
+        -1,
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 134,
+      "pair": [
+        5353,
+        5359
+      ],
+      "cardinalities": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "27606a6e4fe1194c91ecba4a9fb4544202c72ae5f0eac5b5075ddbde2c7bc080",
+      "sixth_reference_ids": [
+        -1,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 135,
+      "pair": [
+        5366,
+        5372
+      ],
+      "cardinalities": [
+        2,
+        4,
+        3,
+        3,
+        4,
+        1,
+        2,
+        2
+      ],
+      "base_detection_sha256": "56126a3ded8bbe55d1bfd56de176927716220bdffd1316dca4f6e7fa3230894f",
+      "sixth_reference_ids": [
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 136,
+      "pair": [
+        5379,
+        5385
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        3,
+        1,
+        3,
+        1,
+        1
+      ],
+      "base_detection_sha256": "7d225f11706a0670f0262f22abd0242953c9580678fc0a03cefcd2d3c86a17c6",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 137,
+      "pair": [
+        5392,
+        5398
+      ],
+      "cardinalities": [
+        0,
+        2,
+        4,
+        4,
+        2,
+        4,
+        2,
+        1
+      ],
+      "base_detection_sha256": "3f9636a84f1498474da6c4388676a98fc7f74f622053fda0ae23a6cfe960dac3",
+      "sixth_reference_ids": [
+        1,
+        3,
+        -1,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 138,
+      "pair": [
+        5405,
+        5411
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        1,
+        4,
+        4,
+        2,
+        1
+      ],
+      "base_detection_sha256": "b632bd71606b31f4daf6aa1ecd1607ac40500ee567ea749e1f8c0b38f18e615a",
+      "sixth_reference_ids": [
+        1,
+        3,
+        -1,
+        2
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 139,
+      "pair": [
+        5418,
+        5424
+      ],
+      "cardinalities": [
+        1,
+        4,
+        3,
+        3,
+        5,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "ee101814da620ebe5100cbf01a786123f06e0d5c5d4f31bedd9ac342500c2c88",
+      "sixth_reference_ids": [
+        2,
+        1,
+        -1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 140,
+      "pair": [
+        5431,
+        5437
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        2,
+        3,
+        4,
+        3,
+        3
+      ],
+      "base_detection_sha256": "a9f080d6bdcd94392fd0494be12a3ae00ac71f07bdd285be1ef504655ba20672",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2,
+        -1
+      ],
+      "last_reference_ids": [
+        2,
+        3,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 141,
+      "pair": [
+        5444,
+        5450
+      ],
+      "cardinalities": [
+        1,
+        1,
+        4,
+        4,
+        2,
+        2,
+        5,
+        2
+      ],
+      "base_detection_sha256": "f5fb87933439e60735a9ffbc444fb1963f34043dd787b3e7e554932842f1d1d7",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 142,
+      "pair": [
+        5457,
+        5463
+      ],
+      "cardinalities": [
+        2,
+        3,
+        1,
+        3,
+        3,
+        1,
+        3,
+        1
+      ],
+      "base_detection_sha256": "0a32a2ee4aa23e0143f7aebc00da99fe7552b695693d167e522be624a0eebd68",
+      "sixth_reference_ids": [
+        -1
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 143,
+      "pair": [
+        5470,
+        5476
+      ],
+      "cardinalities": [
+        1,
+        3,
+        2,
+        3,
+        2,
+        3,
+        0,
+        1
+      ],
+      "base_detection_sha256": "ee78ebc40ebd34838da1cf634105b893363aad5119ad771c25dedb5239a1b695",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 144,
+      "pair": [
+        5483,
+        5489
+      ],
+      "cardinalities": [
+        2,
+        5,
+        4,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "base_detection_sha256": "1c06edd56a827465f4798483aaecceb97ff2711eae3e6a855e7509e64b30c752",
+      "sixth_reference_ids": [
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 145,
+      "pair": [
+        5496,
+        5502
+      ],
+      "cardinalities": [
+        3,
+        1,
+        0,
+        1,
+        4,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "f587d56d896f255c2f4af10d25606832759854d4184a53fabdbe01f9388e05d3",
+      "sixth_reference_ids": [
+        -1,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 146,
+      "pair": [
+        5509,
+        5515
+      ],
+      "cardinalities": [
+        1,
+        4,
+        3,
+        4,
+        4,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "aceea9427d3c688541e7bb6003ede9c08edc0ff253dfeb64ab19b6c508e38abe",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 147,
+      "pair": [
+        5522,
+        5528
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        2,
+        2,
+        3,
+        4,
+        2
+      ],
+      "base_detection_sha256": "e3945ffbc50317376217ee39ac46acf6cb6dac4d95491c812f8a02c21ab59260",
+      "sixth_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 148,
+      "pair": [
+        5535,
+        5541
+      ],
+      "cardinalities": [
+        0,
+        3,
+        3,
+        4,
+        3,
+        3,
+        2,
+        1
+      ],
+      "base_detection_sha256": "1a7935c2e06d9cb2305286f0a5d42ad025e53ed21fb51de164304800d486f336",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 149,
+      "pair": [
+        5548,
+        5554
+      ],
+      "cardinalities": [
+        3,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "c5e6692828699bffb7edaa24aef4e8e4ef5424e9c6672786b1795deed820fbd6",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 150,
+      "pair": [
+        5561,
+        5567
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        2,
+        4,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "ea6af3f58fad85a7da2edcf09822ea1bb21c51b9429318065b0db8d9263d74fa",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 151,
+      "pair": [
+        5574,
+        5580
+      ],
+      "cardinalities": [
+        0,
+        2,
+        3,
+        4,
+        2,
+        2,
+        1,
+        1
+      ],
+      "base_detection_sha256": "962db351e929365fd6bab4e294d83e34443d4449d8ba2addf928ebb5614bed2b",
+      "sixth_reference_ids": [
+        -1,
+        1
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "3829e9b0d8d91a0d7de78771b89dc7e6d54538aa0604d3b17319dd3464b2f065",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 153,
+      "pair": [
+        5600,
+        5606
+      ],
+      "cardinalities": [
+        3,
+        3,
+        6,
+        4,
+        5,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "244a6ee2d4ff555984c559753be72baa0b24fd2cbca976d3c68b4cc8ea594238",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 154,
+      "pair": [
+        5613,
+        5619
+      ],
+      "cardinalities": [
+        1,
+        4,
+        2,
+        3,
+        4,
+        1,
+        4,
+        1
+      ],
+      "base_detection_sha256": "e4fbb31c79253cda3de486187bd78bba892728c167b219406cb7f32913c14c11",
+      "sixth_reference_ids": [
+        3
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 155,
+      "pair": [
+        5626,
+        5632
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        2,
+        4,
+        3,
+        0,
+        4
+      ],
+      "base_detection_sha256": "4cfe6f4a10cfeb3fb5964d3b69d29511867704704f096b3e3fa4d0f290c2ba25",
+      "sixth_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        -1,
+        3,
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 156,
+      "pair": [
+        5639,
+        5645
+      ],
+      "cardinalities": [
+        0,
+        1,
+        4,
+        3,
+        2,
+        3,
+        1,
+        1
+      ],
+      "base_detection_sha256": "f998574b256dfe19c150ec88f0daa2af424d107529765b62f78c182d627e04f1",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 157,
+      "pair": [
+        5652,
+        5658
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 158,
+      "pair": [
+        5665,
+        5671
+      ],
+      "cardinalities": [
+        3,
+        1,
+        3,
+        5,
+        6,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "03088ba126ad1bb7c45d919b83411b83da0c87713edcc976280fed17d9fcb6cf",
+      "sixth_reference_ids": [
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 159,
+      "pair": [
+        5678,
+        5684
+      ],
+      "cardinalities": [
+        3,
+        2,
+        4,
+        3,
+        3,
+        2,
+        2,
+        3
+      ],
+      "base_detection_sha256": "191be78b02b2b1a8c014e980e54e6f8822e74ba7e06e26b0a1c758d3cea013cd",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        -1,
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 160,
+      "pair": [
+        5691,
+        5697
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 161,
+      "pair": [
+        5704,
+        5710
+      ],
+      "cardinalities": [
+        2,
+        3,
+        1,
+        3,
+        4,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "aa8d9413951628a3d17274742295a66b28ff627fc10ad66282f5fd1ce2ccae5c",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 162,
+      "pair": [
+        5717,
+        5723
+      ],
+      "cardinalities": [
+        1,
+        2,
+        6,
+        4,
+        2,
+        3,
+        2,
+        0
+      ],
+      "base_detection_sha256": "9a629a9edd5fab6779a85413c48dbbf3a6ec39715a0b24b7fb4b4828268ae430",
+      "sixth_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 163,
+      "pair": [
+        5730,
+        5736
+      ],
+      "cardinalities": [
+        3,
+        2,
+        4,
+        2,
+        2,
+        1,
+        3,
+        1
+      ],
+      "base_detection_sha256": "64f613437a7afec961d5b62b43e15da8dd9c095c591eaadf6e4feb2a63ba1ad3",
+      "sixth_reference_ids": [
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "1c331a112c35adf8f79cf327d7eb7ccb1b40ecbfc817da1848ac050066f4f83a",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 165,
+      "pair": [
+        5756,
+        5762
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        3,
+        4,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "f4be33865e934d2b87348a701f0389015f18153814c5e0bee20e7b81e895162f",
+      "sixth_reference_ids": [
+        -1,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 166,
+      "pair": [
+        5769,
+        5775
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        1,
+        0
+      ],
+      "base_detection_sha256": "15cf0c24e5e05e88e306c58ada2cdcfe86de2e6753e9c6ec96c9e8a476378169",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 167,
+      "pair": [
+        5782,
+        5788
+      ],
+      "cardinalities": [
+        2,
+        4,
+        4,
+        3,
+        3,
+        2,
+        1,
+        3
+      ],
+      "base_detection_sha256": "1ec3801b22ba72752c2478940dfffd5d0a6e53e4aa9034cae6e683f8dd2925c5",
+      "sixth_reference_ids": [
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 168,
+      "pair": [
+        5795,
+        5801
+      ],
+      "cardinalities": [
+        1,
+        4,
+        4,
+        3,
+        4,
+        2,
+        4,
+        0
+      ],
+      "base_detection_sha256": "3dffae8fc563058de2b7a52788de29490d4cd3f738cccd0e643e49b581ee3ba8",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 169,
+      "pair": [
+        5808,
+        5814
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        2,
+        4,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "9fa419a05468333402354dadec75448e2ba9f51a51908ddbccf301579a7ef8d5",
+      "sixth_reference_ids": [
+        1,
+        2,
+        -1,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 170,
+      "pair": [
+        5821,
+        5827
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 171,
+      "pair": [
+        5834,
+        5840
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 172,
+      "pair": [
+        5847,
+        5853
+      ],
+      "cardinalities": [
+        3,
+        3,
+        4,
+        3,
+        1,
+        0,
+        2,
+        2
+      ],
+      "base_detection_sha256": "37684a8e28063da6981c949eae38e74bda4c8fe2a57023054a5307393f40301d",
+      "sixth_reference_ids": [],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "base_detection_sha256": "aaae0e2ef580be0e1df5f1a616cfed5323d286a338fe702d4d94b3b6f8662376",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 174,
+      "pair": [
+        5873,
+        5879
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        2,
+        4,
+        3,
+        4,
+        2
+      ],
+      "base_detection_sha256": "dc06f2f029538beac8672089ca703561410a2d02c4ff070841fc1491282bffa2",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 175,
+      "pair": [
+        5886,
+        5892
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        1,
+        3,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "311f6e5db97c591e2198158e23ee23eff930c5b94ee75bce6e3af521d4f62917",
+      "sixth_reference_ids": [
+        -1,
+        1
+      ],
+      "last_reference_ids": [
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 176,
+      "pair": [
+        5899,
+        5905
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 177,
+      "pair": [
+        5912,
+        5918
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 178,
+      "pair": [
+        5925,
+        5931
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        5,
+        3,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "6c2aec45d30a8e30c6c671cede2f4be6936d7e2d6b85a2919cbae37807267b1e",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 179,
+      "pair": [
+        5938,
+        5944
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "base_detection_sha256": "448a9e0cd67f899a22f73436ab6e771b550f0849e44228b2ac92fcd2c3871857",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 180,
+      "pair": [
+        5951,
+        5957
+      ],
+      "cardinalities": [
+        1,
+        3,
+        2,
+        2,
+        4,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "bdc3d4d30448fddb0ff6ad223e45582f069151c81cafb92e674313dec3f84f05",
+      "sixth_reference_ids": [
+        3,
+        -1,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 181,
+      "pair": [
+        5964,
+        5970
+      ],
+      "cardinalities": [
+        4,
+        3,
+        4,
+        3,
+        3,
+        2,
+        4,
+        3
+      ],
+      "base_detection_sha256": "51aafb5e1dd6cfbc500f780e1a9cc6555a3c4c198b20b8c32e91948605742cb7",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 182,
+      "pair": [
+        5977,
+        5983
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "7501ced59aa92c2a2581e4dfe8760c6508fcaa7d5ed8bb9513f3bfd8b9bffcb3",
+      "sixth_reference_ids": [
+        1,
+        3,
+        -1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 183,
+      "pair": [
+        5990,
+        5996
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 184,
+      "pair": [
+        6003,
+        6009
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        4,
+        3,
+        2,
+        2,
+        0
+      ],
+      "base_detection_sha256": "e4213b55988a4cf3b7683604c1bf35ef7c344a40fdfa1f377f012a83d940decf",
+      "sixth_reference_ids": [
+        1,
+        3
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 185,
+      "pair": [
+        6016,
+        6022
+      ],
+      "cardinalities": [
+        0,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "base_detection_sha256": "b070d720b97021f06d2c3acac6b15c4d4904de66474236994edb85657948ddfb",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 186,
+      "pair": [
+        6029,
+        6035
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 187,
+      "pair": [
+        6042,
+        6048
+      ],
+      "cardinalities": [
+        3,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        0
+      ],
+      "base_detection_sha256": "a4933f1b577eba853b86e1b177ae2e8b8128680574d75a2fb754f05c7ad43a26",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 188,
+      "pair": [
+        6055,
+        6061
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 189,
+      "pair": [
+        6068,
+        6074
+      ],
+      "cardinalities": [
+        3,
+        1,
+        4,
+        4,
+        4,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "40defda4760c35a24570a3ccddfc597183ed222cc8b75edb3b7acfcaae02efad",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 190,
+      "pair": [
+        6081,
+        6087
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        4,
+        4,
+        2,
+        2,
+        2
+      ],
+      "base_detection_sha256": "6b57a6a5a8d2d590dd1af92fb8d4d7d2f96d110f7cfb37da7bc1e67d7c5f700d",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 191,
+      "pair": [
+        6094,
+        6100
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        1,
+        4,
+        2
+      ],
+      "base_detection_sha256": "5f9b33609eeb823a60acc80e62318bd3b20dedbb1cd1a1f8b1a1496067bbafae",
+      "sixth_reference_ids": [
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 192,
+      "pair": [
+        6107,
+        6113
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        4,
+        4,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "9b2bd78a343cc04866995c30b8a22a4bfbd68f9397cb8194307ff03e6d26dbf7",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1,
+        -1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 193,
+      "pair": [
+        6120,
+        6126
+      ],
+      "cardinalities": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        2,
+        0,
+        2
+      ],
+      "base_detection_sha256": "c1474dfd33faa3779bed9bf8de4ba0f3c81a75ee5134a4547c67379caecebf00",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 194,
+      "pair": [
+        6133,
+        6139
+      ],
+      "cardinalities": [
+        3,
+        3,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "4c8615920df09b222c55039b7857f72d61fe13f052d2bfe5d5760622ff4f13b9",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 195,
+      "pair": [
+        6146,
+        6152
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        1
+      ],
+      "base_detection_sha256": "ad03930d5f13e4d4c2687ead0ed5817d2b76deb4b3ebe759fa8120e58ed6674e",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 196,
+      "pair": [
+        6159,
+        6165
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 197,
+      "pair": [
+        6172,
+        6178
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        2,
+        2,
+        2,
+        4,
+        1
+      ],
+      "base_detection_sha256": "c35f49970aecaf2485583670998ddaf647f37361b398d819e8666c09c82a76f7",
+      "sixth_reference_ids": [
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 198,
+      "pair": [
+        6185,
+        6191
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      "base_detection_sha256": "9f950d2cc46b9cdecb0ed1561823e188e3095ac0bd9d84bcb99d7327848a8851",
+      "sixth_reference_ids": [
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 199,
+      "pair": [
+        6198,
+        6204
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 200,
+      "pair": [
+        6211,
+        6217
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 201,
+      "pair": [
+        6224,
+        6230
+      ],
+      "cardinalities": [
+        2,
+        2,
+        4,
+        3,
+        2,
+        2,
+        3,
+        3
+      ],
+      "base_detection_sha256": "8e3d1a3c6ae6f5841c85526361766279a2d38216745bee42bc1350982b438dfb",
+      "sixth_reference_ids": [
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        -1,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 202,
+      "pair": [
+        6237,
+        6243
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        4,
+        1,
+        4,
+        2
+      ],
+      "base_detection_sha256": "45b46d3f85e451631651d8090f3725206e9b6ee4c4f1a34f1a4f0d608c152dfd",
+      "sixth_reference_ids": [
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 203,
+      "pair": [
+        6250,
+        6256
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "5e6e4b7d3d08facec6fbb95bff2a19dfc0173424818a632de176a2bec3c2055e",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 204,
+      "pair": [
+        6263,
+        6269
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        3,
+        1
+      ],
+      "base_detection_sha256": "813e86b2731ba2f50c488b93623475e67056096537d9df4de94c665f0d7f3e9b",
+      "sixth_reference_ids": [
+        1,
+        2,
+        -1,
+        3
+      ],
+      "last_reference_ids": [
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "e431bdc0b177ad3e467a8f1e61fbe4f81ff041e6abbe1ed921475b00d1a1005c",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 206,
+      "pair": [
+        6289,
+        6295
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        2,
+        2,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "7c9137ccb41008fe8e4f307703bd48eec5ef1e0e7e3f3fe87a1795518f23909e",
+      "sixth_reference_ids": [
+        -1,
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 207,
+      "pair": [
+        6302,
+        6308
+      ],
+      "cardinalities": [
+        2,
+        3,
+        4,
+        2,
+        4,
+        2,
+        2,
+        1
+      ],
+      "base_detection_sha256": "81e6efcaca7188ef20951dc1fcbc1a6bd0514c033f2d190e72e177fce1f9d6e8",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 208,
+      "pair": [
+        6315,
+        6321
+      ],
+      "cardinalities": [
+        3,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2,
+        3
+      ],
+      "base_detection_sha256": "d894712e76926238ed65a63eedee92e9e507f13de7777e1ad3c49434f8d51e58",
+      "sixth_reference_ids": [
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 209,
+      "pair": [
+        6328,
+        6334
+      ],
+      "cardinalities": [
+        1,
+        3,
+        2,
+        4,
+        3,
+        3,
+        5,
+        1
+      ],
+      "base_detection_sha256": "232ebbbeaeb2ba1f6ff345e9efe813a389b1bb900db386d35d6b58887f25b528",
+      "sixth_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 210,
+      "pair": [
+        6341,
+        6347
+      ],
+      "cardinalities": [
+        4,
+        3,
+        3,
+        4,
+        4,
+        3,
+        4,
+        2
+      ],
+      "base_detection_sha256": "e0a9d8d78f2a73f3809f84f65afb4d111c053d66ea8ecb89e7491c6f69ca4902",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 211,
+      "pair": [
+        6354,
+        6360
+      ],
+      "cardinalities": [
+        2,
+        3,
+        5,
+        4,
+        3,
+        2,
+        4,
+        2
+      ],
+      "base_detection_sha256": "c8e8388a1281302f5817509cfc523b0c5804d93ad6547f013048941287d5b2b4",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 212,
+      "pair": [
+        6367,
+        6373
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        4,
+        2,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "59a7245be5134739df92565488ae4cc8e071041b18a0f994d221a2a109e2cd9f",
+      "sixth_reference_ids": [
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 213,
+      "pair": [
+        6380,
+        6386
+      ],
+      "cardinalities": [
+        2,
+        2,
+        3,
+        2,
+        2,
+        5,
+        3,
+        2
+      ],
+      "base_detection_sha256": "d3efd55a2b1b2bb5bb240a2634a68a7fa50f2a5ba117c95db3f2d09a0e3a0d57",
+      "sixth_reference_ids": [
+        1,
+        -1,
+        -1,
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 214,
+      "pair": [
+        6393,
+        6399
+      ],
+      "cardinalities": [
+        3,
+        4,
+        2,
+        2,
+        3,
+        2,
+        2,
+        1
+      ],
+      "base_detection_sha256": "e9e333680419bd441c628ce248accb6f3742fc8cc578dddb31660db29fe905a5",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 215,
+      "pair": [
+        6406,
+        6412
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        5,
+        3,
+        4,
+        3,
+        2
+      ],
+      "base_detection_sha256": "8d9985ab4d42afd7ec78acb98b1299cdb3d49042c7be76d11e3e0f9c027d7d87",
+      "sixth_reference_ids": [
+        -1,
+        2,
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 216,
+      "pair": [
+        6419,
+        6425
+      ],
+      "cardinalities": [
+        1,
+        3,
+        4,
+        4,
+        4,
+        3,
+        3,
+        1
+      ],
+      "base_detection_sha256": "326280edcc32bbe9f38852a3dffbc550b49c7a24045c8895966c3ada7990a476",
+      "sixth_reference_ids": [
+        -1,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 217,
+      "pair": [
+        6432,
+        6438
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 218,
+      "pair": [
+        6445,
+        6451
+      ],
+      "cardinalities": [
+        1,
+        3,
+        3,
+        4,
+        3,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "539fea33040b734b66d3d2567c4592bde8b701c799f4d2f0e3edfcddaaa5df92",
+      "sixth_reference_ids": [
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 219,
+      "pair": [
+        6458,
+        6464
+      ],
+      "cardinalities": [
+        3,
+        3,
+        4,
+        4,
+        3,
+        2,
+        1,
+        3
+      ],
+      "base_detection_sha256": "d2f96a3f449fa4fd281bd944d78758cd70b322b28735000f71ffeabbc168a155",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        -1,
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 220,
+      "pair": [
+        6471,
+        6477
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        2,
+        4,
+        2,
+        3,
+        1
+      ],
+      "base_detection_sha256": "53d5b5ba22305fb0cb3a22ba67c644cc7ddb73e538a21fc1768a461297ebc764",
+      "sixth_reference_ids": [
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 221,
+      "pair": [
+        6484,
+        6490
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        4,
+        2,
+        3,
+        3,
+        1
+      ],
+      "base_detection_sha256": "694e4a2fe39830728082170326d29783687cf7f40b921d82981e942e5b93c050",
+      "sixth_reference_ids": [
+        2,
+        3,
+        1
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 222,
+      "pair": [
+        6497,
+        6503
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "a256638c3a444c2ca218e4331204b74ca2685087ce2db67b77ff04dca5296190",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 223,
+      "pair": [
+        6510,
+        6516
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 224,
+      "pair": [
+        6523,
+        6529
+      ],
+      "cardinalities": [
+        3,
+        2,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "base_detection_sha256": "689e90068599fad3eeb50e382715fe4ff863bd2a1bc883887b0e17d0964df30d",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        -1,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 225,
+      "pair": [
+        6536,
+        6542
+      ],
+      "cardinalities": [
+        0,
+        2,
+        3,
+        4,
+        3,
+        3,
+        4,
+        1
+      ],
+      "base_detection_sha256": "23fc26ae6b50f94ad15eb13cf927de29a368f32e6f67314c4946ebc2f289673e",
+      "sixth_reference_ids": [
+        3,
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "ff7c68b95badb7c293f5e60922a69dadf87985781a3757711617b58542a15ef1",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": true
+    },
+    {
+      "base_index": 227,
+      "pair": [
+        6562,
+        6568
+      ],
+      "eligible": false,
+      "generator_error": "the ROI must contain every source detection"
+    },
+    {
+      "base_index": 228,
+      "pair": [
+        6575,
+        6581
+      ],
+      "cardinalities": [
+        3,
+        1,
+        2,
+        3,
+        4,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "efe7c03d972eb0d794298500f91304b1d48fb78875af9c6f5d1e6da744fa81e1",
+      "sixth_reference_ids": [
+        1,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 229,
+      "pair": [
+        6588,
+        6594
+      ],
+      "cardinalities": [
+        3,
+        3,
+        2,
+        4,
+        3,
+        2,
+        4,
+        2
+      ],
+      "base_detection_sha256": "df32f99db6d9d602fdf0b80053b87186ba7315821426e3e34df937e70477500f",
+      "sixth_reference_ids": [
+        1,
+        2
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 230,
+      "pair": [
+        6601,
+        6607
+      ],
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1
+      ],
+      "base_detection_sha256": "dab834c023e1e1030b25b8877d92e70becd4a872f18eb5ba75aab9e0e78ba7c2",
+      "sixth_reference_ids": [
+        1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 231,
+      "pair": [
+        6614,
+        6620
+      ],
+      "cardinalities": [
+        1,
+        2,
+        3,
+        3,
+        4,
+        3,
+        1,
+        1
+      ],
+      "base_detection_sha256": "6cc86c8dec678f899b031ea6b29d4a05ed10dc4b5cf696acc95fa3d6888e4497",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 232,
+      "pair": [
+        6627,
+        6633
+      ],
+      "cardinalities": [
+        2,
+        3,
+        3,
+        3,
+        4,
+        2,
+        3,
+        2
+      ],
+      "base_detection_sha256": "2359183d0be82414d8c329ce54e5fbe20309d213b38ecb07c37c52888753c654",
+      "sixth_reference_ids": [
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        3,
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 233,
+      "pair": [
+        6640,
+        6646
+      ],
+      "cardinalities": [
+        4,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3,
+        0
+      ],
+      "base_detection_sha256": "c12c1f7dd7815140c16546d899412834e9913316db641be76917189b4044fad7",
+      "sixth_reference_ids": [
+        2,
+        1
+      ],
+      "last_reference_ids": [],
+      "eligible": false
+    },
+    {
+      "base_index": 234,
+      "pair": [
+        6653,
+        6659
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        2,
+        2,
+        3,
+        2,
+        1
+      ],
+      "base_detection_sha256": "fa2d2c7da9784e47d525da0b6ec88610b1cb25dafbf4d44f454456eafb64594b",
+      "sixth_reference_ids": [
+        -1,
+        3,
+        2
+      ],
+      "last_reference_ids": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 235,
+      "pair": [
+        6666,
+        6672
+      ],
+      "cardinalities": [
+        2,
+        3,
+        2,
+        4,
+        5,
+        4,
+        3,
+        1
+      ],
+      "base_detection_sha256": "736417c4f036410684d256c23659d9e4b6fd35280e86fe63e8331267f2d9b49b",
+      "sixth_reference_ids": [
+        3,
+        2,
+        1,
+        -1
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 236,
+      "pair": [
+        6679,
+        6685
+      ],
+      "cardinalities": [
+        1,
+        2,
+        4,
+        3,
+        5,
+        3,
+        1,
+        1
+      ],
+      "base_detection_sha256": "8eba778cb73af082c10d19302fd7cb87ddba31ca0704942c975b62fdceffb321",
+      "sixth_reference_ids": [
+        -1,
+        -1,
+        3
+      ],
+      "last_reference_ids": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 237,
+      "pair": [
+        6692,
+        6698
+      ],
+      "cardinalities": [
+        3,
+        2,
+        4,
+        3,
+        4,
+        2,
+        2,
+        3
+      ],
+      "base_detection_sha256": "0a17938f0e629e0dbc173519fc1f3282db4d49f120f25b309321553e5c7b69d1",
+      "sixth_reference_ids": [
+        2,
+        1
+      ],
+      "last_reference_ids": [
+        2,
+        3,
+        -1
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 238,
+      "pair": [
+        6705,
+        6711
+      ],
+      "cardinalities": [
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        1,
+        2
+      ],
+      "base_detection_sha256": "ecf7726d3359251c5826703a07e89c68ff03b895ee98f28833787aef697cccb7",
+      "sixth_reference_ids": [
+        3,
+        -1,
+        2
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "base_index": 239,
+      "pair": [
+        6718,
+        6724
+      ],
+      "cardinalities": [
+        0,
+        2,
+        2,
+        4,
+        4,
+        3,
+        3,
+        2
+      ],
+      "base_detection_sha256": "3b5f2c825430e3e5998302fe0925a42650024e81d96bd5c7d209645a64498cea",
+      "sixth_reference_ids": [
+        1,
+        2,
+        3
+      ],
+      "last_reference_ids": [
+        2,
+        3
+      ],
+      "eligible": false
+    }
+  ],
+  "variants": [
+    {
+      "index": 0,
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "f8c628011dd43d2d4d6699d9ef023a4859f14db9d7be359c32e35995162d68ab",
+      "decoys": {
+        "sixth": {
+          "index": 2,
+          "source_id": 3,
+          "original_y": 0.020831873757559204,
+          "decoy_y": 0.010831873757559203
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.015962158874228596,
+          "decoy_y": 0.011962158874228596
+        }
+      }
+    },
+    {
+      "index": 1,
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "1c59cf7a8be01d7a4a04131e79bcb4ba6fbe7be93d94c79462fd19190b53df3b",
+      "decoys": {
+        "sixth": {
+          "index": 2,
+          "source_id": 3,
+          "original_y": 0.020831873757559204,
+          "decoy_y": 0.010831873757559203
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.015962158874228596,
+          "decoy_y": 0.007962158874228596
+        }
+      }
+    },
+    {
+      "index": 2,
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "de2aaae7d83be8dc3e0b39c8777b050d40b4ef2a3dafd871b861210acff5a4d4",
+      "decoys": {
+        "sixth": {
+          "index": 2,
+          "source_id": 3,
+          "original_y": 0.020831873757559204,
+          "decoy_y": 0.010831873757559203
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.015962158874228596,
+          "decoy_y": 0.003962158874228596
+        }
+      }
+    },
+    {
+      "index": 3,
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "75a58d1cbb7f1262163276ae4c26246d80060abba757f00cac85f1a90f8b212f",
+      "decoys": {
+        "sixth": {
+          "index": 2,
+          "source_id": 3,
+          "original_y": 0.020831873757559204,
+          "decoy_y": 0.004831873757559203
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.015962158874228596,
+          "decoy_y": 0.011962158874228596
+        }
+      }
+    },
+    {
+      "index": 4,
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "02a32231fdad2d843733c6cfbd7b09c817dc910346f10547358cce0b1312b248",
+      "decoys": {
+        "sixth": {
+          "index": 2,
+          "source_id": 3,
+          "original_y": 0.020831873757559204,
+          "decoy_y": 0.004831873757559203
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.015962158874228596,
+          "decoy_y": 0.007962158874228596
+        }
+      }
+    },
+    {
+      "index": 5,
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "30eba579cb5ce9be05adf6199d8afaccea87ddcefdc6b03ea8cfaa17dabc2b13",
+      "decoys": {
+        "sixth": {
+          "index": 2,
+          "source_id": 3,
+          "original_y": 0.020831873757559204,
+          "decoy_y": 0.004831873757559203
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.015962158874228596,
+          "decoy_y": 0.003962158874228596
+        }
+      }
+    },
+    {
+      "index": 6,
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "53522ae575d3a053d6580bc4bdd3e3a48cbceea26fdbe8840f1c45357c9e4729",
+      "decoys": {
+        "sixth": {
+          "index": 2,
+          "source_id": 3,
+          "original_y": 0.020831873757559204,
+          "decoy_y": -0.001168126242440795
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.015962158874228596,
+          "decoy_y": 0.011962158874228596
+        }
+      }
+    },
+    {
+      "index": 7,
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "233b2925f9e23a26e74dc4c3b6b3f3a1355a9283eee23b9a6654f5311f607e74",
+      "decoys": {
+        "sixth": {
+          "index": 2,
+          "source_id": 3,
+          "original_y": 0.020831873757559204,
+          "decoy_y": -0.001168126242440795
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.015962158874228596,
+          "decoy_y": 0.007962158874228596
+        }
+      }
+    },
+    {
+      "index": 8,
+      "base_index": 48,
+      "pair": [
+        4235,
+        4241
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "135712ee993d8f327cc83df970d0a1ec38574a5ae641d97aba7eb4abcda1594a",
+      "decoys": {
+        "sixth": {
+          "index": 2,
+          "source_id": 3,
+          "original_y": 0.020831873757559204,
+          "decoy_y": -0.001168126242440795
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.015962158874228596,
+          "decoy_y": 0.003962158874228596
+        }
+      }
+    },
+    {
+      "index": 9,
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "4387ee2c1b45c19e38f92976ca8cd3b6c11a336b01313e078397091a84240892",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.014021699944882745,
+          "decoy_y": 0.004021699944882745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.037282351516058715,
+          "decoy_y": 0.03328235151605871
+        }
+      }
+    },
+    {
+      "index": 10,
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "1b0dadd865fb031d2f553fbb93f267b9a57979e4eb3f860a626cc0edaf52d474",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.014021699944882745,
+          "decoy_y": 0.004021699944882745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.037282351516058715,
+          "decoy_y": 0.029282351516058715
+        }
+      }
+    },
+    {
+      "index": 11,
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "ba6e80cb8db25d3522b8a6f598c118b7489a882298b2e0c1adc2b0fd071e19bc",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.014021699944882745,
+          "decoy_y": 0.004021699944882745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.037282351516058715,
+          "decoy_y": 0.025282351516058715
+        }
+      }
+    },
+    {
+      "index": 12,
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "226c7dbf6e674baab5f8dc419d2ae531a9f487064285beac55d7b70061decb14",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.014021699944882745,
+          "decoy_y": -0.001978300055117255
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.037282351516058715,
+          "decoy_y": 0.03328235151605871
+        }
+      }
+    },
+    {
+      "index": 13,
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "2dda9897ca8dea785e07e206d2654a674fe8f219e91d351fdab5b979077b3a44",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.014021699944882745,
+          "decoy_y": -0.001978300055117255
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.037282351516058715,
+          "decoy_y": 0.029282351516058715
+        }
+      }
+    },
+    {
+      "index": 14,
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "60b1e28b6c74d726cfa06af4c21ddfef7abf833e1fa77c087725e3ad9691f42b",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.014021699944882745,
+          "decoy_y": -0.001978300055117255
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.037282351516058715,
+          "decoy_y": 0.025282351516058715
+        }
+      }
+    },
+    {
+      "index": 15,
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "d06543959accc8af62971ac28b7421b40322b48eee5111369951f6261eb7a847",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.014021699944882745,
+          "decoy_y": -0.007978300055117253
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.037282351516058715,
+          "decoy_y": 0.03328235151605871
+        }
+      }
+    },
+    {
+      "index": 16,
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "4d4fa454469de9ff785ed5359dd1fdc92bfe97c4df525c199105ba59377a09d0",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.014021699944882745,
+          "decoy_y": -0.007978300055117253
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.037282351516058715,
+          "decoy_y": 0.029282351516058715
+        }
+      }
+    },
+    {
+      "index": 17,
+      "base_index": 60,
+      "pair": [
+        4391,
+        4397
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "e7a21278e4e0273b0174fac46c9143e7e270967bed95ee2d83e8b070b874d80e",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.014021699944882745,
+          "decoy_y": -0.007978300055117253
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.037282351516058715,
+          "decoy_y": 0.025282351516058715
+        }
+      }
+    },
+    {
+      "index": 18,
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "7d3c57a3d3f454e5ea6871db1587b31c7fcc18e0c3063fb8bfd9e658b87276ec",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.008968279546449829,
+          "decoy_y": -0.0010317204535501712
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.027054755373332746,
+          "decoy_y": 0.023054755373332746
+        }
+      }
+    },
+    {
+      "index": 19,
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "a6a3c35f2ca05c51158dc88287dea47f7ce0638225110a3716f7041aff42d346",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.008968279546449829,
+          "decoy_y": -0.0010317204535501712
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.027054755373332746,
+          "decoy_y": 0.019054755373332746
+        }
+      }
+    },
+    {
+      "index": 20,
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "b4a5880dfda7f714a1feea837372eddadde3dd4c8dd47e43214b42c66df9a8a3",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.008968279546449829,
+          "decoy_y": -0.0010317204535501712
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.027054755373332746,
+          "decoy_y": 0.015054755373332746
+        }
+      }
+    },
+    {
+      "index": 21,
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "372b001bb472a1b991f3ed772271385f8825042ce9fd9db51f9b077bd164b34d",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.008968279546449829,
+          "decoy_y": -0.007031720453550171
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.027054755373332746,
+          "decoy_y": 0.023054755373332746
+        }
+      }
+    },
+    {
+      "index": 22,
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "7d5088b7636abae7959fecfc0ff6fd388123b75f0eacc19090c5c1e2540a028f",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.008968279546449829,
+          "decoy_y": -0.007031720453550171
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.027054755373332746,
+          "decoy_y": 0.019054755373332746
+        }
+      }
+    },
+    {
+      "index": 23,
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "38f473052fee787be58170983b4e1f961b155de08067f9840ac53f695e42e218",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.008968279546449829,
+          "decoy_y": -0.007031720453550171
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.027054755373332746,
+          "decoy_y": 0.015054755373332746
+        }
+      }
+    },
+    {
+      "index": 24,
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "0c0bc75683e8a2506070d579a70797998061b510ed245d71bb666f6d44b784f3",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.008968279546449829,
+          "decoy_y": -0.01303172045355017
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.027054755373332746,
+          "decoy_y": 0.023054755373332746
+        }
+      }
+    },
+    {
+      "index": 25,
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "093be65f231cd6ac979aa3e7a3567fe11f33422d718b3357ada3c3a2f3c0b9e2",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.008968279546449829,
+          "decoy_y": -0.01303172045355017
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.027054755373332746,
+          "decoy_y": 0.019054755373332746
+        }
+      }
+    },
+    {
+      "index": 26,
+      "base_index": 94,
+      "pair": [
+        4833,
+        4839
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "580c064f650c0e8dd9da479de1620fec071cac2baa4a408681ce126039eb9592",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.008968279546449829,
+          "decoy_y": -0.01303172045355017
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.027054755373332746,
+          "decoy_y": 0.015054755373332746
+        }
+      }
+    },
+    {
+      "index": 27,
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "6051572ad7aa2fb96e2c74221da2d275c4d1258519dcaaf4429fa06facf408ab",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.007078843286128382,
+          "decoy_y": -0.0029211567138716183
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.021762401781994567,
+          "decoy_y": 0.017762401781994567
+        }
+      }
+    },
+    {
+      "index": 28,
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "8a1c4acd25fd9cfa84524188157494695042396517030cb0b5944f2b54680653",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.007078843286128382,
+          "decoy_y": -0.0029211567138716183
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.021762401781994567,
+          "decoy_y": 0.013762401781994567
+        }
+      }
+    },
+    {
+      "index": 29,
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "60efac46fe0538c715e77f264aaeae57c5d03df5e5f932143bef5ade3752e52a",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.007078843286128382,
+          "decoy_y": -0.0029211567138716183
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.021762401781994567,
+          "decoy_y": 0.009762401781994567
+        }
+      }
+    },
+    {
+      "index": 30,
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "cdcfb124078a6a512ff73dda450f843860cd89edec86bb6c94d17a2390021e8c",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.007078843286128382,
+          "decoy_y": -0.008921156713871618
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.021762401781994567,
+          "decoy_y": 0.017762401781994567
+        }
+      }
+    },
+    {
+      "index": 31,
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "60ecdc0dcd7f667998bd07c6bfc66d3f7d55fc4af13a4bb3b4eabac7093fffb0",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.007078843286128382,
+          "decoy_y": -0.008921156713871618
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.021762401781994567,
+          "decoy_y": 0.013762401781994567
+        }
+      }
+    },
+    {
+      "index": 32,
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "fb926598d43127f9b7afff37ff68ef48bb044bc2f7a9ea9fb10ea3335cc9c712",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.007078843286128382,
+          "decoy_y": -0.008921156713871618
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.021762401781994567,
+          "decoy_y": 0.009762401781994567
+        }
+      }
+    },
+    {
+      "index": 33,
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "ce21755f252f7541a880fd0373b7a01794374d9d9db40621c58dce839eccd8ed",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.007078843286128382,
+          "decoy_y": -0.014921156713871616
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.021762401781994567,
+          "decoy_y": 0.017762401781994567
+        }
+      }
+    },
+    {
+      "index": 34,
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "132e88a42d986e88c7a5e7fd964e7d167482435f2777624edcffd6ca61ea6a84",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.007078843286128382,
+          "decoy_y": -0.014921156713871616
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.021762401781994567,
+          "decoy_y": 0.013762401781994567
+        }
+      }
+    },
+    {
+      "index": 35,
+      "base_index": 105,
+      "pair": [
+        4976,
+        4982
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4,
+        2
+      ],
+      "detection_sha256": "092c2318a6e66485b803ec7050920e2b578c34f4830e99c213a0afbd0d1d1df6",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.007078843286128382,
+          "decoy_y": -0.014921156713871616
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.021762401781994567,
+          "decoy_y": 0.009762401781994567
+        }
+      }
+    },
+    {
+      "index": 36,
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "c9ecdc4b551abd8ffb06102e3767eb8b222330fe0c10c24275852f50eb0e0206",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.01663002375551144,
+          "decoy_y": 0.006630023755511439
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.029104197061539896,
+          "decoy_y": 0.025104197061539896
+        }
+      }
+    },
+    {
+      "index": 37,
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "25fec5859564d1f51cab4dfc91addac6feaaee8d251d30feb40cb88fa2ab7062",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.01663002375551144,
+          "decoy_y": 0.006630023755511439
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.029104197061539896,
+          "decoy_y": 0.021104197061539896
+        }
+      }
+    },
+    {
+      "index": 38,
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "7edcbbf3d51cab4391f1a04240b909db1a6cb6c2e9bdf7221e16f2631f0c0f97",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.01663002375551144,
+          "decoy_y": 0.006630023755511439
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.029104197061539896,
+          "decoy_y": 0.017104197061539896
+        }
+      }
+    },
+    {
+      "index": 39,
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "b44209859180159157d110b893339b21d5c2b79f563239ca1db37a97aace12a2",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.01663002375551144,
+          "decoy_y": 0.0006300237555114385
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.029104197061539896,
+          "decoy_y": 0.025104197061539896
+        }
+      }
+    },
+    {
+      "index": 40,
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "f43bd267e9e90d1e0642aace40b512b7ca2ccb8de13886b94493d5038d2aa830",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.01663002375551144,
+          "decoy_y": 0.0006300237555114385
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.029104197061539896,
+          "decoy_y": 0.021104197061539896
+        }
+      }
+    },
+    {
+      "index": 41,
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "52bf1226e2dd50c73d6ec904e381a0c60dad1215b8f567d8ee213c9cb015595f",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.01663002375551144,
+          "decoy_y": 0.0006300237555114385
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.029104197061539896,
+          "decoy_y": 0.017104197061539896
+        }
+      }
+    },
+    {
+      "index": 42,
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "f8cef5068c8b8f6a3572ef6936d50ba09aa38bd7fad07fb7450c84742c534cf9",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.01663002375551144,
+          "decoy_y": -0.00536997624448856
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.029104197061539896,
+          "decoy_y": 0.025104197061539896
+        }
+      }
+    },
+    {
+      "index": 43,
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "7dbe683812b973687f438d4c3e3ce976314a25312337c1dd3a36d7088ec131e2",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.01663002375551144,
+          "decoy_y": -0.00536997624448856
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.029104197061539896,
+          "decoy_y": 0.021104197061539896
+        }
+      }
+    },
+    {
+      "index": 44,
+      "base_index": 130,
+      "pair": [
+        5301,
+        5307
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        3,
+        4,
+        3,
+        1,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "e0e1eaf7c5d1223d08f7236217c4ae618a9e4cb956550b13d4e5d069e6c717d5",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.01663002375551144,
+          "decoy_y": -0.00536997624448856
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.029104197061539896,
+          "decoy_y": 0.017104197061539896
+        }
+      }
+    },
+    {
+      "index": 45,
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "22f2fc19ab0c6305e6f5b22a6e486dc1a617df0e85702cee54352548a5b03133",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.010092226886714517,
+          "decoy_y": 9.222688671451686e-05
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02830338468317682,
+          "decoy_y": 0.02430338468317682
+        }
+      }
+    },
+    {
+      "index": 46,
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "15d7b4befeca9b17c36d8ab59d322e6d500d24d98e0d03990753a1d22603a76a",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.010092226886714517,
+          "decoy_y": 9.222688671451686e-05
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02830338468317682,
+          "decoy_y": 0.02030338468317682
+        }
+      }
+    },
+    {
+      "index": 47,
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "7ffee21f686fd1329cb897907daa6ddaee5819fd90a6633a9bd7d7e0989cbef6",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.010092226886714517,
+          "decoy_y": 9.222688671451686e-05
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02830338468317682,
+          "decoy_y": 0.01630338468317682
+        }
+      }
+    },
+    {
+      "index": 48,
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "506ae82b2de5709d3fd3654d928d4bcf773d664b8a93183ff0c33aaecab243f4",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.010092226886714517,
+          "decoy_y": -0.005907773113285483
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02830338468317682,
+          "decoy_y": 0.02430338468317682
+        }
+      }
+    },
+    {
+      "index": 49,
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "6957bb06becc6cc6498643d0c2a9cc230715d4ae4783c3f756005543c36e1b20",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.010092226886714517,
+          "decoy_y": -0.005907773113285483
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02830338468317682,
+          "decoy_y": 0.02030338468317682
+        }
+      }
+    },
+    {
+      "index": 50,
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "c1f94c5622a06977a99fcb787536ac09a81948c78dc825611c26bb051f3bc592",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.010092226886714517,
+          "decoy_y": -0.005907773113285483
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02830338468317682,
+          "decoy_y": 0.01630338468317682
+        }
+      }
+    },
+    {
+      "index": 51,
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "11aaa5ca97d21f13c1f38af48dc2f7d623d9cc5fb97c8891366ea11e5cecd80a",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.010092226886714517,
+          "decoy_y": -0.011907773113285482
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02830338468317682,
+          "decoy_y": 0.02430338468317682
+        }
+      }
+    },
+    {
+      "index": 52,
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "e78ed91388d27ba42d8488944014711c46fd3c58457686711f427085d91ae5e0",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.010092226886714517,
+          "decoy_y": -0.011907773113285482
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02830338468317682,
+          "decoy_y": 0.02030338468317682
+        }
+      }
+    },
+    {
+      "index": 53,
+      "base_index": 152,
+      "pair": [
+        5587,
+        5593
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "aa78c88eec5e7ba51aee28f5d3310b5910b42c8153ff7a747f202262403fcfdc",
+      "decoys": {
+        "sixth": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.010092226886714517,
+          "decoy_y": -0.011907773113285482
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02830338468317682,
+          "decoy_y": 0.01630338468317682
+        }
+      }
+    },
+    {
+      "index": 54,
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "2450bf6687bf2c5e95c5b230421a190d98a16d2529a421e867e28ae81858f9ee",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.012544041010435079,
+          "decoy_y": 0.0025440410104350785
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.0205941738454878,
+          "decoy_y": 0.0165941738454878
+        }
+      }
+    },
+    {
+      "index": 55,
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "4e1aa30f4c79ded8177751ff288668adac7fba7abef6f011ba631d5783ec92c7",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.012544041010435079,
+          "decoy_y": 0.0025440410104350785
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.0205941738454878,
+          "decoy_y": 0.012594173845487801
+        }
+      }
+    },
+    {
+      "index": 56,
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "22d9c535d3427a72956a8a3b1937ca774784945fee6253807df35b991c71dede",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.012544041010435079,
+          "decoy_y": 0.0025440410104350785
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.0205941738454878,
+          "decoy_y": 0.008594173845487801
+        }
+      }
+    },
+    {
+      "index": 57,
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "d79ad6371e4385b54af32e91f4eccc12af2c7bafc91d97b5f5f1a3753a326e44",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.012544041010435079,
+          "decoy_y": -0.0034559589895649216
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.0205941738454878,
+          "decoy_y": 0.0165941738454878
+        }
+      }
+    },
+    {
+      "index": 58,
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "786ecad0de76a9b2292d0c9fce5b2c1e6b8cb4ec608ae9fa74f438d16ab450d6",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.012544041010435079,
+          "decoy_y": -0.0034559589895649216
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.0205941738454878,
+          "decoy_y": 0.012594173845487801
+        }
+      }
+    },
+    {
+      "index": 59,
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "c4f942e9402d19c5d3c89b7cf192d9a6806a537e945375ec002c49a99e70dc52",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.012544041010435079,
+          "decoy_y": -0.0034559589895649216
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.0205941738454878,
+          "decoy_y": 0.008594173845487801
+        }
+      }
+    },
+    {
+      "index": 60,
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "a22be3823706f54c5f6ecc1e6482c7a8514b4e539abad17e41c23c5864562955",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.012544041010435079,
+          "decoy_y": -0.00945595898956492
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.0205941738454878,
+          "decoy_y": 0.0165941738454878
+        }
+      }
+    },
+    {
+      "index": 61,
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "654556a947a49f9d7c10499bb69ef01b7c1a90ef06fff8ab8c47d1f7f002db26",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.012544041010435079,
+          "decoy_y": -0.00945595898956492
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.0205941738454878,
+          "decoy_y": 0.012594173845487801
+        }
+      }
+    },
+    {
+      "index": 62,
+      "base_index": 164,
+      "pair": [
+        5743,
+        5749
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        3,
+        1,
+        4,
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "detection_sha256": "a106c03ec9d0cdbcbf7e1d121a90431d67cf3c55d84a7de5412e908a636b6371",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.012544041010435079,
+          "decoy_y": -0.00945595898956492
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.0205941738454878,
+          "decoy_y": 0.008594173845487801
+        }
+      }
+    },
+    {
+      "index": 63,
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "08657ffc5a624fea4a3ec26a2e75c2bc6197f0687aa40ec31a2560e3b30e5caf",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.021790947092314217,
+          "decoy_y": 0.011790947092314217
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.02320558280568121,
+          "decoy_y": 0.01920558280568121
+        }
+      }
+    },
+    {
+      "index": 64,
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "b6ec809b6a2e764dfea8a5e41d0a1595b5186d9fa6bf932060914602a515393c",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.021790947092314217,
+          "decoy_y": 0.011790947092314217
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.02320558280568121,
+          "decoy_y": 0.015205582805681211
+        }
+      }
+    },
+    {
+      "index": 65,
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "cb7ea9e3491f1f0dd8b80123f299094976dd87c77705912e5181e0b6672b3bc9",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.021790947092314217,
+          "decoy_y": 0.011790947092314217
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.02320558280568121,
+          "decoy_y": 0.011205582805681211
+        }
+      }
+    },
+    {
+      "index": 66,
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "3abdddb58bcad67458121dee6212646eb297ef7501f45b4c96a6a9e2860b8aeb",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.021790947092314217,
+          "decoy_y": 0.0057909470923142164
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.02320558280568121,
+          "decoy_y": 0.01920558280568121
+        }
+      }
+    },
+    {
+      "index": 67,
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "18422845b1a30797d4df8eff22c95d2deaaa8bebb27e738d3904ef28b4f6e3a0",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.021790947092314217,
+          "decoy_y": 0.0057909470923142164
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.02320558280568121,
+          "decoy_y": 0.015205582805681211
+        }
+      }
+    },
+    {
+      "index": 68,
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "7724c3c2e6520493518311f2cf3b58557d4aa4bb5172717f36d8bc61f07e4dcc",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.021790947092314217,
+          "decoy_y": 0.0057909470923142164
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.02320558280568121,
+          "decoy_y": 0.011205582805681211
+        }
+      }
+    },
+    {
+      "index": 69,
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "1437a147a48f57c4a46e1e610ad1fc3026d068480c1b6861d516062a13ec0f9b",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.021790947092314217,
+          "decoy_y": -0.00020905290768578194
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.02320558280568121,
+          "decoy_y": 0.01920558280568121
+        }
+      }
+    },
+    {
+      "index": 70,
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "34d22bd87e8e8ec2efc31dc7e35fded7c6e0953606125a49e907675249f65443",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.021790947092314217,
+          "decoy_y": -0.00020905290768578194
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.02320558280568121,
+          "decoy_y": 0.015205582805681211
+        }
+      }
+    },
+    {
+      "index": 71,
+      "base_index": 173,
+      "pair": [
+        5860,
+        5866
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "detection_sha256": "3fa28e20c0103320391dc6c16b25acf669a5e7b138f7a864923d2765554ebceb",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.021790947092314217,
+          "decoy_y": -0.00020905290768578194
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.02320558280568121,
+          "decoy_y": 0.011205582805681211
+        }
+      }
+    },
+    {
+      "index": 72,
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "7d6893fefe9043da85d8dc8412586f4bc0c43b2d8445e266d29bc01c02692f73",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.015386948153699492,
+          "decoy_y": 0.005386948153699491
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02783411019872871,
+          "decoy_y": 0.02383411019872871
+        }
+      }
+    },
+    {
+      "index": 73,
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "285afe0aaa2b26f519229c6f69443b3c2eaddbe56acfa4d0736a5ed1a43650d7",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.015386948153699492,
+          "decoy_y": 0.005386948153699491
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02783411019872871,
+          "decoy_y": 0.01983411019872871
+        }
+      }
+    },
+    {
+      "index": 74,
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "cb1bb43eeeec4945d58d05786ff129a5697f12e7518d318ab7116459576bdc88",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.015386948153699492,
+          "decoy_y": 0.005386948153699491
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02783411019872871,
+          "decoy_y": 0.01583411019872871
+        }
+      }
+    },
+    {
+      "index": 75,
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "32e8b988eb54dcf5830b0c9d9326fc8166e49de6f229c7f14536a11d10229f0c",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.015386948153699492,
+          "decoy_y": -0.0006130518463005087
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02783411019872871,
+          "decoy_y": 0.02383411019872871
+        }
+      }
+    },
+    {
+      "index": 76,
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "753dfe3e7646d69b8ac148ad4cda6b64a437dd4f3523317ccfc384a5b3c7fa59",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.015386948153699492,
+          "decoy_y": -0.0006130518463005087
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02783411019872871,
+          "decoy_y": 0.01983411019872871
+        }
+      }
+    },
+    {
+      "index": 77,
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "3f160569652d43ff9d9fb5cee1686f3543bfc7f202555581ef4d0140a4409e70",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.015386948153699492,
+          "decoy_y": -0.0006130518463005087
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02783411019872871,
+          "decoy_y": 0.01583411019872871
+        }
+      }
+    },
+    {
+      "index": 78,
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "efeb6e7e530dbdd5b6b0969f9112572d01191e2a2490e2fe3c4a0ac2d01bb736",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.015386948153699492,
+          "decoy_y": -0.006613051846300507
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02783411019872871,
+          "decoy_y": 0.02383411019872871
+        }
+      }
+    },
+    {
+      "index": 79,
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "7c19c92e7a148ba3abd93d68bb24d47d2ccc8ccbca4d184c6f96f9009bab2202",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.015386948153699492,
+          "decoy_y": -0.006613051846300507
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02783411019872871,
+          "decoy_y": 0.01983411019872871
+        }
+      }
+    },
+    {
+      "index": 80,
+      "base_index": 205,
+      "pair": [
+        6276,
+        6282
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        0,
+        4,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "b92044e1320e7f25ac64221d152af5c1a0b4ca6acf3804712abe84c9483e938e",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.015386948153699492,
+          "decoy_y": -0.006613051846300507
+        },
+        "last": {
+          "index": 1,
+          "source_id": 3,
+          "original_y": 0.02783411019872871,
+          "decoy_y": 0.01583411019872871
+        }
+      }
+    },
+    {
+      "index": 81,
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "a519aa57a30a48b70a29942b83ecbc31535d52ffeb3968e1f8ea68fc69febdd3",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 2,
+          "original_y": 0.006307649990313255,
+          "decoy_y": -0.003692350009686745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.022943961962044658,
+          "decoy_y": 0.018943961962044658
+        }
+      }
+    },
+    {
+      "index": 82,
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "f39676d6d528d52e53577095f6ebf66499cc2c883913b7083479326b7f6e830f",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 2,
+          "original_y": 0.006307649990313255,
+          "decoy_y": -0.003692350009686745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.022943961962044658,
+          "decoy_y": 0.014943961962044658
+        }
+      }
+    },
+    {
+      "index": 83,
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "sixth_offset_mm": 0.01,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "c8368595d1349177451d25920b84f8f7ae6b8784687e82bc18cc6240faa2494d",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 2,
+          "original_y": 0.006307649990313255,
+          "decoy_y": -0.003692350009686745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.022943961962044658,
+          "decoy_y": 0.010943961962044658
+        }
+      }
+    },
+    {
+      "index": 84,
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "dff1664e09dc1230857a7fc3f62105417403e6f7c7c8ba6d03f523d0ec6f9ffb",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 2,
+          "original_y": 0.006307649990313255,
+          "decoy_y": -0.009692350009686745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.022943961962044658,
+          "decoy_y": 0.018943961962044658
+        }
+      }
+    },
+    {
+      "index": 85,
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "9147329cbd9e106dc9bba02c2ad43d6df83a2e1fa9f69e1327b7d5278a19a90b",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 2,
+          "original_y": 0.006307649990313255,
+          "decoy_y": -0.009692350009686745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.022943961962044658,
+          "decoy_y": 0.014943961962044658
+        }
+      }
+    },
+    {
+      "index": 86,
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "sixth_offset_mm": 0.016,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "03a8ed2f88e4ba976191b24c45e691dfc1d3c4f3eed1eaabe71c9ed0e429df27",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 2,
+          "original_y": 0.006307649990313255,
+          "decoy_y": -0.009692350009686745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.022943961962044658,
+          "decoy_y": 0.010943961962044658
+        }
+      }
+    },
+    {
+      "index": 87,
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.004,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "49e0adf027b4912144dece9fd09731ae5c8d5cbf42fbfd75813055466f4f44e8",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 2,
+          "original_y": 0.006307649990313255,
+          "decoy_y": -0.015692350009686745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.022943961962044658,
+          "decoy_y": 0.018943961962044658
+        }
+      }
+    },
+    {
+      "index": 88,
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.008,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "48ad7f6953074eb82a17543b928b220a3d963687146b692244a9a4601f2a988c",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 2,
+          "original_y": 0.006307649990313255,
+          "decoy_y": -0.015692350009686745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.022943961962044658,
+          "decoy_y": 0.014943961962044658
+        }
+      }
+    },
+    {
+      "index": 89,
+      "base_index": 226,
+      "pair": [
+        6549,
+        6555
+      ],
+      "sixth_offset_mm": 0.022,
+      "last_offset_mm": 0.012,
+      "eligible": true,
+      "cardinalities": [
+        2,
+        2,
+        2,
+        3,
+        2,
+        2,
+        3,
+        2
+      ],
+      "detection_sha256": "1e8b1e324b8ed60dca3de8753c7b30ff225e499ad14e811dfa778f7ed583c2a3",
+      "decoys": {
+        "sixth": {
+          "index": 1,
+          "source_id": 2,
+          "original_y": 0.006307649990313255,
+          "decoy_y": -0.015692350009686745
+        },
+        "last": {
+          "index": 0,
+          "source_id": 3,
+          "original_y": 0.022943961962044658,
+          "decoy_y": 0.010943961962044658
+        }
+      }
+    }
+  ],
+  "status": "geometry_only_before_posterior"
+}
