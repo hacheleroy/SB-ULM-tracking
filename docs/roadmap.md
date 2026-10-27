@@ -851,6 +851,17 @@ full metrics and run records. Next, freeze a broader crowded absolute
 observation set and replication rule, especially toward balanced
 19-detection geometry. The WP8 holdout remains closed.
 
+## WP11aj — Prospective crowded absolute reference cohort
+
+- [x] Freeze unused geometry, one 18- and two distinct 19-detection
+  quotas, numerical limits and ordered balance screens before posterior
+- [ ] Screen and independently validate all three exact references
+- [ ] Pin the cohort and freeze its complete sampler replication rule
+
+The geometry-only ledger has six eligible 18-detection bases and four
+eligible 19-detection bases. See `wp11aj_crowded_cohort_reference.md`.
+The WP8 holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
