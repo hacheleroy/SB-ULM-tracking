@@ -42,4 +42,13 @@ before this succeeds and its result hash is pinned.
 
 ## Outcome
 
-Pending the frozen first eligible screen.
+Variant 0, the first eligible 18-detection decoy, failed the frozen
+numerical envelope: its minimum raw cell was -2.32e-8 (limit -1e-10),
+with clipping TV 3.73e-8. It also lacked sixth-frame clutter balance.
+The protocol requires stopping immediately on a numerical failure, so
+variants 1–8 were not screened. No WP11ad absolute reference was
+selected. The raw screen is `results/wp11ad_screens/0.json`.
+
+WP11ae is a separate, lower-density fresh-seed protocol committed before
+posterior screening; neither this numerical threshold nor a rejected
+WP11ad observation is reused.

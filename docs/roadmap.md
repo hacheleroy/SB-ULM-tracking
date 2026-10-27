@@ -758,12 +758,23 @@ The holdout stays closed.
 
 - [x] Freeze fresh seed pairs, an observation-only decoy construction,
   screening order, balance and numerical rules before posterior inspection
-- [ ] Screen at most nine eligible variants and independently validate
-  the first accepted exact joint before a sampler comparison
+- [x] Stop at the first numerical failure, before a sampler comparison
 
 See `wp11ad_fresh_decoy_reference.md`. This is a separate prospective
 reference after the WP11ac numerical stop, with no threshold revision
-or reuse of rejected cases.
+or reuse of rejected cases. Variant 0's raw minimum cell -2.32e-8
+failed the -1e-10 gate; no WP11ad reference was selected.
+
+## WP11ae — Lower-density fresh decoy reference
+
+- [x] Freeze a third, fresh-seed geometry-only ladder and strict
+  numerical/balance selection before any WP11ae posterior inspection
+- [ ] Screen at most nine variants and validate the first accepted
+  absolute reference before a sampler comparison
+
+See `wp11ae_stable_decoy_reference.md`. The 16–17 detection rule
+reduces the subset computation burden, while the 19-detection exposed
+primary remains a required sentinel for any future sampler move.
 
 ## WP12 — Open in-vivo trajectories
 

@@ -1,0 +1,33 @@
+{
+  "experiment": "wp11ad_decoy_screen",
+  "ledger_sha256": "9845b433dafa9ae498854794db30b34fd311e9f041fb6d59969a8a4f43d892b4",
+  "variant_index": 0,
+  "base_index": 0,
+  "offset_mm": 0.01,
+  "detection_sha256": "a654dca845a3c795a3e4324a5a22cb2888a32386d3f2a045e502f19f0f10d8ed",
+  "masses": {
+    "alive_bands": [
+      0.6648821878618764,
+      0.1057157727752938,
+      0.22940203936282977
+    ],
+    "sixth_clutter": [
+      0.912419883742663,
+      0.08719791279807272,
+      0.0003822034592640807
+    ],
+    "last_clutter": [
+      0.9237232130211276,
+      0.07627678697887211
+    ]
+  },
+  "numerical": {
+    "minimum_raw_cell": -2.3210026063567158e-08,
+    "maximum_relative_imaginary_residual": 2.9638775212883825e-19,
+    "raw_mass_error": 0.0,
+    "clipping_tv": 3.730815736273179e-08,
+    "log_partition": 96.77918702409657
+  },
+  "cpu_seconds": 85.728291388,
+  "status": "numerical_failed_stop"
+}
