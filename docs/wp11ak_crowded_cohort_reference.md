@@ -68,4 +68,29 @@ The WP8 holdout stays closed.
 
 ## Outcome
 
-Geometry-only freeze complete; no WP11ak posterior yet.
+The frozen ladder screened two 18-detection variants and four
+19-detection variants, in order. Variant 45 from base 67 met the exact
+18-detection balance condition, but it remains **provisional** because
+the full cohort never completed. Variants 81, 153 and 36 in the
+19-detection stratum were numerically sound but failed balance.
+Variant 81 missed sixth-frame clutter-one mass by only `0.000176565`:
+`0.149823435` against the frozen `0.15` threshold.
+
+The next ordered 19-detection variant 63 from base 116 met the
+balance masses under the paired-primary calculation (alive bands
+`0.39666 / 0.15685 / 0.44649`, frame-six clutter zero/one
+`0.81239 / 0.18100`, final clutter zero/one `0.33628 / 0.62753`).
+It **failed the numerical cross-check**: direct versus paired
+log-partition difference `4.5414e-8` exceeded the frozen `1e-8` cap.
+The normalized joint TV was `7.659e-8` (cap `1e-7`) and maximum cell
+difference `9.606e-9` (cap `1e-8`), but passing those two checks does
+not excuse the log-partition failure. Paired raw minimum was
+`-6.947e-14`; direct raw minimum was `-4.186e-9`.
+
+The screen records are in `results/wp11ak_screens/`. The first
+numerical failure **stops the entire WP11ak cohort**. No later
+variant, three-beta reference validation, sampler comparison, or WP8
+holdout inference was run. This case cannot be selected by changing
+the log-partition threshold after seeing it. The next absolute method
+needs an independent, more stable partition cross-check and a fresh
+prospective observation set.

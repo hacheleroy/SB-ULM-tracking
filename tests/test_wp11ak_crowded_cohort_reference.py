@@ -1,5 +1,6 @@
 """Fresh geometry and numeric cross-check guards before exact screening."""
 
+import json
 from pathlib import Path
 
 import numpy as np
@@ -64,3 +65,17 @@ def test_selected_observation_remains_within_original_frame_geometry() -> None:
     case = _checked_case(entry)
     assert np.count_nonzero(case.model.sequence.reference_ids[5] == -1) == 1
     assert np.count_nonzero(case.model.sequence.reference_ids[7] == -1) == 1
+
+
+def test_frozen_numerical_failure_blocks_later_screens() -> None:
+    runs = ROOT / "results/wp11ak_screens"
+    records = {int(path.stem): json.loads(path.read_text())
+               for path in runs.glob("*.json")}
+    assert len(records) == 6
+    assert records[45]["status"] == "balance_accepted_validate"
+    assert records[63]["status"] == "numerical_failed_stop"
+    assert records[63]["numerical"]["comparison"][
+        "log_partition_absolute_difference"
+    ] > 1e-8
+    with pytest.raises(ValueError, match="numerical failure stops entire cohort"):
+        _selection(_ledger(LEDGER), runs)

@@ -1,0 +1,50 @@
+{
+  "experiment": "wp11ak_crowded_cohort_screen",
+  "ledger_sha256": "a34fbfcea6bb1230aed432f7da2a8ece8d1c94a346d7d615a49cb42117df8b47",
+  "index": 9,
+  "stratum": "18",
+  "base_index": 21,
+  "detection_sha256": "216aec03cac85ec5ea0decf72d0d383a38a16e9e00da04da5207b0ad24b3f66c",
+  "masses": {
+    "alive_bands": [
+      0.4802782597974263,
+      0.1497683772516344,
+      0.3699533629509393
+    ],
+    "sixth_clutter": [
+      0.9235026173600345,
+      0.07611594180269239,
+      0.0003814408372730103
+    ],
+    "last_clutter": [
+      0.4789304978752843,
+      0.5124641579159331,
+      0.008605344208782732
+    ]
+  },
+  "numerical": {
+    "paired": {
+      "minimum_raw_cell": -1.0418508049666994e-15,
+      "maximum_relative_imaginary_residual": 2.867930330366596e-19,
+      "raw_mass_error": 0.0,
+      "clipping_tv": 7.27489185692819e-15,
+      "log_partition": 105.82965175494596,
+      "cpu_seconds": 101.807876454
+    },
+    "direct": {
+      "minimum_raw_cell": -1.2536422247474593e-12,
+      "maximum_relative_imaginary_residual": 2.870206465535935e-19,
+      "raw_mass_error": 0.0,
+      "clipping_tv": 4.5854362504772616e-12,
+      "log_partition": 105.82965175495066,
+      "cpu_seconds": 73.707489123
+    },
+    "comparison": {
+      "log_partition_absolute_difference": 4.703792910731863e-12,
+      "joint_tv": 1.606251037751138e-11,
+      "maximum_cell_absolute_difference": 2.1300002506132593e-12
+    }
+  },
+  "cpu_seconds": 175.897620639,
+  "status": "balance_failed_continue"
+}

@@ -869,13 +869,29 @@ No later WP11aj case may be selected. See
 
 - [x] Freeze independent unused geometry and a paired-primary numerical
   budget before screening any WP11ak posterior
-- [ ] Select and validate one 18- and two distinct 19-detection absolute
-  references, or obey the frozen stop
-- [ ] Pin the cohort and freeze an absolute sampler replication rule
+- [x] Obey the frozen numerical stop in the 19-detection stratum
+- [ ] Select and validate a complete independent 18/19 cohort in a
+  new protocol
 
-WP11aj remains stopped. The new geometry ledger has 12 eligible
-18-detection and seven eligible 19-detection bases. See
-`wp11ak_crowded_cohort_reference.md`. The WP8 holdout remains closed.
+WP11aj remains stopped. WP11ak's fresh ledger had 12 eligible
+18-detection and seven eligible 19-detection bases. One 18-detection
+screen passed balance, but the fourth 19-detection screen stopped the
+cohort: direct/paired log-partition difference `4.54e-8` exceeded the
+frozen `1e-8` numerical budget. No partial cohort is used for sampler
+inference. See `wp11ak_crowded_cohort_reference.md`. The WP8 holdout
+remains closed.
+
+## WP11al — Conditional multi-case sampler replication rule
+
+- [x] Freeze a complete three-case, 24-run accuracy, mode replication,
+  and cost rule before any sampler inference on a future cohort
+- [ ] Obtain a fully validated independent cohort and bind every exact
+  reference and observation hash before launching the 24 jobs
+
+The existing WP11aa absolute per-case limits are reused, with all
+three cases required to pass and a pooled 10/12 replication limit.
+The failed WP11aj and WP11ak partial cohorts are excluded. See
+`wp11al_conditional_cohort_gate.md`.
 
 ## WP12 — Open in-vivo trajectories
 
