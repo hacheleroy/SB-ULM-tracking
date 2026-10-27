@@ -814,6 +814,19 @@ crowded modes, so the next step is a separately frozen, independently
 validated balanced crowded absolute case before a calibration claim.
 See `results/wp11ag_global_slot_comparison.json` and the per-run JSONs.
 
+## WP11ah — Balanced crowded absolute reference
+
+- [x] Freeze fresh unused seeds, two-frame decoy geometry, numerical
+  limits and an ordered exact balance search before posterior screening
+- [ ] Screen the frozen ladder and independently validate the first
+  balanced crowded exact joint, if any
+- [ ] Pin its hash and freeze a matched WP11ag comparison before inference
+
+The WP11ag transfer case was independent but unbalanced in frame-six
+clutter. WP11ah targets balanced alive-count and two-frame clutter
+modes on a new 17–18 detection observation. See
+`wp11ah_balanced_crowded_reference.md`. The WP8 holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
