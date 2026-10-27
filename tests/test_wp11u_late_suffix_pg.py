@@ -38,7 +38,7 @@ def _model():
     )
 
 
-@pytest.mark.parametrize("beta", [0.0, 0.37, 1.0])
+@pytest.mark.parametrize("beta", [0.0, 0.37, 0.75, 1.0])
 def test_two_particle_suffix_transition_is_exactly_stationary(beta):
     """Enumerate every suffix proposal, ancestor choice and final selection."""
 
