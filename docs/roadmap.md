@@ -766,11 +766,19 @@ move or holdout was tested here.
 
 - [x] Freeze the 17-detection reference hash, unchanged sampler controls,
   four fixed seeds, joint-cell metrics and replication limits before inference
-- [ ] Run all four seeds and compare absolute final modes with WP11x
+- [x] Run all four seeds and compare absolute final modes with WP11x
 
-See `wp11y_independent_absolute_sampler.md`. Its result describes only
-this selected 17-detection observation. The earlier WP11k 19-detection
-case is still uncalibrated, and the untouched holdout remains closed.
+The comparison fails its frozen replication rule: only seed 1502 meets
+every mode limit, against the required three of four. Full-joint TV
+is 0.09556–0.16715 and median 0.11072. The sixth clutter-1 error is
++0.07071 in seed 1500; last clutter-1 error is +0.06293 in seed 1501;
+seed 1503 misses the band and alive-band limits. See
+`wp11y_independent_absolute_sampler.md` and its committed 396-cell
+per-seed comparison. Next freeze a stage-level count/late-clutter
+attribution on this balanced observation before a new move. This result
+describes only the selected 17-detection case. The earlier WP11k
+19-detection case is still uncalibrated, and the untouched holdout
+remains closed.
 
 ## WP12 — Open in-vivo trajectories
 

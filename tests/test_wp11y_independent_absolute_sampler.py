@@ -9,6 +9,7 @@ from sbulm.wp11y_independent_absolute_sampler import (
     N_PARTICLES,
     _bands,
     _controls,
+    _decision,
     _inputs,
     _metrics,
     _protocol,
@@ -44,3 +45,21 @@ def test_alive_band_and_decoy_cell_errors_have_fixed_axes():
     assert np.isclose(errors["full_joint_tv"], .1)
     assert np.isclose(errors["band_by_sixth_tv"], .1)
     assert np.isclose(errors["maximum_joint_cell_error"], .1)
+
+
+def test_replication_rule_can_fail_when_all_medians_pass():
+    rows = {}
+    for seed in (1500, 1501, 1502, 1503):
+        rows[str(seed)] = {"errors": {
+            "full_joint_tv": .09, "band_by_sixth_tv": .04,
+            "maximum_alive_band_mass_error": .02,
+            "maximum_joint_cell_error": .01,
+            "sixth_clutter_mass_error": [0, .01, 0, 0],
+            "last_clutter_mass_error": [0, .01, 0],
+        }}
+    rows["1500"]["errors"]["sixth_clutter_mass_error"][1] = .07
+    rows["1501"]["errors"]["last_clutter_mass_error"][1] = .07
+    result = _decision(rows)
+    assert result["gates"]["median_full_joint"]
+    assert not result["gates"]["replicated_modes"]
+    assert not result["passed"]

@@ -77,4 +77,35 @@ checkpoints go to `results/wp11y_runs/`; the comparison goes to
 
 ## Outcome
 
-Pending sampler inference. The protocol and runner are committed first.
+The protocol and runner were committed at `503ae8eea2abfcb5abc9429e999a4502511a5668`
+**before** any of the four sampler processes started. All four completed
+within the 750 CPU-second cap. The final per-seed empirical joints and
+errors are in `results/wp11y_independent_absolute_sampler.json`, byte
+SHA-256 `3af1e36390c5700d150291e5493608009f319498f44f9ec4164d89654c795f50`.
+The detailed stage diagnostics and repeated configs can be reproduced
+with the fixed runner and seeds.
+
+| Seed | CPU s | Stages | Full TV | Band × sixth TV | Max alive-band error | Sixth clutter-1 error | Last clutter-1 error | Replicated mode? |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | :---: |
+| 1500 | 231.3 | 19 | 0.11557 | 0.09512 | 0.03324 | +0.07071 | −0.01373 | No |
+| 1501 | 225.5 | 19 | 0.10587 | 0.04646 | 0.02730 | −0.01376 | +0.06293 | No |
+| 1502 | 234.8 | 20 | 0.09556 | 0.04388 | 0.01412 | +0.04337 | −0.02154 | Yes |
+| 1503 | 228.2 | 19 | 0.16715 | 0.11931 | 0.11813 | +0.04972 | −0.00738 | No |
+
+The median full TV `0.11072`, band × sixth TV `0.07079`, maximum
+alive-band error `0.03027` and maximum cell error `0.01931` satisfy
+their individual limits. **The frozen screen fails** because only one
+of four seeds satisfies every replicated mode condition, short of the
+required three. Seed 1500 exceeds the 0.06 sixth clutter-1 limit,
+1501 exceeds the 0.06 final clutter-1 limit, and 1503 exceeds both
+the band × sixth TV and alive-band error limits. The 1,000-draw exact-IID
+95th percentiles are 0.07860 full TV and 0.02964 band × sixth TV;
+all four SMC full TVs exceed the descriptive full-TV percentile. The
+run log-evidence errors range from −0.702 to −0.415.
+
+This is an independent absolute discrepancy on the selected synthetic
+17-detection observation, with a marginal exact high-alive acceptance
+margin. It does not establish the sampler's error on the 19-detection
+WP11k case, select a new move or open the untouched holdout. A next
+diagnostic can freeze stage-level attribution for the count and late
+clutter errors on this balanced reference before proposing a new kernel.

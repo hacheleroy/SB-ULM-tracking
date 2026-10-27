@@ -250,6 +250,15 @@ def aggregate(run_dir: Path, reference_path: Path, ledger_path: Path,
                 raise ValueError(f"saved metric {key} changed")
         runs[str(seed)] = record
     decision = _decision(runs)
+    # Keep each empirical cell and error in the committed comparison; the
+    # repeated configs and detailed stage diagnostics remain in run checkpoints.
+    summarized_runs = {
+        str(seed): {key: runs[str(seed)][key] for key in (
+            "seed", "cpu_seconds", "wall_seconds", "n_tempering_steps",
+            "log_evidence_error", "joint_alive_by_sixth_by_last_clutter", "errors"
+        )}
+        for seed in SEEDS
+    }
     result = {
         "experiment": "wp11y_independent_absolute_sampler",
         "protocol": _protocol(), "reference_log_partition": log_z,
@@ -257,7 +266,7 @@ def aggregate(run_dir: Path, reference_path: Path, ledger_path: Path,
         "exact_sixth_clutter": exact.sum(axis=(0, 2)).tolist(),
         "exact_last_clutter": exact.sum(axis=(0, 1)).tolist(),
         "iid_q95_descriptive": _iid_q95(exact),
-        "runs": runs, "comparison": decision,
+        "runs": summarized_runs, "comparison": decision,
         "status": ("independent_17_detection_baseline_within_frozen_limits"
                    if decision["passed"] else "independent_17_detection_baseline_failed_limits"),
     }
