@@ -680,6 +680,33 @@ failure, not a calibrated across-observation rate or a move-selection
 gate. Next design an independently frozen targeted count/clutter move
 against this reference, keeping the untouched holdout closed.
 
+## WP11u — Frozen late suffix conditional PG development
+
+- [x] Add an opt-in pair PG kernel conditioned on the first five frames
+- [x] Enumerate its small-case transition at beta 0, 0.37 and 1 and
+  verify exact-target stationarity before inference
+- [x] Freeze six paired control/candidate seeds and absolute joint-error,
+  late clutter, and CPU criteria against the exposed WP11t reference
+- [x] Complete all six paired runs and report every frozen criterion
+
+The candidate keeps the full-path PG mixture and adds a suffix update
+only at beta one, with additional final-stage sweeps. This is a single
+exposed-case development screen, not independent replication. See
+`wp11u_late_suffix_pg.md`. No high-particle or untouched holdout run is
+authorized by this screen.
+
+All twelve arms finished. Suffix PG improved full-joint TV in 5/6
+matched seeds and gave candidate/control median ratios 0.862 for the
+198-cell joint and 0.841 for band-by-sixth-clutter TV. The candidate
+missed all three frozen absolute median limits (full TV 0.1696 versus
+0.12, band TV 0.1350 versus 0.10, maximum band error 0.0999 versus
+0.08) and the 0.80 relative target. CPU and other guardrails passed.
+WP11u is stopped as a failed exposed development screen. The final-stage
+move left matched log-evidence estimates identical and all six candidate
+full-joint TVs above the descriptive exact-IID q95. Next audit the timing
+of count/clutter mode loss under an independently frozen protocol before
+another earlier-stage move; the untouched holdout remains closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
@@ -695,4 +722,5 @@ against this reference, keeping the untouched holdout closed.
 
 Raw-IQ inference is intentionally outside the critical path of the first
 localization-level paper.
+
 

@@ -189,24 +189,31 @@ class ConditionalPairPath:
         n_particles: int,
         rng: np.random.Generator,
         ancestor_sampling: bool = False,
+        start_frame: int = 0,
     ) -> IntArray:
         """One exact-target conditional SMC/particle-Gibbs transition.
 
         Resampling is multinomial; the reference particle retains its own
         ancestor.  Proposal weights are local normalizers because proposals
-        are fully adapted to the incremental collapsed likelihood.
+        are fully adapted to the incremental collapsed likelihood. A positive
+        start_frame conditions on the reference prefix and resamples only the
+        suffix. This remains a Gibbs kernel for the tempered full target.
         """
 
         if n_particles < 2:
             raise ValueError("conditional SMC requires at least two particles")
+        if not 0 <= start_frame < self.model.sequence.n_frames:
+            raise ValueError("start_frame must index an observed frame")
         reference = self.base.current
         particles = np.broadcast_to(reference, (n_particles, *reference.shape)).copy()
         state_indices = np.empty(n_particles, dtype=np.int64)
+        if start_frame:
+            state_indices.fill(self._previous_state(reference, start_frame))
         weights = np.full(n_particles, 1.0 / n_particles)
         log_weights = np.full(n_particles, -np.log(n_particles))
         fixed = n_particles - 1
-        for time_index in range(self.model.sequence.n_frames):
-            if time_index:
+        for time_index in range(start_frame, self.model.sequence.n_frames):
+            if time_index > start_frame:
                 ancestors = rng.choice(n_particles, size=fixed, p=weights)
                 retained_parent = (
                     self._ancestor_mh(
@@ -252,8 +259,9 @@ def conditional_pair_pg_move(
     n_particles: int,
     rng: np.random.Generator,
     ancestor_sampling: bool = False,
+    start_frame: int = 0,
 ) -> IntArray:
-    """Update a uniformly selected pair for each selected SMC row."""
+    """Update a uniformly selected pair, optionally conditioning on its prefix."""
 
     if model.n_slots < 2:
         raise ValueError("pair moves require at least two slots")
@@ -264,5 +272,7 @@ def conditional_pair_pg_move(
         proposed[local_index] = conditional.sample(
             beta=beta, n_particles=n_particles, rng=rng,
             ancestor_sampling=ancestor_sampling,
+            start_frame=start_frame,
         )
     return proposed
+
