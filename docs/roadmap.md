@@ -904,6 +904,18 @@ The positive sum agrees with paired-square to `2.26e-11` and
 `8.67e-13` in the exposed cases. See `wp11am_positive_partition.md`.
 WP11aj/WP11ak stay stopped and the WP8 holdout closed.
 
+## WP11an — Fresh positive-partition crowded cohort
+
+- [x] Freeze an unused 18/19-detection observation ladder and geometry-only ledger
+- [x] Freeze paired joint, positive partition, absolute accuracy, and CPU rules
+  before the first new posterior
+- [ ] Select and independently validate one 18- and two 19-detection references
+- [ ] Bind a complete reference manifest to the WP11al conditional sampler gate
+
+The 480 fresh seed pairs yielded seven eligible 18-detection and ten
+eligible 19-detection bases on geometry alone. See
+`wp11an_positive_crowded_cohort.md`. No sampler result or holdout was opened.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
