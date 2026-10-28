@@ -47,3 +47,33 @@ WP11al 24-job matched sampler comparison. These exact numerical checks
 share the one-slot factors, so they test the four-slot convolution and
 normalized joint, without a formal floating-point interval certificate
 or an independent derivation of the likelihood.
+
+## Frozen outcome
+
+The 34 screens selected index 45 (18 detections) and indices 126 and 84
+(19 detections on distinct bases). All 34 passed the paired/positive
+partition screen, with maximum absolute log-partition difference
+`1.82e-11` and maximum float64/extended positive difference `2.85e-14`.
+The first 18- and 19-detection references passed all three validation
+temperatures. Index 84 passed beta zero and .5 but **failed the frozen
+beta-one numerical validation**. The direct-fourth joint's raw minimum
+was `-1.476e-7` (limit `-1e-8`), clipping TV was `8.429e-7` (limit
+`1e-7`), direct/paired joint TV was `6.073e-7` (limit `1e-7`), and its
+maximum cell difference was `1.051e-7` (limit `1e-8`). Direct/paired
+log-partition difference, reported diagnostically, was `9.987e-7`.
+The paired/positive log-partition difference remained `9.38e-12` and
+float64/extended positive difference `1.42e-14` on that case.
+
+The terminal diagnostic is
+`results/wp11an_terminal_validation_failure.json` (SHA-256
+`dd1555a41caa49a9f6309300cd6170cc2ac6ae82d521616abeb9077caa24fd7f`).
+It can be recomputed with
+`python -m sbulm.wp11an_terminal_diagnostic`; this post hoc program
+only records why the already frozen validation stopped.
+The index 84 reference file contains only the first two successful
+temperatures and is marked `reference_in_progress`; it is **not** a
+validated reference. The cohort is stopped. No three-case manifest or
+WP11al sampler comparison is authorized by this result, and the WP8
+holdout remains closed. The numerical method improved the absolute
+partition check, but direct-fourth is not a reliable independent full
+joint check on this crowded case.

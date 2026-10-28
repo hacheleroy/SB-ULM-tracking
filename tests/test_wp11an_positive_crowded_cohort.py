@@ -1,5 +1,6 @@
 """Frozen geometry and distinct numerical checks for WP11an."""
 
+import json
 from pathlib import Path
 from unittest.mock import patch
 
@@ -11,6 +12,7 @@ from sbulm.wp11an_positive_crowded_cohort import (
     _ordered,
     _partition_checked,
     _selection,
+    manifest,
 )
 
 from sbulm.wp7_convergence_audit import _case_metadata
@@ -57,3 +59,20 @@ def test_direct_partition_discrepancy_is_diagnostic_but_joint_is_checked() -> No
     passed, comparison = _joint_checked(paired, direct)
     assert passed and comparison["diagnostic_direct_paired_logz_difference"] > 1e-8
     assert not _joint_checked(paired, {**direct, "joint": np.array([.3, .7])})[0]
+
+
+def test_failed_validation_cannot_produce_complete_manifest(tmp_path: Path) -> None:
+    runs = ROOT / "results/wp11an_screens"
+    references = ROOT / "results/wp11an_references"
+    diagnostic = json.loads((ROOT / "results/wp11an_terminal_validation_failure.json")
+                            .read_text())
+    assert diagnostic["partition_pass"] and not diagnostic["joint_pass"]
+    assert diagnostic["joint"]["joint_tv"] > 1e-7
+    assert json.loads((references / "84.json").read_text())["status"] == (
+        "reference_in_progress")
+    try:
+        manifest(LEDGER, runs, references, tmp_path / "manifest.json")
+    except ValueError as exc:
+        assert "reference is incomplete" in str(exc)
+    else:
+        raise AssertionError("failed validation produced a complete manifest")

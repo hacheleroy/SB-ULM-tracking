@@ -909,12 +909,18 @@ WP11aj/WP11ak stay stopped and the WP8 holdout closed.
 - [x] Freeze an unused 18/19-detection observation ladder and geometry-only ledger
 - [x] Freeze paired joint, positive partition, absolute accuracy, and CPU rules
   before the first new posterior
-- [ ] Select and independently validate one 18- and two 19-detection references
+- [x] Screen the frozen ladder and stop on the first failed validation
+- [ ] Develop an independent full-joint check on exposed stopped cases,
+  then freeze a fresh cohort rule before screening another observation
 - [ ] Bind a complete reference manifest to the WP11al conditional sampler gate
 
 The 480 fresh seed pairs yielded seven eligible 18-detection and ten
-eligible 19-detection bases on geometry alone. See
-`wp11an_positive_crowded_cohort.md`. No sampler result or holdout was opened.
+eligible 19-detection bases on geometry alone. The 34 frozen screens
+selected one 18- and two 19-detection cases, but validation stopped at
+index 84, beta one: direct/paired joint TV `6.07e-7` exceeded `1e-7`,
+while paired/positive log partitions agreed to `9.38e-12`. There is no
+complete manifest. See `wp11an_positive_crowded_cohort.md`. WP11al
+remains dormant and the WP8 holdout closed.
 
 ## WP12 — Open in-vivo trajectories
 
