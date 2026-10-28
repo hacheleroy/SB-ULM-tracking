@@ -1,0 +1,112 @@
+{
+  "experiment": "wp11am_positive_partition_exposed_audit",
+  "toy": {
+    "0.0": {
+      "direct_enumeration_log_partition": 4.014639241743585,
+      "double": {
+        "beta": 0.0,
+        "log_partition": 4.014639241743585,
+        "normalized_four_slot_mass": 0.9997837960566524,
+        "n_nonzero_one_slot_subsets": 4,
+        "precision": "float64",
+        "cpu_seconds": 0.0
+      },
+      "extended": {
+        "beta": 0.0,
+        "log_partition": 4.014639241743584,
+        "normalized_four_slot_mass": 0.9997837960566524,
+        "n_nonzero_one_slot_subsets": 4,
+        "precision": "longdouble",
+        "cpu_seconds": 0.0
+      },
+      "paired_log_partition": 4.014639241743585
+    },
+    "0.5": {
+      "direct_enumeration_log_partition": 4.708278429491537,
+      "double": {
+        "beta": 0.5,
+        "log_partition": 4.7082784294915365,
+        "normalized_four_slot_mass": 0.8953191326561685,
+        "n_nonzero_one_slot_subsets": 4,
+        "precision": "float64",
+        "cpu_seconds": 0.0
+      },
+      "extended": {
+        "beta": 0.5,
+        "log_partition": 4.708278429491537,
+        "normalized_four_slot_mass": 0.8953191326561689,
+        "n_nonzero_one_slot_subsets": 4,
+        "precision": "longdouble",
+        "cpu_seconds": 0.0
+      },
+      "paired_log_partition": 4.708278429491537
+    },
+    "1.0": {
+      "direct_enumeration_log_partition": 9.057369354214085,
+      "double": {
+        "beta": 1.0,
+        "log_partition": 9.057369354214082,
+        "normalized_four_slot_mass": 0.0011962080625224894,
+        "n_nonzero_one_slot_subsets": 4,
+        "precision": "float64",
+        "cpu_seconds": 0.0
+      },
+      "extended": {
+        "beta": 1.0,
+        "log_partition": 9.057369354214083,
+        "normalized_four_slot_mass": 0.0011962080625224896,
+        "n_nonzero_one_slot_subsets": 4,
+        "precision": "longdouble",
+        "cpu_seconds": 0.0
+      },
+      "paired_log_partition": 9.057369354214083
+    }
+  },
+  "exposed": {
+    "wp11aj_stopped_18": {
+      "double": {
+        "beta": 1.0,
+        "log_partition": 105.66273227187953,
+        "normalized_four_slot_mass": 1.4264638809565493e-23,
+        "n_nonzero_one_slot_subsets": 10368,
+        "precision": "float64",
+        "cpu_seconds": 0.5359869530000001
+      },
+      "extended": {
+        "beta": 1.0,
+        "log_partition": 105.66273227187953,
+        "normalized_four_slot_mass": 1.426463880956549e-23,
+        "n_nonzero_one_slot_subsets": 10368,
+        "precision": "longdouble",
+        "cpu_seconds": 0.8039358500000002
+      },
+      "archived_paired_log_partition": 105.66273227185697,
+      "archived_direct_log_partition": 105.66273227102101,
+      "positive_minus_paired": 2.2566837287740782e-11,
+      "positive_minus_direct": 8.585203659094987e-10
+    },
+    "wp11ak_stopped_19": {
+      "double": {
+        "beta": 1.0,
+        "log_partition": 100.69758485891836,
+        "normalized_four_slot_mass": 1.4615399492005786e-16,
+        "n_nonzero_one_slot_subsets": 12960,
+        "precision": "float64",
+        "cpu_seconds": 0.8425633939999999
+      },
+      "extended": {
+        "beta": 1.0,
+        "log_partition": 100.69758485891836,
+        "normalized_four_slot_mass": 1.4615399492005793e-16,
+        "n_nonzero_one_slot_subsets": 12960,
+        "precision": "longdouble",
+        "cpu_seconds": 1.2321614089999997
+      },
+      "archived_paired_log_partition": 100.69758485891923,
+      "archived_direct_log_partition": 100.6975849043335,
+      "positive_minus_paired": -8.668621376273222e-13,
+      "positive_minus_direct": -4.5415134763970855e-08
+    }
+  },
+  "status": "toy_and_exposed_numerical_method_validated_no_new_posterior"
+}

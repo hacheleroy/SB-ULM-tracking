@@ -893,6 +893,35 @@ three cases required to pass and a pooled 10/12 replication limit.
 The failed WP11aj and WP11ak partial cohorts are excluded. See
 `wp11al_conditional_cohort_gate.md`.
 
+## WP11am — Positive partition numerical method
+
+- [x] Validate a subtraction-free four-slot partition against toy direct
+  enumeration and exposed stopped 18/19-detection calculations
+- [x] Freeze a fresh 18/19 observation and numerical selection rule
+  before any new posterior
+
+The positive sum agrees with paired-square to `2.26e-11` and
+`8.67e-13` in the exposed cases. See `wp11am_positive_partition.md`.
+WP11aj/WP11ak stay stopped and the WP8 holdout closed.
+
+## WP11an — Fresh positive-partition crowded cohort
+
+- [x] Freeze an unused 18/19-detection observation ladder and geometry-only ledger
+- [x] Freeze paired joint, positive partition, absolute accuracy, and CPU rules
+  before the first new posterior
+- [x] Screen the frozen ladder and stop on the first failed validation
+- [ ] Develop an independent full-joint check on exposed stopped cases,
+  then freeze a fresh cohort rule before screening another observation
+- [ ] Bind a complete reference manifest to the WP11al conditional sampler gate
+
+The 480 fresh seed pairs yielded seven eligible 18-detection and ten
+eligible 19-detection bases on geometry alone. The 34 frozen screens
+selected one 18- and two 19-detection cases, but validation stopped at
+index 84, beta one: direct/paired joint TV `6.07e-7` exceeded `1e-7`,
+while paired/positive log partitions agreed to `9.38e-12`. There is no
+complete manifest. See `wp11an_positive_crowded_cohort.md`. WP11al
+remains dormant and the WP8 holdout closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
