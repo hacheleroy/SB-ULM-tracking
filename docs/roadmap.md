@@ -922,6 +922,30 @@ while paired/positive log partitions agreed to `9.38e-12`. There is no
 complete manifest. See `wp11an_positive_crowded_cohort.md`. WP11al
 remains dormant and the WP8 holdout closed.
 
+## WP11ao — Positive full-joint calculation on exposed cases
+
+- [x] Check nonnegative alive × sixth-clutter × final-clutter arithmetic
+  against toy enumeration and exposed stopped dense cases
+- [x] Freeze a fresh observation ledger and numerical rule before any
+  new posterior is screened
+
+The positive joint agrees with the paired-square joint to TV `3.96e-11`
+on stopped WP11an index 84, while direct-fourth differed by `6.07e-7`.
+See `wp11ao_positive_full_joint.md`. WP11an remains stopped, WP11al
+inactive, and the WP8 holdout closed.
+
+## WP11ap — Fresh positive-joint cohort protocol
+
+- [x] Freeze unused 18/19-detection geometry and its ledger hash
+- [x] Freeze paired versus nonnegative full-joint, precision, balance,
+  CPU, validation, and stopping rules before any new posterior
+- [ ] Run the frozen screens and validate a complete three-case cohort
+
+Geometry alone found 13 eligible 18-detection and 15 eligible
+19-detection bases. The first exact screen has not run. See
+`wp11ap_positive_joint_cohort.md`. WP11al remains dormant and the WP8
+holdout closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`

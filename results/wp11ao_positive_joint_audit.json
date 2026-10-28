@@ -1,0 +1,136 @@
+{
+  "experiment": "wp11ao_positive_full_joint_exposed_audit",
+  "sources_sha256": {
+    "results/wp11an_geometry_ledger.json": "81e7be1d80d8f9c905bfc7b568696b05c9e1315ada8717a8b1329dd371142d03",
+    "results/wp11an_references/45.json": "723a391f3e909c0c6decd00be3e5a1773549cc5fbf7fc2eca180bd30dc843726",
+    "results/wp11an_references/126.json": "c1e47e0b1d6cde09c922f15df2a9743e24fa543caaecb2e0fac4951ab47e3505",
+    "results/wp11an_references/84.json": "a1a804959ade026d34f0a15175bb612b3b8da5aeef05680ef446df89e358b3db",
+    "results/wp11ao_exposed_paired84.json": "e010b3e05a08be8230df1805fa8c8fccad25a2534357f7ef4c9a8141f0918b6d"
+  },
+  "thresholds": {
+    "toy_logz": 1e-10,
+    "toy_tv": 1e-10,
+    "toy_max_cell": 1e-11,
+    "exposed_logz": 1e-08,
+    "exposed_tv": 1e-07,
+    "exposed_max_cell": 1e-08,
+    "precision_logz": 1e-10,
+    "precision_tv": 1e-10,
+    "precision_max_cell": 1e-11
+  },
+  "toy": {
+    "0.0": {
+      "log_partition_absolute_difference": 8.881784197001252e-16,
+      "joint_tv": 4.0639616428790745e-16,
+      "maximum_cell_absolute_difference": 3.885780586188048e-16
+    },
+    "0.5": {
+      "log_partition_absolute_difference": 0.0,
+      "joint_tv": 6.211258720897894e-16,
+      "maximum_cell_absolute_difference": 1.5265566588595902e-16
+    },
+    "1.0": {
+      "log_partition_absolute_difference": 1.7763568394002505e-15,
+      "joint_tv": 1.0878738220838354e-15,
+      "maximum_cell_absolute_difference": 4.718447854656915e-16
+    }
+  },
+  "exposed": {
+    "45": {
+      "detection_sha256": "cd776bd3b33a57f96e9d8812b18eb89ed95b33608399205d9db9e97432e99cf8",
+      "checks": {
+        "1.0": {
+          "paired_comparison": {
+            "log_partition_absolute_difference": 1.9895196601282805e-13,
+            "joint_tv": 2.2118190528681917e-13,
+            "maximum_cell_absolute_difference": 1.6911786911061434e-14
+          },
+          "double_extended_comparison": {
+            "log_partition_absolute_difference": 0.0,
+            "joint_tv": 2.288318268906123e-16,
+            "maximum_cell_absolute_difference": 5.551115123125783e-17
+          },
+          "double_cpu_seconds": 5.334803441,
+          "extended_cpu_seconds": 12.404075469999999,
+          "positive_log_partition": 102.37266768254011,
+          "minimum_positive_cell": 0.0
+        }
+      }
+    },
+    "126": {
+      "detection_sha256": "12bd7d41a049a0e0da1ec34c9c39fbf2a2aa4b6871b739dfb7598ce1650ed6a6",
+      "checks": {
+        "1.0": {
+          "paired_comparison": {
+            "log_partition_absolute_difference": 1.0800249583553523e-12,
+            "joint_tv": 2.0734541318082043e-12,
+            "maximum_cell_absolute_difference": 2.6962633514759915e-13
+          },
+          "double_extended_comparison": {
+            "log_partition_absolute_difference": 1.4210854715202004e-14,
+            "joint_tv": 2.1149139713876497e-16,
+            "maximum_cell_absolute_difference": 6.938893903907228e-17
+          },
+          "double_cpu_seconds": 21.782999658999998,
+          "extended_cpu_seconds": 33.907528826,
+          "positive_log_partition": 116.01650087420164,
+          "minimum_positive_cell": 0.0
+        }
+      }
+    },
+    "84": {
+      "detection_sha256": "f350bb3062709f738641fa9092260760f08bd74e338ef2c70f7b9a18cdac044a",
+      "checks": {
+        "0.0": {
+          "paired_comparison": {
+            "log_partition_absolute_difference": 0.0,
+            "joint_tv": 1.7239835550422256e-18,
+            "maximum_cell_absolute_difference": 6.906764354863131e-19
+          },
+          "double_extended_comparison": {
+            "log_partition_absolute_difference": 0.0,
+            "joint_tv": 2.0714211097634335e-16,
+            "maximum_cell_absolute_difference": 1.1102230246251565e-16
+          },
+          "double_cpu_seconds": 16.729741720000007,
+          "extended_cpu_seconds": 38.52945812799999,
+          "positive_log_partition": 62.21654762587294,
+          "minimum_positive_cell": 0.0
+        },
+        "0.5": {
+          "paired_comparison": {
+            "log_partition_absolute_difference": 0.0,
+            "joint_tv": 8.503550565824013e-19,
+            "maximum_cell_absolute_difference": 1.5259429859708463e-19
+          },
+          "double_extended_comparison": {
+            "log_partition_absolute_difference": 0.0,
+            "joint_tv": 1.331364567850087e-16,
+            "maximum_cell_absolute_difference": 2.0816681711721685e-17
+          },
+          "double_cpu_seconds": 19.625163625,
+          "extended_cpu_seconds": 40.443582335,
+          "positive_log_partition": 67.37635866324077,
+          "minimum_positive_cell": 0.0
+        },
+        "1.0": {
+          "paired_comparison": {
+            "log_partition_absolute_difference": 9.379164112033322e-12,
+            "joint_tv": 3.964794728738493e-11,
+            "maximum_cell_absolute_difference": 4.602516284757385e-12
+          },
+          "double_extended_comparison": {
+            "log_partition_absolute_difference": 1.4210854715202004e-14,
+            "joint_tv": 2.228604551810078e-16,
+            "maximum_cell_absolute_difference": 3.469446951953614e-17
+          },
+          "double_cpu_seconds": 17.979953618000025,
+          "extended_cpu_seconds": 34.573543379,
+          "positive_log_partition": 101.08787394608962,
+          "minimum_positive_cell": 0.0
+        }
+      }
+    }
+  },
+  "status": "toy_and_exposed_full_joint_validated_no_fresh_posterior"
+}
