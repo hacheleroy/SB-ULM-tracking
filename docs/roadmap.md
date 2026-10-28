@@ -893,6 +893,17 @@ three cases required to pass and a pooled 10/12 replication limit.
 The failed WP11aj and WP11ak partial cohorts are excluded. See
 `wp11al_conditional_cohort_gate.md`.
 
+## WP11am — Positive partition numerical method
+
+- [x] Validate a subtraction-free four-slot partition against toy direct
+  enumeration and exposed stopped 18/19-detection calculations
+- [ ] Freeze a fresh 18/19 observation and numerical selection rule
+  before any new posterior
+
+The positive sum agrees with paired-square to `2.26e-11` and
+`8.67e-13` in the exposed cases. See `wp11am_positive_partition.md`.
+WP11aj/WP11ak stay stopped and the WP8 holdout closed.
+
 ## WP12 — Open in-vivo trajectories
 
 - Start with ULMShare `tracks.json.xz`
