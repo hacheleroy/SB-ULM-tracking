@@ -1,0 +1,57 @@
+{
+  "experiment": "wp11an_crowded_cohort_screen",
+  "ledger_sha256": "81e7be1d80d8f9c905bfc7b568696b05c9e1315ada8717a8b1329dd371142d03",
+  "index": 84,
+  "stratum": "19",
+  "base_index": 240,
+  "detection_sha256": "f350bb3062709f738641fa9092260760f08bd74e338ef2c70f7b9a18cdac044a",
+  "masses": {
+    "alive_bands": [
+      0.5871860173521996,
+      0.10912001518821532,
+      0.30369396745958527
+    ],
+    "sixth_clutter": [
+      0.7878619497616655,
+      0.21071466820702903,
+      0.0014233820313054794
+    ],
+    "last_clutter": [
+      0.5059590874482165,
+      0.478811277521819,
+      0.01522963502996474
+    ]
+  },
+  "numerical": {
+    "paired": {
+      "minimum_raw_cell": -1.5830080715067602e-13,
+      "maximum_relative_imaginary_residual": 1.6464368681805597e-19,
+      "raw_mass_error": 0.0,
+      "clipping_tv": 7.237719045863527e-13,
+      "log_partition": 101.087873946099,
+      "cpu_seconds": 248.446401566
+    },
+    "positive_partition": {
+      "paired_positive_logz_difference": 9.379164112033322e-12,
+      "positive_precision_logz_difference": 1.4210854715202004e-14,
+      "double": {
+        "beta": 1.0,
+        "log_partition": 101.08787394608963,
+        "normalized_four_slot_mass": 1.051125694272967e-21,
+        "n_nonzero_one_slot_subsets": 13824,
+        "precision": "float64",
+        "cpu_seconds": 0.664024315000006
+      },
+      "extended": {
+        "beta": 1.0,
+        "log_partition": 101.08787394608962,
+        "normalized_four_slot_mass": 1.0511256942729693e-21,
+        "n_nonzero_one_slot_subsets": 13824,
+        "precision": "longdouble",
+        "cpu_seconds": 1.1239229250000164
+      }
+    }
+  },
+  "cpu_seconds": 250.97788916399998,
+  "status": "balance_accepted_validate"
+}
