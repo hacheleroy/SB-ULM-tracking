@@ -897,7 +897,7 @@ The failed WP11aj and WP11ak partial cohorts are excluded. See
 
 - [x] Validate a subtraction-free four-slot partition against toy direct
   enumeration and exposed stopped 18/19-detection calculations
-- [ ] Freeze a fresh 18/19 observation and numerical selection rule
+- [x] Freeze a fresh 18/19 observation and numerical selection rule
   before any new posterior
 
 The positive sum agrees with paired-square to `2.26e-11` and
