@@ -50,3 +50,40 @@ This protocol does not provide a formal floating-point interval bound
 or independently validate the shared one-slot likelihood. Those
 limits are recorded with the exact numerical evidence rather than
 silently counted as calibration.
+
+## Frozen beta-one screening outcome
+
+The nine screens ran in their ledger order: `0, 36, 117, 135, 144,
+189, 198, 207, 9`. All nine passed the predeclared numerical gate.
+The first balanced 18-detection variant was index `36` (base `52`);
+the two balanced 19-detection variants on distinct bases were index
+`207` (base `424`) and index `9` (base `35`). The other six screens
+failed the predeclared balance criterion and continued. No numerical
+failure or CPU cap occurred. The frozen selector returns no next entry
+and those three indices as the complete screened cohort.
+
+| Index | Detections | Base | Sixth one-clutter | Final one-clutter | Screen outcome |
+| ---: | ---: | ---: | ---: | ---: | --- |
+| 0 | 18 | 7 | 0.1321 | 0.2001 | Balance failed |
+| 36 | 18 | 52 | 0.1606 | 0.4709 | Selected |
+| 117 | 19 | 282 | 0.0667 | 0.1273 | Balance failed |
+| 135 | 19 | 290 | 0.0716 | 0.5040 | Balance failed |
+| 144 | 19 | 306 | 0.0131 | 0.2363 | Balance failed |
+| 189 | 19 | 405 | 0.0530 | 0.2963 | Balance failed |
+| 198 | 19 | 417 | 0.1348 | 0.2837 | Balance failed |
+| 207 | 19 | 424 | 0.1740 | 0.4273 | Selected |
+| 9 | 19 | 35 | 0.2321 | 0.2642 | Selected |
+
+Across all nine records, the maximum paired/positive joint TV is
+`4.18e-12` versus the frozen `1e-7` bound; maximum log-partition
+difference is `1.44e-12` versus `1e-8`. The maximum positive
+float64/extended joint TV is `2.41e-16` versus `1e-10`.
+The minimum paired raw cell is `-5.91e-14` versus the permitted
+`-1e-10`, and the maximum clipping TV is `1.31e-13` versus `1e-9`.
+Total process CPU across screens is `2151.8` seconds. Each individual
+screen remained below its `900`-second cap.
+
+These are screened candidates, not validated absolute references.
+The frozen beta-zero, beta-half, beta-one validation and reference
+manifest remain pending. WP11al sampler inference and the WP8 holdout
+remain closed.

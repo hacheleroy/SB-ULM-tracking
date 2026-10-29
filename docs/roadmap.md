@@ -910,7 +910,7 @@ WP11aj/WP11ak stay stopped and the WP8 holdout closed.
 - [x] Freeze paired joint, positive partition, absolute accuracy, and CPU rules
   before the first new posterior
 - [x] Screen the frozen ladder and stop on the first failed validation
-- [ ] Develop an independent full-joint check on exposed stopped cases,
+- [x] Develop an independent full-joint check on exposed stopped cases,
   then freeze a fresh cohort rule before screening another observation
 - [ ] Bind a complete reference manifest to the WP11al conditional sampler gate
 
@@ -939,10 +939,15 @@ inactive, and the WP8 holdout closed.
 - [x] Freeze unused 18/19-detection geometry and its ledger hash
 - [x] Freeze paired versus nonnegative full-joint, precision, balance,
   CPU, validation, and stopping rules before any new posterior
-- [ ] Run the frozen screens and validate a complete three-case cohort
+- [x] Run the frozen beta-one screens in ledger order
+- [ ] Validate the selected three-case cohort at the frozen beta values
 
 Geometry alone found 13 eligible 18-detection and 15 eligible
-19-detection bases. The first exact screen has not run. See
+19-detection bases. Nine numerically sound screens selected index 36
+from the 18-detection stratum and indices 207 and 9 from distinct
+19-detection bases. Six failed the frozen balance gate and continued.
+The selected cases are not yet validated at beta zero and beta half,
+and no complete reference manifest exists. See
 `wp11ap_positive_joint_cohort.md`. WP11al remains dormant and the WP8
 holdout closed.
 
