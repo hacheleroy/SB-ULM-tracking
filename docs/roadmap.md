@@ -885,13 +885,15 @@ remains closed.
 
 - [x] Freeze a complete three-case, 24-run accuracy, mode replication,
   and cost rule before any sampler inference on a future cohort
-- [ ] Obtain a fully validated independent cohort and bind every exact
-  reference and observation hash before launching the 24 jobs
+- [x] Obtain a fully validated independent cohort and pin every exact
+  reference and observation hash in its manifest
+- [ ] Bind that manifest to the conditional gate before launching the 24 jobs
 
 The existing WP11aa absolute per-case limits are reused, with all
 three cases required to pass and a pooled 10/12 replication limit.
-The failed WP11aj and WP11ak partial cohorts are excluded. See
-`wp11al_conditional_cohort_gate.md`.
+The failed WP11aj and WP11ak partial cohorts are excluded. WP11ap now
+provides a validated three-case manifest; binding it to the conditional
+runner remains pending. See `wp11al_conditional_cohort_gate.md`.
 
 ## WP11am — Positive partition numerical method
 
@@ -940,16 +942,18 @@ inactive, and the WP8 holdout closed.
 - [x] Freeze paired versus nonnegative full-joint, precision, balance,
   CPU, validation, and stopping rules before any new posterior
 - [x] Run the frozen beta-one screens in ledger order
-- [ ] Validate the selected three-case cohort at the frozen beta values
+- [x] Validate the selected three-case cohort at the frozen beta values
+- [x] Pin a complete manifest with observation, screen, and reference hashes
 
 Geometry alone found 13 eligible 18-detection and 15 eligible
 19-detection bases. Nine numerically sound screens selected index 36
 from the 18-detection stratum and indices 207 and 9 from distinct
 19-detection bases. Six failed the frozen balance gate and continued.
-The selected cases are not yet validated at beta zero and beta half,
-and no complete reference manifest exists. See
-`wp11ap_positive_joint_cohort.md`. WP11al remains dormant and the WP8
-holdout closed.
+All three selected cases subsequently passed the beta-zero, beta-half,
+and beta-one full-joint checks. The manifest SHA-256 is
+`2e2e20acbb84524e5022d9eaa7ab40202420bad660214426dbcf0ecfca000e68`.
+See `wp11ap_positive_joint_cohort.md`. WP11al binding remains pending
+and the WP8 holdout closed.
 
 ## WP12 — Open in-vivo trajectories
 
