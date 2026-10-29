@@ -1,0 +1,56 @@
+{
+  "experiment": "wp11ap_crowded_cohort_screen",
+  "ledger_sha256": "eda79352fdf3fe529dd8cf54a60c297009a8f618d9c2660d647ef0f44016c2a2",
+  "index": 9,
+  "stratum": "19",
+  "base_index": 35,
+  "detection_sha256": "21a05378a41892e3c6b444c4a67b6851157f16da7164c0b0e24a2d24537f4dfc",
+  "masses": {
+    "alive_bands": [
+      0.46710696841641497,
+      0.1754536036262472,
+      0.35743942795733785
+    ],
+    "sixth_clutter": [
+      0.7627676483975058,
+      0.23211215769200197,
+      0.005092592158627731,
+      2.7601751864704748e-05
+    ],
+    "last_clutter": [
+      0.7157048470265732,
+      0.2642213703095378,
+      0.02007378266388932
+    ]
+  },
+  "numerical": {
+    "paired": {
+      "minimum_raw_cell": -1.7394652731073003e-15,
+      "maximum_relative_imaginary_residual": 4.023791811754502e-19,
+      "raw_mass_error": 0.0,
+      "clipping_tv": 8.684290330675861e-15,
+      "log_partition": 105.02791451089804,
+      "cpu_seconds": 235.60319410900001
+    },
+    "positive": {
+      "log_partition": 105.02791451089804,
+      "minimum_cell": 0.0,
+      "cpu_seconds": 18.652687978999978,
+      "precision": "longdouble"
+    },
+    "comparison": {
+      "paired_positive_logz_difference": 0.0,
+      "paired_positive_joint_tv": 7.121540985116805e-14,
+      "paired_positive_max_cell": 8.492084666760283e-15,
+      "positive_precision_logz_difference": 0.0,
+      "positive_precision_joint_tv": 2.2171074179119775e-16,
+      "positive_precision_max_cell": 6.938893903907228e-17,
+      "positive_normalization_error": 0.0,
+      "double_normalization_error": 0.0,
+      "double_cpu_seconds": 10.589944186000025,
+      "extended_cpu_seconds": 18.652687978999978
+    }
+  },
+  "cpu_seconds": 265.369650994,
+  "status": "balance_accepted_validate"
+}
