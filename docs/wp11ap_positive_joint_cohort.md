@@ -83,7 +83,42 @@ The minimum paired raw cell is `-5.91e-14` versus the permitted
 Total process CPU across screens is `2151.8` seconds. Each individual
 screen remained below its `900`-second cap.
 
-These are screened candidates, not validated absolute references.
-The frozen beta-zero, beta-half, beta-one validation and reference
-manifest remain pending. WP11al sampler inference and the WP8 holdout
-remain closed.
+At the screening checkpoint these were candidates rather than
+validated absolute references. The validation and manifest results
+follow below. WP11al sampler inference and the WP8 holdout remain
+closed.
+
+## Three-case reference validation
+
+All three screened candidates passed the frozen validation at beta
+`0`, `.5`, and `1`. The paired-square and nonnegative full joints
+passed every comparison, the positive float64 and extended joints
+agreed, toy direct enumeration passed, and the beta-zero partition
+matched the analytic base normalizer. The beta-one alive and clutter
+marginals reproduced their saved screens exactly in this run. No
+validation CPU cap was reached.
+
+| Stratum | Index | Base | Reference SHA-256 | Validation CPU (s) |
+| --- | ---: | ---: | --- | ---: |
+| 18 | 36 | 52 | `2a4ed5be9e9ce3d41aca73dfe53f9e4044a489ea2394ac784ed4d5d49f6a8f17` | 343.2 |
+| 19 | 207 | 424 | `6f1e229ee7a00c5b062b58a0f31b2f3b6b41655b40b00be9f132977b25179833` | 721.4 |
+| 19 | 9 | 35 | `5ac3af551e941484a8999a57e73ba5789b73603a2106e69e0e8bf25926adce7a` | 758.7 |
+
+Across all nine candidate/beta checks, maximum paired/positive
+full-joint TV was `4.18e-12` (bound `1e-7`) and maximum
+log-partition difference was `6.39e-13` (bound `1e-8`). Maximum
+positive float64/extended joint TV was `2.60e-16` (bound `1e-10`).
+The largest analytic-base log-partition error at beta zero was
+`1.42e-14` (bound `1e-8`). The most negative paired raw joint cell
+was `-1.07e-14` (permitted minimum `-1e-10`), and maximum clipping
+TV was `2.51e-14` (bound `1e-9`).
+
+`results/wp11ap_crowded_cohort_manifest.json` binds the fixed
+geometry, all three observation hashes, screen hashes, reference
+hashes, and beta-one mode marginals. Its SHA-256 is
+`2e2e20acbb84524e5022d9eaa7ab40202420bad660214426dbcf0ecfca000e68`.
+The references are numerical absolute targets under the shared
+one-slot likelihood implementation; they do not supply a formal
+floating-point interval proof or independent likelihood derivation.
+The WP11al sampler rule must be bound to this manifest before its
+24 jobs run. The WP8 holdout stays closed.
