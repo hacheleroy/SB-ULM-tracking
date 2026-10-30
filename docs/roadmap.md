@@ -887,13 +887,16 @@ remains closed.
   and cost rule before any sampler inference on a future cohort
 - [x] Obtain a fully validated independent cohort and pin every exact
   reference and observation hash in its manifest
-- [ ] Bind that manifest to the conditional gate before launching the 24 jobs
+- [x] Bind that manifest to the conditional gate before launching the 24 jobs
+- [ ] Run all 24 matched jobs and apply the complete frozen gate
 
 The existing WP11aa absolute per-case limits are reused, with all
 three cases required to pass and a pooled 10/12 replication limit.
 The failed WP11aj and WP11ak partial cohorts are excluded. WP11ap now
-provides a validated three-case manifest; binding it to the conditional
-runner remains pending. See `wp11al_conditional_cohort_gate.md`.
+provides a validated three-case manifest. WP11aq binds it to the
+conditional runner before any sampler job. See
+`wp11al_conditional_cohort_gate.md` and
+`wp11aq_bound_cohort_comparison.md`.
 
 ## WP11am — Positive partition numerical method
 
@@ -952,8 +955,19 @@ from the 18-detection stratum and indices 207 and 9 from distinct
 All three selected cases subsequently passed the beta-zero, beta-half,
 and beta-one full-joint checks. The manifest SHA-256 is
 `2e2e20acbb84524e5022d9eaa7ab40202420bad660214426dbcf0ecfca000e68`.
-See `wp11ap_positive_joint_cohort.md`. WP11al binding remains pending
-and the WP8 holdout closed.
+See `wp11ap_positive_joint_cohort.md`. The subsequent WP11aq binding
+is frozen before sampler inference; the WP8 holdout remains closed.
+
+## WP11aq — Bound 24-job crowded cohort comparison
+
+- [x] Bind the exact WP11ap manifest, observations, screens and references
+  to the previously frozen WP11al rule in an executable runner
+- [ ] Run all 24 jobs and decide the three case and pooled gates
+
+The WP11al rule and WP11ap manifest hashes are pinned in the runner.
+Its first permitted job is the 18-detection control at seed 1800.
+No WP11aq sampler job has run at this freeze checkpoint. The WP8
+holdout remains closed. See `wp11aq_bound_cohort_comparison.md`.
 
 ## WP12 — Open in-vivo trajectories
 
